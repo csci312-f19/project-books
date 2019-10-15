@@ -1,8 +1,8 @@
 {
-  "name": "project",
+  "name": "Midd-Book-Market",
   "version": "0.1.0",
   "private": true,
-  "description": "Describe your project",
+  "description": "A buying and selling platform for middlebury students to get books for their classes",
   "engines": {
     "node": "10.15.x"
   },
@@ -17,8 +17,13 @@
   ],
   "keywords": [],
   "contributors": [
-    "Student1 <student1@middlebury.edu>",
-    "Student2 <student2@middlebury.edu>"
+    "Grant Berman <gberman@middlebury.edu>",
+    "Nick O'Leary <nroleary@middlebury.edu>",
+    "Christi Woldemdhin <cwoldemdhin@middlebury.edu>",
+    "Hannah Donovan <hdonovan@middlebury.edu>",
+    "Steph Jordan <sjordan@middlebury.edu>",
+    "Andre Xiao <amxiao@middlebury.edu>",
+    "Annika Xu<xinyuex@middlebury.edu>"
   ],
   "license": "Apache-2.0",
   "devDependencies": {

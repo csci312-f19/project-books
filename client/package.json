@@ -24,7 +24,8 @@
   "dependencies": {
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "reactstrap": "^8.0.1"
   },
   "devDependencies": {
     "enzyme": "^3.10.0",
