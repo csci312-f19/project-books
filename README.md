@@ -1,4 +1,8 @@
 https://travis-ci.com/csci312-f19/project-books.svg?token=zNtmK7PGzUtz8g8ufpiy&branch=master
+
+This application is a buying and selling platform for middlebury students to buy or sell their textbooks. 
+
+Heroku Link:  https://calm-mountain-00883.herokuapp.com/
 # Project Skeleton Top-level
 
 

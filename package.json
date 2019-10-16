@@ -42,5 +42,8 @@
       "prettier --single-quote --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
   }
 }
