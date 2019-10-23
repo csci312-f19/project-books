@@ -5,5 +5,6 @@ test('Server "smoke" test', () => {
 });
 
 test('dotenv configured', () => {
+  // console.log(process.env);
   expect(process.env.MY_SECRET).toBeDefined();
 });
