@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Listings from './components/Listings';
+import Listings, { ListingsCollection } from './components/Listings';
+import Searchbar from './components/SearchBar';
 
 /* eslint-disable react/prefer-stateless-function */
 
@@ -8,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <input type="text" placeholder={'Search'} />
+        <Searchbar />
         <Listings />
       </div>
     );
