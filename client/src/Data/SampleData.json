@@ -1,0 +1,170 @@
+[
+  {
+    "courseID": "AMST 0400A",
+    "courseTitle": "THEORY AND METHOD",
+    "ISBN": "978-0-520-28773-0",
+    "Title": "American Studies: A User's Guide",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "AMST/ENAM 0282A",
+    "courseTitle": "RECONSTRUCTING LITERATURE",
+    "ISBN": "978-0-486-28269-5",
+    "Title": "Winesburg, Ohio",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "AMST/ENAM 0282A",
+    "courseTitle": "RECONSTRUCTING LITERATURE",
+    "ISBN": "978-0-486-43163-5",
+    "Title": "Marrow of Tradition",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "ANTH 0355",
+    "courseTitle": "RACE ETHNICITY ACROSS CUL",
+    "ISBN": "978-0-8122-1525-0",
+    "Title": "Object of Memory: Arab and Jew Narrate the Palestinian Village",
+    "Adoption Level": "Optional",
+    "New Only": "No"
+  },
+  {
+    "courseID": "ANTH 0355",
+    "courseTitle": "RACE ETHNICITY ACROSS CUL",
+    "ISBN": "978-0-8122-2284-5",
+    "Title": "In My Mother's House: Civil War in Sri Lanka",
+    "Adoption Level": "Optional",
+    "New Only": "No"
+  },
+  {
+    "courseID": "FYSE 1431",
+    "courseTitle": "FOOD, IDENTITY, AND POWER",
+    "ISBN": "978-0-631-20283-7",
+    "Title": "Culture of Food",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "FYSE 1431",
+    "courseTitle": "FOOD, IDENTITY, AND POWER",
+    "ISBN": "978-1-61219-127-0",
+    "Title": "Stuffed and Starved, Revised and Expanded",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "GSFS 0200",
+    "courseTitle": "FEMINIST FOUNDATIONS",
+    "ISBN": "978-0-8223-6319-4",
+    "Title": "Living A Feminist Life",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "GSFS 0200",
+    "courseTitle": "FEMINIST FOUNDATIONS",
+    "ISBN": "978-0-8129-7202-3",
+    "Title": "Feminist Promise",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "GSFS 0200",
+    "courseTitle": "FEMINIST FOUNDATIONS",
+    "ISBN": "978-1-58005-689-2",
+    "Title": "Transgender History",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "HIST 0245",
+    "courseTitle": "MODERN EUROPE 1800-1900",
+    "ISBN": "978-0-7178-0241-8",
+    "Title": "Communist Manifesto",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "HIST 0245",
+    "courseTitle": "MODERN EUROPE 1800-1900",
+    "ISBN": "978-1-138-78653-0",
+    "Title": "Europe, 1783-1914",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "INTD 0210",
+    "courseTitle": "SOPHOMORE SEMINAR",
+    "ISBN": "978-1-4000-3341-6",
+    "Title": "Beloved - With New Foreword",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "INTD 0210",
+    "courseTitle": "SOPHOMORE SEMINAR",
+    "ISBN": "978-0-14-044790-3",
+    "Title": "Bhagavad Gita",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "MATH 0200D",
+    "courseTitle": "LINEAR ALGEBRA",
+    "ISBN": "978-0-321-98238-4",
+    "Title": "Linear Algebra and Its Application - Text Only",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "MATH 0223B",
+    "courseTitle": "MULTIVARIABLE CALCULUS",
+    "ISBN": "978-0-321-78065-2",
+    "Title": "Vector Calculus",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "PSCI 0103A",
+    "courseTitle": "INTRO TO COMPARATIVE POLI",
+    "ISBN": "978-0-691-11729-4",
+    "Title": "Governing the Market: Economic Theory and the Role of Government in East Asian Industrialization",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "PSCI 0104",
+    "courseTitle": "INTRODUCTION TO AMERICAN",
+    "ISBN": "978-0-8179-2115-6",
+    "Title": "Unstable Majorities: Polarization, Party Sorting, and Political Stalemate",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "ENAM 0103B",
+    "courseTitle": "READING LITERATURE",
+    "ISBN": "978-0-88922-472-8",
+    "Title": "Burning Vision",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "ENAM 0103B",
+    "courseTitle": "READING LITERATURE",
+    "ISBN": "978-0-452-27259-0",
+    "Title": "M. Butterfly",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  },
+  {
+    "courseID": "ENAM 0103B",
+    "courseTitle": "READING LITERATURE",
+    "ISBN": "978-0-14-243727-8",
+    "Title": "Passing",
+    "Adoption Level": "Required",
+    "New Only": "No"
+  }
+]
