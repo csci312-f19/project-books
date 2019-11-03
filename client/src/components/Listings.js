@@ -1,9 +1,8 @@
 import React from 'react';
-import data from '.././Data/SampleData.json';
 
 export function ListingsCollection({ currentListings }) {
   const ListingsDisplay = currentListings.map(listing => (
-    <li key={listing.ISBN}>{listing.Title}</li>
+    <li key={listing.ISBN}>{listing.Condition}</li>
   ));
 
   return (
@@ -13,12 +12,16 @@ export function ListingsCollection({ currentListings }) {
   );
 }
 
-const FilterBar = undefined;
+const Listings = ({ listings }) => {
+  const TextBookListings = () => (
+    <ListingsCollection currentListings={listings} />
+  );
 
-function Listings() {
-  let textbookListings;
-  textbookListings = <ListingsCollection currentListings={data} />;
-  return <div>{textbookListings}</div>;
-}
+  return (
+    <div>
+      <TextBookListings />
+    </div>
+  );
+};
 
 export default Listings;

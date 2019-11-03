@@ -44,6 +44,10 @@
     ]
   },
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "immutable": "^4.0.0-rc.12",
+    "prop-types": "^15.7.2",
+    "react-immutable-proptypes": "^2.1.0",
+    "styled-components": "^4.4.1"
   }
 }
