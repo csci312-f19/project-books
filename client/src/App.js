@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Listings, { ListingsCollection } from './components/Listings';
 import Searchbar from './components/SearchBar';
 
+import { BrowserRouter as Router } from 'react-router-dom';
+
+function homepage() {}
+
 /* eslint-disable react/prefer-stateless-function */
 
-class App extends Component {
-  render() {
-    return (
+function App() {
+  const [searchTerm, setSearchTerm] = useState(true);
+
+  return (
+    <Router>
       <div>
         <Searchbar />
-        <Listings />
+        {searchTerm && <Listings />}
       </div>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;
