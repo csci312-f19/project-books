@@ -11,15 +11,15 @@ const DetailedListing = ({ match }) => {
     </div>
   );
 };
-export function ListingsCollection({ currentListings, setDetailedListing }) {
+export function ListingsCollection({ currentListings }) {
   const ListingsDisplay = currentListings.map((
     listing //nav link?
   ) => (
     <li
       key={listing.ISBN}
-      onClick={() => {
-        setDetailedListing(true);
-      }}
+      //   onClick={() => {
+      //     setDetailedListing(true);
+      //   }}
     >
       <Link to={listing.Title}>{listing.Title}</Link>
     </li>
@@ -35,22 +35,15 @@ export function ListingsCollection({ currentListings, setDetailedListing }) {
 const FilterBar = undefined;
 
 function Listings() {
-  const [detailedListing, setDetailedListing] = useState(false);
-
-  let textbookListings;
-  textbookListings = (
-    <ListingsCollection
-      currentListings={data}
-      setDetailedListing={setDetailedListing}
-    />
-  );
   return (
-    <Router>
-      <div>
-        {!detailedListing && textbookListings}
+    <div>
+      <Switch>
         <Route path="/:id" component={DetailedListing} />
-      </div>
-    </Router>
+        <Route
+          component={() => <ListingsCollection currentListings={data} />}
+        />
+      </Switch>
+    </div>
   );
 }
 

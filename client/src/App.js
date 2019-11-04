@@ -3,42 +3,31 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Listings, { ListingsCollection } from './components/Listings';
 import Searchbar from './components/SearchBar';
-
-import { BrowserRouter as Router } from 'react-router-dom';
-
-function homepage() {}
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 /* eslint-disable react/prefer-stateless-function */
 
 function App() {
   const [searchTerm, setSearchTerm] = useState(true);
 
+  function Core() {
+    return (
+      <div>
+        <Searchbar />
+        <Listings />
+      </div>
+    );
+  }
+
   return (
     <Router>
       <div>
-        <Searchbar />
-        {searchTerm && <Listings />}
+        <Switch>
+          <Route component={Core} />
+        </Switch>
       </div>
     </Router>
   );
 }
 
 export default App;
-
-/**
- *       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to your CS312 Project</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-
-        <button  onClick={() => {
-        alert("here")
-      }}>
-            </button>
-           
-            </div>
- */
