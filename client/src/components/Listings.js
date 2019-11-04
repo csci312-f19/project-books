@@ -12,15 +12,8 @@ const DetailedListing = ({ match }) => {
   );
 };
 export function ListingsCollection({ currentListings }) {
-  const ListingsDisplay = currentListings.map((
-    listing //nav link?
-  ) => (
-    <li
-      key={listing.ISBN}
-      //   onClick={() => {
-      //     setDetailedListing(true);
-      //   }}
-    >
+  const ListingsDisplay = currentListings.map(listing => (
+    <li key={listing.ISBN}>
       <Link to={listing.Title}>{listing.Title}</Link>
     </li>
   ));
@@ -31,8 +24,6 @@ export function ListingsCollection({ currentListings }) {
     </div>
   );
 }
-
-const FilterBar = undefined;
 
 function Listings() {
   return (

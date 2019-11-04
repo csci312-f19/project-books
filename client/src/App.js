@@ -8,23 +8,15 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 /* eslint-disable react/prefer-stateless-function */
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState(true);
-
   function Core() {
-    return (
-      <div>
-        <Searchbar />
-        <Listings />
-      </div>
-    );
+    return <div></div>;
   }
 
   return (
     <Router>
       <div>
-        <Switch>
-          <Route component={Core} />
-        </Switch>
+        <Searchbar />
+        <Listings />
       </div>
     </Router>
   );
