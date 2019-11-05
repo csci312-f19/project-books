@@ -1,22 +1,41 @@
-import React, { Component } from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import Listings, { ListingsCollection } from './components/Listings';
-import Searchbar from './components/SearchBar';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import styled from 'styled-components';
+import SearchBar from './components/SearchBar';
+import Listings from './components/Listings';
+import SortBar from './components/SortBar';
+import { BrowserRouter as Router, withRouter } from 'react-router-dom';
+
+//import Immutable from 'immutable';   // need to do "npm install immutable
+import data from './Data/SampleData.json';
 
 /* eslint-disable react/prefer-stateless-function */
+const Title = styled.h1`
+  text-align: center;
+`;
 
 function App() {
-  function Core() {
-    return <div></div>;
-  }
+  const [sortType, setSortType] = useState('');
+  const [listings, setListings] = useState([]);
+  const [ascending, setDirection] = useState(true);
+  const [currentBook, setBook] = useState(null);
 
+  useEffect(() => setListings(data), []);
   return (
     <Router>
       <div>
-        <Searchbar />
-        <Listings />
+        <Title>Midd Book Market</Title>
+        <SearchBar setBook={book => setBook(book)} currentBook={currentBook} />
+
+        <SortBar
+          listings={listings}
+          setListings={setListings}
+          sortType={sortType}
+          setSortType={setSortType}
+          ascending={ascending}
+          flipDirection={() => setDirection(!ascending)}
+        />
+        <Listings currentListings={listings} searchTerm={currentBook} />
       </div>
     </Router>
   );
