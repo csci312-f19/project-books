@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import SearchBar from './components/SearchBar';
 import Listings from './components/Listings';
 import SortBar from './components/SortBar';
-import { BrowserRouter as Router, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 //import Immutable from 'immutable';   // need to do "npm install immutable
 import data from './Data/SampleData.json';

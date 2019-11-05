@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 const ListingsContainer = styled.div`
   text-align: center;
@@ -35,15 +35,15 @@ export function ListingsCollection({ currentListings, searchTerm }) {
   if (searchTerm != null) {
     updatedList = [];
 
-    currentListings.forEach(function(listing) {
-      let editedTitle = listing.Title.toUpperCase();
+    currentListings.forEach(listing => {
+      const editedTitle = listing.Title.toUpperCase();
       if (
         editedTitle.includes(searchTerm.toUpperCase()) &&
         !updatedList.includes(listing)
       ) {
         updatedList.push(listing);
       }
-      let editedCourseTitle = listing.courseTitle.toUpperCase();
+      const editedCourseTitle = listing.courseTitle.toUpperCase();
       if (
         editedCourseTitle.includes(searchTerm.toUpperCase()) &&
         !updatedList.includes(listing)

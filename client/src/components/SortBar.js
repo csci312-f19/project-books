@@ -24,23 +24,6 @@ const SortBar = ({
   ascending,
   flipDirection
 }) => {
-  const DirectionArrow = ({ ascending, flipDirection }) => {
-    return (
-      <span
-        onClick={() => {
-          flipDirection();
-          sortBy(sortType, !ascending);
-        }}
-      >
-        {ascending ? '↓' : '↑'}
-      </span>
-    );
-  };
-
-  const direction = (
-    <DirectionArrow ascending={ascending} flipDirection={flipDirection} />
-  );
-
   const conditions = ['Like New', 'Good', 'Acceptable'];
 
   const sortBy = (type, sortDirection) => {
@@ -70,6 +53,20 @@ const SortBar = ({
     setSortType(type);
     setListings(newListings);
   };
+  const DirectionArrow = () => {
+    return (
+      <span
+        onClick={() => {
+          flipDirection();
+          sortBy(sortType, !ascending);
+        }}
+      >
+        {ascending ? '↓' : '↑'}
+      </span>
+    );
+  };
+
+  const direction = <DirectionArrow />;
 
   return (
     <SortBarContainer>

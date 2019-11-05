@@ -12,7 +12,7 @@ const SearchBarContainer = styled.div`
   text-align: center;
 `;
 
-function Search({ setBook, currentBook }) {
+function Search({ setBook }) {
   return (
     <SearchBarContainer>
       <SearchBar
