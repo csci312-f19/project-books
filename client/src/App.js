@@ -1,22 +1,44 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import styled from 'styled-components';
+import SearchBar from './components/SearchBar';
+import Listings from './components/Listings';
+import SortBar from './components/SortBar';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+//import Immutable from 'immutable';   // need to do "npm install immutable
+import data from './Data/SampleData.json';
 
 /* eslint-disable react/prefer-stateless-function */
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to your CS312 Project</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+const Title = styled.h1`
+  text-align: center;
+`;
+
+function App() {
+  const [sortType, setSortType] = useState('');
+  const [listings, setListings] = useState([]);
+  const [ascending, setDirection] = useState(true);
+  const [currentBook, setBook] = useState(null);
+
+  useEffect(() => setListings(data), []);
+  return (
+    <Router>
+      <div>
+        <Title>Midd Book Market</Title>
+        <SearchBar setBook={book => setBook(book)} currentBook={currentBook} />
+
+        <SortBar
+          listings={listings}
+          setListings={setListings}
+          sortType={sortType}
+          setSortType={setSortType}
+          ascending={ascending}
+          flipDirection={() => setDirection(!ascending)}
+        />
+        <Listings currentListings={listings} searchTerm={currentBook} />
       </div>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;
