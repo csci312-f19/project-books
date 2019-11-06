@@ -5,6 +5,7 @@ import SearchBar from './components/SearchBar';
 import Listings from './components/Listings';
 import SortBar from './components/SortBar';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Immutable from 'immutable';
 
 //import Immutable from 'immutable';   // need to do "npm install immutable
 import data from './Data/SampleData.json';
@@ -16,11 +17,11 @@ const Title = styled.h1`
 
 function App() {
   const [sortType, setSortType] = useState('');
-  const [listings, setListings] = useState([]);
+  const [listings, setListings] = useState(Immutable.List());
   const [ascending, setDirection] = useState(true);
   const [currentBook, setBook] = useState(null);
 
-  useEffect(() => setListings(data), []);
+  useEffect(() => setListings(Immutable.List(data)), []);
   return (
     <Router>
       <div>
