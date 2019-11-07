@@ -30,38 +30,24 @@ const DetailedListing = ({ match }) => {
 };
 
 export function ListingsCollection({ currentListings, searchTerm }) {
-  let updatedList = currentListings;
-
   if (searchTerm != null) {
-    updatedList = [];
-
-    currentListings.forEach(listing => {
+    currentListings = currentListings.filter(function(listing) {
       const editedTitle = listing.Title.toUpperCase();
-      if (
-        editedTitle.includes(searchTerm.toUpperCase()) &&
-        !updatedList.includes(listing)
-      ) {
-        updatedList.push(listing);
-      }
       const editedCourseTitle = listing.courseTitle.toUpperCase();
-      if (
-        editedCourseTitle.includes(searchTerm.toUpperCase()) &&
-        !updatedList.includes(listing)
-      ) {
-        updatedList.push(listing);
-      }
       // let editedAuthor=listing.Author.toUpperCase();
-      // if (editedAuthor.includes(searchTerm.toUpperCase())){
-      //     updatedList.push(listing)
-      // }
 
-      if (listing.ISBN.includes(searchTerm) && !updatedList.includes(listing)) {
-        updatedList.push(listing);
+      if (
+        editedTitle.includes(searchTerm.toUpperCase()) ||
+        editedCourseTitle.includes(searchTerm.toUpperCase()) ||
+        listing.ISBN.includes(searchTerm)
+      ) {
+        console.log(editedTitle);
+        return listing;
       }
     });
   }
 
-  const ListingsDisplay = updatedList.map(listing => (
+  const ListingsDisplay = currentListings.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
 
