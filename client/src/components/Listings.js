@@ -30,24 +30,38 @@ const DetailedListing = ({ match }) => {
 };
 
 export function ListingsCollection({ currentListings, searchTerm }) {
-  if (searchTerm != null) {
-    currentListings = currentListings.filter(function(listing) {
-      const editedTitle = listing.Title.toUpperCase();
-      const editedCourseTitle = listing.courseTitle.toUpperCase();
-      // let editedAuthor=listing.Author.toUpperCase();
+  let updatedList = currentListings;
 
+  if (searchTerm != null) {
+    updatedList = [];
+
+    currentListings.forEach(listing => {
+      const editedTitle = listing.Title.toUpperCase();
       if (
-        editedTitle.includes(searchTerm.toUpperCase()) ||
-        editedCourseTitle.includes(searchTerm.toUpperCase()) ||
-        listing.ISBN.includes(searchTerm)
+        editedTitle.includes(searchTerm.toUpperCase()) &&
+        !updatedList.includes(listing)
       ) {
-        console.log(editedTitle);
-        return listing;
+        updatedList.push(listing);
+      }
+      const editedCourseTitle = listing.courseTitle.toUpperCase();
+      if (
+        editedCourseTitle.includes(searchTerm.toUpperCase()) &&
+        !updatedList.includes(listing)
+      ) {
+        updatedList.push(listing);
+      }
+      // let editedAuthor=listing.Author.toUpperCase();
+      // if (editedAuthor.includes(searchTerm.toUpperCase())){
+      //     updatedList.push(listing)
+      // }
+
+      if (listing.ISBN.includes(searchTerm) && !updatedList.includes(listing)) {
+        updatedList.push(listing);
       }
     });
   }
 
-  const ListingsDisplay = currentListings.map(listing => (
+  const ListingsDisplay = updatedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
 
