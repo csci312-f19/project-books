@@ -7,6 +7,7 @@ import SortBar from './components/SortBar';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 //import Immutable from 'immutable';   // need to do "npm install immutable
+
 import data from './Data/SampleData.json';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -20,7 +21,21 @@ function App() {
   const [ascending, setDirection] = useState(true);
   const [currentBook, setBook] = useState(null);
 
-  useEffect(() => setListings(data), []);
+  useEffect(() => {
+    fetch('/api/listings/')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        alert(data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  //   useEffect(() => setListings(data), []);
   return (
     <Router>
       <div>
