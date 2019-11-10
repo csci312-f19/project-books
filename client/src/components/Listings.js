@@ -77,6 +77,7 @@ const DetailedListing = ({ match }) => {
   );
 };
 
+
 export function ListingsCollection({
   currentListings,
   searchTerm,
@@ -84,31 +85,19 @@ export function ListingsCollection({
   ascending
 }) {
   let updatedList = currentListings;
-
   if (searchTerm != null) {
-    updatedList = [];
-
-    currentListings.forEach(listing => {
+    updatedList = currentListings.filter(function(listing) {
       const editedTitle = listing.Title.toUpperCase();
-      if (
-        editedTitle.includes(searchTerm.toUpperCase()) &&
-        !updatedList.includes(listing)
-      ) {
-        updatedList.push(listing);
-      }
       const editedCourseTitle = listing.courseTitle.toUpperCase();
-      if (
-        editedCourseTitle.includes(searchTerm.toUpperCase()) &&
-        !updatedList.includes(listing)
-      ) {
-        updatedList.push(listing);
-      }
 
-      if (listing.ISBN.includes(searchTerm) && !updatedList.includes(listing)) {
-        updatedList.push(listing);
-      }
+      return (
+        editedTitle.includes(searchTerm.toUpperCase()) ||
+        editedCourseTitle.includes(searchTerm.toUpperCase()) ||
+        listing.ISBN.includes(searchTerm)
+      );
     });
   }
+
   if (sortType === 'Price') {
     if (ascending) {
       //ascending is true;
