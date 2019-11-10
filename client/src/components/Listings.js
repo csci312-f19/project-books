@@ -86,46 +86,37 @@ export function ListingsCollection({
   let updatedList = currentListings;
 
   if (searchTerm != null) {
-    updatedList = [];
-
-    currentListings.forEach(listing => {
+    updatedList = currentListings.filter(listing => {
       const editedTitle = listing.Title.toUpperCase();
-      if (
-        editedTitle.includes(searchTerm.toUpperCase()) &&
-        !updatedList.includes(listing)
-      ) {
-        updatedList.push(listing);
-      }
       const editedCourseTitle = listing.courseTitle.toUpperCase();
-      if (
-        editedCourseTitle.includes(searchTerm.toUpperCase()) &&
-        !updatedList.includes(listing)
-      ) {
-        updatedList.push(listing);
-      }
 
-      if (listing.ISBN.includes(searchTerm) && !updatedList.includes(listing)) {
-        updatedList.push(listing);
-      }
+      return (
+        editedTitle.includes(searchTerm.toUpperCase()) ||
+        editedCourseTitle.includes(searchTerm.toUpperCase()) ||
+        listing.ISBN.includes(searchTerm)
+      );
     });
   }
+
+  let sortedList;
+
   if (sortType === 'Price') {
     if (ascending) {
       //ascending is true;
-      updatedList = updatedList.sort((a, b) => a.Price - b.Price); //increasing order / asending is true / ↑
+      sortedList = updatedList.sort((a, b) => a.Price - b.Price); //increasing order / asending is true / ↑
     } else {
-      updatedList = updatedList.sort((a, b) => b.Price - a.Price);
+      sortedList = updatedList.sort((a, b) => b.Price - a.Price);
     }
   } else if (sortType === 'Condition') {
     if (ascending) {
-      updatedList = updatedList.sort((a, b) => a.Condition - b.Condition);
+      sortedList = updatedList.sort((a, b) => a.Condition - b.Condition);
     } else {
-      updatedList = updatedList.sort((a, b) => b.Condition - a.Condition);
+      sortedList = updatedList.sort((a, b) => b.Condition - a.Condition);
     }
   } else {
-    updatedList = currentListings;
+    sortedList = updatedList;
   }
-  const ListingsDisplay = updatedList.map(listing => (
+  const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
 
