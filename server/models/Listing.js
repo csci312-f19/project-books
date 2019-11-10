@@ -11,13 +11,13 @@ class Listing extends Model {
       // required : [nothing yet]
 
       properties: {
-        listing_id: { type: increments },
-        user_id: { type: integer },
-        ISBN: { type: integer },
-        condition: { type: string },
-        price: { type: decimal },
-        edited: { type: string },
-        comments: { type: text }
+        listing_id: { type: 'increments' },
+        user_id: { type: 'integer' },
+        ISBN: { type: 'integer' },
+        condition: { type: 'string' },
+        price: { type: 'decimal' },
+        edited: { type: 'string' },
+        comments: { type: 'text' }
       }
     };
   }

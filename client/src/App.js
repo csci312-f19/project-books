@@ -8,8 +8,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 //import Immutable from 'immutable';   // need to do "npm install immutable
 
-import data from './Data/SampleData.json';
-
 /* eslint-disable react/prefer-stateless-function */
 const Title = styled.h1`
   text-align: center;
@@ -30,12 +28,11 @@ function App() {
         return response.json();
       })
       .then(data => {
-        alert(data);
+        setListings(data);
       })
       .catch(err => console.log(err));
   }, []);
 
-  //   useEffect(() => setListings(data), []);
   return (
     <Router>
       <div>

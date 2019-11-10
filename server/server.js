@@ -12,18 +12,19 @@ const path = require('path'); // eslint-disable-line global-require
 
 // Resolve client build directory as absolute path to avoid errors in express
 const buildPath = path.resolve(__dirname, '../client/build');
+const { wrapError, DBError } = require('db-errors');
 
 Model.knex(knex);
 const app = express();
 
-// const corsOptions = {
-//     methods: ['GET', 'PUT', 'POST', 'DELETE'],
-//     origin: '*',
-//     allowedHeaders: ['Content-Type', 'Accept', 'X-Requested-With', 'Origin']
-//   };
+const corsOptions = {
+  methods: ['GET', 'PUT', 'POST', 'DELETE'],
+  origin: '*',
+  allowedHeaders: ['Content-Type', 'Accept', 'X-Requested-With', 'Origin']
+};
 
-//   app.use(cors(corsOptions));
-//   app.use(bodyParser.json());
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -35,7 +36,6 @@ if (process.env.NODE_ENV === 'production') {
 
 // TODO: Add your routes here
 app.get('/api/listings', (request, response, next) => {
-  alert('here');
   Listing.query().then(rows => {
     response.send(rows);
   }, next); // <- Notice the "next" function as the rejection handler
