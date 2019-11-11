@@ -53,8 +53,8 @@ export function ListingsCollection({ currentListings, searchTerm }) {
       <ListElement>{listing.courseID}</ListElement>
       <ListElement>{listing.courseTitle}</ListElement>
       <ListElement>{listing.ISBN}</ListElement>
-      <ListElement>{listing.Price}</ListElement>
-      <ListElement>{listing.Condition}</ListElement>
+      <ListElement>{listing.price}</ListElement>
+      <ListElement>{listing.condition}</ListElement>
       <Link to={listing.Title}>More Info</Link>
     </ListElementContainer>
   ));

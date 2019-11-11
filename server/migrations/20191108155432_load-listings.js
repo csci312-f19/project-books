@@ -2,7 +2,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('Listings', table => {
     table.increments('listing_id');
     table.integer('user_id');
-    table.integer('ISBN');
+    table.string('ISBN');
     table.string('condition');
     table.decimal('price');
     table.string('edited');
