@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Switch, Route, Link } from 'react-router-dom';
+import Immutable from 'immutable';
 
 const ListingsContainer = styled.div`
   text-align: center;
@@ -29,27 +30,11 @@ const DetailedListing = ({ match }) => {
   );
 };
 
-function getBookByISBN(listing) {
-  // alert("in call")
-
-  const isbn = listing.ISBN;
-  let book;
-  fetch(`/api/books/${isbn}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    })
-    .then(data => {
-      book = data; //how do i return this data at the end of the function ? let will not persist outside of scope
-    })
-    .catch(err => console.log(err));
-  console.log(book);
-  return book;
-}
-
 export function ListingsCollection({ currentListings, searchTerm }) {
+  let currCollections1 = [];
+
+  const [currCollections, setColl] = useState([]);
+  const [signal, setSignal] = useState(0);
   if (searchTerm != null) {
     currentListings = currentListings.filter(function(listing) {
       const editedTitle = listing.Title.toUpperCase();
@@ -63,27 +48,56 @@ export function ListingsCollection({ currentListings, searchTerm }) {
       );
     });
   }
-  if (currentListings.length != 0) {
-    const book = getBookByISBN(currentListings[0]); //change this to only take in an ID ?
-    // console.log(book)
-    // console.log("^^^")
-  }
 
-  const ListingsDisplay = currentListings.map(listing => (
+  const getBookByISBN = listing => {
+    const isbn = listing.ISBN;
+    let book;
+    fetch(`/api/books/${isbn}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // let currCollections1=currCollections;
+        currCollections1.push(data);
+        // setColl(currCollections1);
+      })
+      .catch(err => console.log(err));
+  };
+
+  // useEffect(()=>{
+  if (currentListings.length != 0 && signal == 0) {
+    setSignal(1);
+    currentListings.forEach(listing => {
+      getBookByISBN(listing);
+    });
+    console.log(currCollections1);
+    setColl(currCollections1);
+  }
+  // }, [])
+
+  console.log(currCollections);
+  let ListingsDisplay = currCollections.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
 
     <ListElementContainer key={listing.ISBN}>
-      <ListTitle>{listing.Title}</ListTitle>
+      <ListTitle>{listing.title}</ListTitle>
       <ListElement>{listing.courseID}</ListElement>
-      <ListElement>{listing.courseTitle}</ListElement>
-      <ListElement>{listing.ISBN}</ListElement>
-      <ListElement>{listing.price}</ListElement>
-      <ListElement>{listing.condition}</ListElement>
       <Link to={listing.ISBN}>More Info</Link>
     </ListElementContainer>
   ));
-
+  // <ListElementContainer key={listing.ISBN}>
+  //   <ListTitle>{listing.Title}</ListTitle>
+  //   <ListElement>{listing.courseID}</ListElement>
+  //   <ListElement>{listing.courseTitle}</ListElement>
+  //   <ListElement>{listing.ISBN}</ListElement>
+  //   <ListElement>{listing.price}</ListElement>
+  //   <ListElement>{listing.condition}</ListElement>
+  //   <Link to={listing.ISBN}>More Info</Link>
+  // </ListElementContainer>
   return (
     <ListingsContainer>
       <List>{ListingsDisplay}</List>
