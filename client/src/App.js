@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import SearchBar from './components/SearchBar';
 import Listings from './components/Listings';
 import SortBar from './components/SortBar';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 //import Immutable from 'immutable';   // need to do "npm install immutable
 
@@ -37,19 +37,63 @@ function App() {
     <Router>
       <div>
         <Title>Midd Book Market</Title>
-        <SearchBar setBook={book => setBook(book)} currentBook={currentBook} />
+        <Switch>
+          <Route
+            path="/:id"
+            component={() => (
+              <div>
+                <Listings
+                  currentListings={listings}
+                  searchTerm={currentBook}
+                  mode={'detailed'}
+                />
+              </div>
+            )}
+          />
+          <Route
+            component={() => (
+              <div>
+                <SearchBar
+                  setBook={book => setBook(book)}
+                  currentBook={currentBook}
+                />
 
-        <SortBar
-          listings={listings}
-          setListings={setListings}
-          sortType={sortType}
-          setSortType={setSortType}
-          ascending={ascending}
-          flipDirection={() => setDirection(!ascending)}
-        />
-        <Listings currentListings={listings} searchTerm={currentBook} />
+                <SortBar
+                  listings={listings}
+                  setListings={setListings}
+                  sortType={sortType}
+                  setSortType={setSortType}
+                  ascending={ascending}
+                  flipDirection={() => setDirection(!ascending)}
+                />
+
+                <Listings
+                  currentListings={listings}
+                  searchTerm={currentBook}
+                  mode={'general'}
+                />
+              </div>
+            )}
+          />
+        </Switch>
       </div>
     </Router>
+    // <Router>
+    //   <div>
+    //     <Title>Midd Book Market</Title>
+    //     <SearchBar setBook={book => setBook(book)} currentBook={currentBook} />
+
+    // <SortBar
+    //   listings={listings}
+    //   setListings={setListings}
+    //   sortType={sortType}
+    //   setSortType={setSortType}
+    //   ascending={ascending}
+    //   flipDirection={() => setDirection(!ascending)}
+    // />
+    //     <Listings currentListings={listings} searchTerm={currentBook} />
+    //   </div>
+    // </Router>
   );
 }
 

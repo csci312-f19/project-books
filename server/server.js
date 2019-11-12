@@ -3,6 +3,7 @@ const { Model, ValidationError } = require('objection');
 const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig[process.env.NODE_ENV || 'development']);
 const Listing = require('./models/Listing');
+const Book = require('./models/Book');
 
 const express = require('express');
 const cors = require('cors');
@@ -39,6 +40,15 @@ app.get('/api/listings', (request, response, next) => {
   Listing.query().then(rows => {
     response.send(rows);
   }, next); // <- Notice the "next" function as the rejection handler
+});
+
+app.get(`/api/books/:ISBN`, (request, response, next) => {
+  const ISBN = request.params.ISBN;
+  Book.query()
+    .where('ISBN', ISBN)
+    .then(rows => {
+      response.send(rows);
+    }, next); // <- Notice the "next" function as the rejection handler
 });
 
 // Express only serves static assets in production

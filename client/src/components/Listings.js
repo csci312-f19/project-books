@@ -29,6 +29,26 @@ const DetailedListing = ({ match }) => {
   );
 };
 
+function getBookByISBN(listing) {
+  // alert("in call")
+
+  const isbn = listing.ISBN;
+  let book;
+  fetch(`/api/books/${isbn}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      book = data; //how do i return this data at the end of the function ? let will not persist outside of scope
+    })
+    .catch(err => console.log(err));
+  console.log(book);
+  return book;
+}
+
 export function ListingsCollection({ currentListings, searchTerm }) {
   if (searchTerm != null) {
     currentListings = currentListings.filter(function(listing) {
@@ -43,6 +63,11 @@ export function ListingsCollection({ currentListings, searchTerm }) {
       );
     });
   }
+  if (currentListings.length != 0) {
+    const book = getBookByISBN(currentListings[0]); //change this to only take in an ID ?
+    // console.log(book)
+    // console.log("^^^")
+  }
 
   const ListingsDisplay = currentListings.map(listing => (
     //Listtitle will be whatever it is that we search by
@@ -55,7 +80,7 @@ export function ListingsCollection({ currentListings, searchTerm }) {
       <ListElement>{listing.ISBN}</ListElement>
       <ListElement>{listing.price}</ListElement>
       <ListElement>{listing.condition}</ListElement>
-      <Link to={listing.Title}>More Info</Link>
+      <Link to={listing.ISBN}>More Info</Link>
     </ListElementContainer>
   ));
 
@@ -66,22 +91,23 @@ export function ListingsCollection({ currentListings, searchTerm }) {
   );
 }
 
-function Listings({ currentListings, searchTerm }) {
-  return (
-    <div>
-      <Switch>
-        <Route path="/:id" component={DetailedListing} />
-        <Route
-          component={() => (
-            <ListingsCollection
-              currentListings={currentListings}
-              searchTerm={searchTerm}
-            />
-          )}
+function Listings({ currentListings, searchTerm, mode }) {
+  if (mode == 'detailed') {
+    return (
+      <div>
+        <DetailedListing />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <ListingsCollection
+          currentListings={currentListings}
+          searchTerm={searchTerm}
         />
-      </Switch>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default Listings;
