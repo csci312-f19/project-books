@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Switch, Route, Link } from 'react-router-dom';
-import Immutable from 'immutable';
+import { Link } from 'react-router-dom';
 
 const ListingsContainer = styled.div`
   text-align: center;
@@ -51,7 +50,7 @@ export function ListingsCollection({ currentListings, searchTerm }) {
 
   const getBookByISBN = listing => {
     const isbn = listing.ISBN;
-    let book;
+
     fetch(`/api/books/${isbn}`)
       .then(response => {
         if (!response.ok) {
@@ -68,7 +67,7 @@ export function ListingsCollection({ currentListings, searchTerm }) {
   };
 
   // useEffect(()=>{
-  if (currentListings.length != 0 && signal == 0) {
+  if (currentListings.length !== 0 && signal === 0) {
     setSignal(1);
     currentListings.forEach(listing => {
       getBookByISBN(listing);
@@ -106,7 +105,7 @@ export function ListingsCollection({ currentListings, searchTerm }) {
 }
 
 function Listings({ currentListings, searchTerm, mode }) {
-  if (mode == 'detailed') {
+  if (mode === 'detailed') {
     return (
       <div>
         <DetailedListing />
