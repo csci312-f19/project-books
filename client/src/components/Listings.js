@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ListingsContainer = styled.div`
   text-align: center;
@@ -21,10 +21,28 @@ const ListTitle = styled.h2`
   padding: 5px;
 `;
 
-const DetailedListing = ({ match }) => {
+const DetailedListing = () => {
+  const [detailedListing, setDetailedListing] = useState('');
+
+  let { id } = useParams();
+
+  useEffect(() => {
+    fetch(`/api/bookListings/${id}`) //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setDetailedListing(data[0]);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
   return (
     <div>
-      <h2>{match.params.id}</h2>
+      <h2>{detailedListing.title}</h2>
     </div>
   );
 };
@@ -33,7 +51,6 @@ function getBookByISBN(listing) {
   // alert("in call")
 
   const isbn = listing.ISBN;
-  let book;
   fetch(`/api/books/${isbn}`)
     .then(response => {
       if (!response.ok) {
@@ -42,11 +59,9 @@ function getBookByISBN(listing) {
       return response.json();
     })
     .then(data => {
-      book = data; //how do i return this data at the end of the function ? let will not persist outside of scope
+      return data; //how do i return this data at the end of the function ? let will not persist outside of scope
     })
     .catch(err => console.log(err));
-  console.log(book);
-  return book;
 }
 
 export function ListingsCollection({ currentListings, searchTerm }) {
@@ -63,9 +78,10 @@ export function ListingsCollection({ currentListings, searchTerm }) {
       );
     });
   }
-  if (currentListings.length != 0) {
+  if (currentListings.length !== 0) {
+    console.log(currentListings);
     const book = getBookByISBN(currentListings[0]); //change this to only take in an ID ?
-    // console.log(book)
+    console.log(book);
     // console.log("^^^")
   }
 
@@ -74,13 +90,13 @@ export function ListingsCollection({ currentListings, searchTerm }) {
     // All the others will run though list of other properties to populate ListElement probably
 
     <ListElementContainer key={listing.ISBN}>
-      <ListTitle>{listing.Title}</ListTitle>
+      <ListTitle>{listing.title}</ListTitle>
       <ListElement>{listing.courseID}</ListElement>
       <ListElement>{listing.courseTitle}</ListElement>
       <ListElement>{listing.ISBN}</ListElement>
       <ListElement>{listing.price}</ListElement>
       <ListElement>{listing.condition}</ListElement>
-      <Link to={listing.ISBN}>More Info</Link>
+      <Link to={String(listing.listingID)}>More Info</Link>
     </ListElementContainer>
   ));
 
@@ -92,7 +108,7 @@ export function ListingsCollection({ currentListings, searchTerm }) {
 }
 
 function Listings({ currentListings, searchTerm, mode }) {
-  if (mode == 'detailed') {
+  if (mode === 'detailed') {
     return (
       <div>
         <DetailedListing />
