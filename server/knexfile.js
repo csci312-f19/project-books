@@ -3,7 +3,7 @@ module.exports = {
   test: {
     client: 'sqlite3',
     connection: {
-      filename: './simplepedia-test.db'
+      filename: './listings-test.db'
     },
     useNullAsDefault: true,
     seeds: {

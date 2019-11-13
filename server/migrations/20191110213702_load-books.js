@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+exports.up = knex => {
   return knex.schema.createTable('Books', table => {
     table.string('ISBN');
     table.string('title');
@@ -6,10 +6,10 @@ exports.up = function(knex) {
     //   table.string('publisher');
     table.string('courseID');
 
-    //insert further constraints such as not nullable
+    // insert further constraints such as not nullable
   });
 };
 
-exports.down = function(knex) {
+exports.down = knex => {
   return knex.schema.dropTableIfExists('Books');
 };

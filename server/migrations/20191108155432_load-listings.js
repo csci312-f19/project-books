@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+exports.up = knex => {
   return knex.schema.createTable('Listings', table => {
     table.increments('listingID');
     table.integer('userID');
@@ -7,10 +7,10 @@ exports.up = function(knex) {
     table.decimal('price');
     table.string('edited');
     table.text('comments');
-    //insert further constraints such as not nullable
+    // insert further constraints such as not nullable
   });
 };
 
-exports.down = function(knex) {
+exports.down = knex => {
   return knex.schema.dropTableIfExists('Listings');
 };

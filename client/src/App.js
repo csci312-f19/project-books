@@ -45,7 +45,7 @@ function App() {
             )}
           />
           <Route
-            component={() => (
+            render={() => (
               <div>
                 <SearchBar
                   setBook={book => setBook(book)}

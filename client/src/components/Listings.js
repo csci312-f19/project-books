@@ -40,7 +40,7 @@ const SelectBar = styled.select`
 const DetailedListing = () => {
   const [detailedListing, setDetailedListing] = useState('');
 
-  let { id } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     fetch(`/api/bookListings/${id}`) //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
@@ -51,10 +51,23 @@ const DetailedListing = () => {
         return response.json();
       })
       .then(data => {
+        console.log(data[0]);
         setDetailedListing(data[0]);
       })
       .catch(err => console.log(err));
   }, []);
+
+  return (
+    <div>
+      <h2>{detailedListing.title}</h2>
+      <div>ISBN: {detailedListing.ISBN}</div>
+      <div>Comments:{detailedListing.comments} </div>
+      <div>Condition:{detailedListing.condition} </div>
+      <div>courseID: {detailedListing.courseID} </div>
+      <div>edited:{detailedListing.edited} </div>
+      <div>price: {detailedListing.price} </div>
+    </div>
+  );
 };
 
 const SortBar = ({ sortType, setSortType, ascending, setDirection }) => {
