@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 
+//import Immutable from 'immutable';
+
 const ListingsContainer = styled.div`
   text-align: center;
 `;
@@ -20,6 +22,20 @@ const ListTitle = styled.h2`
   text-align: left;
   padding: 5px;
 `;
+const SortBarContainer = styled.div`
+    text-align: center;
+    padding: 20px;
+`;
+
+const SelectBar = styled.select`
+    text-align: center;
+    position: relative;
+    display: inline;
+`;
+
+//background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
+//  box-sizing: border-box;
 
 const DetailedListing = () => {
   const [detailedListing, setDetailedListing] = useState('');
@@ -39,17 +55,50 @@ const DetailedListing = () => {
       })
       .catch(err => console.log(err));
   }, []);
+};
 
+const SortBar = ({ sortType, setSortType, ascending, setDirection }) => {
   return (
-    <div>
-      <h2>{detailedListing.title}</h2>
-    </div>
+    <SortBarContainer>
+      Order by
+      <SelectBar
+        value={sortType}
+        onChange={event => {
+          setSortType(event.target.value);
+          if (sortType === 'Default') {
+            setDirection(true);
+          }
+        }}
+      >
+        <option value="Default">Default</option>
+        <option value="Price">Price</option>
+        <option value="Condition">Condition</option>
+      </SelectBar>
+      {(sortType === 'Price' || sortType === 'Condition') && (
+        <SelectBar
+          value={ascending ? 'True' : 'False'}
+          onChange={event => {
+            setDirection(event.target.value === 'True');
+          }}
+        >
+          <option value="True">Ascending</option>
+          <option value="False">Descending</option>
+        </SelectBar>
+      )}
+    </SortBarContainer>
   );
 };
 
-export function ListingsCollection({ currentListings, searchTerm }) {
+export function ListingsCollection({
+  currentListings,
+  searchTerm,
+  sortType,
+  ascending
+}) {
+  let updatedList = currentListings;
+
   if (searchTerm != null) {
-    currentListings = currentListings.filter(function(listing) {
+    updatedList = currentListings.filter(listing => {
       const editedTitle = listing.title.toUpperCase();
       const editedCourseTitle = listing.courseID.toUpperCase();
       // let editedAuthor=listing.Author.toUpperCase();
@@ -62,9 +111,27 @@ export function ListingsCollection({ currentListings, searchTerm }) {
     });
   }
 
-  console.log(currentListings);
-  const ListingsDisplay = currentListings.map(listing => (
-    // Listtitle will be whatever it is that we search by
+  let sortedList;
+
+  if (sortType === 'Price') {
+    if (ascending) {
+      //ascending is true;
+      sortedList = updatedList.sort((a, b) => a.Price - b.Price); //increasing order / asending is true / ↑
+    } else {
+      sortedList = updatedList.sort((a, b) => b.Price - a.Price);
+    }
+  } else if (sortType === 'Condition') {
+    if (ascending) {
+      sortedList = updatedList.sort((a, b) => a.Condition - b.Condition);
+    } else {
+      sortedList = updatedList.sort((a, b) => b.Condition - a.Condition);
+    }
+  } else {
+    sortedList = updatedList;
+  }
+
+  const ListingsDisplay = sortedList.map(listing => (
+    //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
 
     <ListElementContainer key={listing.ISBN}>
@@ -86,6 +153,8 @@ export function ListingsCollection({ currentListings, searchTerm }) {
 }
 
 function Listings({ currentListings, searchTerm, mode }) {
+  const [sortType, setSortType] = useState('');
+  const [ascending, setDirection] = useState(true);
   if (mode === 'detailed') {
     return (
       <div>
@@ -95,9 +164,18 @@ function Listings({ currentListings, searchTerm, mode }) {
   } else {
     return (
       <div>
+        <SortBar
+          updatedListings={currentListings}
+          sortType={sortType}
+          setSortType={setSortType}
+          ascending={ascending}
+          setDirection={setDirection}
+        />
         <ListingsCollection
           currentListings={currentListings}
           searchTerm={searchTerm}
+          sortType={sortType}
+          ascending={ascending}
         />
       </div>
     );

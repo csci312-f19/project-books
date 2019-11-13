@@ -3,10 +3,8 @@ import './App.css';
 import styled from 'styled-components';
 import SearchBar from './components/SearchBar';
 import Listings from './components/Listings';
-import SortBar from './components/SortBar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-//import Immutable from 'immutable';   // need to do "npm install immutable
+import Immutable from 'immutable';
 
 /* eslint-disable react/prefer-stateless-function */
 const Title = styled.h1`
@@ -14,9 +12,7 @@ const Title = styled.h1`
 `;
 
 function App() {
-  const [sortType, setSortType] = useState('');
-  const [listings, setListings] = useState([]);
-  const [ascending, setDirection] = useState(true);
+  const [listings, setListings] = useState(Immutable.List());
   const [currentBook, setBook] = useState(null);
 
   useEffect(() => {
@@ -28,7 +24,7 @@ function App() {
         return response.json();
       })
       .then(data => {
-        setListings(data);
+        setListings(Immutable.List(data));
       })
       .catch(err => console.log(err));
   }, []);
@@ -55,16 +51,6 @@ function App() {
                   setBook={book => setBook(book)}
                   currentBook={currentBook}
                 />
-
-                <SortBar
-                  listings={listings}
-                  setListings={setListings}
-                  sortType={sortType}
-                  setSortType={setSortType}
-                  ascending={ascending}
-                  flipDirection={() => setDirection(!ascending)}
-                />
-
                 <Listings
                   currentListings={listings}
                   searchTerm={currentBook}
