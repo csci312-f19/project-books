@@ -1,11 +1,11 @@
-const request = require('supertest');
-const { app, knex } = require('./server');
+// const request = require('supertest');
+const { app } = require('./server');
 
-const book = {
-  ISBN: '978-0-520-28773-0',
-  courseID: 'AMST 0400A',
-  title: "American Studies: A User's Guide"
-};
+// const book = {
+//   ISBN: '978-0-520-28773-0',
+//   courseID: 'AMST 0400A',
+//   title: "American Studies: A User's Guide"
+// };
 
 // describe('Midd Book Market API', () => {
 //   beforeEach(() => {
