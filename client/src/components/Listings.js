@@ -22,8 +22,6 @@ const ListTitle = styled.h2`
   padding: 5px;
 `;
 
-const nodemailer = require('nodemailer');
-
 function sendEmail(name, email, message) {
   fetch('api/send', {
     method: 'POST',
