@@ -24,12 +24,15 @@
   "dependencies": {
     "immutable": "^4.0.0-rc.12",
     "mini-create-react-context": "^0.3.2",
+    "nodemailer": "^6.3.1",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-immutable-proptypes": "^2.1.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "2.1.5",
+    "react-search-box": "^2.0.2",
+    "reactjs-popup": "^1.5.0",
     "reactstrap": "^8.0.1",
     "styled-components": "^4.4.0"
   },

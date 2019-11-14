@@ -25,7 +25,11 @@ function App() {
     <Router>
       <div>
         <Title>Midd Book Market</Title>
-        <SearchBar setBook={book => setBook(book)} currentBook={currentBook} />
+        <SearchBar
+          setBook={book => setBook(book)}
+          currentListings={listings}
+          setListings={setListings}
+        />
 
         <SortBar
           listings={listings}

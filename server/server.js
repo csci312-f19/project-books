@@ -27,3 +27,28 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   app
 };
+
+//sends the email; currently hard coded; will need to be moved over to client???
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'noReply.MiddBookMarket@gmail.com',
+    pass: 'MarketBookMidd1'
+  }
+});
+
+var mailOptions = {
+  from: 'noReply.MiddBookMarket@gmail.com',
+  to: 'hdonovan@middlebury.edu',
+  subject: 'A buyer is interested in your book!',
+  html: '<h1>Hi There!</h1><p>This is a test :)</p'
+};
+
+transporter.sendMail(mailOptions, function(error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});

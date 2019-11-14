@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Switch, Route, Link } from 'react-router-dom';
+import Popup from 'reactjs-popup';
 
 const ListingsContainer = styled.div`
   text-align: center;
@@ -25,6 +26,13 @@ const DetailedListing = ({ match }) => {
   return (
     <div>
       <h2>{match.params.id}</h2>
+      <Popup trigger={<button> Buy Now </button>} position="right center">
+        <div>
+          {`Are you sure you would like to buy this book? Finalizing your purchase
+          will confirm your order and send an alert to the seller.    `}
+          <button>Place my Order</button>
+        </div>
+      </Popup>
     </div>
   );
 };
@@ -34,11 +42,13 @@ export function ListingsCollection({ currentListings, searchTerm }) {
     currentListings = currentListings.filter(function(listing) {
       const editedTitle = listing.Title.toUpperCase();
       const editedCourseTitle = listing.courseTitle.toUpperCase();
+      const editedCourseCode = listing.courseID.toUpperCase();
       // let editedAuthor=listing.Author.toUpperCase();
 
       return (
         editedTitle.includes(searchTerm.toUpperCase()) ||
         editedCourseTitle.includes(searchTerm.toUpperCase()) ||
+        editedCourseCode.includes(searchTerm.toUpperCase()) ||
         listing.ISBN.includes(searchTerm)
       );
     });
