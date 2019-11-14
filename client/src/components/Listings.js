@@ -47,28 +47,11 @@ const DetailedListing = () => {
   );
 };
 
-function getBookByISBN(listing) {
-  // alert("in call")
-
-  const isbn = listing.ISBN;
-  fetch(`/api/books/${isbn}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    })
-    .then(data => {
-      return data; //how do i return this data at the end of the function ? let will not persist outside of scope
-    })
-    .catch(err => console.log(err));
-}
-
 export function ListingsCollection({ currentListings, searchTerm }) {
   if (searchTerm != null) {
     currentListings = currentListings.filter(function(listing) {
-      const editedTitle = listing.Title.toUpperCase();
-      const editedCourseTitle = listing.courseTitle.toUpperCase();
+      const editedTitle = listing.title.toUpperCase();
+      const editedCourseTitle = listing.courseID.toUpperCase();
       // let editedAuthor=listing.Author.toUpperCase();
 
       return (
@@ -77,12 +60,6 @@ export function ListingsCollection({ currentListings, searchTerm }) {
         listing.ISBN.includes(searchTerm)
       );
     });
-  }
-  if (currentListings.length !== 0) {
-    console.log(currentListings);
-    const book = getBookByISBN(currentListings[0]); //change this to only take in an ID ?
-    console.log(book);
-    // console.log("^^^")
   }
 
   const ListingsDisplay = currentListings.map(listing => (
@@ -114,7 +91,7 @@ function Listings({ currentListings, searchTerm, mode }) {
         <DetailedListing />
       </div>
     );
-  } else {
+  } else if (mode === 'general') {
     return (
       <div>
         <ListingsCollection
@@ -123,6 +100,8 @@ function Listings({ currentListings, searchTerm, mode }) {
         />
       </div>
     );
+  } else {
+    return;
   }
 }
 

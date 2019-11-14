@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import styled from 'styled-components';
 import SearchBar from './components/SearchBar';
+import NewPosting from './components/NewPosting';
 import Listings from './components/Listings';
 import SortBar from './components/SortBar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 //import Immutable from 'immutable';   // need to do "npm install immutable
 
 /* eslint-disable react/prefer-stateless-function */
 const Title = styled.h1`
+  text-align: center;
+`;
+
+const newPostingButton = styled.div`
   text-align: center;
 `;
 
@@ -39,6 +44,11 @@ function App() {
         <Title>Midd Book Market</Title>
         <Switch>
           <Route
+            exact
+            path="/newPosting"
+            component={() => <NewPosting ifPosting={'postingView'} />}
+          />
+          <Route
             path="/:id"
             component={() => (
               <Listings
@@ -51,6 +61,7 @@ function App() {
           <Route
             component={() => (
               <div>
+                <NewPosting ifPosting={'general'} />
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}
