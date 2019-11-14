@@ -22,6 +22,30 @@ const ListTitle = styled.h2`
   padding: 5px;
 `;
 
+const nodemailer = require('nodemailer');
+
+function sendEmail(name, email, message) {
+  fetch('api/send', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      message: message
+    })
+  })
+    .then(res => res.json())
+    .then(res => {
+      console.log('here is the response: ', res);
+    })
+    .catch(err => {
+      console.error('here is the error: ', err);
+    });
+}
+
 const DetailedListing = ({ match }) => {
   return (
     <div>
@@ -30,7 +54,11 @@ const DetailedListing = ({ match }) => {
         <div>
           {`Are you sure you would like to buy this book? Finalizing your purchase
           will confirm your order and send an alert to the seller.    `}
-          <button>Place my Order</button>
+          <button
+            onClick={sendEmail('Hannah', 'hdonovan@middlebury.edu', 'test2')}
+          >
+            Place my Order
+          </button>
         </div>
       </Popup>
     </div>
