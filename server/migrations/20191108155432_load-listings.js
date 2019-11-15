@@ -1,16 +1,16 @@
-exports.up = function(knex) {
+exports.up = knex => {
   return knex.schema.createTable('Listings', table => {
-    table.increments('listing_id');
-    table.integer('user_id');
+    table.increments('listingID');
+    table.integer('userID');
     table.string('ISBN');
     table.string('condition');
     table.decimal('price');
     table.string('edited');
     table.text('comments');
-    //insert further constraints such as not nullable
+    // insert further constraints such as not nullable
   });
 };
 
-exports.down = function(knex) {
+exports.down = knex => {
   return knex.schema.dropTableIfExists('Listings');
 };

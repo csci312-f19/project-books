@@ -1,4 +1,4 @@
-const { Model, ValidationError } = require('objection');
+const { Model } = require('objection');
 
 const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig[process.env.NODE_ENV || 'development']);
@@ -43,9 +43,31 @@ app.get('/api/listings', (request, response, next) => {
 });
 
 app.get(`/api/books/:ISBN`, (request, response, next) => {
-  const ISBN = request.params.ISBN;
+  const { ISBN } = request.params;
   Book.query()
     .where('ISBN', ISBN)
+    .then(rows => {
+      response.send(rows);
+    }, next); // <- Notice the "next" function as the rejection handler
+});
+
+app.get('/api/bookListings', (request, response, next) => {
+  Listing.query()
+    .select('*')
+    .from('Listings')
+    .joinRaw('natural join Books')
+    .then(rows => {
+      response.send(rows);
+    }, next); // <- Notice the "next" function as the rejection handler
+});
+
+app.get(`/api/bookListings/:id`, (request, response, next) => {
+  const { id } = request.params;
+  Listing.query()
+    .select('*')
+    .from('Listings')
+    .joinRaw('natural join Books')
+    .where('listingID', id)
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
