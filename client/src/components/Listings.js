@@ -111,7 +111,7 @@ export function ListingsCollection({
   ascending
 }) {
   let updatedList = currentListings;
-  let searchResults = new Array(updatedList.size).fill(0);
+  const searchResults = new Array(updatedList.size).fill(0);
   if (searchTerm != null) {
     updatedList = currentListings.filter(listing => {
       const editedTitle = listing.title.toUpperCase();
@@ -125,7 +125,7 @@ export function ListingsCollection({
       );
     });
 
-    let searchTerms = searchTerm.split(' ');
+    const searchTerms = searchTerm.split(' ');
     let count = 0;
     updatedList.forEach(j => {
       const editedTitle = j.title.toUpperCase();
@@ -173,18 +173,18 @@ export function ListingsCollection({
       let index1 = 0;
       let index = 1;
       if (ascending) {
-        sortedList = updatedList.sort((listing1, listing2) => {
-          let term = searchResults[index1];
-          let term1 = searchResults[index];
+        sortedList = updatedList.sort(() => {
+          const term = searchResults[index1];
+          const term1 = searchResults[index];
           index++;
           index1++;
 
           return term1 - term;
         });
       } else {
-        sortedList = updatedList.sort((listing1, listing2) => {
-          let term = searchResults[index1];
-          let term1 = searchResults[index];
+        sortedList = updatedList.sort(() => {
+          const term = searchResults[index1];
+          const term1 = searchResults[index];
           index++;
           index1++;
 
