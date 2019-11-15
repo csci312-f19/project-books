@@ -23,19 +23,19 @@ const ListTitle = styled.h2`
   padding: 5px;
 `;
 const SortBarContainer = styled.div`
-    text-align: center;
-    padding: 20px;
+  text-align: center;
+  padding: 20px;
 `;
 
 const SelectBar = styled.select`
-    text-align: center;
-    position: relative;
-    display: inline;
+  text-align: center;
+  position: relative;
+  display: inline;
 `;
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 
-//  box-sizing: border-box;
+//  box-sizing: border-box;
 
 const DetailedListing = () => {
   const [detailedListing, setDetailedListing] = useState('');
@@ -78,18 +78,16 @@ const SortBar = ({ sortType, setSortType, ascending, setDirection }) => {
         value={sortType}
         onChange={event => {
           setSortType(event.target.value);
-          if (sortType === 'Relevance') {
+          if (sortType === 'Default') {
             setDirection(true);
           }
         }}
       >
-        <option value="Relevance">Relevance</option>
+        <option value="Default">Default</option>
         <option value="Price">Price</option>
         <option value="Condition">Condition</option>
       </SelectBar>
-      {(sortType === 'Price' ||
-        sortType === 'Condition' ||
-        sortType === 'Relevance') && (
+      {(sortType === 'Price' || sortType === 'Condition') && (
         <SelectBar
           value={ascending ? 'True' : 'False'}
           onChange={event => {
@@ -111,7 +109,7 @@ export function ListingsCollection({
   ascending
 }) {
   let updatedList = currentListings;
-  const searchResults = new Array(updatedList.size).fill(0);
+
   if (searchTerm != null) {
     updatedList = currentListings.filter(listing => {
       const editedTitle = listing.title.toUpperCase();
@@ -124,30 +122,6 @@ export function ListingsCollection({
         listing.ISBN.includes(searchTerm)
       );
     });
-
-    const searchTerms = searchTerm.split(' ');
-    let count = 0;
-    updatedList.forEach(j => {
-      const editedTitle = j.title.toUpperCase();
-      const editedCourseTitle = j.courseID.toUpperCase();
-
-      for (let i = 0; i < searchTerms.length; i++) {
-        i = searchTerms[i];
-        if (
-          editedTitle.includes(i.toUpperCase()) &&
-          editedCourseTitle.includes(i.toUpperCase())
-        ) {
-          searchResults[count] += 2;
-        } else if (editedCourseTitle.includes(i.toUpperCase())) {
-          searchResults[count] += 1;
-        } else if (editedTitle.includes(i.toUpperCase())) {
-          searchResults[count] += 1;
-        } else if (j.ISBN.includes(i)) {
-          searchResults[count] += 1;
-        }
-      }
-      count++;
-    });
   }
 
   let sortedList;
@@ -155,42 +129,15 @@ export function ListingsCollection({
   if (sortType === 'Price') {
     if (ascending) {
       //ascending is true;
-
-      sortedList = updatedList.sort((a, b) => a.price - b.price); //increasing order / asending is true / ↑
+      sortedList = updatedList.sort((a, b) => a.Price - b.Price); //increasing order / asending is true / ↑
     } else {
-      sortedList = updatedList.sort((a, b) => b.price - a.price);
+      sortedList = updatedList.sort((a, b) => b.Price - a.Price);
     }
   } else if (sortType === 'Condition') {
     if (ascending) {
-      sortedList = updatedList.sort((a, b) => a.condition - b.condition);
+      sortedList = updatedList.sort((a, b) => a.Condition - b.Condition);
     } else {
-      sortedList = updatedList.sort((a, b) => b.condition - a.condition);
-    }
-  } else if (sortType === 'Relevance') {
-    if (searchTerm === null) {
-      sortedList = updatedList;
-    } else {
-      let index1 = 0;
-      let index = 1;
-      if (ascending) {
-        sortedList = updatedList.sort(() => {
-          const term = searchResults[index1];
-          const term1 = searchResults[index];
-          index++;
-          index1++;
-
-          return term1 - term;
-        });
-      } else {
-        sortedList = updatedList.sort(() => {
-          const term = searchResults[index1];
-          const term1 = searchResults[index];
-          index++;
-          index1++;
-
-          return term - term1;
-        });
-      }
+      sortedList = updatedList.sort((a, b) => b.Condition - a.Condition);
     }
   } else {
     sortedList = updatedList;
