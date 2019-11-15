@@ -3,11 +3,11 @@ const fs = require('fs');
 
 exports.seed = knex => {
   const contents = fs.readFileSync(
-    path.join(__dirname, '/DB_Data/listingsSampleData.json')
+    path.join(__dirname, '/DB_Data/transactionsSampleData.json')
   );
   const data = JSON.parse(contents);
   // Deletes ALL existing entries
-  return knex('Listings')
+  return knex('Transactions')
     .del()
-    .then(() => knex.batchInsert('Listings', data, 100));
+    .then(() => knex.batchInsert('Transactions', data, 100));
 };
