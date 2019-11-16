@@ -23,19 +23,19 @@ const ListTitle = styled.h2`
   padding: 5px;
 `;
 const SortBarContainer = styled.div`
-    text-align: center;
-    padding: 20px;
+  text-align: center;
+  padding: 20px;
 `;
 
 const SelectBar = styled.select`
-    text-align: center;
-    position: relative;
-    display: inline;
+  text-align: center;
+  position: relative;
+  display: inline;
 `;
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 
-//  box-sizing: border-box;
+//  box-sizing: border-box;
 
 const DetailedListing = () => {
   const [detailedListing, setDetailedListing] = useState('');
