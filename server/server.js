@@ -36,6 +36,11 @@ if (process.env.NODE_ENV === 'production') {
 // TODO: Add any middleware here
 
 // TODO: Add your routes here
+
+app.post('/api/newPosting', (request, response, next) => {
+  // Need to talk to Grant/Steph about structure of doing this
+});
+
 app.get('/api/listings', (request, response, next) => {
   Listing.query().then(rows => {
     response.send(rows);
