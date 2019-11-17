@@ -4,16 +4,28 @@ const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig[process.env.NODE_ENV || 'development']);
 const Listing = require('./models/Listing');
 const Book = require('./models/Book');
+const User = require('./models/User');
 
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const path = require('path'); // eslint-disable-line global-require
+const session = require('express-session');
+const passport = require('passport');
+const BearerStrategy = require('passport-http-bearer').Strategy;
+const { OAuth2Client } = require('google-auth-library');
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Resolve client build directory as absolute path to avoid errors in express
 const buildPath = path.resolve(__dirname, '../client/build');
 const { wrapError, DBError } = require('db-errors');
+const authenticationMiddleware = (request, response, next) => {
+  if (request.isAuthenticated()) {
+    return next(); // we are good, proceed to the next handler
+  }
+  return response.sendStatus(403); // forbidden
+};
 
 Model.knex(knex);
 const app = express();
@@ -26,6 +38,53 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(
+  new BearerStrategy((token, done) => {
+    googleClient
+      .verifyIdToken({
+        idToken: token,
+        audience: process.env.GOOGLE_CLIENT_ID
+      })
+      .then(async ticket => {
+        const payload = ticket.getPayload();
+        let user = await User.query().findOne('googleId', payload.sub);
+        if (!user) {
+          user = await User.query().insertAndFetch({
+            googleId: payload.sub,
+            familyName: payload.family_name,
+            givenName: payload.given_name,
+            email: payload.email
+          });
+        }
+        done(null, user);
+      })
+      .catch(error => {
+        done(error);
+      });
+  })
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.query()
+    .findOne('id', id)
+    .then(user => {
+      done(null, user);
+    });
+});
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -34,6 +93,19 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // TODO: Add any middleware here
+
+app.post(
+  '/login',
+  passport.authenticate('bearer', { session: true }),
+  (request, response, next) => {
+    response.sendStatus(200);
+  }
+);
+
+app.post('/logout', (request, response, next) => {
+  request.logout(); // logout function added by passport
+  response.sendStatus(200);
+});
 
 // TODO: Add your routes here
 app.get('/api/listings', (request, response, next) => {
@@ -92,6 +164,7 @@ app.use((error, request, response, next) => {
   if (wrappedError instanceof DBError) {
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
+    console.log('error is: ' + error);
     response
       .status(wrappedError.statusCode || wrappedError.status || 500)
       .send(wrappedError.data || wrappedError.message || {});

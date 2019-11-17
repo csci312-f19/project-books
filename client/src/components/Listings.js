@@ -70,7 +70,7 @@ const DetailedListing = () => {
   );
 };
 
-const SortBar = ({ sortType, setSortType, ascending, setDirection }) => {
+export function SortBar({ sortType, setSortType, ascending, setDirection }) {
   return (
     <SortBarContainer>
       Order by
@@ -100,7 +100,7 @@ const SortBar = ({ sortType, setSortType, ascending, setDirection }) => {
       )}
     </SortBarContainer>
   );
-};
+}
 
 export function ListingsCollection({
   currentListings,
