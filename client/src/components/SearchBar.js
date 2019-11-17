@@ -6,7 +6,7 @@ const SearchBarContainer = styled.div`
   text-align: center;
 `;
 
-function Search({ setBook, currentListings, setListings }) {
+function Search({ setBook, currentListings }) {
   return (
     <SearchBarContainer>
       <ReactSearchBox

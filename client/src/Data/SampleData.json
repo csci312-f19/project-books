@@ -7,7 +7,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "50",
-    "Condition": "Like New"
+    "Condition": "1"
   },
   {
     "courseID": "AMST/ENAM 0282A",
@@ -17,7 +17,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "49",
-    "Condition": "Acceptable"
+    "Condition": "3"
   },
   {
     "courseID": "AMST/ENAM 0282A",
@@ -27,7 +27,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "42",
-    "Condition": "Like New"
+    "Condition": "1"
   },
   {
     "courseID": "ANTH 0355",
@@ -37,7 +37,7 @@
     "Adoption Level": "Optional",
     "New Only": "No",
     "Price": "44",
-    "Condition": "Good"
+    "Condition": "2"
   },
   {
     "courseID": "ANTH 0355",
@@ -47,7 +47,7 @@
     "Adoption Level": "Optional",
     "New Only": "No",
     "Price": "46",
-    "Condition": "Acceptable"
+    "Condition": "3"
   },
   {
     "courseID": "FYSE 1431",
@@ -57,7 +57,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "37",
-    "Condition": "Like New"
+    "Condition": "1"
   },
   {
     "courseID": "FYSE 1431",
@@ -67,7 +67,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "20",
-    "Condition": "Good"
+    "Condition": "2"
   },
   {
     "courseID": "GSFS 0200",
@@ -77,7 +77,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "20",
-    "Condition": "Like New"
+    "Condition": "1"
   },
   {
     "courseID": "GSFS 0200",
@@ -87,7 +87,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "38",
-    "Condition": "Acceptable"
+    "Condition": "3"
   },
   {
     "courseID": "GSFS 0200",
@@ -97,7 +97,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "50",
-    "Condition": "Acceptable"
+    "Condition": "3"
   },
   {
     "courseID": "HIST 0245",
@@ -107,7 +107,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "40",
-    "Condition": "Like New"
+    "Condition": "1"
   },
   {
     "courseID": "HIST 0245",
@@ -117,7 +117,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "20",
-    "Condition": "Acceptable"
+    "Condition": "3"
   },
   {
     "courseID": "INTD 0210",
@@ -127,7 +127,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "36",
-    "Condition": "Acceptable"
+    "Condition": "3"
   },
   {
     "courseID": "INTD 0210",
@@ -137,7 +137,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "45",
-    "Condition": "Good"
+    "Condition": "2"
   },
   {
     "courseID": "MATH 0200D",
@@ -147,7 +147,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "55",
-    "Condition": "Like New"
+    "Condition": "1"
   },
   {
     "courseID": "MATH 0223B",
@@ -157,7 +157,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "60",
-    "Condition": "Acceptable"
+    "Condition": "3"
   },
   {
     "courseID": "PSCI 0103A",
@@ -167,7 +167,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "20",
-    "Condition": "Like New"
+    "Condition": "1"
   },
   {
     "courseID": "PSCI 0104",
@@ -177,7 +177,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "44",
-    "Condition": "Good"
+    "Condition": "2"
   },
   {
     "courseID": "ENAM 0103B",
@@ -187,7 +187,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "44",
-    "Condition": "Good"
+    "Condition": "2"
   },
   {
     "courseID": "ENAM 0103B",
@@ -197,7 +197,7 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "43",
-    "Condition": "Like New"
+    "Condition": "1"
   },
   {
     "courseID": "ENAM 0103B",
@@ -207,6 +207,6 @@
     "Adoption Level": "Required",
     "New Only": "No",
     "Price": "20",
-    "Condition": "Acceptable"
+    "Condition": "3"
   }
 ]

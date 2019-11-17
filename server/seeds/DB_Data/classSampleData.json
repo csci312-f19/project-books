@@ -1,0 +1,22 @@
+[
+  {
+    "courseCode": "AMST 0400A",
+    "courseTitle": "American Studies",
+    "department": "TBD"
+  },
+  {
+    "courseCode": "AMST/ENAM 0282A",
+    "courseTitle": "Russian",
+    "department": "TBD"
+  },
+  {
+    "courseCode": "AMST/ENAM 0282A",
+    "courseTitle": "English",
+    "department": "TBD"
+  },
+  {
+    "courseCode": "ANTH 0355",
+    "courseTitle": "Anthro",
+    "department": "TBD"
+  }
+]
