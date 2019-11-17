@@ -2,7 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import SearchBar from './components/SearchBar';
-import Listings from './components/Listings';
+import {
+  Listings,
+  ListingsCollection,
+  DetailedListing,
+  SortBar
+} from './components/Listings';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { act } from 'react-dom/test-utils';
@@ -29,11 +35,19 @@ describe('App rendering tests', () => {
     test('Contains an SearchBar component', () => {
       expect(app).toContainExactlyOneMatchingElement(SearchBar);
     });
-  });
 
-  describe('App component initial content', () => {
-    test('Contains an listings component', () => {
-      expect(app).toContainExactlyOneMatchingElement(Listings);
+    test('Contains the listingCollctions component', () => {
+      expect(app).toContainExactlyOneMatchingElement(ListingsCollection);
     });
+
+    // test('Contains the sortBar component', () => {
+    //     expect(app).toContainExactlyOneMatchingElement(SortBar);
+    // });
+    // test('Does not display detailed Listings at startup', () => {
+    //   expect(app).not.toContainMatchingElement(DetailedListing);
+    // });
+    // test('Does not display detailed Listings at startup', () => {
+    //     expect(app).toContainExactlyOneMatchingElement(Listings);
+    //   });
   });
 });
