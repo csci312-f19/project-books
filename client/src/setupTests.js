@@ -9,7 +9,6 @@ export const sampleBookListings = [
   [
     {
       listingID: 1,
-      listingID: 51,
       ISBN: '254068722-9',
       condition: 'Good',
       price: 61,
@@ -17,7 +16,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 2,
-      listingID: 51,
       ISBN: '810322020-5',
       condition: 'Good',
       price: 21,
@@ -25,7 +23,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 3,
-      listingID: 40,
       ISBN: '642971602-3',
       condition: 'Good',
       price: 14,
@@ -33,7 +30,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 4,
-      listingID: 75,
       ISBN: '611450462-3',
       condition: 'Very Good',
       price: 31,
@@ -41,7 +37,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 5,
-      listingID: 69,
       ISBN: '400835226-0',
       condition: 'Acceptable',
       price: 62,
@@ -49,7 +44,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 6,
-      listingID: 95,
       ISBN: '581572768-7',
       condition: 'Like New',
       price: 50,
@@ -57,7 +51,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 7,
-      listingID: 61,
       ISBN: '249568003-8',
       condition: 'Like New',
       price: 34,
@@ -65,7 +58,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 8,
-      listingID: 33,
       ISBN: '525486519-9',
       condition: 'Like New',
       price: 38,
@@ -73,7 +65,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 9,
-      listingID: 43,
       ISBN: '518135760-1',
       condition: 'Acceptable',
       price: 63,
@@ -81,7 +72,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 10,
-      listingID: 85,
       ISBN: '857534205-3',
       condition: 'Like New',
       price: 9,
@@ -89,7 +79,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 11,
-      listingID: 21,
       ISBN: '205440969-3',
       condition: 'Acceptable',
       price: 84,
@@ -97,7 +86,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 12,
-      listingID: 23,
       ISBN: '620283264-9',
       condition: 'Very Good',
       price: 9,
@@ -105,7 +93,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 13,
-      listingID: 9,
       ISBN: '851563779-0',
       condition: 'Good',
       price: 36,
@@ -113,7 +100,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 14,
-      listingID: 1,
       ISBN: '323832100-5',
       condition: 'Like New',
       price: 59,
@@ -121,7 +107,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 15,
-      listingID: 2,
       ISBN: '582298907-1',
       condition: 'Acceptable',
       price: 19,
@@ -129,7 +114,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 16,
-      listingID: 17,
       ISBN: '960918582-7',
       condition: 'Good',
       price: 33,
@@ -137,7 +121,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 17,
-      listingID: 65,
       ISBN: '453997237-5',
       condition: 'Good',
       price: 67,
@@ -145,7 +128,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 18,
-      listingID: 15,
       ISBN: '526794484-X',
       condition: 'Very Good',
       price: 68,
@@ -153,7 +135,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 19,
-      listingID: 33,
       ISBN: '663195999-3',
       condition: 'Poor',
       price: 10,
@@ -161,7 +142,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 20,
-      listingID: 11,
       ISBN: '687583054-X',
       condition: 'Good',
       price: 97,
@@ -169,7 +149,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 21,
-      listingID: 25,
       ISBN: '220120173-0',
       condition: 'Poor',
       price: 24,
@@ -177,7 +156,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 22,
-      listingID: 88,
       ISBN: '449961343-4',
       condition: 'Poor',
       price: 23,
@@ -185,7 +163,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 23,
-      listingID: 80,
       ISBN: '340367646-3',
       condition: 'Like New',
       price: 94,
@@ -193,7 +170,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 24,
-      listingID: 80,
       ISBN: '806563910-0',
       condition: 'Acceptable',
       price: 41,
@@ -201,7 +177,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 25,
-      listingID: 30,
       ISBN: '073962612-4',
       condition: 'Like New',
       price: 62,
@@ -209,7 +184,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 26,
-      listingID: 68,
       ISBN: '981995972-1',
       condition: 'Like New',
       price: 68,
@@ -217,7 +191,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 27,
-      listingID: 82,
       ISBN: '206212115-6',
       condition: 'Good',
       price: 74,
@@ -225,7 +198,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 28,
-      listingID: 88,
       ISBN: '779143095-9',
       condition: 'Like New',
       price: 9,
@@ -233,15 +205,13 @@ export const sampleBookListings = [
     },
     {
       listingID: 29,
-      listingID: 28,
       ISBN: '224019076-0',
       condition: 'Very Good',
       price: 22,
       courseID: 'FYSE 1389'
     },
     {
-      listingID: 30,
-      listingID: 8,
+      listingID: 3,
       ISBN: '331968626-7',
       condition: 'Good',
       price: 78,
@@ -249,7 +219,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 31,
-      listingID: 14,
       ISBN: '352300458-6',
       condition: 'Good',
       price: 75,
@@ -257,7 +226,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 32,
-      listingID: 79,
       ISBN: '487820087-1',
       condition: 'Like New',
       price: 100,
@@ -265,7 +233,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 33,
-      listingID: 53,
       ISBN: '044215256-6',
       condition: 'Good',
       price: 68,
@@ -273,7 +240,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 34,
-      listingID: 69,
       ISBN: '846253872-6',
       condition: 'Good',
       price: 49,
@@ -281,7 +247,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 35,
-      listingID: 37,
       ISBN: '024214729-1',
       condition: 'Good',
       price: 39,
@@ -289,7 +254,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 36,
-      listingID: 97,
       ISBN: '897521772-8',
       condition: 'Like New',
       price: 42,
@@ -297,7 +261,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 37,
-      listingID: 1,
       ISBN: '052268518-8',
       condition: 'Like New',
       price: 21,
@@ -305,7 +268,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 38,
-      listingID: 77,
       ISBN: '850372061-2',
       condition: 'Poor',
       price: 90,
@@ -313,7 +275,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 39,
-      listingID: 2,
       ISBN: '076698489-3',
       condition: 'Good',
       price: 60,
@@ -321,7 +282,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 40,
-      listingID: 91,
       ISBN: '667145674-7',
       condition: 'Good',
       price: 71,
@@ -329,7 +289,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 41,
-      listingID: 7,
       ISBN: '622038841-0',
       condition: 'Acceptable',
       price: 11,
@@ -337,7 +296,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 42,
-      listingID: 75,
       ISBN: '568269365-5',
       condition: 'Good',
       price: 11,
@@ -345,7 +303,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 43,
-      listingID: 77,
       ISBN: '646133432-7',
       condition: 'Very Good',
       price: 50,
@@ -353,7 +310,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 44,
-      listingID: 27,
       ISBN: '896982025-6',
       condition: 'Very Good',
       price: 47,
@@ -361,7 +317,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 45,
-      listingID: 80,
       ISBN: '740587935-7',
       condition: 'Very Good',
       price: 88,
@@ -369,7 +324,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 46,
-      listingID: 5,
       ISBN: '206089436-0',
       condition: 'Acceptable',
       price: 90,
@@ -377,7 +331,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 47,
-      listingID: 56,
       ISBN: '334188286-3',
       condition: 'Acceptable',
       price: 91,
@@ -385,7 +338,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 48,
-      listingID: 37,
       ISBN: '644956524-1',
       condition: 'Acceptable',
       price: 90,
@@ -393,7 +345,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 49,
-      listingID: 77,
       ISBN: '564560585-3',
       condition: 'Good',
       price: 40,
@@ -401,7 +352,6 @@ export const sampleBookListings = [
     },
     {
       listingID: 50,
-      listingID: 37,
       ISBN: '974855107-5',
       condition: 'Like New',
       price: 53,

@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import SearchBar from './components/SearchBar';
 import {
-  Listings,
-  ListingsCollection,
-  DetailedListing,
-  SortBar
+  //   Listings,
+  ListingsCollection
+  //   DetailedListing,
+  //   SortBar
 } from './components/Listings';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Immutable from 'immutable';
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import Immutable from 'immutable';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import { pseudoServer, flushPromises } from './setupTests';

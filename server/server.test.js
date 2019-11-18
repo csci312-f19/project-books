@@ -27,7 +27,7 @@ describe('Midd Book Market API', () => {
   afterEach(() => {
     return knex.migrate.rollback();
   });
-  //GET TESTS
+  // GET TESTS
   test('GET /api/listings should return all listings', () => {
     return request(app)
       .get('/api/listings')

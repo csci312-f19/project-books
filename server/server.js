@@ -66,7 +66,7 @@ app.get(`/api/bookListings/:id`, (request, response, next) => {
   Listing.query()
     .select('*')
     .from('Listings')
-    .joinRaw('natural join Books')
+    .joinRaw('natural join "Books"')
     .where('listingID', id)
     .then(rows => {
       response.send(rows);
