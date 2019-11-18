@@ -1,4 +1,6 @@
 // Update with your config settings.
+
+// Update with your config settings.
 module.exports = {
   test: {
     client: 'sqlite3',
