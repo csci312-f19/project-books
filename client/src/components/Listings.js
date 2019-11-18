@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
+
 import Popup from 'reactjs-popup';
+
 //import Immutable from 'immutable';
 
 const ListingsContainer = styled.div`
@@ -36,9 +38,10 @@ const SelectBar = styled.select`
 const Confirmation = styled.div`
   text-align: center;
   background-color: lightgreen;
-`;
+
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
 
 //  box-sizing: border-box;
 
@@ -150,6 +153,7 @@ const DetailedListing = () => {
           </Confirmation>
         )}{' '}
       </div>
+
     </div>
   );
 };
@@ -197,6 +201,7 @@ export function ListingsCollection({
     updatedList = currentListings.filter(listing => {
       const editedTitle = listing.title.toUpperCase();
       const editedCourseCode = listing.courseID.toUpperCase();
+
       // let editedAuthor=listing.Author.toUpperCase();
       return (
         editedTitle.includes(searchTerm.toUpperCase()) ||
