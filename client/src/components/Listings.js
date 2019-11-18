@@ -37,6 +37,28 @@ const SelectBar = styled.select`
 
 //  box-sizing: border-box;
 
+function sendEmail(name, email, message) {
+  fetch('/api/bookrequest', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      message: message
+    })
+  })
+    .then(res => res.json())
+    .then(res => {
+      console.log('here is the response: ', res);
+    })
+    .catch(err => {
+      console.error('here is the error: ', err);
+    });
+}
+
 const DetailedListing = () => {
   const [detailedListing, setDetailedListing] = useState('');
 
@@ -51,11 +73,17 @@ const DetailedListing = () => {
         return response.json();
       })
       .then(data => {
-        console.log(data[0]);
         setDetailedListing(data[0]);
       })
       .catch(err => console.log(err));
   }, []);
+
+  //   let message;
+  //     if (section) {
+  //         message = <IndexTitles articles={articles} select={select} />;
+  //     } else {
+  //         message = <p style={{ textAlign: 'center' }}>Select a section</p>;
+  // }
 
   return (
     <div>
@@ -70,7 +98,13 @@ const DetailedListing = () => {
         <div>
           {`Are you sure you would like to buy this book? Finalizing your purchase
           will confirm your order and send an alert to the seller.    `}
-          <button>Place my Order</button>
+          <button
+            onClick={() => {
+              sendEmail('Hannah', 'hdonovan@middlebury.edu', 'testing');
+            }}
+          >
+            Place my Order
+          </button>
         </div>
       </Popup>
     </div>
