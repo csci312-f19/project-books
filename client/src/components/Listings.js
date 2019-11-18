@@ -12,7 +12,7 @@ const List = styled.ul`
   height: 20px;
 `;
 const ListElementContainer = styled.li`
-  border: 1px solid;
+  border: 5px solid #000080;
   padding: 2px;
   margin: 5px;
 `;
@@ -33,10 +33,16 @@ const SelectBar = styled.select`
     display: inline;
 `;
 
+const Confirmation = styled.div`
+  text-align: center;
+  background-color: lightgreen;
+`;
+
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 
 //  box-sizing: border-box;
 
+// triggered on button click to post information that the server then uses to send an email to the seller
 function sendEmail(name, email, bookTitle, bookPrice) {
   fetch('/api/bookrequest', {
     method: 'POST',
@@ -82,42 +88,68 @@ const DetailedListing = () => {
 
   return (
     <div>
-      <h2>{detailedListing.title}</h2>
-      <div>ISBN: {detailedListing.ISBN}</div>
-      <div>Comments:{detailedListing.comments} </div>
-      <div>Condition:{detailedListing.condition} </div>
-      <div>courseID: {detailedListing.courseID} </div>
-      <div>edited:{detailedListing.edited} </div>
-      <div>price: {detailedListing.price} </div>
-      {!purchased && (
-        <Popup trigger={<button> Buy Now </button>} position="right center">
-          <div>
-            {`Are you sure you would like to buy this book? Finalizing your purchase
-          will confirm your order and send an alert to the seller.    `}
-            <button
-              onClick={() => {
-                sendEmail(
-                  'Hannah',
-                  'hdonovan@middlebury.edu',
-                  detailedListing.title,
-                  detailedListing.price
-                );
-                setPurchase(true);
-              }}
-            >
-              Place my Order
-            </button>
-          </div>
-        </Popup>
-      )}
-      {purchased && (
+      <ListElementContainer>
+        <h2>{detailedListing.title}</h2>
         <div>
-          {' '}
-          Congratulations! Your request has been sent to the seller of this
-          book. Expect to hear back via email in 3 days or less. If you have not
-          heard back by then, feel free to submit a new request.{' '}
+          <strong>ISBN:</strong> {` ${detailedListing.ISBN}`}
         </div>
-      )}
+        <div>
+          <strong>Comments:</strong>
+          {` ${detailedListing.comments}`}{' '}
+        </div>
+        <div>
+          <strong>Condition:</strong>
+          {` ${detailedListing.condition}`}{' '}
+        </div>
+        <div>
+          <strong>Course ID:</strong> {` ${detailedListing.courseID}`}{' '}
+        </div>
+        <div>
+          <strong>Edited Date:</strong>
+          {` ${detailedListing.edited}`}{' '}
+        </div>
+        <div>
+          <strong>Price:</strong> {` $${detailedListing.price}`}{' '}
+        </div>
+        {!purchased && (
+          <Popup
+            trigger={
+              <ListingsContainer>
+                <button> Buy Now </button>
+              </ListingsContainer>
+            }
+            position="bottom center"
+          >
+            <div>
+              {`Are you sure you would like to buy this book? Finalizing your purchase
+          will confirm your order and send an alert to the seller.    `}
+              <button
+                onClick={() => {
+                  sendEmail(
+                    'Hannah',
+                    'hdonovan@middlebury.edu',
+                    detailedListing.title,
+                    detailedListing.price
+                  );
+                  setPurchase(true);
+                }}
+              >
+                Place my Order
+              </button>
+            </div>
+          </Popup>
+        )}
+      </ListElementContainer>
+      <div>
+        {purchased && (
+          <Confirmation>
+            {' '}
+            Congratulations! Your request has been sent to the seller of this
+            book. Expect to hear back via email in 3 days or less. If you have
+            not heard back by then, feel free to submit a new request.{' '}
+          </Confirmation>
+        )}{' '}
+      </div>
     </div>
   );
 };

@@ -98,7 +98,7 @@ app.use((error, request, response, next) => {
   }
 });
 
-// sends email
+// Nodemailer and the following associated code is used to send the email to the 1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw
 const nodemailer = require('nodemailer');
 
 app.post('/api/bookrequest', function Emailer(req) {
@@ -119,7 +119,7 @@ app.post('/api/bookrequest', function Emailer(req) {
 <p><u>Buyer contact information:</u> Jane Doe,
   <a href="mailto:email@middlebury.edu">email@middlebury.edu</a>
 </p>
-<p>Please make sure to contact the buyer within the next 3 days to set up a time to meet. Once your exchange is confirmed, make sure to log back on to your account and delete your book listing from the marketplace.</p>
+<p>Please contact the buyer within the next 3 days to set up a time to meet. Once your exchange is confirmed, make sure to log back on to your account and delete your book listing from the marketplace.</p>
 <p>Thank you for using Midd Book Market!</p>`
   };
   transporter.sendMail(mailOptions, function errorResp(err, resp) {
