@@ -98,7 +98,6 @@ app.post(
   '/login',
   passport.authenticate('bearer', { session: true }),
   (request, response, next) => {
-    console.log('Ah error!');
     response.sendStatus(200);
   }
 );
