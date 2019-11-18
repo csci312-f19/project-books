@@ -98,6 +98,7 @@ app.post(
   '/login',
   passport.authenticate('bearer', { session: true }),
   (request, response, next) => {
+    console.log('Ah error!');
     response.sendStatus(200);
   }
 );
@@ -162,6 +163,7 @@ app.use((error, request, response, next) => {
   }
   const wrappedError = wrapError(error);
   if (wrappedError instanceof DBError) {
+    console.log(error);
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
     console.log('error is: ' + error);
