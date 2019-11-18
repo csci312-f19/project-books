@@ -1,73 +1,163 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import App from './App';
-import { pseudoServer, flushPromises } from './setupTests';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Immutable from 'immutable';
+import { flushPromises } from './setupTests';
+
 import { act } from 'react-dom/test-utils';
+import Search from './components/SearchBar';
 
-import {
-  Listings,
-  DetailedListing,
-  SortBar,
-  ListingsCollection
-} from './components/Listings';
+import { ListElementContainer } from './components/Listings';
 
-const listing = {
-  listingID: '1',
-  userID: '20',
-  ISBN: '978-0-520-28773-0',
-  condition: 'Like New',
-  price: '13',
-  edited: '11/7/19',
-  comments: 'Some highlighting'
-};
-const listing2 = {
-  listingID: '2',
-  userID: '30',
-  ISBN: '978-0-486-28269-5',
-  condition: 'Good',
-  price: '4',
-  edited: '10/4/12',
-  comments: 'Missing cover'
+const sampleListings = [
+  {
+    title: "American Studies: A User's Guide",
+    courseID: 'AMST 0400A',
+    listingID: '1',
+    userID: '20',
+    ISBN: '978-0-520-28773-0',
+    condition: 'Like New',
+    price: '13',
+    edited: '11/7/19',
+    comments: 'Some highlighting'
+  },
+  {
+    title: 'Winesburg, Ohio',
+    courseID: 'AMST/ENAM 0282A',
+    listingID: '2',
+    userID: '30',
+    ISBN: '978-0-486-28269-5',
+    condition: 'Good',
+    price: '4',
+    edited: '10/4/12',
+    comments: 'Missing cover'
+  },
+  {
+    title: 'Object of Memory: Arab and Jew Narrate the Palestinian Village',
+    courseID: 'ANTH 0355',
+    listingID: '3',
+    userID: '40',
+    ISBN: '978-0-8122-1525-0',
+    condition: 'Acceptable',
+    price: '20',
+    edited: '1/31/88',
+    comments: 'this book is so good!'
+  },
+  {
+    title: 'Stuffed and Starved, Revised and Expanded',
+    courseID: 'FYSE 1431',
+    listingID: '4',
+    userID: '50',
+    ISBN: '978-1-61219-127-0',
+    condition: 'Very Good',
+    price: '15',
+    edited: '5/26/98',
+    comments: 'no markings'
+  }
+];
+const mockResponse = data =>
+  Promise.resolve({ ok: true, json: () => Promise.resolve(data) });
+
+const mockFetch = (url, options) => {
+  if (options) {
+    if (options.method === 'PUT') {
+      // we don't store any changes, we just return the same object
+      const data = JSON.parse(options.body);
+      return mockResponse(data);
+    }
+  } else {
+    return mockResponse(sampleListings);
+  }
 };
 
 describe('SearchBar', () => {
   let app;
 
+  beforeAll(() => {
+    jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
+  });
+
+  afterAll(() => {
+    global.fetch.mockClear();
+  });
+
   beforeEach(async () => {
-    pseudoServer.initialize();
+    //mock fetch here
     app = mount(<App />);
     await act(async () => await flushPromises());
     app.update();
   });
-  test('keyword search', () => {
-    expect(app).toContainMatchingElement(Listings);
-    // expect(comp).not.toContainMatchingElement(FilmDetail);
-  });
 
-  // Given the FilmContainer is rendered
-  // And the FilmDetail component does not exist
-  // When I click on the FilmTitle component
-  // Then I expect the FilmDetail component to exist
-  // And I expect the element 'img[src="http://image.tmdb.org/t/p/w185/jjBgi2r5cRt36xF6iNUEhzscEcb.jpg"]' to exist
-  // When I click on the FilmTitle component
-  // Then I expect the FilmDetail component to not exist
-  // test('Clicking on title toggles detail view', () => {
-  //   // Use mount so that children will be rendered and we can interact with the DOM
-  //   const comp = mount(<FilmContainer {...film} setRatingFor={jest.fn} />);
-  //   expect(comp).not.toContainMatchingElement(FilmDetail);
-  //
-  //   // YOUR TESTS HERE
-  //   // Click on film title
-  //   comp.find('FilmTitle').simulate('click');
-  //   expect(comp).toContainMatchingElement(FilmDetail);
-  //   expect(comp).toContainExactlyOneMatchingElement(
-  // 'img[src="http://image.tmdb.org/t/p/w185/jjBgi2r5cRt36xF6iNUEhzscEcb.jpg"]');
-  //
-  //   comp.find('FilmTitle').simulate('click');
-  //
-  //   expect(comp).not.toContainMatchingElement(FilmDetail);
-  //
-  // });
+  test('keyword search', async () => {
+    expect(app).toContainMatchingElement(Search);
+    const searchbar = app.find(Search);
+
+    searchbar
+      .find('input[type="text"]')
+      .simulate('change', { target: { value: 'user' } });
+
+    await act(async () => await flushPromises());
+    app.update();
+
+    expect(app.find(ListElementContainer)).toBeDefined();
+    const listingsList = Array.from(app.find(ListElementContainer));
+    expect(listingsList.length).toEqual(1);
+
+    expect(
+      listingsList.find(listing => sampleListings[0].title === listing.title)
+    );
+  });
+  test('title search', async () => {
+    expect(app).toContainMatchingElement(Search);
+    const searchbar = app.find(Search);
+
+    searchbar
+      .find('input[type="text"]')
+      .simulate('change', { target: { value: 'Winesburg, Ohio' } });
+
+    await act(async () => await flushPromises());
+    app.update();
+
+    expect(app.find(ListElementContainer)).toBeDefined();
+    const listingsList = Array.from(app.find(ListElementContainer));
+    expect(listingsList.length).toEqual(1);
+    expect(
+      listingsList.find(listing => sampleListings[1].title === listing.title)
+    );
+  });
+  test('courseID search', async () => {
+    expect(app).toContainMatchingElement(Search);
+    const searchbar = app.find(Search);
+
+    searchbar
+      .find('input[type="text"]')
+      .simulate('change', { target: { value: 'FYSE 1431' } });
+
+    await act(async () => await flushPromises());
+    app.update();
+
+    expect(app.find(ListElementContainer)).toBeDefined();
+    const listingsList = Array.from(app.find(ListElementContainer));
+    expect(listingsList.length).toEqual(1);
+    expect(
+      listingsList.find(listing => sampleListings[3].title === listing.title)
+    );
+  });
+  test('ISBN search', async () => {
+    expect(app).toContainMatchingElement(Search);
+    const searchbar = app.find(Search);
+
+    searchbar
+      .find('input[type="text"]')
+      .simulate('change', { target: { value: '978-1-61219-127-0' } });
+
+    await act(async () => await flushPromises());
+    app.update();
+
+    expect(app.find(ListElementContainer)).toBeDefined();
+    const listingsList = Array.from(app.find(ListElementContainer));
+    expect(listingsList.length).toEqual(1);
+    expect(
+      listingsList.find(listing => sampleListings[3].title === listing.title)
+    );
+  });
 });
