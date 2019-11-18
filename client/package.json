@@ -35,6 +35,10 @@
     "react-scripts": "2.1.5",
     "react-search-box": "^2.0.2",
     "reactjs-popup": "^1.5.0",
+<<<<<<< HEAD
+=======
+
+>>>>>>> a5b36367aca5215aa911ccb82cbd74d9da62ed8e
     "reactstrap": "^8.1.1",
     "repeat-string": "^1.6.1",
     "sqlite3": "^4.1.0",
