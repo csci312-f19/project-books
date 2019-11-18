@@ -102,7 +102,7 @@ app.use((error, request, response, next) => {
 const nodemailer = require('nodemailer');
 
 app.post('/api/bookrequest', function Emailer(req) {
-  console.log(`the request has been received! it is:${req}`);
+  console.log('the request has been received! it is:' + req);
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -114,13 +114,13 @@ app.post('/api/bookrequest', function Emailer(req) {
     from: 'noReply.MiddBookMarket@gmail.com',
     to: `${req.body.email}`,
     subject: `Somebody wants to buy your book on Midd Book Market!`,
-    html: `<p><strong><span style="font-size: 24px; color: rgb(41, 105, 176);">We have some good news for you!</span></strong></p><p>Somebody is interested in buying your book, [Book Title] by [Author], listed at $[X.xx] on Midd Book Market. Please contact the buyer at your earliest convenience, and make sure to arrange a time and place to meet and exchange your book for the agreed price.</p>
-     <p><u>Buyer information:</u>&nbsp;</p>
-     <p>Jane Doe,
-       <a href="mailto:email@middlebury.edu">email@middlebury.edu</a>
-     </p>
-     <p>Please make sure to contact the buyer within the next 3 days to set up a time to meet. Once your exchange is confirmed, make sure to log back on to your account and delete your book.</p>
-     <p>Thank you for using Midd Book Market!</p>`
+    html: `<p><strong><span style="font-size: 24px; color: rgb(41, 105, 176);">We have some good news for you!</span></strong></p>
+<p>Hi there! Somebody is interested in buying your book, ${req.body.bookTitle}, listed at $${req.body.bookPrice} on Midd Book Market. Please contact the buyer at your earliest convenience, and make sure to arrange a time and place to meet to exchange the book for the agreed price.</p>
+<p><u>Buyer contact information:</u> Jane Doe,
+  <a href="mailto:email@middlebury.edu">email@middlebury.edu</a>
+</p>
+<p>Please make sure to contact the buyer within the next 3 days to set up a time to meet. Once your exchange is confirmed, make sure to log back on to your account and delete your book listing from the marketplace.</p>
+<p>Thank you for using Midd Book Market!</p>`
   };
   transporter.sendMail(mailOptions, function errorResp(err, resp) {
     if (err) {

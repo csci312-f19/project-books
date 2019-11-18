@@ -37,7 +37,7 @@ const SelectBar = styled.select`
 
 //  box-sizing: border-box;
 
-function sendEmail(name, email, message) {
+function sendEmail(name, email, bookTitle, bookPrice) {
   fetch('/api/bookrequest', {
     method: 'POST',
     headers: {
@@ -47,7 +47,8 @@ function sendEmail(name, email, message) {
     body: JSON.stringify({
       name: name,
       email: email,
-      message: message
+      bookTitle: bookTitle,
+      bookPrice: bookPrice
     })
   })
     .then(res => res.json())
@@ -61,6 +62,7 @@ function sendEmail(name, email, message) {
 
 const DetailedListing = () => {
   const [detailedListing, setDetailedListing] = useState('');
+  const [purchased, setPurchase] = useState(false);
 
   const { id } = useParams();
 
@@ -87,19 +89,35 @@ const DetailedListing = () => {
       <div>courseID: {detailedListing.courseID} </div>
       <div>edited:{detailedListing.edited} </div>
       <div>price: {detailedListing.price} </div>
-      <Popup trigger={<button> Buy Now </button>} position="right center">
-        <div>
-          {`Are you sure you would like to buy this book? Finalizing your purchase
+      {!purchased && (
+        <Popup trigger={<button> Buy Now </button>} position="right center">
+          <div>
+            {`Are you sure you would like to buy this book? Finalizing your purchase
           will confirm your order and send an alert to the seller.    `}
-          <button
-            onClick={() => {
-              sendEmail('Hannah', 'hdonovan@middlebury.edu', 'testing');
-            }}
-          >
-            Place my Order
-          </button>
+            <button
+              onClick={() => {
+                sendEmail(
+                  'Hannah',
+                  'hdonovan@middlebury.edu',
+                  detailedListing.title,
+                  detailedListing.price
+                );
+                setPurchase(true);
+              }}
+            >
+              Place my Order
+            </button>
+          </div>
+        </Popup>
+      )}
+      {purchased && (
+        <div>
+          {' '}
+          Congratulations! Your request has been sent to the seller of this
+          book. Expect to hear back via email in 3 days or less. If you have not
+          heard back by then, feel free to submit a new request.{' '}
         </div>
-      </Popup>
+      )}
     </div>
   );
 };
