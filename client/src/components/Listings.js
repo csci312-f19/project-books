@@ -78,13 +78,6 @@ const DetailedListing = () => {
       .catch(err => console.log(err));
   }, []);
 
-  //   let message;
-  //     if (section) {
-  //         message = <IndexTitles articles={articles} select={select} />;
-  //     } else {
-  //         message = <p style={{ textAlign: 'center' }}>Select a section</p>;
-  // }
-
   return (
     <div>
       <h2>{detailedListing.title}</h2>
