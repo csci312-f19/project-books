@@ -22,7 +22,6 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "google-books-search": "^0.3.1",
     "immutable": "^4.0.0-rc.12",
     "knex": "^0.20.1",
     "lint": "^0.7.0",
@@ -45,7 +44,6 @@
   "devDependencies": {
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
-    "eslint": "^6.6.0",
     "eslint-config-prettier": "^4.3.0",
     "install-peers": "^1.0.3",
     "jest-enzyme": "^7.1.1",
