@@ -267,7 +267,7 @@ function Listings({ currentListings, searchTerm, mode }) {
         <DetailedListing />
       </div>
     );
-  } else {
+  } else if (mode === 'general') {
     return (
       <div>
         <SortBar
@@ -284,6 +284,8 @@ function Listings({ currentListings, searchTerm, mode }) {
         />
       </div>
     );
+  } else {
+    return;
   }
 }
 

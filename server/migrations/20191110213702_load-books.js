@@ -1,6 +1,9 @@
 exports.up = knex => {
   return knex.schema.createTable('Books', table => {
-    table.string('ISBN');
+    table
+      .string('ISBN')
+      .unique()
+      .notNullable();
     table.string('title');
     //   table.string('author');
     //   table.string('publisher');
