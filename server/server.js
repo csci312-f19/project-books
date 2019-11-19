@@ -37,20 +37,32 @@ if (process.env.NODE_ENV === 'production') {
 
 // TODO: Add your routes here
 
-app.post('/api/newPosting/', (request, response, next) => {
+app.post('/api/newPosting/Listing', (request, response, next) => {
   const listing = {
-    user_id: 11,
+    userID: request.body.userID,
     ISBN: request.body.ISBN,
     condition: request.body.condition,
-    price: 100,
+    price: request.body.price,
     edited: '',
     comments: request.body.comments
   };
-  console.log(listing);
   Listing.query()
-    .insertAndFetch(listing)
+    .insert(listing)
     .then(post => {
       response.send(post);
+    }, next);
+});
+
+app.post('/api/newPosting/Book', (request, response, next) => {
+  const bookData = {
+    ISBN: `${request.body.ISBN}`,
+    title: request.body.title,
+    courseID: request.body.courseID
+  };
+  Book.query()
+    .insert(bookData)
+    .then(bookPost => {
+      response.send(bookPost);
     }, next);
 });
 

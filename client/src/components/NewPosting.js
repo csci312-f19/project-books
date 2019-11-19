@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 
 const InputLine = styled.input`
   text-align: left;
-  width: 20%;
+  width: 30%;
   height: 15px
   border-radius: 25px;
   border: 2px solid;
@@ -13,8 +13,8 @@ const InputLine = styled.input`
 
 const InputSelect = styled.select`
   text-align: center;
-    position: relative;
-    display: inline;
+  position: relative;
+  display: inline;
 `;
 
 const InputLineContainer = styled.div`
@@ -37,20 +37,39 @@ const InputComments = styled.textarea`
 
 const SubmitButton = styled.button``;
 
-function newPosting({ ifPosting }) {
+const newPosting = ({ ifPosting }) => {
   let postingInfo = {
-    author: '',
-    userID: '',
-    courseID: '',
-    courseTitle: '',
-    ISBN: '',
-    title: '',
-    price: '',
-    condition: '',
-    comments: ''
+    author: 'idk',
+    userID: 11,
+    courseID: 'CSCI 0312',
+    courseTitle: 'someshit',
+    ISBN: 5656,
+    title: 'idk',
+    price: 100,
+    condition: 'good',
+    comments: 'none'
   };
 
   const [allInfo, setAllInfo] = useState(postingInfo);
+
+  // Should require price, ISBN, something else? to be a number
+  // Dont need name if have accounts?
+
+  const makeInput = (inputType, clientQuery, placeholder) => {
+    return (
+      <InputLineContainer>
+        <InputType> {`${clientQuery}` + ':'} </InputType>
+        <InputLine
+          type="text"
+          placeholder={`${placeholder}`}
+          onChange={event => {
+            postingInfo.inputType = event.target.value;
+            setAllInfo(postingInfo);
+          }}
+        />
+      </InputLineContainer>
+    );
+  };
 
   if (ifPosting === 'general') {
     return (
@@ -66,99 +85,43 @@ function newPosting({ ifPosting }) {
     return (
       <WholeContainer>
         <h2>Create a new posting</h2>
-        // Dont need this if have accounts?
         <InputLineContainer>
           <InputType> Name: </InputType>
           <InputLine type="text" placeholder={'What is your name?'} />
         </InputLineContainer>
-        <InputLineContainer>
-          <InputType> Book Title: </InputType>
-          <InputLine
-            type="text"
-            placeholder={'Title of book'}
-            onChange={event => {
-              postingInfo.title = event.target.value;
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
-        <InputLineContainer>
-          <InputType> Book Author: </InputType>
-          <InputLine
-            type="text"
-            placeholder={'Author of book'}
-            onChange={event => {
-              postingInfo.author = event.target.value;
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
-        <InputLineContainer>
-          <InputType> Course title: </InputType>
-          <InputLine
-            type="text"
-            placeholder={'Course that book is for'}
-            onChange={event => {
-              postingInfo.courseTitle = event.target.value;
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
-        <InputLineContainer>
-          <InputType> ISBN Number: </InputType>
-          <InputLine
-            type="text"
-            placeholder={'ISBN nummber for this book'}
-            onChange={event => {
-              postingInfo.ISBN = event.target.value;
-              setAllInfo(postingInfo);
-            }}
-          />
-          <div>
-            {' '}
-            This can be found either on the back cover of the book or on the
-            inside information page along with the publisher info{' '}
-          </div>
-        </InputLineContainer>
-        <InputLineContainer>
-          <InputType> Course Code: </InputType>
-          <InputLine
-            type="text"
-            placeholder={'Course code for course'}
-            onChange={event => {
-              postingInfo.courseID = event.target.value;
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
+        {makeInput(
+          'title',
+          'Book Title',
+          'The Guide to the Dr. and Everything React'
+        )}
+        {makeInput('author', 'Book Author', 'Christopher Andrews')}
+        {makeInput('courseTitle', 'Course title', 'Software Development')}
+        {makeInput('ISBN', 'ISBN number', '123-4-567-89012-3')}
+        <div>
+          {' '}
+          This can be found either on the back cover of the book or on the
+          inside information page along with the publisher info{' '}
+        </div>
+        {makeInput('courseID', 'Course Code', 'CSCI 0312')}
         <InputLineContainer>
           <InputType> Condition: </InputType>
-          <InputSelect>
+          <InputSelect
+            onChange={event => {
+              postingInfo.condition = event.target.value;
+              setAllInfo(postingInfo);
+            }}
+          >
             <option value="New">New</option>
             <option value="Very Good">Very Good</option>
             <option value="Good">Good</option>
             <option value="Acceptable">Acceptable</option>
             <option value="Very Worn">Very Worn</option>
             <option value="Bad">Bad</option>
-            onChange=
-            {event => {
-              postingInfo.condition = event.target.value;
-              setAllInfo(postingInfo);
-            }}
           </InputSelect>
         </InputLineContainer>
-        // Should require this to be a number
-        <InputLineContainer>
-          <InputType> Price: </InputType>
-          <InputLine
-            type="text"
-            placeholder={'Price you wish to sell at'}
-            onChange={event => {
-              postingInfo.price = event.target.value;
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
+
+        {makeInput('price', 'Price:', '$5')}
+
         <InputLineContainer>
           <InputType> Any Additional Comments: </InputType>
           <InputComments
@@ -171,6 +134,7 @@ function newPosting({ ifPosting }) {
             }}
           />
         </InputLineContainer>
+
         <InputLineContainer>
           <SubmitButton
             type="button"
@@ -178,36 +142,38 @@ function newPosting({ ifPosting }) {
             onClick={() => {
               //this is where put will happen
               // Also an alert with all of the Info, if they accept, then it will post
-
-              const newThingy = JSON.stringify(allInfo);
-              // console.log(newThingy);
-              // console.log(allInfo);
-              fetch(`/api/newPosting/`, {
+              fetch(`/api/newPosting/Listing`, {
                 method: 'POST',
-                body: JSON.stringify(allInfo),
+                body: JSON.stringify(postingInfo),
                 headers: new Headers({ 'Content-type': 'application/json' })
               })
                 .then(response => {
-                  console.log(response);
                   if (!response.ok) {
                     throw new Error(response.status_text);
                   }
                   return response.json();
                 })
                 .then(updatedPosting => {
-                  // const alteredFilms = films.map(film => {
-                  //   if (film.id === updatedFilm.id) {
-                  //     return updatedFilm;
-                  //   }
-                  //   return film;
-                  // });
-                  // setFilms(alteredFilms);
-                  console.log(updatedPosting);
                   setAllInfo(updatedPosting);
                 })
                 .catch(err => console.log(err)); // eslint-disable-line no-console
 
-              //temp
+              fetch(`/api/newPosting/Book`, {
+                method: 'POST',
+                body: JSON.stringify(postingInfo),
+                headers: new Headers({ 'Content-type': 'application/json' })
+              })
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error(response.status_text);
+                  }
+                  return response.json();
+                })
+                .then(updatedPosting => {
+                  setAllInfo(updatedPosting);
+                })
+                .catch(err => console.log(err)); // eslint-disable-line no-console
+
               ifPosting = 'general';
             }}
           >
@@ -216,8 +182,7 @@ function newPosting({ ifPosting }) {
         </InputLineContainer>
       </WholeContainer>
     );
-  } else {
   }
-}
+};
 
 export default newPosting;
