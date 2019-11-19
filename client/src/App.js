@@ -8,8 +8,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
-const GOOGLE_CLIENT_ID =
-  '603582413711-motmdqbcfj8drljfjisq4ihtobolfemt.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = () => {
+  if (window.location.href.contains('localhost')) {
+    return '603582413711-motmdqbcfj8drljfjisq4ihtobolfemt.apps.googleusercontent.com';
+  } else {
+    // in Heroku
+    return '304836268474-hetmurq1ojali48o345mp1k9atjo74ss.apps.googleusercontent.com';
+  }
+};
 
 //import Immutable from 'immutable';   // need to do "npm install immutable
 
