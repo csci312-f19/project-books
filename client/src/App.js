@@ -6,6 +6,10 @@ import NewPosting from './components/NewPosting';
 import Listings from './components/Listings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+
+const GOOGLE_CLIENT_ID =
+  '603582413711-motmdqbcfj8drljfjisq4ihtobolfemt.apps.googleusercontent.com';
 
 //import Immutable from 'immutable';   // need to do "npm install immutable
 
@@ -14,9 +18,14 @@ const Title = styled.h1`
   text-align: center;
 `;
 
+const UserAccount = styled.div`
+  float: right;
+`;
+
 function App() {
   const [listings, setListings] = useState(Immutable.List());
   const [currentBook, setBook] = useState(null);
+  const [loggedIn, setLogin] = useState(false);
 
   useEffect(() => {
     fetch('/api/bookListings/') //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
@@ -32,9 +41,65 @@ function App() {
       .catch(err => console.log(err));
   }, []);
 
+  const handleGoogleLogin = response => {
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${response.tokenId}`
+      }
+    }).then(fetchResponse => {
+      if (!fetchResponse.ok) {
+        alert('Unable to authenticate', fetchResponse.statusText);
+        setLogin(false);
+      } else {
+        setLogin(true);
+      }
+    });
+  };
+
+  const handleGoogleFailure = response => {
+    console.log(response);
+    alert(response.error);
+  };
+
+  const handleGoogleLogout = () => {
+    fetch('/logout', {
+      method: 'POST'
+    }).then(fetchResponse => {
+      if (!fetchResponse.ok) {
+        alert('Error logging out', fetchResponse.statusText);
+      }
+      setLogin(false);
+    });
+  };
+
+  const loginButton = (
+    <GoogleLogin
+      clientId={GOOGLE_CLIENT_ID}
+      buttonText="Login with Google"
+      isSignedIn
+      onSuccess={handleGoogleLogin}
+      onFailure={handleGoogleFailure}
+    />
+  );
+
+  const logoutButton = (
+    <GoogleLogout
+      clientId={GOOGLE_CLIENT_ID}
+      buttonText="Logout"
+      onLogoutSuccess={handleGoogleLogout}
+    />
+  );
+
   return (
     <Router>
       <div>
+        <UserAccount>
+          {!loggedIn && loginButton}
+          {loggedIn && logoutButton}
+        </UserAccount>
+        <br />
+        <br />
         <Title>Midd Book Market</Title>
         <Switch>
           <Route
