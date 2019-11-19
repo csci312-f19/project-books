@@ -11,6 +11,7 @@
 
 # sqlite
 movies.db
+listings.db
 
 # misc
 .DS_Store

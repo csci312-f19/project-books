@@ -1,32 +1,57 @@
-// const request = require('supertest');
-const { app } = require('./server');
+const request = require('supertest');
+const { app, knex } = require('./server');
 
-// const book = {
-//   ISBN: '978-0-520-28773-0',
-//   courseID: 'AMST 0400A',
-//   title: "American Studies: A User's Guide"
-// };
+const listing = {
+  userID: 11,
+  ISBN: '123-4-567-890123',
+  condition: 'Excellent',
+  price: 100,
+  edited: '11/17/19',
+  comments: 'This is the best book ever'
+};
 
-// describe('Midd Book Market API', () => {
-//   beforeEach(() => {
-//     return knex.migrate
-//       .rollback()
-//       .then(() => knex.migrate.latest())
-//       .then(() => knex.seed.run());
-//   });
+const book = {
+  ISBN: '123-4-567-890123',
+  courseID: 'CSCI 312',
+  title: 'Agile 101'
+};
 
-//   afterEach(() => {
-//     return knex.migrate.rollback();
-//   });
+describe('Midd Book Market API', () => {
+  beforeEach(() => {
+    return knex.migrate
+      .rollback()
+      .then(() => knex.migrate.latest())
+      .then(() => knex.seed.run());
+  });
 
-//   test('GET /api/listings should return all listings', () => {
-//     return request(app)
-//       .get('/api/listings')
-//       .expect(200)
-//       .expect('Content-Type', /json/)
-//       .expect([Object.assign({ id: 1 }, book)]);
-//   });
-// });
+  afterEach(() => {
+    return knex.migrate.rollback();
+  });
+  // GET TESTS
+  test('GET /api/listings should return all listings', () => {
+    return request(app)
+      .get('/api/listings')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .expect([Object.assign({ listingID: 1 }, listing)]);
+  });
+
+  test('GET /api/bookListings returns listing and book objects with same ISBN', () => {
+    return request(app)
+      .get('/api/bookListings')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .expect([Object.assign({ listingID: 1 }, listing, book)]);
+  });
+
+  test('GET /api/bookListings/:id returns listing and book objects with same ISBN by listingID', () => {
+    return request(app)
+      .get('/api/bookListings/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .expect([Object.assign({ listingID: 1 }, listing, book)]);
+  });
+});
 
 test('Server "smoke" test', () => {
   expect(app).toBeDefined();
