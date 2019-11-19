@@ -47,8 +47,9 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "immutable": "^4.0.0-rc.12",
+    "knex": "^0.20.2",
     "mini-create-react-context": "^0.3.2",
-    "nodemailer": "^6.3.1",
+    "pg": "^7.12.1",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -56,6 +57,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "2.1.5",
     "reactstrap": "^8.0.1",
+    "sqlite3": "^4.1.0",
     "styled-components": "^4.4.1"
   }
 }

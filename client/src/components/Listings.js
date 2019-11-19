@@ -154,7 +154,7 @@ const DetailedListing = () => {
   );
 };
 
-const SortBar = ({ sortType, setSortType, ascending, setDirection }) => {
+export function SortBar({ sortType, setSortType, ascending, setDirection }) {
   return (
     <SortBarContainer>
       Order by
@@ -184,7 +184,7 @@ const SortBar = ({ sortType, setSortType, ascending, setDirection }) => {
       )}
     </SortBarContainer>
   );
-};
+}
 
 export function ListingsCollection({
   currentListings,
@@ -260,7 +260,6 @@ function Listings({ currentListings, searchTerm, mode }) {
     return (
       <div>
         <SortBar
-          updatedListings={currentListings}
           sortType={sortType}
           setSortType={setSortType}
           ascending={ascending}
