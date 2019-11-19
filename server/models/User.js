@@ -11,11 +11,10 @@ class User extends Model {
       required: ['googleId'],
 
       properties: {
-        id: { type: 'integer' },
+        id: { type: 'increments' },
         googleId: { type: 'string' },
-        givenName: { type: 'string' },
-        familyName: { type: 'string' },
-        email: { type: 'string' }
+        email: { type: 'string' },
+        name: { type: 'string' }
       }
     };
   }

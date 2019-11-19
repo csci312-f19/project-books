@@ -2,9 +2,9 @@ exports.up = knex => {
   return knex.schema.createTable('Users', table => {
     table.increments('id');
     table.string('googleId');
-    table.string('givenName');
-    table.string('familyName');
-    table.text('email');
+    table.string('email');
+    table.string('name');
+    // insert further constraints such as not nullable
   });
 };
 

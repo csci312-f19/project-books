@@ -12,6 +12,7 @@
 # sqlite
 movies.db
 listings.db
+listings-test.db
 
 # misc
 .DS_Store
