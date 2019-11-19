@@ -27,7 +27,7 @@ const SortBarContainer = styled.div`
   padding: 20px;
 `;
 
-const SelectBar = styled.select`
+export const SelectBar = styled.select`
   text-align: center;
   position: relative;
   display: inline;
@@ -176,7 +176,7 @@ export function ListingsCollection({
 }
 
 function Listings({ currentListings, searchTerm, mode }) {
-  const [sortType, setSortType] = useState('');
+  const [sortType, setSortType] = useState('Default');
   const [ascending, setDirection] = useState(true);
   if (mode === 'detailed') {
     return (
@@ -188,7 +188,6 @@ function Listings({ currentListings, searchTerm, mode }) {
     return (
       <div>
         <SortBar
-          updatedListings={currentListings}
           sortType={sortType}
           setSortType={setSortType}
           ascending={ascending}

@@ -5,8 +5,13 @@ import { flushPromises } from './setupTests';
 
 import { act } from 'react-dom/test-utils';
 import Search from './components/SearchBar';
+import Immutable from 'immutable';
 
-import { ListElementContainer } from './components/Listings';
+import Listings, {
+  ListElementContainer,
+  SortBar,
+  SelectBar
+} from './components/Listings';
 
 const sampleListings = [
   {
@@ -159,5 +164,116 @@ describe('SearchBar', () => {
     expect(
       listingsList.find(listing => sampleListings[3].title === listing.title)
     );
+  });
+});
+
+//*******************  NOTE!!!!  ********************/
+// Listings.js is changed: change "const SortBar ..." to "export function SortBar ..."
+
+describe('SortBar actions', () => {
+  beforeAll(() => {
+    jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
+  });
+
+  afterAll(() => {
+    global.fetch.mockClear();
+  });
+  let app;
+
+  beforeEach(async () => {
+    app = mount(<App />);
+    await act(async () => await flushPromises());
+    app.update();
+  });
+
+  test('SortBar is Default on startup', async () => {
+    expect(app).toContainMatchingElement(SortBar);
+    const sortBar = app.find(SortBar);
+    const result = sortBar.find('select');
+    expect(result.prop('value')).toEqual('Default'); // Unnecessary test, just to check whether find('select') works
+  });
+
+  describe('Sorts by Price', () => {
+    beforeEach(async () => {
+      const sortBar = app.find(SortBar);
+      const type = sortBar.find(SelectBar).at(0);
+      type.simulate('change', { target: { value: 'Price' } });
+      await act(async () => await flushPromises());
+      app.update();
+    });
+    test('Sorts by price in ascending order', async () => {
+      expect(app).toContainMatchingElement(SortBar);
+      expect(app.find(ListElementContainer)).toBeDefined();
+      const listingsList = Array.from(app.find(ListElementContainer));
+      expect(listingsList.length).toEqual(4);
+      expect(listingsList[0].key).toEqual(
+        sampleListings.sort((a, b) => a.price - b.price)[0].ISBN
+      );
+    });
+
+    test('Sorts by price in descending order', async () => {
+      const sortBar = app.find(SortBar);
+      const type = sortBar.find(SelectBar).at(1);
+      type.simulate('change', { target: { value: 'False' } });
+      await act(async () => await flushPromises());
+      app.update();
+      expect(app.find(ListElementContainer)).toBeDefined();
+      const listingsList = Array.from(app.find(ListElementContainer));
+      expect(listingsList.length).toEqual(4);
+      expect(listingsList[0].key).toEqual(
+        sampleListings.sort((a, b) => b.price - a.price)[0].ISBN
+      );
+    });
+  });
+  describe('Sorts by Condition', () => {
+    beforeEach(async () => {
+      const sortBar = app.find(SortBar);
+      const type = sortBar.find(SelectBar).at(0);
+      type.simulate('change', { target: { value: 'Condition' } });
+      await act(async () => await flushPromises());
+      app.update();
+    });
+    test('Sorts by price in ascending order', async () => {
+      expect(app).toContainMatchingElement(SortBar);
+      expect(app.find(ListElementContainer)).toBeDefined();
+      const listingsList = Array.from(app.find(ListElementContainer));
+      expect(listingsList.length).toEqual(4);
+      expect(listingsList[0].key).toEqual(
+        sampleListings.sort((a, b) => a.condition - b.condition)[0].ISBN
+      );
+    });
+
+    test('Sorts by price in descending order', async () => {
+      const sortBar = app.find(SortBar);
+      const type = sortBar.find(SelectBar).at(1);
+      type.simulate('change', { target: { value: 'False' } });
+      await act(async () => await flushPromises());
+      app.update();
+      expect(app.find(ListElementContainer)).toBeDefined();
+      const listingsList = Array.from(app.find(ListElementContainer));
+      expect(listingsList.length).toEqual(4);
+      expect(listingsList[0].key).toEqual(
+        sampleListings.sort((a, b) => b.condition - a.condition)[0].ISBN
+      );
+    });
+    describe('Sort by Default', () => {
+      beforeEach(async () => {
+        const sortBar = app.find(SortBar);
+        const type = sortBar.find(SelectBar).at(0);
+        type.simulate('change', { target: { value: 'Price' } });
+        await act(async () => await flushPromises());
+        app.update();
+        type.simulate('change', { target: { value: 'Default' } });
+        await act(async () => await flushPromises());
+        app.update();
+      });
+      test('Resets order after sorting by price', async () => {
+        expect(app).toContainMatchingElement(SortBar);
+        expect(app.find(ListElementContainer)).toBeDefined();
+        const listingsList = Array.from(app.find(ListElementContainer));
+        expect(listingsList.length).toEqual(4);
+        expect(listingsList[0].key).toEqual(sampleListings[0].ISBN);
+      });
+    });
   });
 });
