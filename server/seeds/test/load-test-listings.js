@@ -2,15 +2,18 @@
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('Books')
+  return knex('Listings')
     .del()
     .then(() =>
       // Inserts seed entries
-      knex('Books').insert([
+      knex('Listings').insert([
         {
+          userID: 11,
           ISBN: '123-4-567-890123',
-          courseID: 'CSCI 312',
-          title: 'Agile 101'
+          condition: 'Excellent',
+          price: 100,
+          edited: '11/17/19',
+          comments: 'This is the best book ever'
         }
       ])
     );
