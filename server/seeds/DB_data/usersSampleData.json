@@ -1,44 +1,32 @@
 [
   {
-    "id": "0",
-    "googleId": "gberman@middlebury.edu",
-    "givenName": "Grant",
-    "familyName": "Berman",
-    "email": "gberman@middlebury.edu"
+    "userID": "0",
+    "email": "gberman@middlebury.edu",
+    "name": "Grant A Berman"
   },
   {
-    "id": "1",
-    "googleId": "nroleary@middlebury.edu",
-    "givenName": "Nicholas",
-    "familyName": "O'Leary",
-    "email": "nroleary@middlebury.edu"
+    "userID": "1",
+    "email": "nroleary@middlebury.edu",
+    "name": "Nicholas O'Leary"
   },
   {
-    "id": "2",
-    "googleId": "nhdonovan@middlebury.edu",
-    "givenName": "Hannah",
-    "familyName": "Donovan",
-    "email": "hdonovan@middlebury.edu"
+    "userID": "2",
+    "email": "hdonovan@middlebury.edu",
+    "name": "Hannah Donovan"
   },
   {
-    "id": "3",
-    "googleId": "sjordan@middlebury.edu",
-    "givenName": "Steph",
-    "familyName": "Jordan",
-    "email": "sjordan@middlebury.edu"
+    "userID": "3",
+    "email": "sjordan@middlebury.edu",
+    "name": "Steph Jordan"
   },
   {
-    "id": "4",
-    "googleId": "xinyuex@middlebury.edu",
-    "givenName": "Annika",
-    "familyName": "Xu",
-    "email": "xinyuex@middlebury.edu"
+    "userID": "5",
+    "email": "xinyuex@middlebury.edu",
+    "name": "Annika Xu"
   },
   {
-    "id": "5",
-    "googleId": "amxiao@middlebury.edu",
-    "givenName": "Andre",
-    "familyName": "Xiao",
-    "email": "amxiao@middlebury.edu"
+    "userID": "4",
+    "email": "amxiao@middlebury.edu",
+    "name": "Andre Xiao"
   }
 ]
