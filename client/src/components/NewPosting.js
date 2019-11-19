@@ -190,7 +190,9 @@ const newPosting = ({ ifPosting }) => {
               ifPosting = 'general';
             }}
           >
-            Submit
+            <Link to={''} id="">
+              Submit
+            </Link>
           </SubmitButton>
         </InputLineContainer>
       </WholeContainer>
