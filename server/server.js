@@ -162,6 +162,7 @@ app.use((error, request, response, next) => {
   }
   const wrappedError = wrapError(error);
   if (wrappedError instanceof DBError) {
+    console.log(error);
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
     console.log('error is: ' + error);

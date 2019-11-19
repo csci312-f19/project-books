@@ -178,7 +178,6 @@ function Listings({ currentListings, searchTerm, mode }) {
     return (
       <div>
         <SortBar
-          updatedListings={currentListings}
           sortType={sortType}
           setSortType={setSortType}
           ascending={ascending}
