@@ -207,7 +207,7 @@ export function ListingsCollection({
   }
 
   let sortedList;
-
+  console.log(updatedList);
   if (sortType === 'Price') {
     if (ascending) {
       //ascending is true;
