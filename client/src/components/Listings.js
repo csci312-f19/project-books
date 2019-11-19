@@ -139,15 +139,15 @@ export function ListingsCollection({
   if (sortType === 'Price') {
     if (ascending) {
       //ascending is true;
-      sortedList = updatedList.sort((a, b) => a.Price - b.Price); //increasing order / asending is true / ↑
+      sortedList = updatedList.sort((a, b) => a.price - b.price); //increasing order / asending is true / ↑
     } else {
-      sortedList = updatedList.sort((a, b) => b.Price - a.Price);
+      sortedList = updatedList.sort((a, b) => b.price - a.price);
     }
   } else if (sortType === 'Condition') {
     if (ascending) {
-      sortedList = updatedList.sort((a, b) => a.Condition - b.Condition);
+      sortedList = updatedList.sort((a, b) => a.condition - b.condition);
     } else {
-      sortedList = updatedList.sort((a, b) => b.Condition - a.Condition);
+      sortedList = updatedList.sort((a, b) => b.condition - a.condition);
     }
   } else {
     sortedList = updatedList;
