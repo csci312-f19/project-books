@@ -37,8 +37,21 @@ if (process.env.NODE_ENV === 'production') {
 
 // TODO: Add your routes here
 
-app.post('/api/newPosting', (request, response, next) => {
-  // Need to talk to Grant/Steph about structure of doing this
+app.post('/api/newPosting/', (request, response, next) => {
+  const listing = {
+    user_id: 11,
+    ISBN: request.body.ISBN,
+    condition: request.body.condition,
+    price: 100,
+    edited: '',
+    comments: request.body.comments
+  };
+  console.log(listing);
+  Listing.query()
+    .insertAndFetch(listing)
+    .then(post => {
+      response.send(post);
+    }, next);
 });
 
 app.get('/api/listings', (request, response, next) => {

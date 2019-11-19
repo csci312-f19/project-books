@@ -39,14 +39,15 @@ const SubmitButton = styled.button``;
 
 function newPosting({ ifPosting }) {
   let postingInfo = {
+    author: '',
+    userID: '',
     courseID: '',
     courseTitle: '',
     ISBN: '',
-    Title: '',
-    'New Only': '',
-    Price: '',
-    Condition: '',
-    Comments: ''
+    title: '',
+    price: '',
+    condition: '',
+    comments: ''
   };
 
   const [allInfo, setAllInfo] = useState(postingInfo);
@@ -76,7 +77,7 @@ function newPosting({ ifPosting }) {
             type="text"
             placeholder={'Title of book'}
             onChange={event => {
-              postingInfo.Title = event.target.value;
+              postingInfo.title = event.target.value;
               setAllInfo(postingInfo);
             }}
           />
@@ -87,7 +88,7 @@ function newPosting({ ifPosting }) {
             type="text"
             placeholder={'Author of book'}
             onChange={event => {
-              postingInfo.Author = event.target.value;
+              postingInfo.author = event.target.value;
               setAllInfo(postingInfo);
             }}
           />
@@ -141,7 +142,7 @@ function newPosting({ ifPosting }) {
             <option value="Bad">Bad</option>
             onChange=
             {event => {
-              postingInfo.Condition = event.target.value;
+              postingInfo.condition = event.target.value;
               setAllInfo(postingInfo);
             }}
           </InputSelect>
@@ -153,7 +154,7 @@ function newPosting({ ifPosting }) {
             type="text"
             placeholder={'Price you wish to sell at'}
             onChange={event => {
-              postingInfo.Price = event.target.value;
+              postingInfo.price = event.target.value;
               setAllInfo(postingInfo);
             }}
           />
@@ -165,7 +166,7 @@ function newPosting({ ifPosting }) {
             rows="10"
             placeholder="Any additional comments you have. Could include: highlighted, water-stained, never opened, missing pages."
             onChange={event => {
-              postingInfo.Comments = event.target.value;
+              postingInfo.comments = event.target.value;
               setAllInfo(postingInfo);
             }}
           />
@@ -176,8 +177,38 @@ function newPosting({ ifPosting }) {
             value="submit"
             onClick={() => {
               //this is where put will happen
-              // Also an alert with all of the Info
-              console.log(allInfo);
+              // Also an alert with all of the Info, if they accept, then it will post
+
+              const newThingy = JSON.stringify(allInfo);
+              // console.log(newThingy);
+              // console.log(allInfo);
+              fetch(`/api/newPosting/`, {
+                method: 'POST',
+                body: JSON.stringify(allInfo),
+                headers: new Headers({ 'Content-type': 'application/json' })
+              })
+                .then(response => {
+                  console.log(response);
+                  if (!response.ok) {
+                    throw new Error(response.status_text);
+                  }
+                  return response.json();
+                })
+                .then(updatedPosting => {
+                  // const alteredFilms = films.map(film => {
+                  //   if (film.id === updatedFilm.id) {
+                  //     return updatedFilm;
+                  //   }
+                  //   return film;
+                  // });
+                  // setFilms(alteredFilms);
+                  console.log(updatedPosting);
+                  setAllInfo(updatedPosting);
+                })
+                .catch(err => console.log(err)); // eslint-disable-line no-console
+
+              //temp
+              ifPosting = 'general';
             }}
           >
             Submit
