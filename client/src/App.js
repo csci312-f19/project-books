@@ -19,12 +19,6 @@ const UserAccount = styled.div`
   float: right;
 `;
 
-const DivStyled = styled.div`
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-`;
-
 function App() {
   const [listings, setListings] = useState(Immutable.List());
   const [currentBook, setBook] = useState(null);
