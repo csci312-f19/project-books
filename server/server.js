@@ -15,17 +15,19 @@ const session = require('express-session');
 const passport = require('passport');
 const BearerStrategy = require('passport-http-bearer').Strategy;
 const { OAuth2Client } = require('google-auth-library');
+
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Resolve client build directory as absolute path to avoid errors in express
 const buildPath = path.resolve(__dirname, '../client/build');
 const { wrapError, DBError } = require('db-errors');
-const authenticationMiddleware = (request, response, next) => {
-  if (request.isAuthenticated()) {
-    return next(); // we are good, proceed to the next handler
-  }
-  return response.sendStatus(403); // forbidden
-};
+
+// const authenticationMiddleware = (request, response, next) => {
+//   if (request.isAuthenticated()) {
+//     return next(); // we are good, proceed to the next handler
+//   }
+//   return response.sendStatus(403); // forbidden
+// };
 
 Model.knex(knex);
 const app = express();
@@ -97,12 +99,12 @@ if (process.env.NODE_ENV === 'production') {
 app.post(
   '/login',
   passport.authenticate('bearer', { session: true }),
-  (request, response, next) => {
+  (request, response) => {
     response.sendStatus(200);
   }
 );
 
-app.post('/logout', (request, response, next) => {
+app.post('/logout', (request, response) => {
   request.logout(); // logout function added by passport
   response.sendStatus(200);
 });
@@ -162,10 +164,9 @@ app.use((error, request, response, next) => {
   }
   const wrappedError = wrapError(error);
   if (wrappedError instanceof DBError) {
-    console.log(error);
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
-    console.log('error is: ' + error);
+    // console.log(`error is: ${  error}`);
     response
       .status(wrappedError.statusCode || wrappedError.status || 500)
       .send(wrappedError.data || wrappedError.message || {});
@@ -176,7 +177,7 @@ app.use((error, request, response, next) => {
 const nodemailer = require('nodemailer');
 
 app.post('/api/bookrequest', function Emailer(req) {
-  console.log(`the request has been received! it is:${req}`);
+  //   console.log(`the request has been received! it is:${req}`);
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -196,13 +197,13 @@ app.post('/api/bookrequest', function Emailer(req) {
 <p>Please contact the buyer within the next 3 days to set up a time to meet. Once your exchange is confirmed, make sure to log back on to your account and delete your book listing from the marketplace.</p>
 <p>Thank you for using Midd Book Market!</p>`
   };
-  transporter.sendMail(mailOptions, function errorResp(err, resp) {
-    if (err) {
-      console.error('there was an error: ', err); // replace with error handling
-    } else {
-      console.log('here is the response: ', resp); // replace
-    }
-    console.log('something happened');
+  transporter.sendMail(mailOptions, function errorResp() {
+    // if (err) {
+    //   console.error('there was an error: ', err); // replace with error handling
+    // } else {
+    //   console.log('here is the response: ', resp); // replace
+    // }
+    // console.log('something happened');
   });
 });
 
