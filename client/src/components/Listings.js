@@ -11,7 +11,7 @@ const List = styled.ul`
   list-style-type: none;
   height: 20px;
 `;
-const ListElementContainer = styled.li`
+export const ListElementContainer = styled.li`
   border: 1px solid;
   padding: 2px;
   margin: 5px;
@@ -37,7 +37,7 @@ const SelectBar = styled.select`
 
 //  box-sizing: border-box;
 
-const DetailedListing = () => {
+export const DetailedListing = () => {
   const [detailedListing, setDetailedListing] = useState('');
 
   const { id } = useParams();
@@ -70,7 +70,7 @@ const DetailedListing = () => {
   );
 };
 
-const SortBar = ({ sortType, setSortType, ascending, setDirection }) => {
+export const SortBar = ({ sortType, setSortType, ascending, setDirection }) => {
   return (
     <SortBarContainer>
       Order by
@@ -111,16 +111,26 @@ export function ListingsCollection({
   let updatedList = currentListings;
 
   if (searchTerm != null) {
+    const searchTerms = searchTerm.split(' ');
+
     updatedList = currentListings.filter(listing => {
-      const editedTitle = listing.title.toUpperCase();
-      const editedCourseTitle = listing.courseID.toUpperCase();
+      const editedTitle = listing.title.toLowerCase();
+      const editedCourseTitle = listing.courseID.toLowerCase();
       // let editedAuthor=listing.Author.toUpperCase();
 
-      return (
-        editedTitle.includes(searchTerm.toUpperCase()) ||
-        editedCourseTitle.includes(searchTerm.toUpperCase()) ||
-        listing.ISBN.includes(searchTerm)
-      );
+      for (let i = 0; i < searchTerms.length; i++) {
+        const term = searchTerms[i].toLowerCase();
+        if (term !== '') {
+          if (
+            editedTitle.includes(term) ||
+            editedCourseTitle.includes(term) ||
+            listing.ISBN.includes(term)
+          ) {
+            return true;
+          }
+        }
+      }
+      return false;
     });
   }
 
