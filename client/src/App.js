@@ -6,6 +6,7 @@ import NewPosting from './components/NewPosting';
 import Listings from './components/Listings';
 import SortBar from './components/SortBar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Immutable from 'immutable';
 
 //import Immutable from 'immutable';   // need to do "npm install immutable
 
@@ -19,9 +20,7 @@ const newPostingButton = styled.div`
 `;
 
 function App() {
-  const [sortType, setSortType] = useState('');
-  const [listings, setListings] = useState([]);
-  const [ascending, setDirection] = useState(true);
+  const [listings, setListings] = useState(Immutable.List());
   const [currentBook, setBook] = useState(null);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ function App() {
         return response.json();
       })
       .then(data => {
-        setListings(data);
+        setListings(Immutable.List(data));
       })
       .catch(err => console.log(err));
   }, []);
@@ -59,23 +58,13 @@ function App() {
             )}
           />
           <Route
-            component={() => (
+            render={() => (
               <div>
                 <NewPosting ifPosting={'general'} />
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}
                 />
-
-                <SortBar
-                  listings={listings}
-                  setListings={setListings}
-                  sortType={sortType}
-                  setSortType={setSortType}
-                  ascending={ascending}
-                  flipDirection={() => setDirection(!ascending)}
-                />
-
                 <Listings
                   currentListings={listings}
                   searchTerm={currentBook}
@@ -87,22 +76,6 @@ function App() {
         </Switch>
       </div>
     </Router>
-    // <Router>
-    //   <div>
-    //     <Title>Midd Book Market</Title>
-    //     <SearchBar setBook={book => setBook(book)} currentBook={currentBook} />
-
-    // <SortBar
-    //   listings={listings}
-    //   setListings={setListings}
-    //   sortType={sortType}
-    //   setSortType={setSortType}
-    //   ascending={ascending}
-    //   flipDirection={() => setDirection(!ascending)}
-    // />
-    //     <Listings currentListings={listings} searchTerm={currentBook} />
-    //   </div>
-    // </Router>
   );
 }
 

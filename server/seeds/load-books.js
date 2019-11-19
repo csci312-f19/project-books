@@ -1,7 +1,10 @@
+const path = require('path');
 const fs = require('fs');
 
-exports.seed = function(knex) {
-  const contents = fs.readFileSync(__dirname + '/Data/booksSampleData.json');
+exports.seed = knex => {
+  const contents = fs.readFileSync(
+    path.join(__dirname, '/DB_data/booksSampleData.json')
+  );
   const data = JSON.parse(contents);
   // Deletes ALL existing entries
   return knex('Books')
