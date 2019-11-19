@@ -4,7 +4,7 @@ import App from './App';
 import { flushPromises } from './setupTests';
 
 import { act } from 'react-dom/test-utils';
-import Search from './components/SearchBar';
+import SearchBar from './components/SearchBar';
 
 import { ListElementContainer } from './components/Listings';
 
@@ -87,8 +87,8 @@ describe('SearchBar', () => {
   });
 
   test('keyword search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -104,8 +104,8 @@ describe('SearchBar', () => {
     expect(listingsList[0].key).toEqual(sampleListings[0].ISBN);
   });
   test('title search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -121,8 +121,8 @@ describe('SearchBar', () => {
     expect(listingsList[0].key).toEqual(sampleListings[1].ISBN);
   });
   test('courseID search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -138,8 +138,8 @@ describe('SearchBar', () => {
     expect(listingsList[0].key).toEqual(sampleListings[3].ISBN);
   });
   test('ISBN search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')

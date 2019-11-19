@@ -17,7 +17,7 @@ function Search({ setBook }) {
     <SearchBarContainer>
       <SearchBar
         type="text"
-        placeholder={'Search by Title, Course, ISBN, or Keyword'}
+        placeholder="Search by Title, Course, ISBN, or Keyword"
         onChange={event => {
           setBook(event.target.value);
         }}
