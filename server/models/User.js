@@ -8,13 +8,13 @@ class User extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      // required : [nothing yet]
+      required: ['googleId'],
 
       properties: {
-        user_id: { type: 'increments' },
+        id: { type: 'increments' },
+        googleId: { type: 'string' },
         email: { type: 'string' },
-        last_name: { type: 'string' },
-        first_name: { type: 'string' }
+        name: { type: 'string' }
       }
     };
   }
