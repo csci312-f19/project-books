@@ -1,31 +1,37 @@
 [
   {
-    "userID": "0",
+    "googleId": "gberman@middlebury.edu",
+    "id": "0",
     "email": "gberman@middlebury.edu",
     "name": "Grant A Berman"
   },
   {
-    "userID": "1",
+    "googleId": "nroleary@middlebury.edu",
+    "id": "1",
     "email": "nroleary@middlebury.edu",
     "name": "Nicholas O'Leary"
   },
   {
-    "userID": "2",
+    "googleId": "hdonovan@middlebury.edu",
+    "id": "2",
     "email": "hdonovan@middlebury.edu",
     "name": "Hannah Donovan"
   },
   {
-    "userID": "3",
+    "googleId": "sjordan@middlebury.edu",
+    "id": "3",
     "email": "sjordan@middlebury.edu",
     "name": "Steph Jordan"
   },
   {
-    "userID": "5",
+    "googleId": "xinyuex@middlebury.edu",
+    "id": "5",
     "email": "xinyuex@middlebury.edu",
     "name": "Annika Xu"
   },
   {
-    "userID": "4",
+    "googleId": "amxiao@middlebury.edu",
+    "id": "4",
     "email": "amxiao@middlebury.edu",
     "name": "Andre Xiao"
   }

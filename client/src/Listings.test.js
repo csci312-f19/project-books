@@ -4,7 +4,7 @@ import App from './App';
 import { flushPromises } from './setupTests';
 
 import { act } from 'react-dom/test-utils';
-import Search from './components/SearchBar';
+import SearchBar from './components/SearchBar';
 
 import { ListElementContainer } from './components/Listings';
 
@@ -81,15 +81,14 @@ describe('SearchBar', () => {
   });
 
   beforeEach(async () => {
-    //mock fetch here
     app = mount(<App />);
     await act(async () => await flushPromises());
     app.update();
   });
 
   test('keyword search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -101,14 +100,12 @@ describe('SearchBar', () => {
     expect(app.find(ListElementContainer)).toBeDefined();
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
-
-    expect(
-      listingsList.find(listing => sampleListings[0].title === listing.title)
-    );
+    //samplelistings[0] is american studies: a user's guide
+    expect(listingsList[0].key).toEqual(sampleListings[0].ISBN);
   });
   test('title search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -120,13 +117,12 @@ describe('SearchBar', () => {
     expect(app.find(ListElementContainer)).toBeDefined();
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
-    expect(
-      listingsList.find(listing => sampleListings[1].title === listing.title)
-    );
+    //samplelistings[1] is Winesburg
+    expect(listingsList[0].key).toEqual(sampleListings[1].ISBN);
   });
   test('courseID search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -138,13 +134,12 @@ describe('SearchBar', () => {
     expect(app.find(ListElementContainer)).toBeDefined();
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
-    expect(
-      listingsList.find(listing => sampleListings[3].title === listing.title)
-    );
+    //samplelistings[3] is FYSE 1431
+    expect(listingsList[0].key).toEqual(sampleListings[3].ISBN);
   });
   test('ISBN search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -156,8 +151,7 @@ describe('SearchBar', () => {
     expect(app.find(ListElementContainer)).toBeDefined();
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
-    expect(
-      listingsList.find(listing => sampleListings[3].title === listing.title)
-    );
+    //samplelistings[3] is 978-1-61219-127-0
+    expect(listingsList[0].key).toEqual(sampleListings[3].ISBN);
   });
 });
