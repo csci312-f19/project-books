@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
-
+import Popup from 'reactjs-popup';
 //import Immutable from 'immutable';
 
 const ListingsContainer = styled.div`
@@ -11,7 +11,7 @@ const List = styled.ul`
   list-style-type: none;
   height: 20px;
 `;
-const ListElementContainer = styled.li`
+export const ListElementContainer = styled.li`
   border: 1px solid;
   padding: 2px;
   margin: 5px;
@@ -23,22 +23,52 @@ const ListTitle = styled.h2`
   padding: 5px;
 `;
 const SortBarContainer = styled.div`
-  text-align: center;
-  padding: 20px;
+    text-align: center;
+    padding: 20px;
 `;
 
 const SelectBar = styled.select`
+    text-align: center;
+    position: relative;
+    display: inline;
+`;
+
+const Confirmation = styled.div`
   text-align: center;
-  position: relative;
-  display: inline;
+  background-color: lightgreen;
 `;
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 
-//  box-sizing: border-box;
+//  box-sizing: border-box;
 
-const DetailedListing = () => {
+// triggered on button click to post information that the server then uses to send an email to the seller
+function sendEmail(name, email, bookTitle, bookPrice) {
+  fetch('/api/bookrequest', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      bookTitle: bookTitle,
+      bookPrice: bookPrice
+    })
+  })
+    .then(res => res.json())
+    .then(res => {
+      console.log('here is the response: ', res);
+    })
+    .catch(err => {
+      console.error('here is the error: ', err);
+    });
+}
+
+export const DetailedListing = () => {
   const [detailedListing, setDetailedListing] = useState('');
+  const [purchased, setPurchase] = useState(false);
 
   const { id } = useParams();
 
@@ -51,7 +81,6 @@ const DetailedListing = () => {
         return response.json();
       })
       .then(data => {
-        console.log(data[0]);
         setDetailedListing(data[0]);
       })
       .catch(err => console.log(err));
@@ -59,13 +88,68 @@ const DetailedListing = () => {
 
   return (
     <div>
-      <h2>{detailedListing.title}</h2>
-      <div>ISBN: {detailedListing.ISBN}</div>
-      <div>Comments:{detailedListing.comments} </div>
-      <div>Condition:{detailedListing.condition} </div>
-      <div>courseID: {detailedListing.courseID} </div>
-      <div>edited:{detailedListing.edited} </div>
-      <div>price: {detailedListing.price} </div>
+      <ListElementContainer>
+        <h2>{detailedListing.title}</h2>
+        <div>
+          <strong>ISBN:</strong> {` ${detailedListing.ISBN}`}
+        </div>
+        <div>
+          <strong>Comments:</strong>
+          {` ${detailedListing.comments}`}{' '}
+        </div>
+        <div>
+          <strong>Condition:</strong>
+          {` ${detailedListing.condition}`}{' '}
+        </div>
+        <div>
+          <strong>Course ID:</strong> {` ${detailedListing.courseID}`}{' '}
+        </div>
+        <div>
+          <strong>Edited Date:</strong>
+          {` ${detailedListing.edited}`}{' '}
+        </div>
+        <div>
+          <strong>Price:</strong> {` $${detailedListing.price}`}{' '}
+        </div>
+        {!purchased && (
+          <Popup
+            trigger={
+              <ListingsContainer>
+                <button> Buy Now </button>
+              </ListingsContainer>
+            }
+            position="bottom center"
+          >
+            <div>
+              {`Are you sure you would like to buy this book? Finalizing your purchase
+          will confirm your order and send an alert to the seller.    `}
+              <button
+                onClick={() => {
+                  sendEmail(
+                    'Hannah',
+                    'hdonovan@middlebury.edu',
+                    detailedListing.title,
+                    detailedListing.price
+                  );
+                  setPurchase(true);
+                }}
+              >
+                Place my Order
+              </button>
+            </div>
+          </Popup>
+        )}
+      </ListElementContainer>
+      <div>
+        {purchased && (
+          <Confirmation>
+            {' '}
+            Congratulations! Your request has been sent to the seller of this
+            book. Expect to hear back via email in 3 days or less. If you have
+            not heard back by then, feel free to submit a new request.{' '}
+          </Confirmation>
+        )}{' '}
+      </div>
     </div>
   );
 };
@@ -109,23 +193,32 @@ export function ListingsCollection({
   ascending
 }) {
   let updatedList = currentListings;
-
   if (searchTerm != null) {
+    const searchTerms = searchTerm.split(' ');
+
     updatedList = currentListings.filter(listing => {
-      const editedTitle = listing.title.toUpperCase();
-      const editedCourseTitle = listing.courseID.toUpperCase();
+      const editedTitle = listing.title.toLowerCase();
+      const editedCourseTitle = listing.courseID.toLowerCase();
       // let editedAuthor=listing.Author.toUpperCase();
 
-      return (
-        editedTitle.includes(searchTerm.toUpperCase()) ||
-        editedCourseTitle.includes(searchTerm.toUpperCase()) ||
-        listing.ISBN.includes(searchTerm)
-      );
+      for (let i = 0; i < searchTerms.length; i++) {
+        const term = searchTerms[i].toLowerCase();
+        if (term !== '') {
+          if (
+            editedTitle.includes(term) ||
+            editedCourseTitle.includes(term) ||
+            listing.ISBN.includes(term)
+          ) {
+            return true;
+          }
+        }
+      }
+      return false;
     });
   }
 
   let sortedList;
-  console.log(updatedList);
+
   if (sortType === 'Price') {
     if (ascending) {
       //ascending is true;

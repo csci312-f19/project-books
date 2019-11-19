@@ -15,17 +15,19 @@ const session = require('express-session');
 const passport = require('passport');
 const BearerStrategy = require('passport-http-bearer').Strategy;
 const { OAuth2Client } = require('google-auth-library');
+
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Resolve client build directory as absolute path to avoid errors in express
 const buildPath = path.resolve(__dirname, '../client/build');
 const { wrapError, DBError } = require('db-errors');
-const authenticationMiddleware = (request, response, next) => {
-  if (request.isAuthenticated()) {
-    return next(); // we are good, proceed to the next handler
-  }
-  return response.sendStatus(403); // forbidden
-};
+
+// const authenticationMiddleware = (request, response, next) => {
+//   if (request.isAuthenticated()) {
+//     return next(); // we are good, proceed to the next handler
+//   }
+//   return response.sendStatus(403); // forbidden
+// };
 
 Model.knex(knex);
 const app = express();
@@ -61,8 +63,8 @@ passport.use(
         if (!user) {
           user = await User.query().insertAndFetch({
             googleId: payload.sub,
-            familyName: payload.family_name,
-            givenName: payload.given_name,
+            id: payload.id,
+            name: payload.name,
             email: payload.email
           });
         }
@@ -97,12 +99,12 @@ if (process.env.NODE_ENV === 'production') {
 app.post(
   '/login',
   passport.authenticate('bearer', { session: true }),
-  (request, response, next) => {
+  (request, response) => {
     response.sendStatus(200);
   }
 );
 
-app.post('/logout', (request, response, next) => {
+app.post('/logout', (request, response) => {
   request.logout(); // logout function added by passport
   response.sendStatus(200);
 });
@@ -162,14 +164,47 @@ app.use((error, request, response, next) => {
   }
   const wrappedError = wrapError(error);
   if (wrappedError instanceof DBError) {
-    console.log(error);
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
-    console.log('error is: ' + error);
+    // console.log(`error is: ${  error}`);
     response
       .status(wrappedError.statusCode || wrappedError.status || 500)
       .send(wrappedError.data || wrappedError.message || {});
   }
+});
+
+// Nodemailer and the following associated code is used to send the email to the 1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw
+const nodemailer = require('nodemailer');
+
+app.post('/api/bookrequest', function Emailer(req) {
+  //   console.log(`the request has been received! it is:${req}`);
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'noReply.MiddBookMarket@gmail.com',
+      pass: 'MarketBookMidd1'
+    }
+  });
+  const mailOptions = {
+    from: 'noReply.MiddBookMarket@gmail.com',
+    to: `${req.body.email}`,
+    subject: `Somebody wants to buy your book on Midd Book Market!`,
+    html: `<p><strong><span style="font-size: 24px; color: rgb(41, 105, 176);">We have some good news for you!</span></strong></p>
+<p>Hi there! Somebody is interested in buying your book, ${req.body.bookTitle}, listed at $${req.body.bookPrice} on Midd Book Market. Please contact the buyer at your earliest convenience, and make sure to arrange a time and place to meet to exchange the book for the agreed price.</p>
+<p><u>Buyer contact information:</u> Jane Doe,
+  <a href="mailto:email@middlebury.edu">email@middlebury.edu</a>
+</p>
+<p>Please contact the buyer within the next 3 days to set up a time to meet. Once your exchange is confirmed, make sure to log back on to your account and delete your book listing from the marketplace.</p>
+<p>Thank you for using Midd Book Market!</p>`
+  };
+  transporter.sendMail(mailOptions, function errorResp() {
+    // if (err) {
+    //   console.error('there was an error: ', err); // replace with error handling
+    // } else {
+    //   console.log('here is the response: ', resp); // replace
+    // }
+    // console.log('something happened');
+  });
 });
 
 module.exports = {
