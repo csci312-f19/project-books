@@ -4,14 +4,9 @@ import App from './App';
 import { flushPromises } from './setupTests';
 
 import { act } from 'react-dom/test-utils';
-import Search from './components/SearchBar';
-import Immutable from 'immutable';
+import SearchBar from './components/SearchBar';
 
-import Listings, {
-  ListElementContainer,
-  SortBar,
-  SelectBar
-} from './components/Listings';
+import { ListElementContainer, SortBar } from './components/Listings';
 
 const sampleListings = [
   {
@@ -86,15 +81,14 @@ describe('SearchBar', () => {
   });
 
   beforeEach(async () => {
-    //mock fetch here
     app = mount(<App />);
     await act(async () => await flushPromises());
     app.update();
   });
 
   test('keyword search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -106,14 +100,12 @@ describe('SearchBar', () => {
     expect(app.find(ListElementContainer)).toBeDefined();
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
-
-    expect(
-      listingsList.find(listing => sampleListings[0].title === listing.title)
-    );
+    //samplelistings[0] is american studies: a user's guide
+    expect(listingsList[0].key).toEqual(sampleListings[0].ISBN);
   });
   test('title search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -125,13 +117,12 @@ describe('SearchBar', () => {
     expect(app.find(ListElementContainer)).toBeDefined();
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
-    expect(
-      listingsList.find(listing => sampleListings[1].title === listing.title)
-    );
+    //samplelistings[1] is Winesburg
+    expect(listingsList[0].key).toEqual(sampleListings[1].ISBN);
   });
   test('courseID search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -143,13 +134,12 @@ describe('SearchBar', () => {
     expect(app.find(ListElementContainer)).toBeDefined();
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
-    expect(
-      listingsList.find(listing => sampleListings[3].title === listing.title)
-    );
+    //samplelistings[3] is FYSE 1431
+    expect(listingsList[0].key).toEqual(sampleListings[3].ISBN);
   });
   test('ISBN search', async () => {
-    expect(app).toContainMatchingElement(Search);
-    const searchbar = app.find(Search);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
 
     searchbar
       .find('input[type="text"]')
@@ -161,9 +151,8 @@ describe('SearchBar', () => {
     expect(app.find(ListElementContainer)).toBeDefined();
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
-    expect(
-      listingsList.find(listing => sampleListings[3].title === listing.title)
-    );
+    //samplelistings[3] is 978-1-61219-127-0
+    expect(listingsList[0].key).toEqual(sampleListings[3].ISBN);
   });
 });
 
@@ -196,7 +185,7 @@ describe('SortBar actions', () => {
   describe('Sorts by Price', () => {
     beforeEach(async () => {
       const sortBar = app.find(SortBar);
-      const type = sortBar.find(SelectBar).at(0);
+      const type = sortBar.find('select').at(0);
       type.simulate('change', { target: { value: 'Price' } });
       await act(async () => await flushPromises());
       app.update();
@@ -213,7 +202,7 @@ describe('SortBar actions', () => {
 
     test('Sorts by price in descending order', async () => {
       const sortBar = app.find(SortBar);
-      const type = sortBar.find(SelectBar).at(1);
+      const type = sortBar.find('select').at(1);
       type.simulate('change', { target: { value: 'False' } });
       await act(async () => await flushPromises());
       app.update();
@@ -228,7 +217,7 @@ describe('SortBar actions', () => {
   describe('Sorts by Condition', () => {
     beforeEach(async () => {
       const sortBar = app.find(SortBar);
-      const type = sortBar.find(SelectBar).at(0);
+      const type = sortBar.find('select').at(0);
       type.simulate('change', { target: { value: 'Condition' } });
       await act(async () => await flushPromises());
       app.update();
@@ -245,7 +234,7 @@ describe('SortBar actions', () => {
 
     test('Sorts by price in descending order', async () => {
       const sortBar = app.find(SortBar);
-      const type = sortBar.find(SelectBar).at(1);
+      const type = sortBar.find('select').at(1);
       type.simulate('change', { target: { value: 'False' } });
       await act(async () => await flushPromises());
       app.update();
@@ -259,7 +248,7 @@ describe('SortBar actions', () => {
     describe('Sort by Default', () => {
       beforeEach(async () => {
         const sortBar = app.find(SortBar);
-        const type = sortBar.find(SelectBar).at(0);
+        const type = sortBar.find('select').at(0);
         type.simulate('change', { target: { value: 'Price' } });
         await act(async () => await flushPromises());
         app.update();
