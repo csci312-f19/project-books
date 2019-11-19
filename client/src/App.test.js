@@ -90,7 +90,7 @@ describe('App rendering tests', () => {
     app.update();
   });
 
-  describe('App component initial content', () => {
+  describe('App initial content', () => {
     test('Contains an SearchBar component', () => {
       expect(app).toContainExactlyOneMatchingElement(SearchBar);
     });
@@ -106,4 +106,5 @@ describe('App rendering tests', () => {
       expect(app).not.toContainMatchingElement(DetailedListing);
     });
   });
+  //todo: routing tests
 });
