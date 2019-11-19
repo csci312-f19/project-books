@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Immutable from 'immutable';
 import { SortBar } from './Listings';
 import data from '../Data/SampleData.json';
