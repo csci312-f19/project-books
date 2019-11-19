@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const InputLine = styled.input`
   text-align: left;
@@ -38,7 +38,7 @@ const InputComments = styled.textarea`
 const SubmitButton = styled.button``;
 
 const newPosting = ({ ifPosting }) => {
-  let postingInfo = {
+  const postingInfo = {
     author: '',
     userID: 0,
     courseID: '',
@@ -60,7 +60,7 @@ const newPosting = ({ ifPosting }) => {
   const makeInput = (inputType, clientQuery, placeholder) => {
     return (
       <InputLineContainer>
-        <InputType> {`${clientQuery}` + ':'} </InputType>
+        <InputType> {`${clientQuery}`}: </InputType>
         <InputLine
           type="text"
           placeholder={`${placeholder}`}
