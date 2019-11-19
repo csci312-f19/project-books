@@ -127,22 +127,6 @@ function App() {
         </Switch>
       </div>
     </Router>
-    // <Router>
-    //   <div>
-    //     <Title>Midd Book Market</Title>
-    //     <SearchBar setBook={book => setBook(book)} currentBook={currentBook} />
-
-    // <SortBar
-    //   listings={listings}
-    //   setListings={setListings}
-    //   sortType={sortType}
-    //   setSortType={setSortType}
-    //   ascending={ascending}
-    //   flipDirection={() => setDirection(!ascending)}
-    // />
-    //     <Listings currentListings={listings} searchTerm={currentBook} />
-    //   </div>
-    // </Router>
   );
 }
 

@@ -127,7 +127,7 @@ app.get('/api/bookListings', (request, response, next) => {
   Listing.query()
     .select('*')
     .from('Listings')
-    .joinRaw('natural join Books')
+    .joinRaw('natural join "Books"')
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
@@ -138,7 +138,7 @@ app.get(`/api/bookListings/:id`, (request, response, next) => {
   Listing.query()
     .select('*')
     .from('Listings')
-    .joinRaw('natural join Books')
+    .joinRaw('natural join "Books"')
     .where('listingID', id)
     .then(rows => {
       response.send(rows);
