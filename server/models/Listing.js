@@ -13,7 +13,7 @@ class Listing extends Model {
       properties: {
         listingID: { type: 'increments' },
         userID: { type: 'integer' },
-        ISBN: { type: 'integer' },
+        ISBN: { type: 'string' },
         condition: { type: 'string' },
         price: { type: 'decimal' },
         edited: { type: 'string' },

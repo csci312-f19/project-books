@@ -39,21 +39,23 @@ const SubmitButton = styled.button``;
 
 const newPosting = ({ ifPosting }) => {
   let postingInfo = {
-    author: 'idk',
-    userID: 11,
-    courseID: 'CSCI 0312',
-    courseTitle: 'someshit',
-    ISBN: 5656,
-    title: 'idk',
-    price: 100,
-    condition: 'good',
-    comments: 'none'
+    author: '',
+    userID: 0,
+    courseID: '',
+    courseTitle: '',
+    ISBN: '',
+    title: '',
+    price: '',
+    condition: '',
+    comments: ''
   };
 
   const [allInfo, setAllInfo] = useState(postingInfo);
 
   // Should require price, ISBN, something else? to be a number
   // Dont need name if have accounts?
+
+  //{makeInput("price", "Price:", "5")}
 
   const makeInput = (inputType, clientQuery, placeholder) => {
     return (
@@ -63,7 +65,7 @@ const newPosting = ({ ifPosting }) => {
           type="text"
           placeholder={`${placeholder}`}
           onChange={event => {
-            postingInfo.inputType = event.target.value;
+            postingInfo[inputType] = event.target.value;
             setAllInfo(postingInfo);
           }}
         />
@@ -120,7 +122,17 @@ const newPosting = ({ ifPosting }) => {
           </InputSelect>
         </InputLineContainer>
 
-        {makeInput('price', 'Price:', '$5')}
+        <InputLineContainer>
+          <InputType> Price: </InputType>
+          <InputLine
+            type="text"
+            placeholder={'5'}
+            onChange={event => {
+              postingInfo.price = parseInt(event.target.value);
+              setAllInfo(postingInfo);
+            }}
+          />
+        </InputLineContainer>
 
         <InputLineContainer>
           <InputType> Any Additional Comments: </InputType>
@@ -140,6 +152,7 @@ const newPosting = ({ ifPosting }) => {
             type="button"
             value="submit"
             onClick={() => {
+              console.log(allInfo);
               //this is where put will happen
               // Also an alert with all of the Info, if they accept, then it will post
               fetch(`/api/newPosting/Listing`, {
