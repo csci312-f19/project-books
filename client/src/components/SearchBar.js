@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SearchBar = styled.input`
+export const SearchBar = styled.input`
   text-align: center;
   width: 50%;
   height: 25px
