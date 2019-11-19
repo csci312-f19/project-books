@@ -110,6 +110,36 @@ app.post('/logout', (request, response) => {
 });
 
 // TODO: Add your routes here
+
+app.post('/api/newPosting/Listing', (request, response, next) => {
+  const listing = {
+    userID: request.body.userID,
+    ISBN: request.body.ISBN,
+    condition: request.body.condition,
+    price: request.body.price,
+    edited: '',
+    comments: request.body.comments
+  };
+  Listing.query()
+    .insert(listing)
+    .then(post => {
+      response.send(post);
+    }, next);
+});
+
+app.post('/api/newPosting/Book', (request, response, next) => {
+  const bookData = {
+    ISBN: `${request.body.ISBN}`,
+    title: request.body.title,
+    courseID: request.body.courseID
+  };
+  Book.query()
+    .insert(bookData)
+    .then(bookPost => {
+      response.send(bookPost);
+    }, next);
+});
+
 app.get('/api/listings', (request, response, next) => {
   Listing.query().then(rows => {
     response.send(rows);
