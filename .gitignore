@@ -13,7 +13,6 @@
 
 # heroku
 .env
-.db
 
 # misc
 /.vscode
