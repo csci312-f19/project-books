@@ -177,6 +177,15 @@ app.get(`/api/bookListings/:id`, (request, response, next) => {
     }, next); // <- Notice the "next" function as the rejection handler
 });
 
+app.get('/api/users', (request, response, next) => {
+  User.query()
+    .select('*')
+    .from('Users')
+    .then(rows => {
+      response.send(rows);
+    }, next); // <- Notice the "next" function as the rejection handler
+});
+
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
   // All remaining requests return the React app, so it can handle routing.
