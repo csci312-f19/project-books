@@ -198,7 +198,8 @@ export function ListingsCollection({
 
     updatedList = currentListings.filter(listing => {
       const editedTitle = listing.title.toLowerCase();
-      const editedCourseTitle = listing.courseID.toLowerCase();
+      // const editedCourseTitle = listing.courseTitle.toLowerCase();
+      const editedCourseID = listing.courseID.toLowerCase();
       // let editedAuthor=listing.Author.toUpperCase();
 
       for (let i = 0; i < searchTerms.length; i++) {
@@ -206,7 +207,8 @@ export function ListingsCollection({
         if (term !== '') {
           if (
             editedTitle.includes(term) ||
-            editedCourseTitle.includes(term) ||
+            // editedCourseTitle.includes(term) ||
+            editedCourseID.includes(term) ||
             listing.ISBN.includes(term)
           ) {
             return true;
