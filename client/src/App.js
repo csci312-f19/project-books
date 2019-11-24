@@ -2,13 +2,22 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import styled from 'styled-components';
 import SearchBar from './components/SearchBar';
+import NewPosting from './components/NewPosting';
 import Listings from './components/Listings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
-const GOOGLE_CLIENT_ID =
-  '603582413711-motmdqbcfj8drljfjisq4ihtobolfemt.apps.googleusercontent.com';
+let GOOGLE_CLIENT_ID;
+if (String(window.location.href).includes('localhost')) {
+  GOOGLE_CLIENT_ID =
+    '603582413711-motmdqbcfj8drljfjisq4ihtobolfemt.apps.googleusercontent.com';
+} else {
+  GOOGLE_CLIENT_ID =
+    '304836268474-hetmurq1ojali48o345mp1k9atjo74ss.apps.googleusercontent.com';
+}
+
+//import Immutable from 'immutable';   // need to do "npm install immutable
 
 /* eslint-disable react/prefer-stateless-function */
 const Title = styled.h1`
@@ -100,6 +109,11 @@ function App() {
         <Title>Midd Book Market</Title>
         <Switch>
           <Route
+            exact
+            path="/newPosting"
+            component={() => <NewPosting ifPosting={'postingView'} />}
+          />
+          <Route
             path="/:id"
             component={() => (
               <Listings
@@ -112,6 +126,7 @@ function App() {
           <Route
             render={() => (
               <div>
+                <NewPosting ifPosting={'general'} />
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}

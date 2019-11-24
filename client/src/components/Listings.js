@@ -222,15 +222,15 @@ export function ListingsCollection({
   if (sortType === 'Price') {
     if (ascending) {
       //ascending is true;
-      sortedList = updatedList.sort((a, b) => a.Price - b.Price); //increasing order / asending is true / ↑
+      sortedList = updatedList.sort((a, b) => a.price - b.price); //increasing order / asending is true / ↑
     } else {
-      sortedList = updatedList.sort((a, b) => b.Price - a.Price);
+      sortedList = updatedList.sort((a, b) => b.price - a.price);
     }
   } else if (sortType === 'Condition') {
     if (ascending) {
-      sortedList = updatedList.sort((a, b) => a.Condition - b.Condition);
+      sortedList = updatedList.sort((a, b) => a.condition - b.condition);
     } else {
-      sortedList = updatedList.sort((a, b) => b.Condition - a.Condition);
+      sortedList = updatedList.sort((a, b) => b.condition - a.condition);
     }
   } else if (searchTerm != null) {
     sortedList = updatedList;
@@ -259,7 +259,7 @@ export function ListingsCollection({
 }
 
 function Listings({ currentListings, searchTerm, mode }) {
-  const [sortType, setSortType] = useState('');
+  const [sortType, setSortType] = useState('Default');
   const [ascending, setDirection] = useState(true);
   if (mode === 'detailed') {
     return (
@@ -267,7 +267,7 @@ function Listings({ currentListings, searchTerm, mode }) {
         <DetailedListing />
       </div>
     );
-  } else {
+  } else if (mode === 'general') {
     return (
       <div>
         <SortBar
@@ -284,6 +284,8 @@ function Listings({ currentListings, searchTerm, mode }) {
         />
       </div>
     );
+  } else {
+    return;
   }
 }
 

@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run watch --prefix server\" \"npm start --prefix client\"",
-    "heroku-postbuild": "npm install --prefix client && npm install --only=dev --no-shrinkwrap --prefix client && npm run build --prefix client && npm install --prefix server"
+    "heroku-postbuild": "npm install --prefix client && npm install --only=dev --no-shrinkwrap --prefix client && npm run build --prefix client && npm install --prefix server",
+    "npm install": "npm install && npm install --prefix client && npm install --prefix server"
   },
   "cacheDirectories": [
     "client/node_modules",
@@ -47,9 +48,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "immutable": "^4.0.0-rc.12",
-    "knex": "^0.20.2",
     "mini-create-react-context": "^0.3.2",
-    "pg": "^7.12.1",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -57,7 +56,6 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "2.1.5",
     "reactstrap": "^8.0.1",
-    "sqlite3": "^4.1.0",
     "styled-components": "^4.4.1"
   }
 }
