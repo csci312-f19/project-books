@@ -217,7 +217,7 @@ export function ListingsCollection({
     });
   }
 
-  let sortedList;
+  let sortedList = [];
 
   if (sortType === 'Price') {
     if (ascending) {
@@ -232,7 +232,7 @@ export function ListingsCollection({
     } else {
       sortedList = updatedList.sort((a, b) => b.Condition - a.Condition);
     }
-  } else {
+  } else if (searchTerm != null) {
     sortedList = updatedList;
   }
 
