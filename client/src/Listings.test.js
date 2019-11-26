@@ -93,6 +93,8 @@ describe('SearchBar', () => {
     searchbar
       .find('input[type="text"]')
       .simulate('change', { target: { value: 'user' } });
+    const button = app.find('input[type="submit"]');
+    button.simulate('click');
 
     await act(async () => await flushPromises());
     app.update();
@@ -110,7 +112,8 @@ describe('SearchBar', () => {
     searchbar
       .find('input[type="text"]')
       .simulate('change', { target: { value: 'Winesburg, Ohio' } });
-
+    const button = app.find('input[type="submit"]');
+    button.simulate('click');
     await act(async () => await flushPromises());
     app.update();
 
@@ -127,7 +130,8 @@ describe('SearchBar', () => {
     searchbar
       .find('input[type="text"]')
       .simulate('change', { target: { value: 'FYSE 1431' } });
-
+    const button = app.find('input[type="submit"]');
+    button.simulate('click');
     await act(async () => await flushPromises());
     app.update();
 
@@ -144,7 +148,8 @@ describe('SearchBar', () => {
     searchbar
       .find('input[type="text"]')
       .simulate('change', { target: { value: '978-1-61219-127-0' } });
-
+    const button = app.find('input[type="submit"]');
+    button.simulate('click');
     await act(async () => await flushPromises());
     app.update();
 
@@ -171,6 +176,14 @@ describe('SortBar actions', () => {
 
   beforeEach(async () => {
     app = mount(<App />);
+    expect(app).toContainMatchingElement(SearchBar);
+    const searchbar = app.find(SearchBar);
+    //populate the listings so we can sort
+    searchbar
+      .find('input[type="text"]')
+      .simulate('change', { target: { value: 'st' } });
+    const button = app.find('input[type="submit"]');
+    button.simulate('click');
     await act(async () => await flushPromises());
     app.update();
   });
@@ -222,7 +235,7 @@ describe('SortBar actions', () => {
       await act(async () => await flushPromises());
       app.update();
     });
-    test('Sorts by price in ascending order', async () => {
+    test('Sorts by price ascending order', async () => {
       expect(app).toContainMatchingElement(SortBar);
       expect(app.find(ListElementContainer)).toBeDefined();
       const listingsList = Array.from(app.find(ListElementContainer));

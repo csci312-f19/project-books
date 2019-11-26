@@ -32,6 +32,12 @@ function Search({ setBook }) {
           book = event.target.value;
           // setBook(event.target.value);
         }}
+        onKeyDown={event => {
+          console.log('a');
+          if (event.keyCode === 13) {
+            setBook(event.target.value);
+          }
+        }}
       />
       <SubmitButton type="submit" onClick={() => setBook(book)} />
     </SearchBarContainer>
