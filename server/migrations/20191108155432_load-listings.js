@@ -1,6 +1,6 @@
 exports.up = knex => {
   return knex.schema.createTable('Listings', table => {
-    table.increments('listingID');
+    table.increments('listingID').primary();
     table.integer('userID');
     table.string('ISBN');
     table.string('condition');

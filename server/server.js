@@ -63,7 +63,7 @@ passport.use(
         if (!user) {
           user = await User.query().insertAndFetch({
             googleId: payload.sub,
-            id: payload.id,
+            // id: payload.id,
             name: payload.name,
             email: payload.email
           });
