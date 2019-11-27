@@ -166,7 +166,7 @@ app.get(`/api/books/:ISBN`, (request, response, next) => {
 // });
 
 app.get(`/api/bookListings/`, (request, response, next) => {
-  //new query approach to deal with new primary keys
+  // new query approach to deal with new primary keys
   Listing.query()
     .select(
       'Listings.id',
@@ -176,7 +176,8 @@ app.get(`/api/bookListings/`, (request, response, next) => {
       'userID',
       'condition',
       'comments',
-      'Listings.ISBN'
+      'Listings.ISBN',
+      'edited'
     )
     .from('Listings')
     .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')

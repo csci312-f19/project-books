@@ -33,7 +33,7 @@ describe('Midd Book Market API', () => {
       .get('/api/listings')
       .expect(200)
       .expect('Content-Type', /json/)
-      .expect([Object.assign({ listingID: 1 }, listing)]);
+      .expect([Object.assign({ id: 1 }, listing)]);
   });
 
   test('GET /api/bookListings returns listing and book objects with same ISBN', () => {
@@ -41,7 +41,7 @@ describe('Midd Book Market API', () => {
       .get('/api/bookListings')
       .expect(200)
       .expect('Content-Type', /json/)
-      .expect([Object.assign({ listingID: 1 }, listing, book)]);
+      .expect([Object.assign({ id: 1 }, listing, book)]);
   });
 
   test('GET /api/bookListings/:id returns listing and book objects with same ISBN by listingID', () => {
@@ -49,7 +49,7 @@ describe('Midd Book Market API', () => {
       .get('/api/bookListings/1')
       .expect(200)
       .expect('Content-Type', /json/)
-      .expect([Object.assign({ listingID: 1 }, listing, book)]);
+      .expect([Object.assign({ id: 1 }, listing, book)]);
   });
 });
 
