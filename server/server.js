@@ -129,7 +129,7 @@ app.post('/api/newPosting/Listing', (request, response, next) => {
 
 app.post('/api/newPosting/Book', (request, response, next) => {
   const bookData = {
-    ISBN: `${request.body.ISBN}`,
+    ISBN: request.body.ISBN,
     title: request.body.title,
     courseID: request.body.courseID
   };
@@ -155,11 +155,32 @@ app.get(`/api/books/:ISBN`, (request, response, next) => {
     }, next); // <- Notice the "next" function as the rejection handler
 });
 
-app.get('/api/bookListings', (request, response, next) => {
+// app.get('/api/bookListings', (request, response, next) => {
+//   Listing.query()
+//     .select('*')
+//     .from('Listings')
+//     .joinRaw('natural join "Books"')
+//     .then(rows => {
+//       response.send(rows);
+//     }, next); // <- Notice the "next" function as the rejection handler
+// });
+
+app.get(`/api/bookListings/`, (request, response, next) => {
+  //new query approach to deal with new primary keys
   Listing.query()
-    .select('*')
+    .select(
+      'Listings.id',
+      'title',
+      'courseID',
+      'price',
+      'userID',
+      'condition',
+      'comments',
+      'Listings.ISBN'
+    )
     .from('Listings')
-    .joinRaw('natural join "Books"')
+    .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')
+    //   .where('Listings.id', id)
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
@@ -168,10 +189,20 @@ app.get('/api/bookListings', (request, response, next) => {
 app.get(`/api/bookListings/:id`, (request, response, next) => {
   const { id } = request.params;
   Listing.query()
-    .select('*')
+    .select(
+      'Listings.id',
+      'title',
+      'Listings.ISBN',
+      'edited',
+      'courseID',
+      'price',
+      'userID',
+      'condition',
+      'comments'
+    )
     .from('Listings')
-    .joinRaw('natural join "Books"')
-    .where('listingID', id)
+    .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')
+    .where('Listings.id', id)
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
