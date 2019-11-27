@@ -1,6 +1,5 @@
 [
   {
-    "id": "1",
     "userID": "20",
     "ISBN": "978-0-520-28773-0",
     "condition": "Like New",
@@ -9,7 +8,6 @@
     "comments": "Some highlighting"
   },
   {
-    "id": "2",
     "userID": "30",
     "ISBN": "978-0-486-28269-5",
     "condition": "Good",
@@ -18,7 +16,6 @@
     "comments": "Missing cover"
   },
   {
-    "id": "3",
     "userID": "40",
     "ISBN": "978-0-8122-1525-0",
     "condition": "Acceptable",
@@ -27,7 +24,6 @@
     "comments": "this book is so good!"
   },
   {
-    "id": "4",
     "userID": "50",
     "ISBN": "978-1-61219-127-0",
     "condition": "Very Good",
@@ -36,7 +32,6 @@
     "comments": "no markings"
   },
   {
-    "id": "5",
     "userID": "60",
     "ISBN": "978-0-8223-6319-4",
     "condition": "Good",
