@@ -7,6 +7,7 @@ import Listings from './components/Listings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 let GOOGLE_CLIENT_ID;
 if (String(window.location.href).includes('localhost')) {
@@ -63,6 +64,22 @@ function App() {
     });
   };
 
+  const DropDown = () => {
+    return (
+      <Dropdown>
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+          Dropdown Button
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  };
+
   const handleGoogleFailure = response => {
     console.log(response);
     alert(response.error);
@@ -101,6 +118,7 @@ function App() {
     <Router>
       <div>
         <UserAccount>
+          <DropDown />
           {!loggedIn && loginButton}
           {loggedIn && logoutButton}
         </UserAccount>
