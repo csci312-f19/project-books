@@ -117,8 +117,8 @@ function App() {
   return (
     <Router>
       <div>
+        <DropDown />
         <UserAccount>
-          <DropDown />
           {!loggedIn && loginButton}
           {loggedIn && logoutButton}
         </UserAccount>
