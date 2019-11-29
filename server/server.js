@@ -1,4 +1,4 @@
-const { Model } = require('objection');
+const { Model, ValidationError } = require('objection');
 
 const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig[process.env.NODE_ENV || 'development']);
@@ -59,10 +59,11 @@ passport.use(
       })
       .then(async ticket => {
         const payload = ticket.getPayload();
-        let user = await User.query().findOne('googleId', payload.sub);
+        // let user = await User.query().findOne('googleId', payload.sub);
+        let user = await User.query().findOne('googleId', payload.email);
         if (!user) {
           user = await User.query().insertAndFetch({
-            googleId: payload.sub,
+            googleId: payload.email,
             id: payload.id,
             name: payload.name,
             email: payload.email
@@ -109,15 +110,63 @@ app.post('/logout', (request, response) => {
   response.sendStatus(200);
 });
 
-// TODO: Add your routes here
+app.get('/api/MyPostings/', (request, response, next) => {
+  Listing.query()
+    .select('*')
+    .from('Listings')
+    .joinRaw('natural join "Books"')
+    .where('userId', request.user.id)
+    .then(rows => {
+      response.send(rows);
+    }, next); // <- Notice the "next" function as the rejection handler
+});
+
+app.delete(`/api/MyPostings/:listingID`, (request, response, next) => {
+  Listing.query()
+    .deleteById(request.params.listingID)
+    .then(listing => {
+      response.sendStatus(200);
+    }, next);
+});
+
+app.put(`/api/MyPostings/Listing/:listingID`, (request, response, next) => {
+  const { listingID, ...updatedListing } = request.body; // eslint-disable-line no-unused-vars
+
+  if (listingID !== parseInt(request.params.listingID, 10)) {
+    throw new ValidationError({
+      statusCode: 400,
+      message: 'URL id and request id do not match'
+    });
+  }
+
+  Listing.query()
+    .select('*')
+    .skipUndefined()
+    .updateAndFetchById(request.params.listingID, request.body)
+    .then(listing => {
+      response.send(listing);
+    }, next);
+});
+
+app.put(`/api/MyPostings/Book/:ISBN`, (request, response, next) => {
+  const { ISBN } = request.params; // eslint-disable-line no-unused-vars
+
+  Book.query()
+    .select('*')
+    .skipUndefined()
+    .updateAndFetchById(ISBN, request.body)
+    .then(book => {
+      response.send(book);
+    }, next);
+});
 
 app.post('/api/newPosting/Listing', (request, response, next) => {
   const listing = {
-    userID: request.body.userID,
+    userID: request.user.id,
     ISBN: request.body.ISBN,
     condition: request.body.condition,
     price: request.body.price,
-    edited: '',
+    edited: new Date().toLocaleString(),
     comments: request.body.comments
   };
   Listing.query()
@@ -190,13 +239,15 @@ if (process.env.NODE_ENV === 'production') {
 // application or database to the client.
 app.use((error, request, response, next) => {
   if (response.headersSent) {
+    console.log(`GENERAL error is: ${error}`);
     next(error);
   }
   const wrappedError = wrapError(error);
   if (wrappedError instanceof DBError) {
+    console.log(`400 error is: ${error}`);
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
-    // console.log(`error is: ${  error}`);
+    console.log(`500 error is: ${error}`);
     response
       .status(wrappedError.statusCode || wrappedError.status || 500)
       .send(wrappedError.data || wrappedError.message || {});

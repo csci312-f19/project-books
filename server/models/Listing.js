@@ -5,6 +5,10 @@ class Listing extends Model {
     return 'Listings';
   }
 
+  static get idColumn() {
+    return 'listingID';
+  }
+
   static get jsonSchema() {
     return {
       type: 'object',
