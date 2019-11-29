@@ -117,7 +117,9 @@ function App() {
           <Route
             exact
             path="/myPostings"
-            component={() => <MyPostings ifPosting={'postingView'} />}
+            component={() => (
+              <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
+            )}
           />
           <Route
             path="/:id"
@@ -132,8 +134,10 @@ function App() {
           <Route
             render={() => (
               <div>
-                <NewPosting ifPosting={'general'} />
-                <MyPostings ifPosting={'general'} />
+                {loggedIn && <NewPosting ifPosting={'general'} />}
+                {loggedIn && (
+                  <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
+                )}
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}
