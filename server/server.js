@@ -1,4 +1,4 @@
-const { Model, ValidationError } = require('objection');
+const { Model } = require('objection');
 
 const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig[process.env.NODE_ENV || 'development']);
@@ -232,15 +232,13 @@ if (process.env.NODE_ENV === 'production') {
 // application or database to the client.
 app.use((error, request, response, next) => {
   if (response.headersSent) {
-    console.log(`General error is: ${error}`);
     next(error);
   }
   const wrappedError = wrapError(error);
   if (wrappedError instanceof DBError) {
-    console.log(`400 error is: ${error}`);
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
-    console.log(`500 error is: ${error}`);
+    // console.log(`500 error is: ${error}`);
     response
       .status(wrappedError.statusCode || wrappedError.status || 500)
       .send(wrappedError.data || wrappedError.message || {});

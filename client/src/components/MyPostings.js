@@ -220,7 +220,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                     }
                   }}
                 >
-                  <span className="glyphicon glyphicon-trash"></span>
+                  <span className="glyphicon glyphicon-trash" />
                   &emsp;Delete
                 </button>
                 &emsp;&emsp;
@@ -237,7 +237,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                     setCourseID(listing.courseID);
                   }}
                 >
-                  <span className="glyphicon glyphicon-edit"></span>
+                  <span className="glyphicon glyphicon-edit" />
                   &emsp;Edit
                 </button>
               </ButtonBar>
@@ -247,7 +247,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
           {mode === 'edit' && currentListing.id === listing.id && (
             <Edit>
               <h4 align="center">
-                <span class="glyphicon glyphicon-pencil"></span>
+                <span class="glyphicon glyphicon-pencil" />
                 &emsp;Editing
               </h4>
               <EditDiv>
