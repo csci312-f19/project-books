@@ -37,6 +37,8 @@ const InputComments = styled.textarea`
 
 const SubmitButton = styled.button``;
 
+const BackButton = styled.button``;
+
 const newPosting = ({ ifPosting }) => {
   const postingInfo = {
     author: '',
@@ -87,6 +89,11 @@ const newPosting = ({ ifPosting }) => {
     return (
       <WholeContainer>
         <h2>Create a new posting</h2>
+        <BackButton>
+          <Link to={''} id="">
+            Back to Main Page
+          </Link>
+        </BackButton>
         <InputLineContainer>
           <InputType> Name: </InputType>
           <InputLine type="text" placeholder={'What is your name?'} />
