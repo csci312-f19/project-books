@@ -209,7 +209,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                             throw new Error(response.statusText);
                           }
                           const newListings = myListings.filter(
-                            listing => listing !== currentListing
+                            item => item !== currentListing
                           );
                           setMyListings(newListings);
                           window.location.reload(false);
@@ -220,7 +220,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                     }
                   }}
                 >
-                  <span className="glyphicon glyphicon-trash"></span> Delete
+                  <span className="glyphicon glyphicon-trash">Delete</span>
                 </button>
                 &emsp;&emsp;
                 <button
@@ -236,7 +236,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                     setCourseID(listing.courseID);
                   }}
                 >
-                  <span className="glyphicon glyphicon-edit"></span> Edit
+                  <span className="glyphicon glyphicon-edit">Edit</span>
                 </button>
               </ButtonBar>
             </View>
@@ -245,7 +245,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
           {mode === 'edit' && currentListing.listingID === listing.listingID && (
             <Edit>
               <h4 align="center">
-                <span class="glyphicon glyphicon-pencil"></span>&emsp;Editing
+                <span class="glyphicon glyphicon-pencil">&emsp;Editing</span>
               </h4>
               <EditDiv>
                 <strong>Book Title:</strong>
@@ -336,7 +336,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                           }
                           return response.json();
                         })
-                        .then(data => {
+                        .then(() => {
                           window.location.reload(false);
                         })
                         .catch(err => console.log(err));
@@ -354,7 +354,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                           }
                           return response.json();
                         })
-                        .then(data => {
+                        .then(() => {
                           window.location.reload(false);
                         })
                         .catch(err => console.log(err));

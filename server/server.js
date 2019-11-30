@@ -124,7 +124,7 @@ app.get('/api/MyPostings/', (request, response, next) => {
 app.delete(`/api/MyPostings/:listingID`, (request, response, next) => {
   Listing.query()
     .deleteById(request.params.listingID)
-    .then(listing => {
+    .then(() => {
       response.sendStatus(200);
     }, next);
 });
@@ -239,15 +239,13 @@ if (process.env.NODE_ENV === 'production') {
 // application or database to the client.
 app.use((error, request, response, next) => {
   if (response.headersSent) {
-    console.log(`GENERAL error is: ${error}`);
     next(error);
   }
   const wrappedError = wrapError(error);
   if (wrappedError instanceof DBError) {
-    console.log(`400 error is: ${error}`);
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
-    console.log(`500 error is: ${error}`);
+    // console.log(`500 error is: ${error}`);
     response
       .status(wrappedError.statusCode || wrappedError.status || 500)
       .send(wrappedError.data || wrappedError.message || {});
