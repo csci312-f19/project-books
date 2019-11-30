@@ -1,107 +1,1182 @@
 [
   {
-    "ISBN": "978-0-520-28773-0",
     "courseID": "AMST 0400A",
+    "ISBN": "978-0-520-28773-0",
     "title": "American Studies: A User's Guide"
   },
   {
-    "ISBN": "978-0-486-28269-5",
     "courseID": "AMST/ENAM 0282A",
+    "ISBN": "978-0-486-28269-5",
     "title": "Winesburg, Ohio"
   },
   {
-    "ISBN": "978-0-486-43163-5",
-    "courseID": "AMST/ENAM 0282A",
-    "title": "Marrow of Tradition"
+    "courseID": "AMST/WRPR 0203A",
+    "ISBN": "978-0-307-35314-6",
+    "title": "Forty Million Dollar Slaves: The Rise, Fall, and Redemption of the Black Athlete"
   },
   {
-    "ISBN": "978-0-8122-1525-0",
+    "courseID": "AMST0252A",
+    "ISBN": "978-0-375-70270-9",
+    "title": "Lesson Before Dying"
+  },
+  {
+    "courseID": "ANTH 0103",
+    "ISBN": "978-0-521-29593-2",
+    "title": "Portraits of the Whiteman"
+  },
+  {
+    "courseID": "ANTH 0107",
+    "ISBN": "978-0-500-84138-9",
+    "title": "Archaeology Essentials: Theories, Methods, and Practice - With Registration Card"
+  },
+  {
+    "courseID": "ANTH 0109",
+    "ISBN": "978-0-688-14949-9",
+    "title": "Language Shock"
+  },
+  {
+    "courseID": "ANTH 0223",
+    "ISBN": "978-0-8165-2977-3",
+    "title": "Living with the Dead in the Andes"
+  },
+  {
+    "courseID": "ANTH 0232",
+    "ISBN": "978-0-226-02974-0",
+    "title": "Witchcraft, Violence, and Democracy in South Africa"
+  },
+  {
     "courseID": "ANTH 0355",
-    "title": "Object of Memory: Arab and Jew Narrate the Palestinian Village"
+    "ISBN": "978-0-226-42285-5",
+    "title": "Colors of Violence: Cultural Identities, Religion, and Conflict"
   },
   {
-    "ISBN": "978-0-8122-2284-5",
-    "courseID": "ANTH 0355",
-    "title": "In My Mother's House: Civil War in Sri Lanka"
+    "courseID": "BIOL 0145A",
+    "ISBN": "978-1-323-53833-3",
+    "title": "Biological Science, Volume 1 (Custom)"
   },
   {
-    "ISBN": "978-0-631-20283-7",
+    "courseID": "BIOL 0203A",
+    "ISBN": "978-1-4641-1788-6",
+    "title": "Raven Biology of Plants"
+  },
+  {
+    "courseID": "BIOL 0211A",
+    "ISBN": "978-1-936221-48-6",
+    "title": "Analysis of Biological Data"
+  },
+  {
+    "courseID": "BIOL 0305A",
+    "ISBN": "978-1-60535-822-2",
+    "title": "Developmental Biology"
+  },
+  {
+    "courseID": "BIOL 0370A",
+    "ISBN": "978-0-321-83817-9",
+    "title": "Principles of Animal Physiology - Text Only"
+  },
+  {
+    "courseID": "CHEM 0104A",
+    "ISBN": "978-1-938168-15-4",
+    "title": "Chemistry: Atoms First (OER)"
+  },
+  {
+    "courseID": "CHEM 0203A",
+    "ISBN": "978-0-393-63074-9",
+    "title": "Organic Chemistry: Principles and Mechanisms (Hardback) - With Access"
+  },
+  {
+    "courseID": "CHEM 0203W",
+    "ISBN": "978-1-118-98068-2",
+    "title": "Microscale Organic Laboratory (Custom)"
+  },
+  {
+    "courseID": "CHNS 0101A",
+    "ISBN": "978-1-62291-137-0",
+    "title": "Integrated Chinese Volume 1 Character - Workbook"
+  },
+  {
+    "courseID": "CHNS 0201A",
+    "ISBN": "978-1-62291-140-0",
+    "title": "Integrated Chinese, Volume 2, Textbook Traditional"
+  },
+  {
+    "courseID": "CHNS 0301A",
+    "ISBN": "978-1-62291-125-7",
+    "title": "Reading Into a New China, Volume 1"
+  },
+  {
+    "courseID": "CHNS 0370",
+    "ISBN": "978-0-520-28216-2",
+    "title": "Three Kingdoms (15th Anniversary Abridged Edition)"
+  },
+  {
+    "courseID": "CHNS 0411",
+    "ISBN": "978-0-88727-298-1",
+    "title": "Language of the Dragon: A Classical Chinese Reader"
+  },
+  {
+    "courseID": "CLAS 0144",
+    "ISBN": "978-0-7190-4344-4",
+    "title": "Spanish Tragedy"
+  },
+  {
+    "courseID": "CLAS 0450",
+    "ISBN": "978-0-226-03528-4",
+    "title": "Greek Tragedies, Volume 1"
+  },
+  {
+    "courseID": "CMLT/ITAL 0299",
+    "ISBN": "978-0-375-71479-5",
+    "title": "Leopard"
+  },
+  {
+    "courseID": "CRWR 0170A",
+    "ISBN": "978-1-319-04016-1",
+    "title": "Practice of Creative Writing: A Guide for Students"
+  },
+  {
+    "courseID": "CRWR 0175",
+    "ISBN": "978-0-205-17605-2",
+    "title": "Writing Poems - Text Only"
+  },
+  {
+    "courseID": "CRWR 0370",
+    "ISBN": "978-1-62892-537-1",
+    "title": "Writer's Reader"
+  },
+  {
+    "courseID": "CSCI 0150",
+    "ISBN": "978-1-68050-268-8",
+    "title": "Practical Programming: An Introduction to Computer Science Using Python 3.6"
+  },
+  {
+    "courseID": "CSCI 0301",
+    "ISBN": "978-0-387-94907-9",
+    "title": "Automata and Computability (Hardback)"
+  },
+  {
+    "courseID": "DANC 0261",
+    "ISBN": "978-0-299-24814-7",
+    "title": "Composing while Dancing: Improviser's Companion"
+  },
+  {
+    "courseID": "DANC 0376",
+    "ISBN": "978-0-9645805-0-3",
+    "title": "Taking Root to Fly: Articles on Functional Anatomy"
+  },
+  {
+    "courseID": "ECON 0150A",
+    "ISBN": "978-0-07-351899-2",
+    "title": "Principles of Macroeconomics"
+  },
+  {
+    "courseID": "ECON 0150C",
+    "ISBN": "978-1-138-55903-5",
+    "title": "Macroeconomics in Context"
+  },
+  {
+    "courseID": "ECON 0155B",
+    "ISBN": "978-1-259-65550-0",
+    "title": "Microeconomics"
+  },
+  {
+    "courseID": "ECON 0155C",
+    "ISBN": "978-1-260-50700-3",
+    "title": "Microeconomics (Looseleaf)"
+  },
+  {
+    "courseID": "ECON 0155D",
+    "ISBN": "978-1-260-50714-0",
+    "title": "Microeconomics"
+  },
+  {
+    "courseID": "ECON 0210A",
+    "ISBN": "978-1-133-62965-8",
+    "title": "Essentials of Statistics for Business and Econ (Hardback)"
+  },
+  {
+    "courseID": "ECON 0211A",
+    "ISBN": "978-0-13-454393-2",
+    "title": "Introduction to Econometrics - MyEconLab"
+  },
+  {
+    "courseID": "ECON 0229A",
+    "ISBN": "978-0-521-68785-0",
+    "title": "British Industrial Revolution in Global Perspective"
+  },
+  {
+    "courseID": "ECON 0232",
+    "ISBN": "978-0-06-180410-6",
+    "title": "Country Driving"
+  },
+  {
+    "courseID": "ECON 0240",
+    "ISBN": "978-1-319-06875-2",
+    "title": "International Economics"
+  },
+  {
+    "courseID": "ECON 0250A",
+    "ISBN": "978-0-393-60376-7",
+    "title": "Macroeconomics"
+  },
+  {
+    "courseID": "ECON 0255A",
+    "ISBN": "978-0-393-12398-2",
+    "title": "Intermediate Microeconomics with Calculus (Paperback)"
+  },
+  {
+    "courseID": "ECON 0265",
+    "ISBN": "978-1-61091-607-3",
+    "title": "Markets and Environment"
+  },
+  {
+    "courseID": "ECON 0350",
+    "ISBN": "978-1-260-18521-8",
+    "title": "Advanced Macroeconomics"
+  },
+  {
+    "courseID": "ECON 0401",
+    "ISBN": "978-0-553-44745-3",
+    "title": "Evicted"
+  },
+  {
+    "courseID": "ECON 0418",
+    "ISBN": "978-0-14-312448-1",
+    "title": "After the Music Stopped"
+  },
+  {
+    "courseID": "ECON 0430",
+    "ISBN": "978-0-691-17559-1",
+    "title": "Communism's Shadow"
+  },
+  {
+    "courseID": "ECON 0445",
+    "ISBN": "978-1-319-06172-2",
+    "title": "International Macroeconomics"
+  },
+  {
+    "courseID": "EDST 0115A",
+    "ISBN": "978-0-8129-9354-7",
+    "title": "Between the World and Me"
+  },
+  {
+    "courseID": "EDST 0206",
+    "ISBN": "978-1-61250-771-2",
+    "title": "Ripe for Change"
+  },
+  {
+    "courseID": "EDST 0215",
+    "ISBN": "978-0-8070-2802-5",
+    "title": "For White Folks Who Teach in the Hood... and the Rest of Y'all Too: Reality Pedagogy and Urban Education"
+  },
+  {
+    "courseID": "EDST 0305",
+    "ISBN": "978-1-57110-429-8",
+    "title": "Daily 5"
+  },
+  {
+    "courseID": "ENAM 0103A",
+    "ISBN": "978-0-8021-4440-9",
+    "title": "Happy Days: A Play in Two Acts"
+  },
+  {
+    "courseID": "ENAM 0115A",
+    "ISBN": "978-0-312-37771-7",
+    "title": "What We All Long For"
+  },
+  {
+    "courseID": "ENAM 0219",
+    "ISBN": "978-0-307-39080-6",
+    "title": "Annotated Northanger Abbey"
+  },
+  {
+    "courseID": "ENAM 0225",
+    "ISBN": "978-1-118-82475-7",
+    "title": "Eighteenth-Century Poetry: An Annotated Anthology"
+  },
+  {
+    "courseID": "ENAM 0285",
+    "ISBN": "978-0-544-95911-8",
+    "title": "Baron in the Trees"
+  },
+  {
+    "courseID": "ENAM/AMST 0209A",
+    "ISBN": "978-0-393-93733-6",
+    "title": "Trial of Anne Hutchinson: Liberty, Law, and Intolerance in Puritan New England"
+  },
+  {
+    "courseID": "ENAM/CMLT 0317",
+    "ISBN": "978-0-06-250959-8",
+    "title": "Essential Rumi, Expanded"
+  },
+  {
+    "courseID": "ENVS 0211A",
+    "ISBN": "978-1-5063-8346-0",
+    "title": "Environmental Policy: New Directions for the Twenty-First Century"
+  },
+  {
+    "courseID": "ENVS 0215",
+    "ISBN": "978-1-4696-1448-9",
+    "title": "Black Faces, White Spaces: Reimagining the Relationship of African Americans to the Great Outdoors"
+  },
+  {
+    "courseID": "ENVS/ENAM 0243",
+    "ISBN": "978-0-19-953903-1",
+    "title": "Typhoon and Other Tales"
+  },
+  {
+    "courseID": "ENVS/ENAM 0445",
+    "ISBN": "978-0-14-303707-1",
+    "title": "Three Day Road"
+  },
+  {
+    "courseID": "FMMC 0101",
+    "ISBN": "978-0-231-14293-9",
+    "title": "Film Studies"
+  },
+  {
+    "courseID": "FMMC 0102",
+    "ISBN": "978-0-07-351424-6",
+    "title": "Film History"
+  },
+  {
+    "courseID": "FMMC 0232",
+    "ISBN": "978-0-19-507898-5",
+    "title": "Documentary: A History of the Non-Fiction Film, Revised Edition"
+  },
+  {
+    "courseID": "FMMC/AMST 0104A",
+    "ISBN": "978-0-19-530667-5",
+    "title": "Television and American Culture"
+  },
+  {
+    "courseID": "FMMC/AMST 0355A",
+    "ISBN": "978-0-415-78663-8",
+    "title": "Cultural Theory and Popular Culture: An Introduction"
+  },
+  {
+    "courseID": "FREN 0101A",
+    "ISBN": "978-2-01-156053-7",
+    "title": "Totem 1: Livre De L'eleve - Cahier dactivites and CD Audio"
+  },
+  {
+    "courseID": "FREN 0203A",
+    "ISBN": "978-1-133-31126-3",
+    "title": "Sur Le Vif"
+  },
+  {
+    "courseID": "FREN 0205A",
+    "ISBN": "978-2-266-09868-7",
+    "title": "Le Coeur A Rire Et A Pleurer"
+  },
+  {
+    "courseID": "FREN 0220",
+    "ISBN": "978-2-07-063189-6",
+    "title": "Tartarin De Tarascon"
+  },
+  {
+    "courseID": "FREN 0230",
+    "ISBN": "978-2-7467-4653-4",
+    "title": "Grand Atlas De La France 2018"
+  },
+  {
+    "courseID": "FREN 0341",
+    "ISBN": "978-2-200-27159-6",
+    "title": "Histoire Du Cinema Francais"
+  },
+  {
+    "courseID": "FYSE 1056",
+    "ISBN": "978-1-319-04887-7",
+    "title": "Black Death, The Great Mortality of 1348-1350: Brief History with Documents"
+  },
+  {
+    "courseID": "FYSE 1200",
+    "ISBN": "978-0-8131-2986-0",
+    "title": "Ents, Elves, and Eriador (Paperback)"
+  },
+  {
+    "courseID": "FYSE 1306",
+    "ISBN": "978-1-888021-23-3",
+    "title": "So Clear, So Cool, So Grand"
+  },
+  {
+    "courseID": "FYSE 1312",
+    "ISBN": "978-0-393-93562-2",
+    "title": "Decameron, Norton Critical Edition"
+  },
+  {
+    "courseID": "FYSE 1389",
+    "ISBN": "978-0-679-74565-5",
+    "title": "Breakfast At Tiffany's"
+  },
+  {
     "courseID": "FYSE 1431",
-    "title": "Culture of Food"
+    "ISBN": "978-1-56584-580-0",
+    "title": "Pig Tails 'n Breadfruit"
   },
   {
-    "ISBN": "978-1-61219-127-0",
-    "courseID": "FYSE 1431",
-    "title": "Stuffed and Starved, Revised and Expanded"
+    "courseID": "FYSE 1436",
+    "ISBN": "978-0-306-81836-3",
+    "title": "Salvation on Sand Mountain: Snake Handling and Redemption in Southern Appalachia"
   },
   {
-    "ISBN": "978-0-8223-6319-4",
+    "courseID": "FYSE 1455",
+    "ISBN": "978-1-332-21678-9",
+    "title": "Pirke Aboth"
+  },
+  {
+    "courseID": "FYSE 1483",
+    "ISBN": "978-0-13-468946-3",
+    "title": "Friendly Introduction to Number Theory (Classic)"
+  },
+  {
+    "courseID": "FYSE 1491",
+    "ISBN": "978-0-300-08506-8",
+    "title": "Shakespeare's Sonnets"
+  },
+  {
+    "courseID": "FYSE 1534",
+    "ISBN": "978-1-58367-025-5",
+    "title": "Discourse on Colonialism"
+  },
+  {
+    "courseID": "FYSE 1535",
+    "ISBN": "978-1-879960-85-5",
+    "title": "Borderlands / La Frontera: The New Mestiza"
+  },
+  {
+    "courseID": "FYSE 1541",
+    "ISBN": "978-0-8222-3042-7",
+    "title": "Disgraced"
+  },
+  {
+    "courseID": "FYSE 1543",
+    "ISBN": "978-0-205-88699-9",
+    "title": "Short Guide to Writing About Art"
+  },
+  {
+    "courseID": "FYSE 1544",
+    "ISBN": "978-1-5247-6293-3",
+    "title": "How Democracies Die"
+  },
+  {
+    "courseID": "FYSE 1548",
+    "ISBN": "978-0-19-997623-2",
+    "title": "X - Ray Vision"
+  },
+  {
+    "courseID": "FYSE 1549",
+    "ISBN": "978-0-520-27102-9",
+    "title": "Book of Yokai: Mysterious Creatures of Japanese Folklore"
+  },
+  {
+    "courseID": "FYSE 1550",
+    "ISBN": "978-1-4013-0953-4",
+    "title": "Bone"
+  },
+  {
+    "courseID": "FYSE 1554",
+    "ISBN": "978-1-906387-53-2",
+    "title": "To Cook a Continent: Destructive Extraction and Climate Crisis in Africa"
+  },
+  {
+    "courseID": "FYSE 1556A",
+    "ISBN": "978-0-465-02802-3",
+    "title": "Happiness Hypothesis"
+  },
+  {
+    "courseID": "FYSE 1557",
+    "ISBN": "978-1-55861-598-4",
+    "title": "Answer/ La Respuesta"
+  },
+  {
+    "courseID": "FYSE 1558",
+    "ISBN": "978-0-8129-8496-5",
+    "title": "Just Mercy: Story of Justice and Redemption"
+  },
+  {
+    "courseID": "GEOG 0100",
+    "ISBN": "978-1-118-42257-1",
+    "title": "Human Geography in Action"
+  },
+  {
+    "courseID": "GEOL 0161",
+    "ISBN": "978-0-13-407354-5",
+    "title": "Essentials of Oceanography"
+  },
+  {
+    "courseID": "GEOL 0382",
+    "ISBN": "978-0-13-490517-4",
+    "title": "Whole Earth Geophysics: An Introductory Textbook for Geologists and Geophysicists"
+  },
+  {
+    "courseID": "GREK 0301",
+    "ISBN": "978-0-929524-17-7",
+    "title": "Homeric Hymn to Demeter"
+  },
+  {
+    "courseID": "GRMN/HARC 0341",
+    "ISBN": "978-0-226-46762-7",
+    "title": "Ghosts of Berlin: Confronting German History in the Urban Landscape"
+  },
+  {
+    "courseID": "GRMN/HARC 0375",
+    "ISBN": "978-3-8365-7282-8",
+    "title": "Bauhaus"
+  },
+  {
     "courseID": "GSFS 0200",
+    "ISBN": "978-0-8223-6319-4",
     "title": "Living A Feminist Life"
   },
   {
-    "ISBN": "978-0-8129-7202-3",
-    "courseID": "GSFS 0200",
-    "title": "Feminist Promise"
+    "courseID": "GSFS/ENAM 0419",
+    "ISBN": "978-1-63149-475-8",
+    "title": "Women and Power"
   },
   {
-    "ISBN": "978-1-58005-689-2",
-    "courseID": "GSFS 0200",
-    "title": "Transgender History"
+    "courseID": "GSFS/THEA 0206",
+    "ISBN": "978-0-573-61874-1",
+    "title": "Cloud Nine"
   },
   {
-    "ISBN": "978-0-7178-0241-8",
+    "courseID": "HARC 0100",
+    "ISBN": "978-0-205-24263-4",
+    "title": "Janson's Basic History of Western Art - Text Only"
+  },
+  {
+    "courseID": "HARC 0102",
+    "ISBN": "978-0-205-83763-2",
+    "title": "Asian Art"
+  },
+  {
+    "courseID": "HARC 0209",
+    "ISBN": "978-1-78067-851-1",
+    "title": "Renaissance Art in Venice: From Tradition to Individualism"
+  },
+  {
+    "courseID": "HARC 0251",
+    "ISBN": "978-0-13-183312-8",
+    "title": "Gothic Art : Glorious Visions"
+  },
+  {
+    "courseID": "HARC 0254",
+    "ISBN": "978-0-300-10723-4",
+    "title": "Worldly Art: The Dutch Republic, 1585-1718"
+  },
+  {
+    "courseID": "HARC 0301A",
+    "ISBN": "978-0-226-57168-3",
+    "title": "Critical Terms for Art History"
+  },
+  {
+    "courseID": "HEBM 0101",
+    "ISBN": "978-1-61168-918-1",
+    "title": "Brandeis Modern Hebrew"
+  },
+  {
+    "courseID": "HIST 0103",
+    "ISBN": "978-0-393-61431-2",
+    "title": "Western Civilizations, Vol.1 - With Access"
+  },
+  {
+    "courseID": "HIST 0108",
+    "ISBN": "978-0-521-73298-7",
+    "title": "Islamic Societies to the 19th Century"
+  },
+  {
+    "courseID": "HIST 0113",
+    "ISBN": "978-0-14-025949-0",
+    "title": "Segu"
+  },
+  {
     "courseID": "HIST 0245",
-    "title": "Communist Manifesto"
+    "ISBN": "978-0-14-043204-6",
+    "title": "Reflections on the Revolution in France"
   },
   {
-    "ISBN": "978-1-138-78653-0",
-    "courseID": "HIST 0245",
-    "title": "Europe, 1783-1914"
+    "courseID": "HIST 0262",
+    "ISBN": "978-0-8133-4980-0",
+    "title": "History of the Modern Middle East (Paperback)"
   },
   {
-    "ISBN": "978-1-4000-3341-6",
+    "courseID": "HIST 0315",
+    "ISBN": "978-0-8166-9243-9",
+    "title": "Hiv Exceptionalism"
+  },
+  {
+    "courseID": "HIST 0373",
+    "ISBN": "978-0-06-078987-9",
+    "title": "Sex Wars"
+  },
+  {
+    "courseID": "HIST 0429",
+    "ISBN": "978-0-307-38995-4",
+    "title": "Great Soul"
+  },
+  {
+    "courseID": "HIST 0600A",
+    "ISBN": "978-1-119-11190-0",
+    "title": "Essaying the Past: How to Read, Write, and Think about History"
+  },
+  {
+    "courseID": "IGST 0101",
+    "ISBN": "978-1-4696-2165-4",
+    "title": "Introduction to International and Global Studies"
+  },
+  {
+    "courseID": "IGST 0410",
+    "ISBN": "978-1-935408-03-1",
+    "title": "Walled States, Waning Sovereignty"
+  },
+  {
+    "courseID": "INTD 0116",
+    "ISBN": "978-1-260-00874-6",
+    "title": "Survey of Accounting - Access"
+  },
+  {
+    "courseID": "INTD 0120",
+    "ISBN": "978-1-260-21110-8",
+    "title": "Understanding Business (Looseleaf)"
+  },
+  {
+    "courseID": "INTD 0205",
+    "ISBN": "978-0-13-385646-0",
+    "title": "Marketing Management"
+  },
+  {
     "courseID": "INTD 0210",
-    "title": "Beloved - With New Foreword"
+    "ISBN": "978-1-101-91176-1",
+    "title": "We Should All Be Feminists"
   },
   {
-    "ISBN": "978-0-14-044790-3",
-    "courseID": "INTD 0210",
-    "title": "Bhagavad Gita"
+    "courseID": "INTD 0217A",
+    "ISBN": "978-1-260-14080-4",
+    "title": "Corporate Finance - Connect Access"
   },
   {
-    "ISBN": "978-0-321-98238-4",
+    "courseID": "INTD 0235",
+    "ISBN": "978-0-8047-9734-4",
+    "title": "Innovation and Scaling for Impact"
+  },
+  {
+    "courseID": "INTD 0280",
+    "ISBN": "978-1-60358-423-4",
+    "title": "Rebuilding the Foodshed: How to Create Local, Sustainable, and Secure Food Systems"
+  },
+  {
+    "courseID": "INTD 0319",
+    "ISBN": "978-1-259-35266-9",
+    "title": "Investments - Connect Access"
+  },
+  {
+    "courseID": "INTD 0380",
+    "ISBN": "978-0-415-81696-0",
+    "title": "Reclaiming Food Security (Paperback)"
+  },
+  {
+    "courseID": "JAPN 0101",
+    "ISBN": "978-4-7890-1440-3",
+    "title": "Genki I: An Integrated Course in Elementary Japanese - With CD"
+  },
+  {
+    "courseID": "JAPN 0201",
+    "ISBN": "978-4-7890-1443-4",
+    "title": "Genki II: An Integrated Course in Elementary Japanese - With CD"
+  },
+  {
+    "courseID": "JAPN 0301",
+    "ISBN": "978-4-87424-447-0",
+    "title": "Jpn-Tobira (Japanese and English Edition)"
+  },
+  {
+    "courseID": "JAPN 0401",
+    "ISBN": "978-4-7890-1462-5",
+    "title": "Authentic Japanese: Progressing From Intermediate to Advanced - With 2 CDs"
+  },
+  {
+    "courseID": "JAPN 0475",
+    "ISBN": "978-4-87424-127-1",
+    "title": "Ronbun - Workbook"
+  },
+  {
+    "courseID": "JAPN/LNGT 0210",
+    "ISBN": "978-1-107-61147-4",
+    "title": "Japanese: A Linguistic Introduction"
+  },
+  {
+    "courseID": "JAPN/SOAN 0230",
+    "ISBN": "978-0-375-70509-0",
+    "title": "Zen in the Art of Archery"
+  },
+  {
+    "courseID": "JWST/RELI 0264",
+    "ISBN": "978-0-06-122840-7",
+    "title": "HarperCollins Study Bible - NRSV - Revised & Updated"
+  },
+  {
+    "courseID": "LATN 0110",
+    "ISBN": "978-0-8061-4232-6",
+    "title": "Student's Catullus"
+  },
+  {
+    "courseID": "LITS 0705",
+    "ISBN": "978-0-520-28210-0",
+    "title": "Oresteia"
+  },
+  {
+    "courseID": "LITS/RELI 0282",
+    "ISBN": "978-0-375-70224-2",
+    "title": "Idiot"
+  },
+  {
+    "courseID": "LNGT 0101",
+    "ISBN": "978-1-319-03977-6",
+    "title": "Contemporary Linguistics"
+  },
+  {
+    "courseID": "LNGT 0102",
+    "ISBN": "978-90-272-3265-6",
+    "title": "Introducing Sociolinguistics"
+  },
+  {
+    "courseID": "LNGT/SPAN 0426A",
+    "ISBN": "978-1-107-45117-9",
+    "title": "El Espanol De Los Estados Unidos"
+  },
+  {
+    "courseID": "MATH 0121A",
+    "ISBN": "978-0-538-49783-1",
+    "title": "Calculus: Single Variable"
+  },
+  {
     "courseID": "MATH 0200D",
+    "ISBN": "978-0-321-98238-4",
     "title": "Linear Algebra and Its Application - Text Only"
   },
   {
-    "ISBN": "978-0-321-78065-2",
     "courseID": "MATH 0223B",
+    "ISBN": "978-0-321-78065-2",
     "title": "Vector Calculus"
   },
   {
-    "ISBN": "978-0-691-11729-4",
-    "courseID": "PSCI 0103A",
-    "title": "Governing the Market: Economic Theory and the Role of Government in East Asian Industrialization"
+    "courseID": "MATH 0225",
+    "ISBN": "978-1-118-53177-8",
+    "title": "Differential Equations"
   },
   {
-    "ISBN": "978-0-8179-2115-6",
+    "courseID": "MATH 0302",
+    "ISBN": "978-1-305-65796-0",
+    "title": "Contemporary Abstract Algebra"
+  },
+  {
+    "courseID": "MATH 0318",
+    "ISBN": "978-1-259-16298-5",
+    "title": "Introduction to Operations Research - With Access"
+  },
+  {
+    "courseID": "MATH 0323",
+    "ISBN": "978-1-4939-5026-3",
+    "title": "Understanding Analysis (2nd Printing)"
+  },
+  {
+    "courseID": "MATH 0715A",
+    "ISBN": "978-1-4614-1685-2",
+    "title": "Mathematical Models in Population Biology and Epidemiology"
+  },
+  {
+    "courseID": "MATH 0741",
+    "ISBN": "978-0-521-01253-9",
+    "title": "Primer of Analytic Number Theory: From Pythagoras to Riemann"
+  },
+  {
+    "courseID": "MUSC 0260A",
+    "ISBN": "978-1-259-68676-4",
+    "title": "Tonal Harmony - Workbook"
+  },
+  {
+    "courseID": "NSCI 0251",
+    "ISBN": "978-0-7817-7817-6",
+    "title": "Neuroscience: Exploring the Brain - With Access"
+  },
+  {
+    "courseID": "NSCI 0345",
+    "ISBN": "978-1-60535-579-5",
+    "title": "Foundations of Neural Development"
+  },
+  {
+    "courseID": "NSCI/PSYC 0303",
+    "ISBN": "978-1-305-58029-9",
+    "title": "Sensation and Perception"
+  },
+  {
+    "courseID": "NSCI/PSYC 0317",
+    "ISBN": "978-0-12-386937-1",
+    "title": "Drugs, Addiction, and the Brain"
+  },
+  {
+    "courseID": "NSCI/PSYC 0434",
+    "ISBN": "978-1-4641-7605-0",
+    "title": "Behavioral Genetics"
+  },
+  {
+    "courseID": "PHIL 0156",
+    "ISBN": "978-0-19-049002-7",
+    "title": "Disputed Moral Issues: A Reader"
+  },
+  {
+    "courseID": "PHIL 0170",
+    "ISBN": "978-0-87220-873-5",
+    "title": "Buddhism as Philosophy"
+  },
+  {
+    "courseID": "PHIL 0180",
+    "ISBN": "978-0-07-803841-9",
+    "title": "Logic Book"
+  },
+  {
+    "courseID": "PHIL 0250",
+    "ISBN": "978-0-915144-61-7",
+    "title": "Three Dialogues Between Hylas and Philonous"
+  },
+  {
+    "courseID": "PHIL 0360",
+    "ISBN": "978-0-262-52210-6",
+    "title": "Nature of Consciousness: Philosophical Debates"
+  },
+  {
+    "courseID": "PHIL/HIST 0237",
+    "ISBN": "978-0-520-06525-3",
+    "title": "Learning to Be a Sage"
+  },
+  {
+    "courseID": "PHYS 0110",
+    "ISBN": "978-0-13-498856-6",
+    "title": "Essential University Physics, Volume 2"
+  },
+  {
+    "courseID": "PHYS 0201",
+    "ISBN": "978-1-891389-61-0",
+    "title": "Special Realitivity"
+  },
+  {
+    "courseID": "PHYS 0212",
+    "ISBN": "978-0-471-19826-0",
+    "title": "Mathematical Methods in the Physical Sciences"
+  },
+  {
+    "courseID": "PHYS 0301",
+    "ISBN": "978-1-108-42041-9",
+    "title": "Introduction to Electrodynamics"
+  },
+  {
+    "courseID": "PHYS 0321",
+    "ISBN": "978-0-935702-75-0",
+    "title": "Introduction to Error Analysis: The Study of Uncertainties in Physical Measurements"
+  },
+  {
+    "courseID": "PHYS 0330",
+    "ISBN": "978-1-891389-22-1",
+    "title": "Classical Mechanics"
+  },
+  {
+    "courseID": "PHYS 0380",
+    "ISBN": "978-0-8053-8662-2",
+    "title": "Gravity: An Introduction to Einstein's General Relativity"
+  },
+  {
+    "courseID": "PSCI 0101",
+    "ISBN": "978-0-226-02675-6",
+    "title": "Aristotle's Nicomachean Ethics"
+  },
+  {
+    "courseID": "PSCI 0103A",
+    "ISBN": "978-0-679-74048-3",
+    "title": "Magic Lantern: The Revolution of '89 Witnessed in Warsaw, Budapest, Berlin, and Prague , With New Afterword"
+  },
+  {
     "courseID": "PSCI 0104",
+    "ISBN": "978-0-8179-2115-6",
     "title": "Unstable Majorities: Polarization, Party Sorting, and Political Stalemate"
   },
   {
-    "ISBN": "978-0-88922-472-8",
-    "courseID": "ENAM 0103B",
-    "title": "Burning Vision"
+    "courseID": "PSCI 0109A",
+    "ISBN": "978-0-8057-1676-4",
+    "title": "Vietnam and the United States (Paperback)"
   },
   {
-    "ISBN": "978-0-452-27259-0",
-    "courseID": "ENAM 0103B",
-    "title": "M. Butterfly"
+    "courseID": "PSCI 0109C",
+    "ISBN": "978-0-19-873985-2",
+    "title": "Globalization of World Politics"
   },
   {
-    "ISBN": "978-0-14-243727-8",
+    "courseID": "PSCI 0217",
+    "ISBN": "978-0-19-021886-7",
+    "title": "Modern Middle East: A History"
+  },
+  {
+    "courseID": "PSCI 0221",
+    "ISBN": "978-0-19-067208-9",
+    "title": "End of an Era"
+  },
+  {
+    "courseID": "PSCI 0234",
+    "ISBN": "978-0-06-112792-2",
+    "title": "Democracy in America"
+  },
+  {
+    "courseID": "PSCI 0242",
+    "ISBN": "978-0-8129-6653-4",
+    "title": "Higher Form of Killing: The Secret History of Chemical and Biological Warfare"
+  },
+  {
+    "courseID": "PSCI 0262",
+    "ISBN": "978-0-521-34835-5",
+    "title": "On Duties"
+  },
+  {
+    "courseID": "PSCI 0286",
+    "ISBN": "978-1-84902-896-7",
+    "title": "Origins of Totalitarianism"
+  },
+  {
+    "courseID": "PSCI 0304",
+    "ISBN": "978-1-138-49074-1",
+    "title": "International Political Economy"
+  },
+  {
+    "courseID": "PSCI 0304B",
+    "ISBN": "978-0-393-60388-0",
+    "title": "International Political Economy"
+  },
+  {
+    "courseID": "PSCI 0305",
+    "ISBN": "978-0-226-08972-0",
+    "title": "Introduction to Legal Reasoning - With New Foreword"
+  },
+  {
+    "courseID": "PSCI 0424",
+    "ISBN": "978-0-300-19446-3",
+    "title": "On Democracy"
+  },
+  {
+    "courseID": "PSYC 0105A",
+    "ISBN": "978-0-393-69640-0",
+    "title": "Psychological Science"
+  },
+  {
+    "courseID": "PSYC 0201A",
+    "ISBN": "978-1-107-57697-1",
+    "title": "Statistics for the Social Sciences"
+  },
+  {
+    "courseID": "PSYC 0201B",
+    "ISBN": "978-0-205-25815-4",
+    "title": "Statistics for Psychology"
+  },
+  {
+    "courseID": "PSYC 0203",
+    "ISBN": "978-0-13-441096-8",
+    "title": "Social Psychology"
+  },
+  {
+    "courseID": "PSYC 0205",
+    "ISBN": "978-1-119-49256-6",
+    "title": "Understanding Emotions"
+  },
+  {
+    "courseID": "PSYC 0224",
+    "ISBN": "978-0-13-385205-9",
+    "title": "Abnormal Psychology"
+  },
+  {
+    "courseID": "RELI 0121",
+    "ISBN": "978-0-19-289223-2",
+    "title": "Foundations of Buddhism"
+  },
+  {
+    "courseID": "RELI 0140",
+    "ISBN": "978-1-4051-6021-6",
+    "title": "Everyday Hinduism"
+  },
+  {
+    "courseID": "RELI 0150",
+    "ISBN": "978-0-674-06414-0",
+    "title": "Muhammad and Believers"
+  },
+  {
+    "courseID": "RELI 0170",
+    "ISBN": "978-0-7432-9035-7",
+    "title": "Malinche"
+  },
+  {
+    "courseID": "RELI 0271",
+    "ISBN": "978-0-85345-991-0",
+    "title": "Open Veins of Latin America: Five Centuries of the Pillage of a Continent (25th Anniversary Edition)"
+  },
+  {
+    "courseID": "RELI 0311",
+    "ISBN": "978-0-19-529000-4",
+    "title": "Oxford Study Bible, Revised English Bible with the Apocrypha"
+  },
+  {
+    "courseID": "RELI 0400",
+    "ISBN": "978-0-02-902450-8",
+    "title": "Escape from Evil"
+  },
+  {
+    "courseID": "RELI/GSFS 0384",
+    "ISBN": "978-0-253-21837-7",
+    "title": "In Amma's Healing Room: Gender And Vernacular Islam in South India"
+  },
+  {
+    "courseID": "RUSS 0101A",
+    "ISBN": "978-0-205-74135-9",
+    "title": "Golosa: Basic Course in Russian, Book 1"
+  },
+  {
+    "courseID": "RUSS 0151",
+    "ISBN": "978-0-19-953639-9",
+    "title": "Idiot"
+  },
+  {
+    "courseID": "RUSS 0201A",
+    "ISBN": "978-0-13-028280-4",
+    "title": "Russian Grammar in Context"
+  },
+  {
+    "courseID": "SOAN 0209",
+    "ISBN": "978-1-4522-7579-6",
+    "title": "Invitation to Environmental Sociology"
+  },
+  {
+    "courseID": "SOAN 0305",
+    "ISBN": "978-0-679-72469-8",
+    "title": "History of Sexuality: An Introduction - Volume 1"
+  },
+  {
+    "courseID": "SOAN 0366",
+    "ISBN": "978-94-00-77443-8",
+    "title": "Handbook of Sociology of Mental Health"
+  },
+  {
+    "courseID": "SPAN 0101A",
+    "ISBN": "978-1-260-11129-3",
+    "title": "Tu Mundo -Text Only (Looseleaf)"
+  },
+  {
+    "courseID": "SPAN 0201C",
+    "ISBN": "978-84-675-7784-6",
+    "title": "El Fabuloso Mundo De Las Letras"
+  },
+  {
+    "courseID": "SPAN 0220A",
+    "ISBN": "978-987-908533--2",
+    "title": "El Eternauta: La Historieta Original"
+  },
+  {
+    "courseID": "SPAN 0220B",
+    "ISBN": "978-6-07-778161-5",
+    "title": "La Historia De Mis Dientes"
+  },
+  {
+    "courseID": "SPAN 0315",
+    "ISBN": "978-1-903663-81-3",
+    "title": "Studying City of God (Paperback)"
+  },
+  {
+    "courseID": "SPAN 0331",
+    "ISBN": "978-84-376-0771-9",
+    "title": "Bajarse Al Moro"
+  },
+  {
+    "courseID": "SPAN 0370",
+    "ISBN": "978-1-72084-304-7",
+    "title": "Masculinidades (Paperback)"
+  },
+  {
+    "courseID": "SPAN 201 B",
+    "ISBN": "978-1-260-27676-3",
+    "title": "Mas: Espanol Intermedio (Looseleaf) - With Access"
+  },
+  {
+    "courseID": "THEA 0101",
+    "ISBN": "978-1-58542-920-2",
+    "title": "Drawing on the Right Side of the Brain"
+  },
+  {
+    "courseID": "THEA 0102",
+    "ISBN": "978-0-8222-1782-4",
+    "title": "Proof"
+  },
+  {
+    "courseID": "THEA 0111",
+    "ISBN": "978-0-415-47320-0",
+    "title": "What Is Scenography? (Theater Concepts)"
+  },
+  {
+    "courseID": "THEA 0119A",
+    "ISBN": "978-1-259-92230-5",
+    "title": "Theatrical Design and Production"
+  },
+  {
+    "courseID": "THEA 0208A",
+    "ISBN": "978-0-393-92151-9",
+    "title": "Norton Anthology of Drama, Volume One"
+  },
+  {
+    "courseID": "THEA0218",
+    "ISBN": "978-0-573-70203-7",
+    "title": "Flick"
+  },
+  {
+    "courseID": "WRPR 0363",
+    "ISBN": "978-0-307-45548-2",
+    "title": "Maddaddam"
+  },
+  {
+    "courseID": "FMMC 0335",
+    "ISBN": "978-1-4780-0054-9",
+    "title": "Double Negative"
+  },
+  {
+    "courseID": "HARC 0710",
+    "ISBN": "978-0-226-43057-7",
+    "title": "Manual for Writers of Research Papers, Theses, and Dissertations"
+  },
+  {
+    "courseID": "ANTH 0396",
+    "ISBN": "978-1-4462-6723-3",
+    "title": "Working With Written Discourse"
+  },
+  {
     "courseID": "ENAM 0103B",
-    "title": "Passing"
+    "ISBN": "978-1-927823-64-4",
+    "title": "This Wound Is a World"
+  },
+  {
+    "courseID": "SPAN 0220D",
+    "ISBN": "978-1-260-13657-9",
+    "title": "Mas: Espanol Intermedio - Connect Access"
+  },
+  {
+    "courseID": "CRWR 0380",
+    "ISBN": "978-1-4870-0683-9",
+    "title": "No Friend but the Mountains"
+  },
+  {
+    "courseID": "ENAM 0117",
+    "ISBN": "978-0-8021-3030-3",
+    "title": "Ficciones"
+  },
+  {
+    "courseID": "ENAM 0205",
+    "ISBN": "978-0-7190-7927-6",
+    "title": "Beginning Theory"
+  },
+  {
+    "courseID": "PSCI 0335",
+    "ISBN": "978-0-8133-3563-6",
+    "title": "Modern Latin American Revolutions"
   }
 ]

@@ -249,7 +249,7 @@ export function ListingsCollection({
       <ListElement>{listing.ISBN}</ListElement>
       <ListElement>{listing.price}</ListElement>
       <ListElement>{listing.condition}</ListElement>
-      <Link to={String(listing.listingID)}>More Info</Link>
+      <Link to={String(listing.id)}>More Info</Link>
     </ListElementContainer>
   ));
 

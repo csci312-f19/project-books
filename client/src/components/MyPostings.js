@@ -89,7 +89,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
   );
 
   const constructListing = () => ({
-    listingID: currentListing.listingID,
+    id: currentListing.id,
     userID: currentListing.userID,
     ISBN: isbn,
     condition: condition,
@@ -201,7 +201,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                         'Are you sure you want to delete this post?'
                       )
                     ) {
-                      fetch(`/api/MyPostings/${listing.listingID}`, {
+                      fetch(`/api/MyPostings/${listing.id}`, {
                         method: 'DELETE'
                       })
                         .then(response => {
@@ -220,7 +220,8 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                     }
                   }}
                 >
-                  <span className="glyphicon glyphicon-trash">Delete</span>
+                  <span className="glyphicon glyphicon-trash"></span>
+                  &emsp;Delete
                 </button>
                 &emsp;&emsp;
                 <button
@@ -236,16 +237,18 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                     setCourseID(listing.courseID);
                   }}
                 >
-                  <span className="glyphicon glyphicon-edit">Edit</span>
+                  <span className="glyphicon glyphicon-edit"></span>
+                  &emsp;Edit
                 </button>
               </ButtonBar>
             </View>
           )}
 
-          {mode === 'edit' && currentListing.listingID === listing.listingID && (
+          {mode === 'edit' && currentListing.id === listing.id && (
             <Edit>
               <h4 align="center">
-                <span class="glyphicon glyphicon-pencil">&emsp;Editing</span>
+                <span class="glyphicon glyphicon-pencil"></span>
+                &emsp;Editing
               </h4>
               <EditDiv>
                 <strong>Book Title:</strong>
@@ -323,7 +326,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
                       condition === ''
                     }
                     onClick={() => {
-                      fetch(`/api/MyPostings/Listing/${listing.listingID}`, {
+                      fetch(`/api/MyPostings/Listing/${listing.id}`, {
                         method: 'PUT',
                         body: JSON.stringify(constructListing()),
                         headers: new Headers({

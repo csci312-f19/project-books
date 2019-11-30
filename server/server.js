@@ -121,28 +121,21 @@ app.get('/api/MyPostings/', (request, response, next) => {
     }, next); // <- Notice the "next" function as the rejection handler
 });
 
-app.delete(`/api/MyPostings/:listingID`, (request, response, next) => {
+app.delete(`/api/MyPostings/:id`, (request, response, next) => {
   Listing.query()
-    .deleteById(request.params.listingID)
+    .deleteById(request.params.id)
     .then(() => {
       response.sendStatus(200);
     }, next);
 });
 
-app.put(`/api/MyPostings/Listing/:listingID`, (request, response, next) => {
-  const { listingID, ...updatedListing } = request.body; // eslint-disable-line no-unused-vars
-
-  if (listingID !== parseInt(request.params.listingID, 10)) {
-    throw new ValidationError({
-      statusCode: 400,
-      message: 'URL id and request id do not match'
-    });
-  }
+app.put(`/api/MyPostings/Listing/:id`, (request, response, next) => {
+  const { id } = request.params; // eslint-disable-line no-unused-vars
 
   Listing.query()
     .select('*')
     .skipUndefined()
-    .updateAndFetchById(request.params.listingID, request.body)
+    .updateAndFetchById(id, request.body)
     .then(listing => {
       response.send(listing);
     }, next);
@@ -220,7 +213,7 @@ app.get(`/api/bookListings/:id`, (request, response, next) => {
     .select('*')
     .from('Listings')
     .joinRaw('natural join "Books"')
-    .where('listingID', id)
+    .where('id', id)
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
@@ -239,13 +232,15 @@ if (process.env.NODE_ENV === 'production') {
 // application or database to the client.
 app.use((error, request, response, next) => {
   if (response.headersSent) {
+    console.log(`General error is: ${error}`);
     next(error);
   }
   const wrappedError = wrapError(error);
   if (wrappedError instanceof DBError) {
+    console.log(`400 error is: ${error}`);
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
-    // console.log(`500 error is: ${error}`);
+    console.log(`500 error is: ${error}`);
     response
       .status(wrappedError.statusCode || wrappedError.status || 500)
       .send(wrappedError.data || wrappedError.message || {});
