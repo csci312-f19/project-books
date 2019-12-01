@@ -66,7 +66,7 @@ function App() {
 
   const DropDown = () => {
     return (
-      <Dropdown>
+      <Dropdown color="primary">
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           Dropdown Button
         </Dropdown.Toggle>

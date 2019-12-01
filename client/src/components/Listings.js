@@ -73,7 +73,7 @@ export const DetailedListing = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`/api/bookListings/${id}`) //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
+    fetch(`/api/bookListings/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
