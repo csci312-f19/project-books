@@ -207,16 +207,6 @@ app.get(`/api/books/:ISBN`, (request, response, next) => {
     }, next); // <- Notice the "next" function as the rejection handler
 });
 
-// app.get('/api/bookListings', (request, response, next) => {
-//   Listing.query()
-//     .select('*')
-//     .from('Listings')
-//     .joinRaw('natural join "Books"')
-//     .then(rows => {
-//       response.send(rows);
-//     }, next); // <- Notice the "next" function as the rejection handler
-// });
-
 app.get(`/api/bookListings/`, (request, response, next) => {
   // new query approach to deal with new primary keys
   Listing.query()
@@ -299,7 +289,6 @@ app.use((error, request, response, next) => {
 const nodemailer = require('nodemailer');
 
 app.post('/api/bookrequest', function Emailer(req) {
-  //   console.log(`the request has been received! it is:${req}`);
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
