@@ -3,6 +3,7 @@ import './App.css';
 import styled from 'styled-components';
 import SearchBar from './components/SearchBar';
 import NewPosting from './components/NewPosting';
+import MyPostings from './components/MyPostings';
 import Listings from './components/Listings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
@@ -150,6 +151,13 @@ function App() {
             component={() => <NewPosting ifPosting={'postingView'} />}
           />
           <Route
+            exact
+            path="/myPostings"
+            component={() => (
+              <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
+            )}
+          />
+          <Route
             path="/:id"
             component={() => (
               <Listings
@@ -162,7 +170,10 @@ function App() {
           <Route
             render={() => (
               <div>
-                <NewPosting ifPosting={'general'} />
+                {loggedIn && <NewPosting ifPosting={'general'} />}
+                {loggedIn && (
+                  <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
+                )}
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}

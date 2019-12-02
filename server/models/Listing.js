@@ -11,7 +11,7 @@ class Listing extends Model {
       // required : [nothing yet]
 
       properties: {
-        listingID: { type: 'increments' },
+        id: { type: 'increments' },
         userID: { type: 'integer' },
         ISBN: { type: 'string' },
         condition: { type: 'string' },
