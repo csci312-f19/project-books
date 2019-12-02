@@ -112,9 +112,19 @@ app.post('/logout', (request, response) => {
 
 app.get('/api/MyPostings/', (request, response, next) => {
   Listing.query()
-    .select('*')
+    .select(
+      'Listings.id',
+      'title',
+      'Listings.ISBN',
+      'edited',
+      'courseID',
+      'price',
+      'userID',
+      'condition',
+      'comments'
+    )
     .from('Listings')
-    .joinRaw('natural join "Books"')
+    .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')
     .where('userID', request.user.id)
     .then(rows => {
       response.send(rows);
@@ -223,7 +233,6 @@ app.get(`/api/bookListings/`, (request, response, next) => {
     )
     .from('Listings')
     .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')
-    //   .where('Listings.id', id)
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
