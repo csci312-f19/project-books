@@ -51,7 +51,6 @@ const Item = styled.div`
   text-decoration: none;
   display: block;
 `;
-
 function App() {
   const [listings, setListings] = useState(Immutable.List());
   const [currentBook, setBook] = useState(null);
