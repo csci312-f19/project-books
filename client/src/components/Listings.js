@@ -43,7 +43,7 @@ const Confirmation = styled.div`
 //  box-sizing: border-box;
 
 // triggered on button click to post information that the server then uses to send an email to the seller
-function sendEmail(name, email, bookTitle, bookPrice) {
+function sendEmail(sellerInfo, bookTitle, bookPrice) {
   fetch('/api/bookrequest', {
     method: 'POST',
     headers: {
@@ -51,8 +51,8 @@ function sendEmail(name, email, bookTitle, bookPrice) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: name,
-      email: email,
+      name: sellerInfo.name,
+      email: sellerInfo.email,
       bookTitle: bookTitle,
       bookPrice: bookPrice
     })
@@ -65,8 +65,7 @@ function sendEmail(name, email, bookTitle, bookPrice) {
       console.error('here is the error: ', err);
     });
 }
-
-export const DetailedListing = () => {
+export const DetailedListingsContainer = () => {
   const [detailedListing, setDetailedListing] = useState('');
   const [purchased, setPurchase] = useState(false);
 
@@ -86,6 +85,60 @@ export const DetailedListing = () => {
       .catch(err => console.log(err));
   }, []);
 
+  return (
+    <DetailedListing
+      detailedListing={detailedListing}
+      purchased={purchased}
+      setPurchase={setPurchase}
+    />
+  );
+};
+export function EmailButtonContainer({ detailedListing, setPurchase }) {
+  const [sellerInfo, setSellerInfo] = useState('');
+  let userID = detailedListing.userID;
+  userID = '0';
+  useEffect(() => {
+    fetch(`/api/googleID/${userID}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setSellerInfo(data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  return (
+    <EmailButton
+      detailedListing={detailedListing}
+      setPurchase={setPurchase}
+      sellerInfo={sellerInfo}
+    />
+  );
+}
+
+export const EmailButton = ({ detailedListing, setPurchase, sellerInfo }) => {
+  return (
+    <button
+      onClick={() => {
+        console.log(sellerInfo);
+        //   sendEmail(
+        //     sellerInfo,
+        //     detailedListing.title,
+        //     detailedListing.price
+        //   );
+        //   setPurchase(true);
+      }}
+    >
+      Place my Order
+    </button>
+  );
+};
+
+export function DetailedListing({ detailedListing, purchased, setPurchase }) {
   return (
     <div>
       <ListElementContainer>
@@ -123,19 +176,10 @@ export const DetailedListing = () => {
             <div>
               {`Are you sure you would like to buy this book? Finalizing your purchase
           will confirm your order and send an alert to the seller.    `}
-              <button
-                onClick={() => {
-                  sendEmail(
-                    'Hannah',
-                    'hdonovan@middlebury.edu',
-                    detailedListing.title,
-                    detailedListing.price
-                  );
-                  setPurchase(true);
-                }}
-              >
-                Place my Order
-              </button>
+              <EmailButton
+                detailedListing={detailedListing}
+                setPurchase={setPurchase}
+              />
             </div>
           </Popup>
         )}
@@ -152,7 +196,7 @@ export const DetailedListing = () => {
       </div>
     </div>
   );
-};
+}
 
 export function SortBar({ sortType, setSortType, ascending, setDirection }) {
   return (
@@ -242,7 +286,7 @@ export function ListingsCollection({
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
 
-    <ListElementContainer key={listing.ISBN}>
+    <ListElementContainer key={listing.listingID}>
       <ListTitle>{listing.title}</ListTitle>
       <ListElement>{listing.courseID}</ListElement>
       <ListElement>{listing.courseTitle}</ListElement>
@@ -266,7 +310,7 @@ function Listings({ currentListings, searchTerm, mode }) {
   if (mode === 'detailed') {
     return (
       <div>
-        <DetailedListing />
+        <DetailedListingsContainer />
       </div>
     );
   } else if (mode === 'general') {
