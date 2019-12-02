@@ -52,10 +52,6 @@ const Item = styled.div`
   display: block;
 `;
 
-const UserAccount = styled.div`
-  float: right;
-`;
-
 function App() {
   const [listings, setListings] = useState(Immutable.List());
   const [currentBook, setBook] = useState(null);

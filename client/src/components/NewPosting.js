@@ -74,7 +74,7 @@ const newPosting = ({ ifPosting }) => {
   };
 
   if (ifPosting === 'general') {
-    return <div></div>;
+    return <div />;
   } else if (ifPosting === 'postingView') {
     return (
       <WholeContainer>
