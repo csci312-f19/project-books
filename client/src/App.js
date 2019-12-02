@@ -22,16 +22,23 @@ if (String(window.location.href).includes('localhost')) {
 
 /* eslint-disable react/prefer-stateless-function */
 
-const CenteredLogo = styled.div`
-  text-align: center;
-`;
-
 const UserAccount = styled.div`
   float: right;
 `;
 
 const Background = styled.div`
   background-color: #fafafa;
+`;
+
+const CenteredImg = styled.div`
+  text-align: center;
+`;
+
+const Image = styled.img`
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline;
 `;
 
 function App() {
@@ -111,9 +118,10 @@ function App() {
             {!loggedIn && loginButton}
             {loggedIn && logoutButton}
           </UserAccount>
-          <CenteredLogo>
-            <img src={Logo} alt="website logo" width={300} height={300} />
-          </CenteredLogo>
+          <CenteredImg>
+            <Image src={Logo} alt="website logo" />
+          </CenteredImg>
+
           <Switch>
             <Route
               exact

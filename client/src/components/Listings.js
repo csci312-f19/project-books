@@ -4,6 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 //import Immutable from 'immutable';
 
+let Columns = require('react-columns');
+
 const ListingsContainer = styled.div`
   text-align: center;
 `;
@@ -15,13 +17,19 @@ export const ListElementContainer = styled.li`
   border: 2px solid #a3bdd0;
   padding: 2px;
   margin: 5px;
+  width: 45%;
 `;
 
-const ListElement = styled.p``;
+const ListElement = styled.p`
+  color: #374068;
+`;
+
 const ListTitle = styled.h2`
   font-size: 20px;
+  color: #374068;
   text-align: left;
   padding: 5px;
+  text-decoration: underline;
 `;
 const SortBarContainer = styled.div`
     text-align: center;
@@ -243,11 +251,23 @@ export function ListingsCollection({
 
     <ListElementContainer key={listing.ISBN}>
       <ListTitle>{listing.title}</ListTitle>
-      <ListElement>{listing.courseID}</ListElement>
+      <ListElement>
+        <strong>Course: </strong>
+        {listing.courseID}
+      </ListElement>
       <ListElement>{listing.courseTitle}</ListElement>
-      <ListElement>{listing.ISBN}</ListElement>
-      <ListElement>{listing.price}</ListElement>
-      <ListElement>{listing.condition}</ListElement>
+      <ListElement>
+        <strong>ISBN: </strong>
+        {listing.ISBN}
+      </ListElement>
+      <ListElement>
+        <strong>Price:</strong>
+        {listing.price}
+      </ListElement>
+      <ListElement>
+        <strong>Condition: </strong>
+        {listing.condition}
+      </ListElement>
       <Link to={String(listing.listingID)}>More Info</Link>
     </ListElementContainer>
   ));

@@ -76,7 +76,7 @@ const newPosting = ({ ifPosting }) => {
   if (ifPosting === 'general') {
     return (
       <div>
-        <button display="block" text-align="center" backgroundColor="red">
+        <button display="block" text-align="center">
           <Link to={'newPosting'} id="newPosting">
             Create New Posting
           </Link>

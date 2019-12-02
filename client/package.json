@@ -28,6 +28,7 @@
     "nodemailer": "^6.3.1",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
+    "react-columns": "^1.2.1",
     "react-dom": "^16.10.2",
     "react-google-login": "^5.0.7",
     "react-immutable-proptypes": "^2.1.0",
