@@ -49,7 +49,7 @@ const newPosting = ({ ifPosting }) => {
     condition: '',
     comments: ''
   };
-
+  const BackButton = styled.button``;
   const [allInfo, setAllInfo] = useState(postingInfo);
 
   // Should require price, ISBN, something else? to be a number
@@ -74,19 +74,16 @@ const newPosting = ({ ifPosting }) => {
   };
 
   if (ifPosting === 'general') {
-    return (
-      <div>
-        <button display="block" text-align="center">
-          <Link to={'newPosting'} id="newPosting">
-            Create New Posting
-          </Link>
-        </button>
-      </div>
-    );
+    return <div></div>;
   } else if (ifPosting === 'postingView') {
     return (
       <WholeContainer>
         <h2>Create a new posting</h2>
+        <BackButton>
+          <Link to={''} id="">
+            Back to Main Page
+          </Link>
+        </BackButton>
         <InputLineContainer>
           <InputType> Name: </InputType>
           <InputLine type="text" placeholder={'What is your name?'} />

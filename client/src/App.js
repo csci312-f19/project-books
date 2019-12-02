@@ -8,6 +8,7 @@ import Listings from './components/Listings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { Link } from 'react-router-dom';
 
 let GOOGLE_CLIENT_ID;
 if (String(window.location.href).includes('localhost')) {
@@ -44,7 +45,7 @@ const DropdownContent = styled.div`
   z-index: 1;
   right: 0;
 `;
-const Item = styled.a`
+const Item = styled.div`
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -124,9 +125,24 @@ function App() {
       onLogoutSuccess={handleGoogleLogout}
     />
   );
+  const viewbutton = (
+    <button>
+      <Link to={'myPostings'} id="myPostings">
+        View My Postings
+      </Link>
+    </button>
+  );
+  const createbutton = (
+    <button>
+      <Link to={'newPosting'} id="newPosting">
+        Create New Posting
+      </Link>
+    </button>
+  );
   const DropDownContent = (
     <div>
-      <Item href="#"> View My Listings</Item>
+      <Item> {loggedIn && viewbutton}</Item>
+      <Item>{loggedIn && createbutton}</Item>
       <Item>
         {!loggedIn && loginButton}
         {loggedIn && logoutButton}
