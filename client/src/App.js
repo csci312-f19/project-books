@@ -7,6 +7,7 @@ import Listings from './components/Listings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import Logo from './middbooks.png';
 
 let GOOGLE_CLIENT_ID;
 if (String(window.location.href).includes('localhost')) {
@@ -20,12 +21,17 @@ if (String(window.location.href).includes('localhost')) {
 //import Immutable from 'immutable';   // need to do "npm install immutable
 
 /* eslint-disable react/prefer-stateless-function */
-const Title = styled.h1`
+
+const CenteredLogo = styled.div`
   text-align: center;
 `;
 
 const UserAccount = styled.div`
   float: right;
+`;
+
+const Background = styled.div`
+  background-color: #fafafa;
 `;
 
 function App() {
@@ -98,50 +104,52 @@ function App() {
   );
 
   return (
-    <Router>
-      <div>
-        <UserAccount>
-          {!loggedIn && loginButton}
-          {loggedIn && logoutButton}
-        </UserAccount>
-        <br />
-        <br />
-        <Title>Midd Book Market</Title>
-        <Switch>
-          <Route
-            exact
-            path="/newPosting"
-            component={() => <NewPosting ifPosting={'postingView'} />}
-          />
-          <Route
-            path="/:id"
-            component={() => (
-              <Listings
-                currentListings={listings}
-                searchTerm={currentBook}
-                mode={'detailed'}
-              />
-            )}
-          />
-          <Route
-            render={() => (
-              <div>
-                <NewPosting ifPosting={'general'} />
-                <SearchBar
-                  setBook={book => setBook(book)}
-                  currentBook={currentBook}
-                />
+    <Background>
+      <Router>
+        <div>
+          <UserAccount>
+            {!loggedIn && loginButton}
+            {loggedIn && logoutButton}
+          </UserAccount>
+          <CenteredLogo>
+            <img src={Logo} alt="website logo" width={300} height={300} />
+          </CenteredLogo>
+          <Switch>
+            <Route
+              exact
+              path="/newPosting"
+              component={() => <NewPosting ifPosting={'postingView'} />}
+            />
+            <Route
+              path="/:id"
+              component={() => (
                 <Listings
                   currentListings={listings}
                   searchTerm={currentBook}
-                  mode={'general'}
+                  mode={'detailed'}
                 />
-              </div>
-            )}
-          />
-        </Switch>
-      </div>
-    </Router>
+              )}
+            />
+            <Route
+              render={() => (
+                <div>
+                  <NewPosting ifPosting={'general'} />
+                  <SearchBar
+                    setBook={book => setBook(book)}
+                    currentBook={currentBook}
+                  />
+                  <Listings
+                    currentListings={listings}
+                    searchTerm={currentBook}
+                    mode={'general'}
+                  />
+                </div>
+              )}
+            />
+          </Switch>
+        </div>
+      </Router>
+    </Background>
   );
 }
 

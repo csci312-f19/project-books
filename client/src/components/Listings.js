@@ -12,10 +12,11 @@ const List = styled.ul`
   height: 20px;
 `;
 export const ListElementContainer = styled.li`
-  border: 1px solid;
+  border: 2px solid #a3bdd0;
   padding: 2px;
   margin: 5px;
 `;
+
 const ListElement = styled.p``;
 const ListTitle = styled.h2`
   font-size: 20px;
