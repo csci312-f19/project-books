@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
-//import Immutable from 'immutable';
+// import Immutable from 'immutable';
 
 const ListingsContainer = styled.div`
   text-align: center;

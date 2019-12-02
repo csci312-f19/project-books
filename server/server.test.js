@@ -44,7 +44,7 @@ describe('Midd Book Market API', () => {
       .expect([Object.assign({ id: 1 }, listing, book)]);
   });
 
-  test('GET /api/bookListings/:id returns listing and book objects with same ISBN by listingID', () => {
+  test('GET /api/bookListings/:id returns listing and book objects with same ISBN by id', () => {
     return request(app)
       .get('/api/bookListings/1')
       .expect(200)
