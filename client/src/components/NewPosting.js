@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 
 const InputLine = styled.input`
   text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
   width: 30%;
-  height: 15px
+  height: 20px;
   border-radius: 25px;
-  border: 2px solid;
+  border: 2px solid #cccccc;
   margin: 8px 0;
 `;
 
@@ -23,16 +25,35 @@ const InputLineContainer = styled.div`
 `;
 
 const InputType = styled.span`
-  text-align: left;
+  color: #374068;
+  margin-left: 5vw;
+  font-size: 1.1vw;
+  text-decoration: bold;
 `;
 
 const WholeContainer = styled.div`
-  text-align: center;
+  style: block;
+  text-align: left;
+  border: 2px solid #a3bdd0;
+  padding: 10px;
+  margin: 5px;
+  width: 70%;
+  margin: auto;
+  display: block;
 `;
 
 const InputComments = styled.textarea`
   margin: 10px 0px;
   display: block;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 20px;
+  color: #374068;
+  text-align: center;
+  padding: 5px;
+  text-decoration: underline;
+  font-size: 1.6vw;
 `;
 
 const SubmitButton = styled.button``;
@@ -86,7 +107,7 @@ const newPosting = ({ ifPosting }) => {
   } else if (ifPosting === 'postingView') {
     return (
       <WholeContainer>
-        <h2>Create a new posting</h2>
+        <SectionTitle>Create a new posting</SectionTitle>
         <InputLineContainer>
           <InputType> Name: </InputType>
           <InputLine type="text" placeholder={'What is your name?'} />
