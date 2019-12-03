@@ -22,12 +22,10 @@ if (String(window.location.href).includes('localhost')) {
 
 /* eslint-disable react/prefer-stateless-function */
 
+document.body.style.background = '#fafafa';
+
 const UserAccount = styled.div`
   float: right;
-`;
-
-const Background = styled.div`
-  background-color: #fafafa;
 `;
 
 const CenteredImg = styled.div`
@@ -111,7 +109,7 @@ function App() {
   );
 
   return (
-    <Background>
+    <div>
       <Router>
         <div>
           <UserAccount>
@@ -121,7 +119,6 @@ function App() {
           <CenteredImg>
             <Image src={Logo} alt="website logo" />
           </CenteredImg>
-
           <Switch>
             <Route
               exact
@@ -157,7 +154,7 @@ function App() {
           </Switch>
         </div>
       </Router>
-    </Background>
+    </div>
   );
 }
 
