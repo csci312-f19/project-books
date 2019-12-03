@@ -24,14 +24,6 @@ export const ListElementContainer = styled.li`
   text-align: center;
 `;
 
-const Container = styled.li`
-  border: 3px solid #a3bdd0;
-  padding: 4px;
-  margin: 5px auto 5px auto;
-  width: 55%;
-  text-align: center;
-`;
-
 const ListElement = styled.p`
   color: #374068;
   margin-left: 5vw;
@@ -68,6 +60,8 @@ const BuyButton = styled.button`
   padding: 5px;
   font-size: 1.3vw;
 `;
+
+const BackButton = styled.button``;
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 
@@ -120,7 +114,12 @@ export const DetailedListing = () => {
   return (
     <div>
       <List>
-        <Container>
+        <BackButton>
+          <Link to={''} id="">
+            Back to Main Page
+          </Link>
+        </BackButton>
+        <ListElementContainer>
           <ListTitle>{detailedListing.title}</ListTitle>
           <ColoredText>
             <strong>{`${'\xa0'.repeat(18)}ISBN${'\xa0'.repeat(3)}`}</strong>{' '}
@@ -176,7 +175,7 @@ export const DetailedListing = () => {
               </div>
             </Popup>
           )}
-        </Container>
+        </ListElementContainer>
         <div>
           {purchased && (
             <Confirmation>
