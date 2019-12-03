@@ -115,31 +115,31 @@ export const DetailedListing = () => {
         <ListElementContainer>
           <ListTitle>{detailedListing.title}</ListTitle>
           <ColoredText>
-            <strong>{'\xa0'.repeat(18) + 'ISBN' + '\xa0'.repeat(3)}</strong>{' '}
+            <strong>{`${'\xa0'.repeat(18)}ISBN${'\xa0'.repeat(3)}`}</strong>{' '}
             {` ${detailedListing.ISBN}`}
           </ColoredText>
           <ColoredText>
-            <strong>{'\xa0'.repeat(5) + 'Comments' + '\xa0'.repeat(3)}</strong>
+            <strong>{`${'\xa0'.repeat(5)}Comments${'\xa0'.repeat(3)}`}</strong>
             {` ${detailedListing.comments}`}{' '}
           </ColoredText>
           <ColoredText>
-            <strong>{'Condition' + '\xa0'.repeat(3)}</strong>
+            <strong>{`Condition${'\xa0'.repeat(3)}`}</strong>
             {` ${detailedListing.condition}`}
             {'\xa0'.repeat(6)}
           </ColoredText>
           <ColoredText>
-            <strong>{'Course ID' + '\xa0'.repeat(3)}</strong>{' '}
+            <strong>{`Course ID${'\xa0'.repeat(3)}`}</strong>{' '}
             {` ${detailedListing.courseID}`}
           </ColoredText>
           <ColoredText>
-            <strong>{'Edited Date' + '\xa0'.repeat(3)}</strong>
+            <strong>{`Edited Date${'\xa0'.repeat(3)}`}</strong>
             {` ${detailedListing.edited}`} {'\xa0'.repeat(11)}
           </ColoredText>
           <ColoredText>
-            <strong>{'Price' + '\xa0'.repeat(3)}</strong>{' '}
+            <strong>{`Price${'\xa0'.repeat(3)}`}</strong>{' '}
             {` $${detailedListing.price}`} {'\xa0'.repeat(5)}
           </ColoredText>
-          <br></br>
+          <br />
           {!purchased && (
             <Popup
               trigger={
