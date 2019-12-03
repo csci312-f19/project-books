@@ -73,10 +73,6 @@ const Note = styled.div`
   margin-left: 5vw;
 `;
 
-const Centered = styled.div`
-  text-align: center;
-`;
-
 const newPosting = ({ ifPosting }) => {
   const postingInfo = {
     author: '',
@@ -89,8 +85,8 @@ const newPosting = ({ ifPosting }) => {
     condition: '',
     comments: ''
   };
-
-  const [allInfo, setAllInfo] = useState(postingInfo);
+  const BackButton = styled.button``;
+  const [, setAllInfo] = useState(postingInfo);
 
   // Should require price, ISBN, something else? to be a number
   // Dont need name if have accounts?
@@ -114,19 +110,16 @@ const newPosting = ({ ifPosting }) => {
   };
 
   if (ifPosting === 'general') {
-    return (
-      <div>
-        <button display="block" text-align="center">
-          <Link to={'newPosting'} id="newPosting">
-            Create New Posting
-          </Link>
-        </button>
-      </div>
-    );
+    return <div />;
   } else if (ifPosting === 'postingView') {
     return (
       <WholeContainer>
         <SectionTitle>Create a new posting</SectionTitle>
+        <BackButton>
+          <Link to={''} id="">
+            Back to Main Page
+          </Link>
+        </BackButton>
         <InputLineContainer>
           <InputType> Seller Name: </InputType>
           <InputLine type="text" placeholder={'What is your name?'} />
@@ -187,54 +180,57 @@ const newPosting = ({ ifPosting }) => {
         </InputLineContainer>
 
         <InputLineContainer>
-          <Centered>
-            <SubmitButton
-              type="button"
-              value="submit"
-              onClick={() => {
-                console.log(allInfo);
-                //this is where put will happen
-                // Also an alert with all of the Info, if they accept, then it will post
-                fetch(`/api/newPosting/Listing`, {
-                  method: 'POST',
-                  body: JSON.stringify(postingInfo),
-                  headers: new Headers({ 'Content-type': 'application/json' })
+          <SubmitButton
+            type="button"
+            value="submit"
+            onClick={() => {
+              //this is where put will happen
+              // Also an alert with all of the Info, if they accept, then it will post
+              fetch(`/api/newPosting/Listing`, {
+                method: 'POST',
+                body: JSON.stringify(postingInfo),
+                headers: new Headers({ 'Content-type': 'application/json' })
+              })
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error(response.status_text);
+                  }
+                  return response.json();
                 })
-                  .then(response => {
-                    if (!response.ok) {
-                      throw new Error(response.status_text);
-                    }
-                    return response.json();
-                  })
-                  .then(updatedPosting => {
-                    setAllInfo(updatedPosting);
-                  })
-                  .catch(err => console.log(err)); // eslint-disable-line no-console
-
-                fetch(`/api/newPosting/Book`, {
-                  method: 'POST',
-                  body: JSON.stringify(postingInfo),
-                  headers: new Headers({ 'Content-type': 'application/json' })
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error(response.status_text);
+                  }
+                  return response.json();
                 })
-                  .then(response => {
-                    if (!response.ok) {
-                      throw new Error(response.status_text);
-                    }
-                    return response.json();
-                  })
-                  .then(updatedPosting => {
-                    setAllInfo(updatedPosting);
-                  })
-                  .catch(err => console.log(err)); // eslint-disable-line no-console
+                .then(updatedPosting => {
+                  setAllInfo(updatedPosting);
+                })
+                .catch(err => console.log(err)); // eslint-disable-line no-console
 
-                ifPosting = 'general';
-              }}
-            >
-              <Link to={''} id="">
-                Submit
-              </Link>
-            </SubmitButton>
-          </Centered>
+              fetch(`/api/newPosting/Book`, {
+                method: 'POST',
+                body: JSON.stringify(postingInfo),
+                headers: new Headers({ 'Content-type': 'application/json' })
+              })
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error(response.status_text);
+                  }
+                  return response.json();
+                })
+                .then(updatedPosting => {
+                  setAllInfo(updatedPosting);
+                })
+                .catch(err => console.log(err)); // eslint-disable-line no-console
+
+              ifPosting = 'general';
+            }}
+          >
+            <Link to={''} id="">
+              Submit
+            </Link>
+          </SubmitButton>
         </InputLineContainer>
       </WholeContainer>
     );
