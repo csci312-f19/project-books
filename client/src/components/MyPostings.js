@@ -66,7 +66,7 @@ const ButtonBar = styled.div`
 const EditButtonBar = styled.div`
   text-align: right;
 `;
-
+const BackButton = styled.button``;
 const MyPostings = ({ ifPosting, ifLoggedIn }) => {
   const [myListings, setMyListings] = useState(Immutable.List());
   const [mode, setMode] = useState('view');
@@ -119,20 +119,17 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
   }, []);
 
   if (ifPosting === 'general') {
-    return (
-      <div>
-        <button display="block" text-align="center">
-          <Link to={'myPostings'} id="myPostings">
-            View My Postings
-          </Link>
-        </button>
-      </div>
-    );
+    return <div />;
   } else {
     if (myListings.isEmpty()) {
       return (
         <div>
           <Title>My Postings</Title>
+          <BackButton>
+            <Link to={''} id="">
+              Back to Main Page
+            </Link>
+          </BackButton>
           <View>
             <p align="center">You have not posted anything yet.</p>
             {ifLoggedIn && (
@@ -377,6 +374,11 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
 
       return (
         <div>
+          <BackButton>
+            <Link to={''} id="">
+              Back to Main Page
+            </Link>
+          </BackButton>
           <Title>My Postings</Title>
           {listingItems}
         </div>
