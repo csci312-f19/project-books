@@ -11,6 +11,7 @@ const InputLine = styled.input`
   border-radius: 25px;
   border: 2px solid #cccccc;
   margin: 8px 0;
+  font-size: 0.9vw;
 `;
 
 const InputSelect = styled.select`
@@ -34,9 +35,9 @@ const InputType = styled.span`
 const WholeContainer = styled.div`
   style: block;
   text-align: left;
-  border: 2px solid #a3bdd0;
-  padding: 10px;
-  margin: 5px;
+  border: 4px solid #a3bdd0;
+  padding: 2.5vw;
+  margin: 1.25vw;
   width: 70%;
   margin: auto;
   display: block;
@@ -45,6 +46,7 @@ const WholeContainer = styled.div`
 const InputComments = styled.textarea`
   margin: 10px 0px;
   display: block;
+  margin-left: 8vw;
 `;
 
 const SectionTitle = styled.h2`
@@ -56,7 +58,24 @@ const SectionTitle = styled.h2`
   font-size: 1.6vw;
 `;
 
-const SubmitButton = styled.button``;
+const SubmitButton = styled.button`
+  color: #374068;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.3vw;
+`;
+
+const Note = styled.div`
+  text-align: left;
+  padding: 5px;
+  font-size: 0.7vw;
+  font-style: italic;
+  margin-left: 5vw;
+`;
+
+const Centered = styled.div`
+  text-align: center;
+`;
 
 const newPosting = ({ ifPosting }) => {
   const postingInfo = {
@@ -109,7 +128,7 @@ const newPosting = ({ ifPosting }) => {
       <WholeContainer>
         <SectionTitle>Create a new posting</SectionTitle>
         <InputLineContainer>
-          <InputType> Name: </InputType>
+          <InputType> Seller Name: </InputType>
           <InputLine type="text" placeholder={'What is your name?'} />
         </InputLineContainer>
         {makeInput(
@@ -118,13 +137,12 @@ const newPosting = ({ ifPosting }) => {
           'The Guide to the Dr. and Everything React'
         )}
         {makeInput('author', 'Book Author', 'Christopher Andrews')}
-        {makeInput('courseTitle', 'Course title', 'Software Development')}
-        {makeInput('ISBN', 'ISBN number', '123-4-567-89012-3')}
-        <div>
-          {' '}
-          This can be found either on the back cover of the book or on the
-          inside information page along with the publisher info{' '}
-        </div>
+        {makeInput('courseTitle', 'Course Title', 'Software Development')}
+        {makeInput('ISBN', 'ISBN Number', '123-4-567-89012-3')}
+        <Note>
+          The ISBN can be found either on the back cover of the book or on the
+          inside information page along with the publisher information.
+        </Note>
         {makeInput('courseID', 'Course Code', 'CSCI 0312')}
         <InputLineContainer>
           <InputType> Condition: </InputType>
@@ -144,10 +162,10 @@ const newPosting = ({ ifPosting }) => {
         </InputLineContainer>
 
         <InputLineContainer>
-          <InputType> Price: </InputType>
+          <InputType> Price: $ </InputType>
           <InputLine
             type="text"
-            placeholder={'5'}
+            placeholder={'5.00'}
             onChange={event => {
               postingInfo.price = parseInt(event.target.value);
               setAllInfo(postingInfo);
@@ -156,11 +174,11 @@ const newPosting = ({ ifPosting }) => {
         </InputLineContainer>
 
         <InputLineContainer>
-          <InputType> Any Additional Comments: </InputType>
+          <InputType> Additional Comments: </InputType>
           <InputComments
             cols="50"
             rows="10"
-            placeholder="Any additional comments you have. Could include: highlighted, water-stained, never opened, missing pages."
+            placeholder="Any additional comments you may have. Could include: highlighting, water-stains, never opened, missing pages..."
             onChange={event => {
               postingInfo.comments = event.target.value;
               setAllInfo(postingInfo);
@@ -169,52 +187,54 @@ const newPosting = ({ ifPosting }) => {
         </InputLineContainer>
 
         <InputLineContainer>
-          <SubmitButton
-            type="button"
-            value="submit"
-            onClick={() => {
-              console.log(allInfo);
-              //this is where put will happen
-              // Also an alert with all of the Info, if they accept, then it will post
-              fetch(`/api/newPosting/Listing`, {
-                method: 'POST',
-                body: JSON.stringify(postingInfo),
-                headers: new Headers({ 'Content-type': 'application/json' })
-              })
-                .then(response => {
-                  if (!response.ok) {
-                    throw new Error(response.status_text);
-                  }
-                  return response.json();
+          <Centered>
+            <SubmitButton
+              type="button"
+              value="submit"
+              onClick={() => {
+                console.log(allInfo);
+                //this is where put will happen
+                // Also an alert with all of the Info, if they accept, then it will post
+                fetch(`/api/newPosting/Listing`, {
+                  method: 'POST',
+                  body: JSON.stringify(postingInfo),
+                  headers: new Headers({ 'Content-type': 'application/json' })
                 })
-                .then(updatedPosting => {
-                  setAllInfo(updatedPosting);
-                })
-                .catch(err => console.log(err)); // eslint-disable-line no-console
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error(response.status_text);
+                    }
+                    return response.json();
+                  })
+                  .then(updatedPosting => {
+                    setAllInfo(updatedPosting);
+                  })
+                  .catch(err => console.log(err)); // eslint-disable-line no-console
 
-              fetch(`/api/newPosting/Book`, {
-                method: 'POST',
-                body: JSON.stringify(postingInfo),
-                headers: new Headers({ 'Content-type': 'application/json' })
-              })
-                .then(response => {
-                  if (!response.ok) {
-                    throw new Error(response.status_text);
-                  }
-                  return response.json();
+                fetch(`/api/newPosting/Book`, {
+                  method: 'POST',
+                  body: JSON.stringify(postingInfo),
+                  headers: new Headers({ 'Content-type': 'application/json' })
                 })
-                .then(updatedPosting => {
-                  setAllInfo(updatedPosting);
-                })
-                .catch(err => console.log(err)); // eslint-disable-line no-console
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error(response.status_text);
+                    }
+                    return response.json();
+                  })
+                  .then(updatedPosting => {
+                    setAllInfo(updatedPosting);
+                  })
+                  .catch(err => console.log(err)); // eslint-disable-line no-console
 
-              ifPosting = 'general';
-            }}
-          >
-            <Link to={''} id="">
-              Submit
-            </Link>
-          </SubmitButton>
+                ifPosting = 'general';
+              }}
+            >
+              <Link to={''} id="">
+                Submit
+              </Link>
+            </SubmitButton>
+          </Centered>
         </InputLineContainer>
       </WholeContainer>
     );
