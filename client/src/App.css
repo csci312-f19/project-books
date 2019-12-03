@@ -30,3 +30,10 @@
     transform: rotate(360deg);
   }
 }
+
+a {
+  color: black;
+}
+a:hover {
+  color: blue;
+}

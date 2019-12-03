@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 //import Immutable from 'immutable';
 
-let Columns = require('react-columns');
+var Columns = require('react-columns');
 
 const ListingsContainer = styled.div`
   text-align: center;
@@ -18,10 +18,12 @@ export const ListElementContainer = styled.li`
   padding: 2px;
   margin: 5px;
   width: 45%;
+  text-align: left;
 `;
 
 const ListElement = styled.p`
   color: #374068;
+  margin-left: 15px;
 `;
 
 const ListTitle = styled.h2`
@@ -248,9 +250,13 @@ export function ListingsCollection({
   const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
-
     <ListElementContainer key={listing.ISBN}>
-      <ListTitle>{listing.title}</ListTitle>
+      <ListTitle>
+        <Link to={String(listing.listingID)} text-color="black">
+          {listing.title}
+        </Link>
+      </ListTitle>
+
       <ListElement>
         <strong>Course: </strong>
         {listing.courseID}
@@ -268,7 +274,6 @@ export function ListingsCollection({
         <strong>Condition: </strong>
         {listing.condition}
       </ListElement>
-      <Link to={String(listing.listingID)}>More Info</Link>
     </ListElementContainer>
   ));
 
