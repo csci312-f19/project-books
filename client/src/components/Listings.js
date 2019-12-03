@@ -23,7 +23,8 @@ export const ListElementContainer = styled.li`
 
 const ListElement = styled.p`
   color: #374068;
-  margin-left: 15px;
+  margin-left: 5vw;
+  font-size: 1.1vw;
 `;
 
 const ListTitle = styled.h2`
@@ -32,6 +33,7 @@ const ListTitle = styled.h2`
   text-align: left;
   padding: 5px;
   text-decoration: underline;
+  font-size: 1.4vw;
 `;
 const SortBarContainer = styled.div`
     text-align: center;
@@ -267,8 +269,8 @@ export function ListingsCollection({
         {listing.ISBN}
       </ListElement>
       <ListElement>
-        <strong>Price:</strong>
-        {listing.price}
+        <strong>Price: $</strong>
+        {listing.price.toFixed(2)}
       </ListElement>
       <ListElement>
         <strong>Condition: </strong>
