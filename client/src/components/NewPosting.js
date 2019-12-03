@@ -50,7 +50,7 @@ const newPosting = ({ ifPosting }) => {
     comments: ''
   };
   const BackButton = styled.button``;
-  const [allInfo, setAllInfo] = useState(postingInfo);
+  const [, setAllInfo] = useState(postingInfo);
 
   // Should require price, ISBN, something else? to be a number
   // Dont need name if have accounts?
@@ -149,7 +149,6 @@ const newPosting = ({ ifPosting }) => {
             type="button"
             value="submit"
             onClick={() => {
-              console.log(allInfo);
               //this is where put will happen
               // Also an alert with all of the Info, if they accept, then it will post
               fetch(`/api/newPosting/Listing`, {
