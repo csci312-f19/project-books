@@ -3,11 +3,13 @@ import './App.css';
 import styled from 'styled-components';
 import SearchBar from './components/SearchBar';
 import NewPosting from './components/NewPosting';
+import MyPostings from './components/MyPostings';
 import Listings from './components/Listings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { Link } from 'react-router-dom';
 
 let GOOGLE_CLIENT_ID;
 if (String(window.location.href).includes('localhost')) {
@@ -25,14 +27,37 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const UserAccount = styled.div`
+const DropDownDiv = styled.div`
   float: right;
+`;
+const DropDownButton = styled.button`
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+`;
+
+const DropdownContent = styled.div`
+  display: block;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  z-index: 1;
+  right: 0;
+`;
+const Item = styled.div`
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 `;
 
 function App() {
   const [listings, setListings] = useState(Immutable.List());
   const [currentBook, setBook] = useState(null);
   const [loggedIn, setLogin] = useState(false);
+  const [menuState, setMenu] = useState(false);
 
   useEffect(() => {
     fetch('/api/bookListings/') //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
@@ -113,15 +138,38 @@ function App() {
       onLogoutSuccess={handleGoogleLogout}
     />
   );
+  const viewbutton = (
+    <button>
+      <Link to={'myPostings'} id="myPostings">
+        View My Postings
+      </Link>
+    </button>
+  );
+  const createbutton = (
+    <button>
+      <Link to={'newPosting'} id="newPosting">
+        Create New Posting
+      </Link>
+    </button>
+  );
+  const DropDownContent = (
+    <div>
+      <Item> {loggedIn && viewbutton}</Item>
+      <Item>{loggedIn && createbutton}</Item>
+      <Item>
+        {!loggedIn && loginButton}
+        {loggedIn && logoutButton}
+      </Item>
+    </div>
+  );
 
   return (
     <Router>
       <div>
-        <DropDown />
-        <UserAccount>
-          {!loggedIn && loginButton}
-          {loggedIn && logoutButton}
-        </UserAccount>
+        <DropDownDiv onClick={() => setMenu(!menuState)}>
+          <DropDownButton>My Account</DropDownButton>
+          <DropdownContent>{menuState && DropDownContent}</DropdownContent>
+        </DropDownDiv>
         <br />
         <br />
         <Title>Midd Book Market</Title>
@@ -130,6 +178,13 @@ function App() {
             exact
             path="/newPosting"
             component={() => <NewPosting ifPosting={'postingView'} />}
+          />
+          <Route
+            exact
+            path="/myPostings"
+            component={() => (
+              <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
+            )}
           />
           <Route
             path="/:id"
@@ -144,7 +199,10 @@ function App() {
           <Route
             render={() => (
               <div>
-                <NewPosting ifPosting={'general'} />
+                {loggedIn && <NewPosting ifPosting={'general'} />}
+                {loggedIn && (
+                  <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
+                )}
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}
