@@ -59,11 +59,12 @@ passport.use(
       })
       .then(async ticket => {
         const payload = ticket.getPayload();
-        let user = await User.query().findOne('googleId', payload.sub);
+        // let user = await User.query().findOne('googleId', payload.sub);
+        let user = await User.query().findOne('googleId', payload.email);
         if (!user) {
           user = await User.query().insertAndFetch({
-            googleId: payload.sub,
-            id: payload.id,
+            googleId: payload.email,
+            // id: payload.id,
             name: payload.name,
             email: payload.email
           });
@@ -109,15 +110,66 @@ app.post('/logout', (request, response) => {
   response.sendStatus(200);
 });
 
-// TODO: Add your routes here
+app.get('/api/MyPostings/', (request, response, next) => {
+  Listing.query()
+    .select(
+      'Listings.id',
+      'title',
+      'Listings.ISBN',
+      'edited',
+      'courseID',
+      'price',
+      'userID',
+      'condition',
+      'comments'
+    )
+    .from('Listings')
+    .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')
+    .where('userID', request.user.id)
+    .then(rows => {
+      response.send(rows);
+    }, next); // <- Notice the "next" function as the rejection handler
+});
+
+app.delete(`/api/MyPostings/:id`, (request, response, next) => {
+  Listing.query()
+    .deleteById(request.params.id)
+    .then(() => {
+      response.sendStatus(200);
+    }, next);
+});
+
+app.put(`/api/MyPostings/Listing/:id`, (request, response, next) => {
+  const { id } = request.params; // eslint-disable-line no-unused-vars
+
+  Listing.query()
+    .select('*')
+    .skipUndefined()
+    .updateAndFetchById(id, request.body)
+    .then(listing => {
+      response.send(listing);
+    }, next);
+});
+
+app.put(`/api/MyPostings/Book/:ISBN`, (request, response, next) => {
+  const { ISBN } = request.params; // eslint-disable-line no-unused-vars
+
+  Book.query()
+    .select('*')
+    .skipUndefined()
+    .updateAndFetchById(ISBN, request.body)
+    .then(book => {
+      response.send(book);
+    }, next);
+});
 
 app.post('/api/newPosting/Listing', (request, response, next) => {
   const listing = {
-    userID: request.body.userID,
+    userID: request.user.id,
     ISBN: request.body.ISBN,
     condition: request.body.condition,
     price: request.body.price,
-    edited: '',
+    edited: new Date().toLocaleString(),
     comments: request.body.comments
   };
   Listing.query()
@@ -129,7 +181,7 @@ app.post('/api/newPosting/Listing', (request, response, next) => {
 
 app.post('/api/newPosting/Book', (request, response, next) => {
   const bookData = {
-    ISBN: `${request.body.ISBN}`,
+    ISBN: request.body.ISBN,
     title: request.body.title,
     courseID: request.body.courseID
   };
@@ -163,11 +215,22 @@ app.get(`/api/books/:ISBN`, (request, response, next) => {
     }, next); // <- Notice the "next" function as the rejection handler
 });
 
-app.get('/api/bookListings', (request, response, next) => {
+app.get(`/api/bookListings/`, (request, response, next) => {
+  // new query approach to deal with new primary keys
   Listing.query()
-    .select('*')
+    .select(
+      'Listings.id',
+      'title',
+      'courseID',
+      'price',
+      'userID',
+      'condition',
+      'comments',
+      'Listings.ISBN',
+      'edited'
+    )
     .from('Listings')
-    .joinRaw('natural join "Books"')
+    .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
@@ -176,10 +239,29 @@ app.get('/api/bookListings', (request, response, next) => {
 app.get(`/api/bookListings/:id`, (request, response, next) => {
   const { id } = request.params;
   Listing.query()
-    .select('*')
+    .select(
+      'Listings.id',
+      'title',
+      'Listings.ISBN',
+      'edited',
+      'courseID',
+      'price',
+      'userID',
+      'condition',
+      'comments'
+    )
     .from('Listings')
-    .joinRaw('natural join "Books"')
-    .where('listingID', id)
+    .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')
+    .where('Listings.id', id)
+    .then(rows => {
+      response.send(rows);
+    }, next); // <- Notice the "next" function as the rejection handler
+});
+
+app.get('/api/users', (request, response, next) => {
+  User.query()
+    .select('*')
+    .from('Users')
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
@@ -204,7 +286,7 @@ app.use((error, request, response, next) => {
   if (wrappedError instanceof DBError) {
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
-    // console.log(`error is: ${  error}`);
+    // console.log(`500 error is: ${error}`);
     response
       .status(wrappedError.statusCode || wrappedError.status || 500)
       .send(wrappedError.data || wrappedError.message || {});
@@ -215,7 +297,6 @@ app.use((error, request, response, next) => {
 const nodemailer = require('nodemailer');
 
 app.post('/api/bookrequest', function Emailer(req) {
-  //   console.log(`the request has been received! it is:${req}`);
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {

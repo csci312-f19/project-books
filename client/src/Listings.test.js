@@ -87,7 +87,6 @@ describe('SearchBar', () => {
   });
 
   test('keyword search', async () => {
-    expect(app).toContainMatchingElement(SearchBar);
     const searchbar = app.find(SearchBar);
 
     searchbar
