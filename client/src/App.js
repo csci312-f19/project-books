@@ -28,6 +28,8 @@ document.body.style.background = '#fafafa';
 
 const DropDownDiv = styled.div`
   float: right;
+  position: absolute;
+  z-index: 1;
 `;
 const DropDownButton = styled.button`
   background-color: #4caf50;
@@ -42,8 +44,13 @@ const DropdownContent = styled.div`
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  z-index: 1;
+  z-index: 2;
   right: 0;
+`;
+
+const ContainerDiv = styled.div`
+  postion: relative;
+  z-inline: 0;
 `;
 const Item = styled.div`
   color: black;
@@ -53,7 +60,9 @@ const Item = styled.div`
 `;
 
 const CenteredImg = styled.div`
+  position: block;
   text-align: center;
+  z-index: 1;
 `;
 
 const Image = styled.img`
@@ -159,25 +168,30 @@ function App() {
 
   return (
     <Router>
+      {' '}
             
       <div>
-                
-        <DropDownDiv onClick={() => setMenu(!menuState)}>
-                    <DropDownButton>My Account</DropDownButton>
-                    
-          <DropdownContent>{menuState && DropDownContent}</DropdownContent>
+        {' '}
+             
+        <ContainerDiv>
+             
+          <DropDownDiv onClick={() => setMenu(!menuState)}>
+                      <DropDownButton>My Account</DropDownButton>           
+            <DropdownContent>
+              {menuState && DropDownContent}
+            </DropdownContent>{' '}
+                    
+          </DropDownDiv>{' '}
                   
-        </DropDownDiv>
-                
-        <br />
-                
-        <br />
-        <CenteredImg>
-          <Image src={Logo} alt="website logo" />
-        </CenteredImg>
+          <br />         
+          <br />
+          <CenteredImg>
+            <Image src={Logo} alt="website logo" />
+          </CenteredImg>
+        </ContainerDiv>{' '}
                 
         <Switch>
-                    
+                  
           <Route
             exact
             path="/newPosting"
