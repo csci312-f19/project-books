@@ -146,6 +146,14 @@ app.get('/api/listings', (request, response, next) => {
   }, next); // <- Notice the "next" function as the rejection handler
 });
 
+// app.get('/api/user', (request response, next) => {
+//   User.query()
+//     .then(email => {
+//       console.log(response.email);
+//       response.send(response.email);
+//     }, next);
+// });
+
 app.get(`/api/books/:ISBN`, (request, response, next) => {
   const { ISBN } = request.params;
   Book.query()

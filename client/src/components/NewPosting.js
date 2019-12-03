@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
@@ -40,73 +40,6 @@ const SubmitButton = styled.button``;
 
 const BackButton = styled.button``;
 
-const CreatePopUp = (postingInfo, allInfo, setAllInfo, ifPosting) => {
-  return (
-    <Popup
-      trigger={
-        <div>
-          <SubmitButton> Submit </SubmitButton>
-        </div>
-      }
-    >
-      <div>
-        {'Please confirm that this information is correct \n'}
-        <p>
-          {'Your Name: Get their name\n'}
-          {'Your Email: Get their email\n'}
-          {'Book Title: '}
-          {`${postingInfo.courseTitle}`}
-        </p>
-        <SubmitButton
-          type="button"
-          value="submit"
-          onClick={() => {
-            //this is where put will happen
-            // Also an alert with all of the Info, if they accept, then it will post
-            fetch(`/api/newPosting/Listing`, {
-              method: 'POST',
-              body: JSON.stringify(postingInfo),
-              headers: new Headers({ 'Content-type': 'application/json' })
-            })
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error(response.status_text);
-                }
-                return response.json();
-              })
-              .then(updatedPosting => {
-                setAllInfo(updatedPosting);
-              })
-              .catch(err => console.log(err)); // eslint-disable-line no-console
-
-            fetch(`/api/newPosting/Book`, {
-              method: 'POST',
-              body: JSON.stringify(postingInfo),
-              headers: new Headers({ 'Content-type': 'application/json' })
-            })
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error(response.status_text);
-                }
-                return response.json();
-              })
-              .then(updatedPosting => {
-                setAllInfo(updatedPosting);
-              })
-              .catch(err => console.log(err)); // eslint-disable-line no-console
-
-            ifPosting = 'general';
-          }}
-        >
-          <Link to={''} id="">
-            Confirm!
-          </Link>
-        </SubmitButton>
-      </div>
-    </Popup>
-  );
-};
-
 const newPosting = ({ ifPosting }) => {
   const postingInfo = {
     author: '',
@@ -116,7 +49,7 @@ const newPosting = ({ ifPosting }) => {
     ISBN: '',
     title: '',
     price: '',
-    condition: '',
+    condition: 'New',
     comments: ''
   };
 
@@ -136,7 +69,6 @@ const newPosting = ({ ifPosting }) => {
           placeholder={`${placeholder}`}
           onChange={event => {
             postingInfo[inputType] = event.target.value;
-            console.log(event.target.value);
             setAllInfo(postingInfo);
           }}
         />
@@ -144,9 +76,38 @@ const newPosting = ({ ifPosting }) => {
     );
   };
 
-  useEffect(() => {
-    CreatePopUp(postingInfo, allInfo, setAllInfo, ifPosting);
-  }, []);
+  const DisplayPopup = () => {
+    return (
+      <div>
+        {'Please confirm that this information is correct \n'}
+
+        <p>
+          {'Your Name: Get their name'}
+          <br></br>
+          {'Your Email: Get their email'}
+          <br></br>
+          {'Book Title: '} {`${allInfo.title}`}
+          <br></br>
+          {'Book Author: '} {`${allInfo.author}`}
+          <br></br>
+          {'Course Title: '} {`${allInfo.courseTitle}`}
+          <br></br>
+          {'ISBN Number: '} {`${allInfo.ISBN}`}
+          <br></br>
+          {'Course Code: '} {`${allInfo.courseID}`}
+          <br></br>
+          {'Condition: '} {`${allInfo.condition}`}
+          <br></br>
+          {'Price: '} {`${allInfo.price}`}
+          <br></br>
+          {'Comments: '} {`${allInfo.comments}`}
+          <br></br>
+        </p>
+
+        {'Click out of the box to cancel'}
+      </div>
+    );
+  };
 
   if (ifPosting === 'general') {
     return (
@@ -228,12 +189,64 @@ const newPosting = ({ ifPosting }) => {
         </InputLineContainer>
 
         <InputLineContainer>
-          <CreatePopUp
-            postingInfo={postingInfo}
-            allInfo={allInfo}
-            setAllInfo={setAllInfo}
-            ifPosting={ifPosting}
-          />
+          <Popup
+            trigger={
+              <div>
+                <SubmitButton>Submit</SubmitButton>
+              </div>
+            }
+            position="top left"
+            width="100px"
+          >
+            <div>
+              <DisplayPopup />
+              <SubmitButton
+                type="button"
+                value="submit"
+                onClick={() => {
+                  //this is where put will happen
+                  // Also an alert with all of the Info, if they accept, then it will post
+                  fetch(`/api/newPosting/Listing`, {
+                    method: 'POST',
+                    body: JSON.stringify(postingInfo),
+                    headers: new Headers({ 'Content-type': 'application/json' })
+                  })
+                    .then(response => {
+                      if (!response.ok) {
+                        throw new Error(response.status_text);
+                      }
+                      return response.json();
+                    })
+                    .then(updatedPosting => {
+                      setAllInfo(updatedPosting);
+                    })
+                    .catch(err => console.log(err)); // eslint-disable-line no-console
+
+                  fetch(`/api/newPosting/Book`, {
+                    method: 'POST',
+                    body: JSON.stringify(postingInfo),
+                    headers: new Headers({ 'Content-type': 'application/json' })
+                  })
+                    .then(response => {
+                      if (!response.ok) {
+                        throw new Error(response.status_text);
+                      }
+                      return response.json();
+                    })
+                    .then(updatedPosting => {
+                      setAllInfo(updatedPosting);
+                    })
+                    .catch(err => console.log(err)); // eslint-disable-line no-console
+
+                  ifPosting = 'general';
+                }}
+              >
+                <Link to={''} id="">
+                  Confirm!
+                </Link>
+              </SubmitButton>
+            </div>
+          </Popup>
         </InputLineContainer>
       </WholeContainer>
     );
