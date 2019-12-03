@@ -24,6 +24,14 @@ export const ListElementContainer = styled.li`
   text-align: center;
 `;
 
+const Container = styled.li`
+  border: 3px solid #a3bdd0;
+  padding: 4px;
+  margin: 5px auto 5px auto;
+  width: 55%;
+  text-align: center;
+`;
+
 const ListElement = styled.p`
   color: #374068;
   margin-left: 5vw;
@@ -112,7 +120,7 @@ export const DetailedListing = () => {
   return (
     <div>
       <List>
-        <ListElementContainer>
+        <Container>
           <ListTitle>{detailedListing.title}</ListTitle>
           <ColoredText>
             <strong>{`${'\xa0'.repeat(18)}ISBN${'\xa0'.repeat(3)}`}</strong>{' '}
@@ -168,7 +176,7 @@ export const DetailedListing = () => {
               </div>
             </Popup>
           )}
-        </ListElementContainer>
+        </Container>
         <div>
           {purchased && (
             <Confirmation>
@@ -264,6 +272,12 @@ export function ListingsCollection({
     } else {
       sortedList = updatedList.sort((a, b) => b.condition - a.condition);
     }
+    // } else if (sortType === 'Default') {
+    //     if (ascending) {
+    //       sortedList = updatedList.sort((a, b) => a.title - b.title);
+    //     } else {
+    //       sortedList = updatedList.sort((a, b) => b.title - a.title);
+    //     }
   } else {
     sortedList = updatedList;
   }
@@ -287,7 +301,7 @@ export function ListingsCollection({
       </ListElement>
       <ListElement>
         <strong>Price: $</strong>
-        {listing.price.toFixed(2)}
+        {listing.price}
       </ListElement>
       <ListElement>
         <strong>Condition: </strong>
