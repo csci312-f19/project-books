@@ -50,15 +50,12 @@ const newPosting = ({ ifPosting }) => {
     title: '',
     price: '',
     condition: 'New',
-    comments: ''
+    comments: 'None'
   };
-  const BackButton = styled.button``;
   const [allInfo, setAllInfo] = useState(postingInfo);
 
   // Should require price, ISBN, something else? to be a number
   // Dont need name if have accounts?
-
-  //{makeInput("price", "Price:", "5")}
 
   const makeInput = (inputType, clientQuery, placeholder) => {
     return (
@@ -82,26 +79,22 @@ const newPosting = ({ ifPosting }) => {
         {'Please confirm that this information is correct \n'}
 
         <p>
-          {'Your Name: Get their name'}
-          <br></br>
-          {'Your Email: Get their email'}
-          <br></br>
-          {'Book Title: '} {`${allInfo.title}`}
-          <br></br>
-          {'Book Author: '} {`${allInfo.author}`}
-          <br></br>
-          {'Course Title: '} {`${allInfo.courseTitle}`}
-          <br></br>
-          {'ISBN Number: '} {`${allInfo.ISBN}`}
-          <br></br>
-          {'Course Code: '} {`${allInfo.courseID}`}
-          <br></br>
-          {'Condition: '} {`${allInfo.condition}`}
-          <br></br>
-          {'Price: '} {`${allInfo.price}`}
-          <br></br>
-          {'Comments: '} {`${allInfo.comments}`}
-          <br></br>
+          <b>{'Book Title: '}</b> {`${allInfo.title}`}
+          <br />
+          <b>{'Book Author: '}</b> {`${allInfo.author}`}
+          <br />
+          <b>{'Course Title: '}</b> {`${allInfo.courseTitle}`}
+          <br />
+          <b>{'ISBN Number: '}</b> {`${allInfo.ISBN}`}
+          <br />
+          <b>{'Course Code: '}</b> {`${allInfo.courseID}`}
+          <br />
+          <b>{'Condition: '}</b> {`${allInfo.condition}`}
+          <br />
+          <b>{'Price: '}</b> {`${allInfo.price}`}
+          <br />
+          <b>{'Comments: '}</b> {`${allInfo.comments}`}
+          <br />
         </p>
 
         {'Click out of the box to cancel'}
@@ -112,6 +105,18 @@ const newPosting = ({ ifPosting }) => {
   if (ifPosting === 'general') {
     return <div />;
   } else if (ifPosting === 'postingView') {
+    //<InputLineContainer>
+    // <InputType> Price: </InputType>
+    // <InputLine
+    //   type="text"
+    //   placeholder={'5'}
+    //   onChange={event => {
+    //     postingInfo.price = parseInt(event.target.value);
+    //     setAllInfo(postingInfo);
+    //   }}
+    // />
+    //</InputLineContainer>
+
     return (
       <WholeContainer>
         <h2>Create a new posting</h2>
@@ -120,10 +125,6 @@ const newPosting = ({ ifPosting }) => {
             Back to Main Page
           </Link>
         </BackButton>
-        <InputLineContainer>
-          <InputType> Name: </InputType>
-          <InputLine type="text" placeholder={'What is your name?'} />
-        </InputLineContainer>
         {makeInput(
           'title',
           'Book Title',
@@ -134,8 +135,10 @@ const newPosting = ({ ifPosting }) => {
         {makeInput('ISBN', 'ISBN number', '123-4-567-89012-3')}
         <div>
           {' '}
-          This can be found either on the back cover of the book or on the
-          inside information page along with the publisher info{' '}
+          <i>
+            This can be found either on the back cover of the book or on the
+            inside information page along with the publisher info
+          </i>{' '}
         </div>
         {makeInput('courseID', 'Course Code', 'CSCI 0312')}
         <InputLineContainer>
@@ -155,24 +158,14 @@ const newPosting = ({ ifPosting }) => {
           </InputSelect>
         </InputLineContainer>
 
-        <InputLineContainer>
-          <InputType> Price: </InputType>
-          <InputLine
-            type="text"
-            placeholder={'5'}
-            onChange={event => {
-              postingInfo.price = parseInt(event.target.value);
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
+        {makeInput('price', 'Price', '5')}
 
         <InputLineContainer>
           <InputType> Any Additional Comments: </InputType>
           <InputComments
             cols="50"
             rows="10"
-            placeholder="Any additional comments you have. Could include: highlighted, water-stained, never opened, missing pages."
+            placeholder="Any additional comments you have. Could include: highlighted, water-stained, never opened, missing pages..."
             onChange={event => {
               postingInfo.comments = event.target.value;
               setAllInfo(postingInfo);
@@ -188,7 +181,6 @@ const newPosting = ({ ifPosting }) => {
               </div>
             }
             position="top left"
-            width="100px"
           >
             <div>
               <DisplayPopup />
