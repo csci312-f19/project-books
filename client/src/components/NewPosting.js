@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Popup from 'reactjs-popup';
 
 const InputLine = styled.input`
   text-align: left;
@@ -37,6 +38,8 @@ const InputComments = styled.textarea`
 
 const SubmitButton = styled.button``;
 
+const BackButton = styled.button``;
+
 const newPosting = ({ ifPosting }) => {
   const postingInfo = {
     author: '',
@@ -46,16 +49,13 @@ const newPosting = ({ ifPosting }) => {
     ISBN: '',
     title: '',
     price: '',
-    condition: '',
-    comments: ''
+    condition: 'New',
+    comments: 'None'
   };
-  const BackButton = styled.button``;
-  const [, setAllInfo] = useState(postingInfo);
+  const [allInfo, setAllInfo] = useState(postingInfo);
 
   // Should require price, ISBN, something else? to be a number
   // Dont need name if have accounts?
-
-  //{makeInput("price", "Price:", "5")}
 
   const makeInput = (inputType, clientQuery, placeholder) => {
     return (
@@ -73,9 +73,50 @@ const newPosting = ({ ifPosting }) => {
     );
   };
 
+  const DisplayPopup = () => {
+    return (
+      <div>
+        {'Please confirm that this information is correct \n'}
+
+        <p>
+          <b>{'Book Title: '}</b> {`${allInfo.title}`}
+          <br />
+          <b>{'Book Author: '}</b> {`${allInfo.author}`}
+          <br />
+          <b>{'Course Title: '}</b> {`${allInfo.courseTitle}`}
+          <br />
+          <b>{'ISBN Number: '}</b> {`${allInfo.ISBN}`}
+          <br />
+          <b>{'Course Code: '}</b> {`${allInfo.courseID}`}
+          <br />
+          <b>{'Condition: '}</b> {`${allInfo.condition}`}
+          <br />
+          <b>{'Price: '}</b> {`${allInfo.price}`}
+          <br />
+          <b>{'Comments: '}</b> {`${allInfo.comments}`}
+          <br />
+        </p>
+
+        {'Click out of the box to cancel'}
+      </div>
+    );
+  };
+
   if (ifPosting === 'general') {
     return <div />;
   } else if (ifPosting === 'postingView') {
+    //<InputLineContainer>
+    // <InputType> Price: </InputType>
+    // <InputLine
+    //   type="text"
+    //   placeholder={'5'}
+    //   onChange={event => {
+    //     postingInfo.price = parseInt(event.target.value);
+    //     setAllInfo(postingInfo);
+    //   }}
+    // />
+    //</InputLineContainer>
+
     return (
       <WholeContainer>
         <h2>Create a new posting</h2>
@@ -84,10 +125,6 @@ const newPosting = ({ ifPosting }) => {
             Back to Main Page
           </Link>
         </BackButton>
-        <InputLineContainer>
-          <InputType> Name: </InputType>
-          <InputLine type="text" placeholder={'What is your name?'} />
-        </InputLineContainer>
         {makeInput(
           'title',
           'Book Title',
@@ -98,8 +135,10 @@ const newPosting = ({ ifPosting }) => {
         {makeInput('ISBN', 'ISBN number', '123-4-567-89012-3')}
         <div>
           {' '}
-          This can be found either on the back cover of the book or on the
-          inside information page along with the publisher info{' '}
+          <i>
+            This can be found either on the back cover of the book or on the
+            inside information page along with the publisher info
+          </i>{' '}
         </div>
         {makeInput('courseID', 'Course Code', 'CSCI 0312')}
         <InputLineContainer>
@@ -119,24 +158,14 @@ const newPosting = ({ ifPosting }) => {
           </InputSelect>
         </InputLineContainer>
 
-        <InputLineContainer>
-          <InputType> Price: </InputType>
-          <InputLine
-            type="text"
-            placeholder={'5'}
-            onChange={event => {
-              postingInfo.price = parseInt(event.target.value);
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
+        {makeInput('price', 'Price', '5')}
 
         <InputLineContainer>
           <InputType> Any Additional Comments: </InputType>
           <InputComments
             cols="50"
             rows="10"
-            placeholder="Any additional comments you have. Could include: highlighted, water-stained, never opened, missing pages."
+            placeholder="Any additional comments you have. Could include: highlighted, water-stained, never opened, missing pages..."
             onChange={event => {
               postingInfo.comments = event.target.value;
               setAllInfo(postingInfo);
@@ -145,51 +174,63 @@ const newPosting = ({ ifPosting }) => {
         </InputLineContainer>
 
         <InputLineContainer>
-          <SubmitButton
-            type="button"
-            value="submit"
-            onClick={() => {
-              //this is where put will happen
-              // Also an alert with all of the Info, if they accept, then it will post
-              fetch(`/api/newPosting/Listing`, {
-                method: 'POST',
-                body: JSON.stringify(postingInfo),
-                headers: new Headers({ 'Content-type': 'application/json' })
-              })
-                .then(response => {
-                  if (!response.ok) {
-                    throw new Error(response.status_text);
-                  }
-                  return response.json();
-                })
-                .then(updatedPosting => {
-                  setAllInfo(updatedPosting);
-                })
-                .catch(err => console.log(err)); // eslint-disable-line no-console
-
-              fetch(`/api/newPosting/Book`, {
-                method: 'POST',
-                body: JSON.stringify(postingInfo),
-                headers: new Headers({ 'Content-type': 'application/json' })
-              })
-                .then(response => {
-                  if (!response.ok) {
-                    throw new Error(response.status_text);
-                  }
-                  return response.json();
-                })
-                .then(updatedPosting => {
-                  setAllInfo(updatedPosting);
-                })
-                .catch(err => console.log(err)); // eslint-disable-line no-console
-
-              ifPosting = 'general';
-            }}
+          <Popup
+            trigger={
+              <div>
+                <SubmitButton>Submit</SubmitButton>
+              </div>
+            }
+            position="top left"
           >
-            <Link to={''} id="">
-              Submit
-            </Link>
-          </SubmitButton>
+            <div>
+              <DisplayPopup />
+              <SubmitButton
+                type="button"
+                value="submit"
+                onClick={() => {
+                  //this is where put will happen
+                  // Also an alert with all of the Info, if they accept, then it will post
+                  fetch(`/api/newPosting/Listing`, {
+                    method: 'POST',
+                    body: JSON.stringify(postingInfo),
+                    headers: new Headers({ 'Content-type': 'application/json' })
+                  })
+                    .then(response => {
+                      if (!response.ok) {
+                        throw new Error(response.status_text);
+                      }
+                      return response.json();
+                    })
+                    .then(updatedPosting => {
+                      setAllInfo(updatedPosting);
+                    })
+                    .catch(err => console.log(err)); // eslint-disable-line no-console
+
+                  fetch(`/api/newPosting/Book`, {
+                    method: 'POST',
+                    body: JSON.stringify(postingInfo),
+                    headers: new Headers({ 'Content-type': 'application/json' })
+                  })
+                    .then(response => {
+                      if (!response.ok) {
+                        throw new Error(response.status_text);
+                      }
+                      return response.json();
+                    })
+                    .then(updatedPosting => {
+                      setAllInfo(updatedPosting);
+                    })
+                    .catch(err => console.log(err)); // eslint-disable-line no-console
+
+                  ifPosting = 'general';
+                }}
+              >
+                <Link to={''} id="">
+                  Confirm!
+                </Link>
+              </SubmitButton>
+            </div>
+          </Popup>
         </InputLineContainer>
       </WholeContainer>
     );
