@@ -15,6 +15,7 @@ class Book extends Model {
       // required : [nothing yet]
 
       properties: {
+        id: { type: 'integer' },
         ISBN: { type: 'string' },
         courseID: { type: 'string' },
         title: { type: 'string' }

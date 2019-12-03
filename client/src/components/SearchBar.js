@@ -33,7 +33,6 @@ function Search({ setBook }) {
           // setBook(event.target.value);
         }}
         onKeyDown={event => {
-          console.log('a');
           if (event.keyCode === 13) {
             setBook(event.target.value);
           }
