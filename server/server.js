@@ -64,7 +64,7 @@ passport.use(
         if (!user) {
           user = await User.query().insertAndFetch({
             googleId: payload.email,
-            id: payload.id,
+            // id: payload.id,
             name: payload.name,
             email: payload.email
           });
@@ -112,10 +112,20 @@ app.post('/logout', (request, response) => {
 
 app.get('/api/MyPostings/', (request, response, next) => {
   Listing.query()
-    .select('*')
+    .select(
+      'Listings.id',
+      'title',
+      'Listings.ISBN',
+      'edited',
+      'courseID',
+      'price',
+      'userID',
+      'condition',
+      'comments'
+    )
     .from('Listings')
-    .joinRaw('natural join "Books"')
-    .where('userId', request.user.id)
+    .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')
+    .where('userID', request.user.id)
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
@@ -171,7 +181,7 @@ app.post('/api/newPosting/Listing', (request, response, next) => {
 
 app.post('/api/newPosting/Book', (request, response, next) => {
   const bookData = {
-    ISBN: `${request.body.ISBN}`,
+    ISBN: request.body.ISBN,
     title: request.body.title,
     courseID: request.body.courseID
   };
@@ -197,11 +207,22 @@ app.get(`/api/books/:ISBN`, (request, response, next) => {
     }, next); // <- Notice the "next" function as the rejection handler
 });
 
-app.get('/api/bookListings', (request, response, next) => {
+app.get(`/api/bookListings/`, (request, response, next) => {
+  // new query approach to deal with new primary keys
   Listing.query()
-    .select('*')
+    .select(
+      'Listings.id',
+      'title',
+      'courseID',
+      'price',
+      'userID',
+      'condition',
+      'comments',
+      'Listings.ISBN',
+      'edited'
+    )
     .from('Listings')
-    .joinRaw('natural join "Books"')
+    .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
@@ -210,10 +231,29 @@ app.get('/api/bookListings', (request, response, next) => {
 app.get(`/api/bookListings/:id`, (request, response, next) => {
   const { id } = request.params;
   Listing.query()
-    .select('*')
+    .select(
+      'Listings.id',
+      'title',
+      'Listings.ISBN',
+      'edited',
+      'courseID',
+      'price',
+      'userID',
+      'condition',
+      'comments'
+    )
     .from('Listings')
-    .joinRaw('natural join "Books"')
-    .where('id', id)
+    .innerJoin('Books', 'Books.ISBN', 'Listings.ISBN')
+    .where('Listings.id', id)
+    .then(rows => {
+      response.send(rows);
+    }, next); // <- Notice the "next" function as the rejection handler
+});
+
+app.get('/api/users', (request, response, next) => {
+  User.query()
+    .select('*')
+    .from('Users')
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
@@ -258,7 +298,6 @@ app.use((error, request, response, next) => {
 const nodemailer = require('nodemailer');
 
 app.post('/api/bookrequest', function Emailer(req) {
-  //   console.log(`the request has been received! it is:${req}`);
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {

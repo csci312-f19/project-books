@@ -38,6 +38,8 @@ const Confirmation = styled.div`
   background-color: lightgreen;
 `;
 
+const BackButton = styled.button``;
+
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 
 //  box-sizing: border-box;
@@ -141,6 +143,11 @@ export const EmailButton = ({ detailedListing, setPurchase, sellerInfo }) => {
 export function DetailedListing({ detailedListing, purchased, setPurchase }) {
   return (
     <div>
+      <BackButton>
+        <Link to={''} id="">
+          Back to Main Page
+        </Link>
+      </BackButton>
       <ListElementContainer>
         <h2>{detailedListing.title}</h2>
         <div>
