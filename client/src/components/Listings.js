@@ -106,7 +106,6 @@ export const DetailedListing = () => {
         return response.json();
       })
       .then(data => {
-        console.log(data[0]);
         setDetailedListing(data[0]);
       })
       .catch(err => console.log(err));
