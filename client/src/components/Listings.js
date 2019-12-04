@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import Immutable from 'immutable';
+
 // import Immutable from 'immutable';
 
 const ListingsContainer = styled.div`
@@ -61,10 +63,10 @@ function sendEmail(sellerInfo, bookTitle, bookPrice) {
   })
     .then(res => res.json())
     .then(res => {
-      console.log('here is the response: ', res);
+      console.log('Response:', res);
     })
     .catch(err => {
-      console.error('here is the error: ', err);
+      console.error('Error: ', err);
     });
 }
 export const DetailedListingsContainer = () => {
@@ -98,7 +100,7 @@ export const DetailedListingsContainer = () => {
 export function EmailButtonContainer({ detailedListing, setPurchase }) {
   const [sellerInfo, setSellerInfo] = useState('');
   let userID = detailedListing.userID;
-  userID = '0';
+  userID = 0;
   useEffect(() => {
     fetch(`/api/googleID/${userID}`)
       .then(response => {
@@ -108,7 +110,7 @@ export function EmailButtonContainer({ detailedListing, setPurchase }) {
         return response.json();
       })
       .then(data => {
-        setSellerInfo(data);
+        setSellerInfo(Immutable.List(data).get(0));
       })
       .catch(err => console.log(err));
   }, []);
@@ -126,13 +128,9 @@ export const EmailButton = ({ detailedListing, setPurchase, sellerInfo }) => {
   return (
     <button
       onClick={() => {
-        console.log(sellerInfo);
-        //   sendEmail(
-        //     sellerInfo,
-        //     detailedListing.title,
-        //     detailedListing.price
-        //   );
-        //   setPurchase(true);
+        // console.log(sellerInfo);
+        sendEmail(sellerInfo, detailedListing.title, detailedListing.price);
+        setPurchase(true);
       }}
     >
       Place my Order
@@ -183,7 +181,7 @@ export function DetailedListing({ detailedListing, purchased, setPurchase }) {
             <div>
               {`Are you sure you would like to buy this book? Finalizing your purchase
           will confirm your order and send an alert to the seller.    `}
-              <EmailButton
+              <EmailButtonContainer
                 detailedListing={detailedListing}
                 setPurchase={setPurchase}
               />
@@ -293,7 +291,7 @@ export function ListingsCollection({
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
 
-    <ListElementContainer key={listing.listingID}>
+    <ListElementContainer key={listing.id}>
       <ListTitle>{listing.title}</ListTitle>
       <ListElement>{listing.courseID}</ListElement>
       <ListElement>{listing.courseTitle}</ListElement>

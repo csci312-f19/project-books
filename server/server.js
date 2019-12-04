@@ -260,9 +260,8 @@ app.get('/api/users', (request, response, next) => {
 });
 
 app.get(`/api/googleID/:id`, (request, response, next) => {
-  const { userID } = request.params;
   User.query()
-    .where('id', { userID })
+    .where('id', request.params.id)
     .then(rows => {
       response.send(rows);
     }, next); // <- Notice the "next" function as the rejection handler
@@ -298,6 +297,7 @@ app.use((error, request, response, next) => {
 const nodemailer = require('nodemailer');
 
 app.post('/api/bookrequest', function Emailer(req) {
+  console.log(req.body);
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
