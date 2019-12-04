@@ -5,12 +5,17 @@ class Book extends Model {
     return 'Books';
   }
 
+  static get idColumn() {
+    return 'ISBN';
+  }
+
   static get jsonSchema() {
     return {
       type: 'object',
       // required : [nothing yet]
 
       properties: {
+        id: { type: 'integer' },
         ISBN: { type: 'string' },
         courseID: { type: 'string' },
         title: { type: 'string' }

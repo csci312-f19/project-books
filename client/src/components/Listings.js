@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
-//import Immutable from 'immutable';
+// import Immutable from 'immutable';
 
 const ListingsContainer = styled.div`
   text-align: center;
@@ -37,6 +37,8 @@ const Confirmation = styled.div`
   text-align: center;
   background-color: lightgreen;
 `;
+
+const BackButton = styled.button``;
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 
@@ -88,6 +90,11 @@ export const DetailedListing = () => {
 
   return (
     <div>
+      <BackButton>
+        <Link to={''} id="">
+          Back to Main Page
+        </Link>
+      </BackButton>
       <ListElementContainer>
         <h2>{detailedListing.title}</h2>
         <div>
@@ -198,7 +205,8 @@ export function ListingsCollection({
 
     updatedList = currentListings.filter(listing => {
       const editedTitle = listing.title.toLowerCase();
-      const editedCourseTitle = listing.courseID.toLowerCase();
+      // const editedCourseTitle = listing.courseTitle.toLowerCase();
+      const editedCourseID = listing.courseID.toLowerCase();
       // let editedAuthor=listing.Author.toUpperCase();
 
       for (let i = 0; i < searchTerms.length; i++) {
@@ -206,7 +214,8 @@ export function ListingsCollection({
         if (term !== '') {
           if (
             editedTitle.includes(term) ||
-            editedCourseTitle.includes(term) ||
+            // editedCourseTitle.includes(term) ||
+            editedCourseID.includes(term) ||
             listing.ISBN.includes(term)
           ) {
             return true;
@@ -217,7 +226,7 @@ export function ListingsCollection({
     });
   }
 
-  let sortedList;
+  let sortedList = [];
 
   if (sortType === 'Price') {
     if (ascending) {
@@ -232,7 +241,7 @@ export function ListingsCollection({
     } else {
       sortedList = updatedList.sort((a, b) => b.condition - a.condition);
     }
-  } else {
+  } else if (searchTerm != null) {
     sortedList = updatedList;
   }
 
@@ -247,7 +256,7 @@ export function ListingsCollection({
       <ListElement>{listing.ISBN}</ListElement>
       <ListElement>{listing.price}</ListElement>
       <ListElement>{listing.condition}</ListElement>
-      <Link to={String(listing.listingID)}>More Info</Link>
+      <Link to={String(listing.id)}>More Info</Link>
     </ListElementContainer>
   ));
 
