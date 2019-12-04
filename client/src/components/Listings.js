@@ -95,7 +95,7 @@ export const DetailedListing = () => {
   const [detailedListing, setDetailedListing] = useState('');
   const [purchased, setPurchase] = useState(false);
 
-  const { id } = useParams();
+  const { id } = useParams(); // this is where the problem is
 
   useEffect(() => {
     fetch(`/api/bookListings/${id}`) //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
@@ -111,7 +111,6 @@ export const DetailedListing = () => {
       })
       .catch(err => console.log(err));
   }, []);
-  console.log(detailedListing);
   return (
     <div>
       <List>
@@ -283,7 +282,7 @@ export function ListingsCollection({
     // All the others will run though list of other properties to populate ListElement probably
     <ListElementContainer key={listing.ISBN}>
       <ListTitle>
-        <Link to={String(listing.listingID)}>{listing.title}</Link>
+        <Link to={String(listing.id)}>{listing.title}</Link>
       </ListTitle>
 
       <ListElement>
