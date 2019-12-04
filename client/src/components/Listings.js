@@ -244,7 +244,14 @@ export function ListingsCollection({
   } else if (searchTerm != null) {
     sortedList = updatedList;
   }
-
+  const conditions = [
+    'Bad',
+    'Very Worn',
+    'Acceptable',
+    'Good',
+    'Very Good',
+    'Like New'
+  ];
   const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
@@ -255,7 +262,7 @@ export function ListingsCollection({
       <ListElement>{listing.courseTitle}</ListElement>
       <ListElement>{listing.ISBN}</ListElement>
       <ListElement>{listing.price}</ListElement>
-      <ListElement>{listing.condition}</ListElement>
+      <ListElement>{conditions[listing.condition]}</ListElement>
       <Link to={String(listing.id)}>More Info</Link>
     </ListElementContainer>
   ));
