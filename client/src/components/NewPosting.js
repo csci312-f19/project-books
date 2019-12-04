@@ -36,6 +36,10 @@ const InputComments = styled.textarea`
   display: block;
 `;
 
+const Required = styled.span`
+  color: red;
+`;
+
 const SubmitButton = styled.button``;
 
 const BackButton = styled.button``;
@@ -60,7 +64,8 @@ const newPosting = ({ ifPosting }) => {
   const makeInput = (inputType, clientQuery, placeholder) => {
     return (
       <InputLineContainer>
-        <InputType> {`${clientQuery}`}: </InputType>
+        <InputType> {`${clientQuery}`}:</InputType>
+        <Required>* </Required>
         <InputLine
           type="text"
           placeholder={`${placeholder}`}
@@ -105,6 +110,7 @@ const newPosting = ({ ifPosting }) => {
   if (ifPosting === 'general') {
     return <div />;
   } else if (ifPosting === 'postingView') {
+    // maybe if we have a problem with price being a string vs int
     //<InputLineContainer>
     // <InputType> Price: </InputType>
     // <InputLine
@@ -125,6 +131,10 @@ const newPosting = ({ ifPosting }) => {
             Back to Main Page
           </Link>
         </BackButton>
+        <br />
+        <Required text-align="left">*</Required>
+        <span text-align="left">Required Field</span>
+        <br />
         {makeInput(
           'title',
           'Book Title',
