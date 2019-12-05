@@ -12,13 +12,12 @@
   },
   "keywords": [],
   "contributors": [
-    "Student1 <student1@middlebury.edu>",
-    "Student2 <student2@middlebury.edu>",
-    "Student2 <student2@middlebury.edu>",
-    "Student3 <student3@middlebury.edu>",
-    "Student4 <student4@middlebury.edu>",
-    "Student5 <student5@middlebury.edu>",
-    "Student6 <student6@middlebury.edu>"
+    "Grant Berman <gberman@middlebury.edu>",
+    "Nick O'Leary <nroleary@middlebury.edu>",
+    "Hannah Donovan <hdonovan@middlebury.edu>",
+    "Steph Jordan <sjordan@middlebury.edu>",
+    "Andre Xiao <amxiao@middlebury.edu>",
+    "Annika Xu <xinyuex@middlebury.edu>"
   ],
   "license": "Apache-2.0",
   "dependencies": {
@@ -28,6 +27,7 @@
     "nodemailer": "^6.3.1",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
+    "react-columns": "^1.2.1",
     "react-dom": "^16.10.2",
     "react-google-login": "^5.0.7",
     "react-immutable-proptypes": "^2.1.0",

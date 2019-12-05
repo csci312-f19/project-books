@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 export const SearchBar = styled.input`
-  text-align: center;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
   width: 50%;
-  height: 25px
+  height: 25px;
   border-radius: 25px;
-  border: 2px solid;
+  border: 2px solid #cccccc;
 `;
 const SubmitButton = styled.input`
   margin-left: 10px;
@@ -27,7 +29,7 @@ function Search({ setBook }) {
     <SearchBarContainer>
       <SearchBar
         type="text"
-        placeholder="Search by Title, Course, ISBN, or Keyword"
+        placeholder="Search by Title, Course ID, ISBN, or Keyword"
         onChange={event => {
           book = event.target.value;
           // setBook(event.target.value);

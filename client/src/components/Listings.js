@@ -7,20 +7,36 @@ import Popup from 'reactjs-popup';
 const ListingsContainer = styled.div`
   text-align: center;
 `;
+
+const ColoredText = styled.div`
+  color: #374068;
+`;
+
 const List = styled.ul`
   list-style-type: none;
   height: 20px;
 `;
 export const ListElementContainer = styled.li`
-  border: 1px solid;
-  padding: 2px;
-  margin: 5px;
+  border: 3px solid #a3bdd0;
+  padding: 4px;
+  margin: 5px auto 5px auto;
+  width: 55%;
+  text-align: center;
 `;
-const ListElement = styled.p``;
+
+const ListElement = styled.p`
+  color: #374068;
+  margin-left: 5vw;
+  font-size: 1.1vw;
+`;
+
 const ListTitle = styled.h2`
   font-size: 20px;
-  text-align: left;
+  color: #374068;
+  text-align: center;
   padding: 5px;
+  text-decoration: underline;
+  font-size: 1.4vw;
 `;
 const SortBarContainer = styled.div`
     text-align: center;
@@ -37,6 +53,15 @@ const Confirmation = styled.div`
   text-align: center;
   background-color: lightgreen;
 `;
+
+const BuyButton = styled.button`
+  color: #374068;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.3vw;
+`;
+
+const BackButton = styled.button``;
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 
@@ -70,7 +95,7 @@ export const DetailedListing = () => {
   const [detailedListing, setDetailedListing] = useState('');
   const [purchased, setPurchase] = useState(false);
 
-  const { id } = useParams();
+  const { id } = useParams(); // this is where the problem is
 
   useEffect(() => {
     fetch(`/api/bookListings/${id}`) //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
@@ -85,71 +110,82 @@ export const DetailedListing = () => {
       })
       .catch(err => console.log(err));
   }, []);
-
   return (
     <div>
-      <ListElementContainer>
-        <h2>{detailedListing.title}</h2>
-        <div>
-          <strong>ISBN:</strong> {` ${detailedListing.ISBN}`}
-        </div>
-        <div>
-          <strong>Comments:</strong>
-          {` ${detailedListing.comments}`}{' '}
-        </div>
-        <div>
-          <strong>Condition:</strong>
-          {` ${detailedListing.condition}`}{' '}
-        </div>
-        <div>
-          <strong>Course ID:</strong> {` ${detailedListing.courseID}`}{' '}
-        </div>
-        <div>
-          <strong>Edited Date:</strong>
-          {` ${detailedListing.edited}`}{' '}
-        </div>
-        <div>
-          <strong>Price:</strong> {` $${detailedListing.price}`}{' '}
-        </div>
-        {!purchased && (
-          <Popup
-            trigger={
-              <ListingsContainer>
-                <button> Buy Now </button>
-              </ListingsContainer>
-            }
-            position="bottom center"
-          >
-            <div>
-              {`Are you sure you would like to buy this book? Finalizing your purchase
+      <List>
+        <BackButton>
+          <Link to={''} id="">
+            Back to Main Page
+          </Link>
+        </BackButton>
+        <ListElementContainer>
+          <ListTitle>{detailedListing.title}</ListTitle>
+          <ColoredText>
+            <strong>{`${'\xa0'.repeat(18)}ISBN${'\xa0'.repeat(3)}`}</strong>{' '}
+            {` ${detailedListing.ISBN}`}
+          </ColoredText>
+          <ColoredText>
+            <strong>{`${'\xa0'.repeat(5)}Comments${'\xa0'.repeat(3)}`}</strong>
+            {` ${detailedListing.comments}`}{' '}
+          </ColoredText>
+          <ColoredText>
+            <strong>{`Condition${'\xa0'.repeat(3)}`}</strong>
+            {` ${detailedListing.condition}`}
+            {'\xa0'.repeat(6)}
+          </ColoredText>
+          <ColoredText>
+            <strong>{`Course ID${'\xa0'.repeat(3)}`}</strong>{' '}
+            {` ${detailedListing.courseID}`}
+          </ColoredText>
+          <ColoredText>
+            <strong>{`Edited Date${'\xa0'.repeat(3)}`}</strong>
+            {` ${detailedListing.edited}`} {'\xa0'.repeat(11)}
+          </ColoredText>
+          <ColoredText>
+            <strong>{`Price${'\xa0'.repeat(3)}`}</strong>{' '}
+            {` $${detailedListing.price}`} {'\xa0'.repeat(5)}
+          </ColoredText>
+          <br />
+          {!purchased && (
+            <Popup
+              trigger={
+                <ListingsContainer>
+                  <BuyButton> Buy Now </BuyButton>
+                </ListingsContainer>
+              }
+              position="bottom center"
+            >
+              <div>
+                {`Are you sure you would like to buy this book? Finalizing your purchase
           will confirm your order and send an alert to the seller.    `}
-              <button
-                onClick={() => {
-                  sendEmail(
-                    'Hannah',
-                    'hdonovan@middlebury.edu',
-                    detailedListing.title,
-                    detailedListing.price
-                  );
-                  setPurchase(true);
-                }}
-              >
-                Place my Order
-              </button>
-            </div>
-          </Popup>
-        )}
-      </ListElementContainer>
-      <div>
-        {purchased && (
-          <Confirmation>
-            {' '}
-            Congratulations! Your request has been sent to the seller of this
-            book. Expect to hear back via email in 3 days or less. If you have
-            not heard back by then, feel free to submit a new request.{' '}
-          </Confirmation>
-        )}{' '}
-      </div>
+                <BuyButton
+                  onClick={() => {
+                    sendEmail(
+                      'Hannah',
+                      'hdonovan@middlebury.edu',
+                      detailedListing.title,
+                      detailedListing.price
+                    );
+                    setPurchase(true);
+                  }}
+                >
+                  Place my Order
+                </BuyButton>
+              </div>
+            </Popup>
+          )}
+        </ListElementContainer>
+        <div>
+          {purchased && (
+            <Confirmation>
+              {' '}
+              Congratulations! Your request has been sent to the seller of this
+              book. Expect to hear back via email in 3 days or less. If you have
+              not heard back by then, feel free to submit a new request.{' '}
+            </Confirmation>
+          )}{' '}
+        </div>
+      </List>
     </div>
   );
 };
@@ -157,20 +193,22 @@ export const DetailedListing = () => {
 export function SortBar({ sortType, setSortType, ascending, setDirection }) {
   return (
     <SortBarContainer>
-      Order by
-      <SelectBar
-        value={sortType}
-        onChange={event => {
-          setSortType(event.target.value);
-          if (sortType === 'Default') {
-            setDirection(true);
-          }
-        }}
-      >
-        <option value="Default">Default</option>
-        <option value="Price">Price</option>
-        <option value="Condition">Condition</option>
-      </SelectBar>
+      <ColoredText>
+        Sort by: {'  '}
+        <SelectBar
+          value={sortType}
+          onChange={event => {
+            setSortType(event.target.value);
+            if (sortType === 'Default') {
+              setDirection(true);
+            }
+          }}
+        >
+          <option value="Default">Default</option>
+          <option value="Price">Price</option>
+          <option value="Condition">Condition</option>
+        </SelectBar>
+      </ColoredText>
       {(sortType === 'Price' || sortType === 'Condition') && (
         <SelectBar
           value={ascending ? 'True' : 'False'}
@@ -241,15 +279,28 @@ export function ListingsCollection({
   const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
-
     <ListElementContainer key={listing.ISBN}>
-      <ListTitle>{listing.title}</ListTitle>
-      <ListElement>{listing.courseID}</ListElement>
+      <ListTitle>
+        <Link to={String(listing.id)}>{listing.title}</Link>
+      </ListTitle>
+
+      <ListElement>
+        <strong>Course: </strong>
+        {listing.courseID}
+      </ListElement>
       <ListElement>{listing.courseTitle}</ListElement>
-      <ListElement>{listing.ISBN}</ListElement>
-      <ListElement>{listing.price}</ListElement>
-      <ListElement>{listing.condition}</ListElement>
-      <Link to={String(listing.id)}>More Info</Link>
+      <ListElement>
+        <strong>ISBN: </strong>
+        {listing.ISBN}
+      </ListElement>
+      <ListElement>
+        <strong>Price: $</strong>
+        {listing.price}
+      </ListElement>
+      <ListElement>
+        <strong>Condition: </strong>
+        {listing.condition}
+      </ListElement>
     </ListElementContainer>
   ));
 
