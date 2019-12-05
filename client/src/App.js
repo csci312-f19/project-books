@@ -8,7 +8,6 @@ import Listings from './components/Listings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import Logo from './middbooks.png';
 import { Link } from 'react-router-dom';
 
 let GOOGLE_CLIENT_ID;
@@ -23,14 +22,12 @@ if (String(window.location.href).includes('localhost')) {
 //import Immutable from 'immutable';   // need to do "npm install immutable
 
 /* eslint-disable react/prefer-stateless-function */
-
-document.body.style.background = '#fafafa';
+const Title = styled.h1`
+  text-align: center;
+`;
 
 const DropDownDiv = styled.div`
   float: right;
-  position: absolute;
-  right: 0vw;
-  z-index: 1;
 `;
 const DropDownButton = styled.button`
   background-color: #4caf50;
@@ -45,32 +42,14 @@ const DropdownContent = styled.div`
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  z-index: 2;
+  z-index: 1;
   right: 0;
-`;
-
-const ContainerDiv = styled.div`
-  postion: relative;
-  z-inline: 0;
 `;
 const Item = styled.div`
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-`;
-
-const CenteredImg = styled.div`
-  position: block;
-  text-align: center;
-  z-index: 1;
-`;
-
-const Image = styled.img`
-  width: 30%;
-  margin-left: auto;
-  margin-right: auto;
-  display: inline;
 `;
 
 function App() {
@@ -169,35 +148,20 @@ function App() {
 
   return (
     <Router>
-      {' '}
-            
       <div>
-             
-        <ContainerDiv>
-             
-          <DropDownDiv onClick={() => setMenu(!menuState)}>
-                      <DropDownButton>My Account</DropDownButton>           
-            <DropdownContent>
-              {menuState && DropDownContent}
-            </DropdownContent>{' '}
-                    
-          </DropDownDiv>{' '}
-                  
-          <br />         
-          <br />
-          <CenteredImg>
-            <Image src={Logo} alt="website logo" />
-          </CenteredImg>
-        </ContainerDiv>{' '}
-                
+        <DropDownDiv onClick={() => setMenu(!menuState)}>
+          <DropDownButton>My Account</DropDownButton>
+          <DropdownContent>{menuState && DropDownContent}</DropdownContent>
+        </DropDownDiv>
+        <br />
+        <br />
+        <Title>Midd Book Market</Title>
         <Switch>
-                  
           <Route
             exact
             path="/newPosting"
             component={() => <NewPosting ifPosting={'postingView'} />}
           />
-                    
           <Route
             exact
             path="/myPostings"
@@ -205,7 +169,6 @@ function App() {
               <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
             )}
           />
-                    
           <Route
             path="/:id"
             component={() => (
@@ -216,36 +179,27 @@ function App() {
               />
             )}
           />
-                    
           <Route
             render={() => (
               <div>
-                                
                 {loggedIn && <NewPosting ifPosting={'general'} />}
-                                
                 {loggedIn && (
                   <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
                 )}
-                                
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}
                 />
-                                
                 <Listings
                   currentListings={listings}
                   searchTerm={currentBook}
                   mode={'general'}
                 />
-                              
               </div>
             )}
           />
-                  
         </Switch>
-              
       </div>
-          
     </Router>
   );
 }

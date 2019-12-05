@@ -13,8 +13,6 @@ const View = styled.div`
   margin: 30px 120px;
   border-radius: 50px;
   background-color: #f2f2f2;
-  // background-color: #d8e7f0;
-  // background-color: #ebebeb;
   padding: 30px 30px;
 `;
 const Edit = styled.div`
@@ -136,7 +134,11 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
               <Route
                 render={() => (
                   <div>
-                    <NewPosting ifPosting={'general'} />
+                    <button display="block" text-align="center">
+                      <Link to={'newPosting'} id="newPosting">
+                        Create New Posting
+                      </Link>
+                    </button>
                   </div>
                 )}
               />
