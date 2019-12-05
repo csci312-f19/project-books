@@ -27,7 +27,7 @@ const InputType = styled.span`
   text-align: left;
 `;
 
-const WholeContainer = styled.div`
+const WholeContainer = styled.form`
   text-align: center;
 `;
 
@@ -57,6 +57,8 @@ const newPosting = ({ ifPosting }) => {
     comments: 'None'
   };
   const [allInfo, setAllInfo] = useState(postingInfo);
+  const [filledOut, setFilledOut] = useState(false);
+  const [countInput, setCountInput] = useState(0);
 
   // Should require price, ISBN, something else? to be a number
   // Dont need name if have accounts?
@@ -72,7 +74,16 @@ const newPosting = ({ ifPosting }) => {
           onChange={event => {
             postingInfo[inputType] = event.target.value;
             setAllInfo(postingInfo);
+            // If there is some text in the input
+            if (allInfo[inputType].length > 0) {
+              setCountInput(countInput + 1);
+            }
+            // if there is no text in the input
+            else {
+              setCountInput(countInput - 1);
+            }
           }}
+          required
         />
       </InputLineContainer>
     );
@@ -107,6 +118,10 @@ const newPosting = ({ ifPosting }) => {
     );
   };
 
+  const submitFunction = () => {
+    return alert('this is an alert');
+  };
+
   if (ifPosting === 'general') {
     return <div />;
   } else if (ifPosting === 'postingView') {
@@ -124,7 +139,12 @@ const newPosting = ({ ifPosting }) => {
     //</InputLineContainer>
 
     return (
-      <WholeContainer>
+      <WholeContainer
+        action=""
+        onsubmit={() => {
+          submitFunction();
+        }}
+      >
         <h2>Create a new posting</h2>
         <BackButton>
           <Link to={''} id="">
@@ -152,12 +172,21 @@ const newPosting = ({ ifPosting }) => {
         </div>
         {makeInput('courseID', 'Course Code', 'CSCI 0312')}
         <InputLineContainer>
-          <InputType> Condition: </InputType>
+          <InputType> Condition:</InputType>
+          <Required text-align="left">* </Required>
           <InputSelect
             onChange={event => {
               postingInfo.condition = event.target.value;
               setAllInfo(postingInfo);
+              if (allInfo.Condition.length > 0) {
+                setCountInput(countInput + 1);
+              }
+              // if there is no text in the input
+              else {
+                setCountInput(countInput - 1);
+              }
             }}
+            required
           >
             <option value="New">New</option>
             <option value="Very Good">Very Good</option>
@@ -187,19 +216,29 @@ const newPosting = ({ ifPosting }) => {
           <Popup
             trigger={
               <div>
-                <SubmitButton>Submit</SubmitButton>
+                <SubmitButton
+                  value="Submit"
+                  onClick={() => {
+                    if (countInput >= 7) {
+                      setFilledOut(true);
+                    } else {
+                      setFilledOut(false);
+                    }
+                    return false;
+                  }}
+                >
+                  Submit
+                </SubmitButton>
               </div>
             }
             position="top left"
           >
             <div>
               <DisplayPopup />
-              <SubmitButton
-                type="button"
-                value="submit"
+              <input
+                type="submit"
+                value="confirm"
                 onClick={() => {
-                  //this is where put will happen
-                  // Also an alert with all of the Info, if they accept, then it will post
                   fetch(`/api/newPosting/Listing`, {
                     method: 'POST',
                     body: JSON.stringify(postingInfo),
@@ -234,11 +273,7 @@ const newPosting = ({ ifPosting }) => {
 
                   ifPosting = 'general';
                 }}
-              >
-                <Link to={''} id="">
-                  Confirm!
-                </Link>
-              </SubmitButton>
+              />
             </div>
           </Popup>
         </InputLineContainer>
