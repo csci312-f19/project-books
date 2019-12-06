@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Popup from 'reactjs-popup';
 
 const InputLine = styled.input`
   text-align: left;
@@ -264,7 +263,9 @@ const newPosting = ({ ifPosting }) => {
           </InputLineContainer>
 
           <InputLineContainer>
-            <input value="Submit" type="submit" />
+            <SubmitButton value="Submit" type="submit">
+              Submit
+            </SubmitButton>
           </InputLineContainer>
         </Form>
       </WholeContainer>
