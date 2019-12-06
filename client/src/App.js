@@ -32,6 +32,8 @@ const DropDownDiv = styled.div`
   position: absolute;
   right: 0vw;
   z-index: 1;
+  margin-right: 3%
+  margin-top: 3%
 `;
 
 const DropDownButton = styled.button`
@@ -79,17 +81,18 @@ const MiddBooks = styled.img`
   width: 25%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 8%;
   display: inline;
 `;
 
 const HomeDiv = styled.div`
   float: left;
   position: absolute;
-  left: 5%;
-  top: 2%;
   text-align: center;
   max-width: 2.5vw;
   z-index: 1;
+  margin-left: 3%
+  margin-top: 3%
 `;
 
 const HomeButton = styled.button`
@@ -218,20 +221,14 @@ function App() {
           </Link>
         </HomeDiv>
       )}
-            
       <DropDownDiv onClick={() => setMenu(!menuState)}>
-                  <DropDownButton>My Account</DropDownButton>           
+        <DropDownButton>My Account</DropDownButton>
         <DropdownContent>{menuState && DropDownContent}</DropdownContent>
       </DropDownDiv>
-              
-      <br />         
-      <br />
       <CenteredImg>
         <MiddBooks src={Logo} alt="website logo" />
       </CenteredImg>
-              
       <Switch>
-              
         <Route
           exact
           path="/newPosting"
@@ -240,7 +237,6 @@ function App() {
             return <NewPosting ifPosting={'postingView'} />;
           }}
         />
-                  
         <Route
           exact
           path="/myPostings"
@@ -251,7 +247,6 @@ function App() {
             );
           }}
         />
-                  
         <Route
           path="/:id"
           render={() => {
@@ -265,37 +260,29 @@ function App() {
             );
           }}
         />
-                  
         <Route
           render={() => {
             setButton(false);
             return (
               <div>
-                                
                 {loggedIn && <NewPosting ifPosting={'general'} />}
-                                
                 {loggedIn && (
                   <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
                 )}
-                                
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}
                 />
-                                
                 <Listings
                   currentListings={listings}
                   searchTerm={currentBook}
                   mode={'general'}
                 />
-                              
               </div>
             );
           }}
         />
-                
       </Switch>
-          
     </Router>
   );
 }

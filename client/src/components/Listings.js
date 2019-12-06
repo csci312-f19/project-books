@@ -23,7 +23,7 @@ export const ListElementContainer = styled.li`
 `;
 
 const View = styled.div`
-  margin: 30px 120px;
+  margin: 30px 120px 200px;
   border-radius: 50px;
   background-color: #f2f2f2;
   color: #374068;
@@ -65,7 +65,8 @@ const Confirmation = styled.div`
 const BuyButton = styled.button`
   color: #374068;
   text-align: center;
-  padding: 5px;
+  padding: 8px;
+  margin: 20px 10px 10px 10px;
   font-size: 1.3vw;
   border-radius: 40px;
 `;
@@ -145,7 +146,6 @@ export const DetailedListing = () => {
         <Detail>
           <strong>{`Price`}</strong> {` $${detailedListing.price}`}
         </Detail>
-        <br />
         {!purchased && (
           <Popup
             trigger={
@@ -157,7 +157,7 @@ export const DetailedListing = () => {
           >
             <div>
               {`Are you sure you would like to buy this book? Finalizing your purchase
-          will confirm your order and send an alert to the seller.    `}
+          will confirm your order and send an alert to the seller.`}
               <BuyButton
                 onClick={() => {
                   sendEmail(
@@ -183,12 +183,6 @@ export const DetailedListing = () => {
             heard back by then, feel free to submit a new request.
           </Confirmation>
         )}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </div>
     </List>
   );
@@ -197,7 +191,7 @@ export const DetailedListing = () => {
 export function SortBar({ sortType, setSortType, ascending, setDirection }) {
   return (
     <SortBarContainer>
-      <Detail>
+      <div>
         Sort by: {'  '}
         <SelectBar
           value={sortType}
@@ -225,7 +219,7 @@ export function SortBar({ sortType, setSortType, ascending, setDirection }) {
             <option value="False">Descending</option>
           </SelectBar>
         )}
-      </Detail>
+      </div>
     </SortBarContainer>
   );
 }
