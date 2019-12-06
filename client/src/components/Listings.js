@@ -27,7 +27,7 @@ const View = styled.div`
   border-radius: 50px;
   background-color: #f2f2f2;
   color: #374068;
-  padding: 30px 30px;
+  padding: 20px 20px;
   border: 3px solid #a3bdd0;
 `;
 
@@ -65,6 +65,7 @@ const SelectBar = styled.select`
 const Confirmation = styled.div`
   text-align: center;
   background-color: lightgreen;
+  border-radius: 4px;
 `;
 
 const BuyButton = styled.button`
@@ -183,12 +184,13 @@ export const DetailedListing = () => {
       <div>
         {purchased && (
           <Confirmation>
-            {' '}
-            Congratulations! Your request has been sent to the seller of this
-            book. Expect to hear back via email in 3 days or less. If you have
-            not heard back by then, feel free to submit a new request.{' '}
+            Your request has successfully been sent to the seller of this book.
+            Expect to hear back via email in 3 days or less. If you have not
+            heard back by then, feel free to submit a new request.{' '}
           </Confirmation>
-        )}{' '}
+        )}
+        <br></br>
+        <br></br>
       </div>
     </List>
   );
