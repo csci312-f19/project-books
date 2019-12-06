@@ -114,39 +114,10 @@ const newPosting = ({ ifPosting }) => {
     );
   };
 
-  const DisplayPopup = () => {
-    return (
-      <div>
-        {'Please confirm that this information is correct \n'}
-
-        <p>
-          <b>{'Book Title: '}</b> {`${allInfo.title}`}
-          <br />
-          <b>{'Book Author: '}</b> {`${allInfo.author}`}
-          <br />
-          <b>{'Course Title: '}</b> {`${allInfo.courseTitle}`}
-          <br />
-          <b>{'ISBN Number: '}</b> {`${allInfo.ISBN}`}
-          <br />
-          <b>{'Course Code: '}</b> {`${allInfo.courseID}`}
-          <br />
-          <b>{'Condition: '}</b> {`${allInfo.condition}`}
-          <br />
-          <b>{'Price: '}</b> {`${allInfo.price}`}
-          <br />
-          <b>{'Comments: '}</b> {`${allInfo.comments}`}
-          <br />
-        </p>
-
-        {'Click out of the box to cancel'}
-      </div>
-    );
-  };
-
   const submitFunction = () => {
     fetch(`/api/newPosting/Listing`, {
       method: 'POST',
-      body: JSON.stringify(postingInfo),
+      body: JSON.stringify(allInfo),
       headers: new Headers({ 'Content-type': 'application/json' })
     })
       .then(response => {
@@ -162,7 +133,7 @@ const newPosting = ({ ifPosting }) => {
 
     fetch(`/api/newPosting/Book`, {
       method: 'POST',
-      body: JSON.stringify(postingInfo),
+      body: JSON.stringify(allInfo),
       headers: new Headers({ 'Content-type': 'application/json' })
     })
       .then(response => {
@@ -193,7 +164,7 @@ const newPosting = ({ ifPosting }) => {
             submitFunction();
           }}
         >
-          <h2>Create a new posting</h2>
+          <SectionTitle>Create a new posting</SectionTitle>
           <BackButton>
             <Link to={''} id="">
               Back to Main Page
