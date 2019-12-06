@@ -32,8 +32,9 @@ const DropDownDiv = styled.div`
   position: absolute;
   right: 0vw;
   z-index: 1;
-  margin-right: 3%
-  margin-top: 3%
+  margin-right: 3%;
+  margin-top: 3%;
+  text-align: right;
 `;
 
 const DropDownButton = styled.button`
@@ -53,15 +54,16 @@ const PostingButton = styled.button`
   font-size: 14px;
   border: none;
   border-radius: 2px;
-  box-shadow: 0px 1px 1px #a9a9a9;
+  box-shadow: 0px 2px 2px #a9a9a9;
 `;
 
 const DropdownContent = styled.div`
   background-color: #f1f1f1;
-  margin: auto;
+  margin-right: 3%;
   z-index: 2;
   text-decoration: none;
   border-radius: 5px;
+  text-align: right;
 `;
 
 const Item = styled.div`
@@ -167,7 +169,7 @@ function App() {
   const loginButton = (
     <GoogleLogin
       clientId={GOOGLE_CLIENT_ID}
-      buttonText="Login with Google"
+      buttonText="Login"
       isSignedIn
       onSuccess={handleGoogleLogin}
       onFailure={handleGoogleFailure}
@@ -182,18 +184,22 @@ function App() {
     />
   );
   const viewButton = (
-    <Link to={'myPostings'} id="myPostings">
-      <PostingButton onClick={() => setButton(true)}>
-        View My Postings
-      </PostingButton>
-    </Link>
+    <Item>
+      <Link to={'myPostings'} id="myPostings">
+        <PostingButton onClick={() => setButton(true)}>
+          My Postings
+        </PostingButton>
+      </Link>
+    </Item>
   );
   const createButton = (
-    <Link to={'newPosting'} id="newPosting">
-      <PostingButton onClick={() => setButton(true)}>
-        Create New Posting
-      </PostingButton>
-    </Link>
+    <Item>
+      <Link to={'newPosting'} id="newPosting">
+        <PostingButton onClick={() => setButton(true)}>
+          New Posting
+        </PostingButton>
+      </Link>
+    </Item>
   );
   const DropDownContent = (
     <div>
@@ -201,8 +207,8 @@ function App() {
         {!loggedIn && loginButton}
         {loggedIn && logoutButton}
       </Item>
-      <Item> {loggedIn && viewButton}</Item>
-      <Item>{loggedIn && createButton}</Item>
+      {loggedIn && viewButton}
+      {loggedIn && createButton}
     </div>
   );
 
