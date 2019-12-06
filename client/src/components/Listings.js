@@ -28,7 +28,7 @@ const View = styled.div`
   background-color: #f2f2f2;
   color: #374068;
   padding: 20px 20px;
-  border: 3px solid #a3bdd0;
+  border: 3px solid #6e6db2;
 `;
 
 const Detail = styled.div`

@@ -34,14 +34,12 @@ const InputType = styled.span`
 `;
 
 const WholeContainer = styled.div`
-  style: block;
-  text-align: left;
-  border: 4px solid #a3bdd0;
-  padding: 2.5vw;
-  margin: 1.25vw;
-  width: 70%;
-  margin: auto;
-  display: block;
+  margin: 30px 120px;
+  border-radius: 50px;
+  background-color: #f2f2f2;
+  color: #374068;
+  padding: 30px 30px;
+  border: 3px solid #7f92ca;
 `;
 
 const InputComments = styled.textarea`

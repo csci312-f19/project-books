@@ -15,14 +15,16 @@ const View = styled.div`
   background-color: #f2f2f2;
   color: #374068;
   padding: 30px 30px;
-  border: 3px solid #a3bdd0;
+  border: 3px solid #67a5d2;
 `;
 
 const Edit = styled.div`
   margin: 30px 120px;
-  border: 1px solid #ccc;
   border-radius: 50px;
+  background-color: #f2f2f2;
+  color: #374068;
   padding: 30px 30px;
+  border: 3px solid #a2dadb;
 `;
 
 const EditDiv = styled.div`
