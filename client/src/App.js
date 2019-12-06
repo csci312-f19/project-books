@@ -33,6 +33,7 @@ const DropDownDiv = styled.div`
   right: 0vw;
   z-index: 1;
 `;
+
 const DropDownButton = styled.button`
   background-color: #a3bdd0;
   color: #fafafa;
@@ -206,7 +207,7 @@ function App() {
       {buttonDisplay && (
         <HomeDiv>
           <Link to={''} id="">
-            <HomeButton>
+            <HomeButton type="button">
               <Home
                 src={HomePic}
                 alt="Back to homepage"

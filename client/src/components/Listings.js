@@ -185,6 +185,10 @@ export const DetailedListing = () => {
         )}
         <br />
         <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     </List>
   );
