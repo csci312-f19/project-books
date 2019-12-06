@@ -7,21 +7,44 @@ import Popup from 'reactjs-popup';
 const ListingsContainer = styled.div`
   text-align: center;
 `;
+
 const List = styled.ul`
   list-style-type: none;
   height: 20px;
 `;
 export const ListElementContainer = styled.li`
-  border: 1px solid;
-  padding: 2px;
-  margin: 5px;
-`;
-const ListElement = styled.p``;
-const ListTitle = styled.h2`
-  font-size: 20px;
+  margin: 30px 120px;
+  border-radius: 50px;
+  background-color: #f2f2f2;
+  color: #374068;
+  padding: 20px 20px;
+  border: 3px solid #a3bdd0;
   text-align: left;
-  padding: 5px;
 `;
+
+const View = styled.div`
+  margin: 30px 120px 100px;
+  border-radius: 50px;
+  background-color: #f2f2f2;
+  color: #374068;
+  padding: 20px 20px;
+  border: 3px solid #6e6db2;
+`;
+
+const Detail = styled.div`
+  padding: 10px 10px;
+  border-radius: 4px;
+  background-color: #fafafa;
+  margin-top: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+`;
+
+const ListTitle = styled.h3`
+  color: #374068;
+  text-align: center;
+`;
+
 const SortBarContainer = styled.div`
     text-align: center;
     padding: 20px;
@@ -36,9 +59,18 @@ const SelectBar = styled.select`
 const Confirmation = styled.div`
   text-align: center;
   background-color: lightgreen;
+  border-radius: 4px;
+  margin-top: 5px;
 `;
 
-const BackButton = styled.button``;
+const BuyButton = styled.button`
+  color: #374068;
+  text-align: center;
+  padding: 8px;
+  margin: 20px 10px 10px 10px;
+  font-size: 1.3vw;
+  border-radius: 40px;
+`;
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 
@@ -87,50 +119,47 @@ export const DetailedListing = () => {
       })
       .catch(err => console.log(err));
   }, []);
-
   return (
-    <div>
-      <BackButton>
-        <Link to={''} id="">
-          Back to Main Page
-        </Link>
-      </BackButton>
-      <ListElementContainer>
-        <h2>{detailedListing.title}</h2>
-        <div>
-          <strong>ISBN:</strong> {` ${detailedListing.ISBN}`}
-        </div>
-        <div>
-          <strong>Comments:</strong>
-          {` ${detailedListing.comments}`}{' '}
-        </div>
-        <div>
-          <strong>Condition:</strong>
-          {` ${detailedListing.condition}`}{' '}
-        </div>
-        <div>
-          <strong>Course ID:</strong> {` ${detailedListing.courseID}`}{' '}
-        </div>
-        <div>
-          <strong>Edited Date:</strong>
-          {` ${detailedListing.edited}`}{' '}
-        </div>
-        <div>
-          <strong>Price:</strong> {` $${detailedListing.price}`}{' '}
-        </div>
+    <List>
+      <View>
+        <ListTitle>{detailedListing.title}</ListTitle>
+        <Detail>
+          <strong>ISBN</strong>
+          {` ${detailedListing.ISBN}`}
+        </Detail>
+        <Detail>
+          <strong>Comments</strong>
+          {` ${detailedListing.comments}`}
+        </Detail>
+
+        <Detail>
+          <strong>{`Condition`}</strong>
+          {` ${detailedListing.condition}`}
+        </Detail>
+        <Detail>
+          <strong>{`Course ID`}</strong>
+          {` ${detailedListing.courseID}`}
+        </Detail>
+        <Detail>
+          <strong>{`Edited Date`}</strong>
+          {` ${detailedListing.edited}`}
+        </Detail>
+        <Detail>
+          <strong>{`Price`}</strong> {` $${detailedListing.price}`}
+        </Detail>
         {!purchased && (
           <Popup
             trigger={
               <ListingsContainer>
-                <button> Buy Now </button>
+                <BuyButton> Buy Now </BuyButton>
               </ListingsContainer>
             }
             position="bottom center"
           >
             <div>
               {`Are you sure you would like to buy this book? Finalizing your purchase
-          will confirm your order and send an alert to the seller.    `}
-              <button
+          will confirm your order and send an alert to the seller.`}
+              <BuyButton
                 onClick={() => {
                   sendEmail(
                     'Hannah',
@@ -142,53 +171,57 @@ export const DetailedListing = () => {
                 }}
               >
                 Place my Order
-              </button>
+              </BuyButton>
             </div>
           </Popup>
         )}
-      </ListElementContainer>
-      <div>
-        {purchased && (
-          <Confirmation>
-            {' '}
-            Congratulations! Your request has been sent to the seller of this
-            book. Expect to hear back via email in 3 days or less. If you have
-            not heard back by then, feel free to submit a new request.{' '}
-          </Confirmation>
-        )}{' '}
-      </div>
-    </div>
+
+        <div>
+          {purchased && (
+            <Confirmation>
+              Your request has successfully been sent to the seller of this
+              book. Expect to hear back via email in 3 days or less. If you have
+              not heard back by then, feel free to submit a new request.
+            </Confirmation>
+          )}
+        </div>
+      </View>
+    </List>
   );
 };
 
 export function SortBar({ sortType, setSortType, ascending, setDirection }) {
   return (
     <SortBarContainer>
-      Order by
-      <SelectBar
-        value={sortType}
-        onChange={event => {
-          setSortType(event.target.value);
-          if (sortType === 'Default') {
-            setDirection(true);
-          }
-        }}
-      >
-        <option value="Default">Default</option>
-        <option value="Price">Price</option>
-        <option value="Condition">Condition</option>
-      </SelectBar>
-      {(sortType === 'Price' || sortType === 'Condition') && (
+      <div>
+        Sort by: {'  '}
         <SelectBar
-          value={ascending ? 'True' : 'False'}
+          value={sortType}
           onChange={event => {
-            setDirection(event.target.value === 'True');
+            setSortType(event.target.value);
+            if (sortType === 'Alphabetical') {
+              setDirection(true);
+            }
           }}
         >
-          <option value="True">Ascending</option>
-          <option value="False">Descending</option>
+          <option value="Alphabetical">Alphabetical</option>
+          <option value="Price">Price</option>
+          <option value="Condition">Condition</option>
         </SelectBar>
-      )}
+        {(sortType === 'Price' ||
+          sortType === 'Condition' ||
+          sortType === 'Alphabetical') && (
+          <SelectBar
+            value={ascending ? 'True' : 'False'}
+            onChange={event => {
+              setDirection(event.target.value === 'True');
+            }}
+          >
+            <option value="True">Ascending</option>
+            <option value="False">Descending</option>
+          </SelectBar>
+        )}
+      </div>
     </SortBarContainer>
   );
 }
@@ -207,6 +240,7 @@ export function ListingsCollection({
       const editedTitle = listing.title.toLowerCase();
       // const editedCourseTitle = listing.courseTitle.toLowerCase();
       const editedCourseID = listing.courseID.toLowerCase();
+      const editedISBN = listing.ISBN.replace(/-/g, '');
       // let editedAuthor=listing.Author.toUpperCase();
 
       for (let i = 0; i < searchTerms.length; i++) {
@@ -216,7 +250,8 @@ export function ListingsCollection({
             editedTitle.includes(term) ||
             // editedCourseTitle.includes(term) ||
             editedCourseID.includes(term) ||
-            listing.ISBN.includes(term)
+            listing.ISBN.includes(term) ||
+            editedISBN.includes(term)
           ) {
             return true;
           }
@@ -228,18 +263,36 @@ export function ListingsCollection({
 
   let sortedList = [];
 
-  if (sortType === 'Price') {
+  if (sortType === 'Price' && searchTerm != null) {
     if (ascending) {
       //ascending is true;
       sortedList = updatedList.sort((a, b) => a.price - b.price); //increasing order / asending is true / ↑
     } else {
       sortedList = updatedList.sort((a, b) => b.price - a.price);
     }
-  } else if (sortType === 'Condition') {
+  } else if (sortType === 'Condition' && searchTerm != null) {
     if (ascending) {
       sortedList = updatedList.sort((a, b) => a.condition - b.condition);
     } else {
       sortedList = updatedList.sort((a, b) => b.condition - a.condition);
+    }
+  } else if (sortType === 'Alphabetical' && searchTerm != null) {
+    if (ascending) {
+      sortedList = updatedList.sort((a, b) => {
+        if (a.title < b.title) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+    } else {
+      sortedList = updatedList.sort((a, b) => {
+        if (a.title > b.title) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
     }
   } else if (searchTerm != null) {
     sortedList = updatedList;
@@ -248,15 +301,27 @@ export function ListingsCollection({
   const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
+    <ListElementContainer key={listing.id}>
+      <ListTitle>
+        <Link to={String(listing.id)}>{listing.title}</Link>
+      </ListTitle>
 
-    <ListElementContainer key={listing.ISBN}>
-      <ListTitle>{listing.title}</ListTitle>
-      <ListElement>{listing.courseID}</ListElement>
-      <ListElement>{listing.courseTitle}</ListElement>
-      <ListElement>{listing.ISBN}</ListElement>
-      <ListElement>{listing.price}</ListElement>
-      <ListElement>{listing.condition}</ListElement>
-      <Link to={String(listing.id)}>More Info</Link>
+      <Detail>
+        <strong>Course: </strong>
+        {listing.courseID}
+      </Detail>
+      <Detail>
+        <strong>ISBN: </strong>
+        {listing.ISBN}
+      </Detail>
+      <Detail>
+        <strong>Price: $</strong>
+        {listing.price}
+      </Detail>
+      <Detail>
+        <strong>Condition: </strong>
+        {listing.condition}
+      </Detail>
     </ListElementContainer>
   ));
 
@@ -268,7 +333,7 @@ export function ListingsCollection({
 }
 
 function Listings({ currentListings, searchTerm, mode }) {
-  const [sortType, setSortType] = useState('Default');
+  const [sortType, setSortType] = useState('Alphabetical');
   const [ascending, setDirection] = useState(true);
   if (mode === 'detailed') {
     return (
