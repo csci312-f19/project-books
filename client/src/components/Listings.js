@@ -194,17 +194,19 @@ export function SortBar({ sortType, setSortType, ascending, setDirection }) {
           value={sortType}
           onChange={event => {
             setSortType(event.target.value);
-            if (sortType === 'Default') {
+            if (sortType === 'Alphabetical') {
               setDirection(true);
             }
           }}
         >
-          <option value="Default">Default</option>
+          <option value="Alphabetical">Alphabetical</option>
           <option value="Price">Price</option>
           <option value="Condition">Condition</option>
         </SelectBar>
       </ColoredText>
-      {(sortType === 'Price' || sortType === 'Condition') && (
+      {(sortType === 'Price' ||
+        sortType === 'Condition' ||
+        sortType === 'Alphabetical') && (
         <SelectBar
           value={ascending ? 'True' : 'False'}
           onChange={event => {
@@ -254,18 +256,36 @@ export function ListingsCollection({
 
   let sortedList = [];
 
-  if (sortType === 'Price') {
+  if (sortType === 'Price' && searchTerm != null) {
     if (ascending) {
       //ascending is true;
       sortedList = updatedList.sort((a, b) => a.price - b.price); //increasing order / asending is true / ↑
     } else {
       sortedList = updatedList.sort((a, b) => b.price - a.price);
     }
-  } else if (sortType === 'Condition') {
+  } else if (sortType === 'Condition' && searchTerm != null) {
     if (ascending) {
       sortedList = updatedList.sort((a, b) => a.condition - b.condition);
     } else {
       sortedList = updatedList.sort((a, b) => b.condition - a.condition);
+    }
+  } else if (sortType === 'Alphabetical' && searchTerm != null) {
+    if (ascending) {
+      sortedList = updatedList.sort((a, b) => {
+        if (a.title < b.title) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+    } else {
+      sortedList = updatedList.sort((a, b) => {
+        if (a.title > b.title) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
     }
   } else if (searchTerm != null) {
     sortedList = updatedList;
@@ -307,7 +327,7 @@ export function ListingsCollection({
 }
 
 function Listings({ currentListings, searchTerm, mode }) {
-  const [sortType, setSortType] = useState('Default');
+  const [sortType, setSortType] = useState('Alphabetical');
   const [ascending, setDirection] = useState(true);
   if (mode === 'detailed') {
     return (
