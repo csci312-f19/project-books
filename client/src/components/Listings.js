@@ -113,11 +113,6 @@ export const DetailedListing = () => {
   return (
     <div>
       <List>
-        <BackButton>
-          <Link to={''} id="">
-            Back to Main Page
-          </Link>
-        </BackButton>
         <ListElementContainer>
           <ListTitle>{detailedListing.title}</ListTitle>
           <ColoredText>
@@ -279,7 +274,7 @@ export function ListingsCollection({
   const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
-    <ListElementContainer key={listing.ISBN}>
+    <ListElementContainer key={listing.id}>
       <ListTitle>
         <Link to={String(listing.id)}>{listing.title}</Link>
       </ListTitle>
@@ -317,6 +312,11 @@ function Listings({ currentListings, searchTerm, mode }) {
   if (mode === 'detailed') {
     return (
       <div>
+        <BackButton>
+          <Link to={''} id="">
+            Back to Main Page
+          </Link>
+        </BackButton>
         <DetailedListing />
       </div>
     );

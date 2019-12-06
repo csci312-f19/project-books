@@ -44,6 +44,10 @@ const WholeContainer = styled.div`
   display: block;
 `;
 
+const Form = styled.form`
+  text-align: center;
+`;
+
 const InputComments = styled.textarea`
   margin: 10px 0px;
   display: block;
@@ -61,8 +65,6 @@ const SectionTitle = styled.h2`
 const Required = styled.span`
   color: red;
 `;
-
-const SubmitButton = styled.button``;
 
 const SubmitButton = styled.button`
   color: #374068;
@@ -94,11 +96,6 @@ const newPosting = ({ ifPosting }) => {
     comments: 'None'
   };
   const [allInfo, setAllInfo] = useState(postingInfo);
-  const [filledOut, setFilledOut] = useState(false);
-  const [countInput, setCountInput] = useState(0);
-
-  // Should require price, ISBN, something else? to be a number
-  // Dont need name if have accounts?
 
   const makeInput = (inputType, clientQuery, placeholder) => {
     return (
@@ -111,14 +108,6 @@ const newPosting = ({ ifPosting }) => {
           onChange={event => {
             postingInfo[inputType] = event.target.value;
             setAllInfo(postingInfo);
-            // If there is some text in the input
-            if (allInfo[inputType].length > 0) {
-              setCountInput(countInput + 1);
-            }
-            // if there is no text in the input
-            else {
-              setCountInput(countInput - 1);
-            }
           }}
           required
         />
@@ -156,172 +145,128 @@ const newPosting = ({ ifPosting }) => {
   };
 
   const submitFunction = () => {
-    return alert('this is an alert');
+    fetch(`/api/newPosting/Listing`, {
+      method: 'POST',
+      body: JSON.stringify(postingInfo),
+      headers: new Headers({ 'Content-type': 'application/json' })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status_text);
+        }
+        return response.json();
+      })
+      .then(updatedPosting => {
+        setAllInfo(updatedPosting);
+      })
+      .catch(err => console.log(err)); // eslint-disable-line no-console
+
+    fetch(`/api/newPosting/Book`, {
+      method: 'POST',
+      body: JSON.stringify(postingInfo),
+      headers: new Headers({ 'Content-type': 'application/json' })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status_text);
+        }
+        return response.json();
+      })
+      .then(updatedPosting => {
+        setAllInfo(updatedPosting);
+      })
+      .catch(err => console.log(err)); // eslint-disable-line no-console
+
+    alert(
+      'Successfully Submitted!\n\nCheck out your postings under the View My Postings section of Account!'
+    );
+
+    ifPosting = 'general';
   };
 
   if (ifPosting === 'general') {
     return <div />;
   } else if (ifPosting === 'postingView') {
-    // maybe if we have a problem with price being a string vs int
-    //<InputLineContainer>
-    // <InputType> Price: </InputType>
-    // <InputLine
-    //   type="text"
-    //   placeholder={'5'}
-    //   onChange={event => {
-    //     postingInfo.price = parseInt(event.target.value);
-    //     setAllInfo(postingInfo);
-    //   }}
-    // />
-    //</InputLineContainer>
-
     return (
-      <WholeContainer
-        action=""
-        onsubmit={() => {
-          submitFunction();
-        }}
-      >
-        <h2>Create a new posting</h2>
-        <BackButton>
-          <Link to={''} id="">
-            Back to Main Page
-          </Link>
-        </BackButton>
-        <br />
-        <Required text-align="left">*</Required>
-        <span text-align="left">Required Field</span>
-        <br />
-        {makeInput(
-          'title',
-          'Book Title',
-          'The Guide to the Dr. and Everything React'
-        )}
-        {makeInput('author', 'Book Author', 'Christopher Andrews')}
-        {makeInput('courseTitle', 'Course Title', 'Software Development')}
-        {makeInput('ISBN', 'ISBN Number', '123-4-567-89012-3')}
-        <Note>
-          The ISBN can be found either on the back cover of the book or on the
-          inside information page along with the publisher information.
-        </Note>
-        {makeInput('courseID', 'Course Code', 'CSCI 0312')}
-        <InputLineContainer>
-          <InputType> Condition:</InputType>
-          <Required text-align="left">* </Required>
-          <InputSelect
-            onChange={event => {
-              postingInfo.condition = event.target.value;
-              setAllInfo(postingInfo);
-              if (allInfo.Condition.length > 0) {
-                setCountInput(countInput + 1);
-              }
-              // if there is no text in the input
-              else {
-                setCountInput(countInput - 1);
-              }
-            }}
-            required
-          >
-            <option value="New">New</option>
-            <option value="Very Good">Very Good</option>
-            <option value="Good">Good</option>
-            <option value="Acceptable">Acceptable</option>
-            <option value="Very Worn">Very Worn</option>
-            <option value="Bad">Bad</option>
-          </InputSelect>
-        </InputLineContainer>
+      <WholeContainer>
+        <Form
+          onSubmit={() => {
+            submitFunction();
+          }}
+        >
+          <h2>Create a new posting</h2>
+          <BackButton>
+            <Link to={''} id="">
+              Back to Main Page
+            </Link>
+          </BackButton>
+          <br />
+          <Required text-align="left">*</Required>
+          <span text-align="left">Required Field</span>
+          <br />
+          {makeInput(
+            'title',
+            'Book Title',
+            'The Guide to the Dr. and Everything React'
+          )}
+          {makeInput('author', 'Book Author', 'Christopher Andrews')}
+          {makeInput('courseTitle', 'Course Title', 'Software Development')}
+          {makeInput('ISBN', 'ISBN Number', '123-4-567-89012-3')}
+          <Note>
+            The ISBN can be found either on the back cover of the book or on the
+            inside information page along with the publisher information.
+          </Note>
+          {makeInput('courseID', 'Course Code', 'CSCI 0312')}
+          <InputLineContainer>
+            <InputType> Condition:</InputType>
+            <Required text-align="left">* </Required>
+            <InputSelect
+              onChange={event => {
+                postingInfo.condition = event.target.value;
+                setAllInfo(postingInfo);
+              }}
+              required
+            >
+              <option value="New">New</option>
+              <option value="Very Good">Very Good</option>
+              <option value="Good">Good</option>
+              <option value="Acceptable">Acceptable</option>
+              <option value="Very Worn">Very Worn</option>
+              <option value="Bad">Bad</option>
+            </InputSelect>
+          </InputLineContainer>
 
-        <InputLineContainer>
-          <InputType> Price: $ </InputType>
-          <InputLine
-            type="text"
-            placeholder={'5.00'}
-            onChange={event => {
-              postingInfo.price = parseInt(event.target.value);
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
-        {makeInput('price', 'Price', '5.00')}
+          <InputLineContainer>
+            <InputType> Price: $ </InputType>
+            <Required text-align="left">* </Required>
+            <InputLine
+              type="text"
+              placeholder={'5.00'}
+              onChange={event => {
+                postingInfo.price = parseInt(event.target.value);
+                setAllInfo(postingInfo);
+              }}
+              required
+            />
+          </InputLineContainer>
 
-        <InputLineContainer>
-          <InputType> Additional Comments: </InputType>
-          <InputComments
-            cols="50"
-            rows="10"
-            placeholder="Any additional comments you may have. Could include: highlighting, water-stains, never opened, missing pages..."
-            onChange={event => {
-              postingInfo.comments = event.target.value;
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
+          <InputLineContainer>
+            <InputType> Additional Comments: </InputType>
+            <InputComments
+              cols="50"
+              rows="10"
+              placeholder="Any additional comments you may have. Could include: highlighting, water-stains, never opened, missing pages..."
+              onChange={event => {
+                postingInfo.comments = event.target.value;
+                setAllInfo(postingInfo);
+              }}
+            />
+          </InputLineContainer>
 
-        <InputLineContainer>
-          <Popup
-            trigger={
-              <div>
-                <SubmitButton
-                  value="Submit"
-                  onClick={() => {
-                    if (countInput >= 7) {
-                      setFilledOut(true);
-                    } else {
-                      setFilledOut(false);
-                    }
-                    return false;
-                  }}
-                >
-                  Submit
-                </SubmitButton>
-              </div>
-            }
-            position="top left"
-          >
-            <div>
-              <DisplayPopup />
-              <input
-                type="submit"
-                value="confirm"
-                onClick={() => {
-                  fetch(`/api/newPosting/Listing`, {
-                    method: 'POST',
-                    body: JSON.stringify(postingInfo),
-                    headers: new Headers({ 'Content-type': 'application/json' })
-                  })
-                    .then(response => {
-                      if (!response.ok) {
-                        throw new Error(response.status_text);
-                      }
-                      return response.json();
-                    })
-                    .then(updatedPosting => {
-                      setAllInfo(updatedPosting);
-                    })
-                    .catch(err => console.log(err)); // eslint-disable-line no-console
-
-                  fetch(`/api/newPosting/Book`, {
-                    method: 'POST',
-                    body: JSON.stringify(postingInfo),
-                    headers: new Headers({ 'Content-type': 'application/json' })
-                  })
-                    .then(response => {
-                      if (!response.ok) {
-                        throw new Error(response.status_text);
-                      }
-                      return response.json();
-                    })
-                    .then(updatedPosting => {
-                      setAllInfo(updatedPosting);
-                    })
-                    .catch(err => console.log(err)); // eslint-disable-line no-console
-
-                  ifPosting = 'general';
-                }}
-              />
-            </div>
-          </Popup>
-        </InputLineContainer>
+          <InputLineContainer>
+            <input value="Submit" type="submit" />
+          </InputLineContainer>
+        </Form>
       </WholeContainer>
     );
   }
