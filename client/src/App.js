@@ -166,7 +166,6 @@ function App() {
       </Item>
     </div>
   );
-
   return (
     <Router>
       {' '}
@@ -213,6 +212,7 @@ function App() {
                 currentListings={listings}
                 searchTerm={currentBook}
                 mode={'detailed'}
+                loggedIn={loggedIn}
               />
             )}
           />

@@ -91,7 +91,7 @@ function sendEmail(name, email, bookTitle, bookPrice) {
     });
 }
 
-export const DetailedListing = () => {
+export const DetailedListing = ({ loggedIn }) => {
   const [detailedListing, setDetailedListing] = useState('');
   const [purchased, setPurchase] = useState(false);
 
@@ -110,6 +110,7 @@ export const DetailedListing = () => {
       })
       .catch(err => console.log(err));
   }, []);
+
   return (
     <div>
       <List>
@@ -141,7 +142,7 @@ export const DetailedListing = () => {
             {` $${detailedListing.price}`} {'\xa0'.repeat(5)}
           </ColoredText>
           <br />
-          {!purchased && (
+          {!purchased && loggedIn && (
             <Popup
               trigger={
                 <ListingsContainer>
@@ -326,10 +327,11 @@ export function ListingsCollection({
   );
 }
 
-function Listings({ currentListings, searchTerm, mode }) {
+function Listings({ currentListings, searchTerm, mode, loggedIn }) {
   const [sortType, setSortType] = useState('Alphabetical');
   const [ascending, setDirection] = useState(true);
   if (mode === 'detailed') {
+    console.log(loggedIn);
     return (
       <div>
         <BackButton>
@@ -337,7 +339,7 @@ function Listings({ currentListings, searchTerm, mode }) {
             Back to Main Page
           </Link>
         </BackButton>
-        <DetailedListing />
+        <DetailedListing loggedIn={loggedIn} />
       </div>
     );
   } else if (mode === 'general') {
