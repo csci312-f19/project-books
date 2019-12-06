@@ -10,9 +10,9 @@ import { ListElementContainer, SortBar } from './Listings';
 
 const sampleListings = [
   {
+    id: '1',
     title: "American Studies: A User's Guide",
     courseID: 'AMST 0400A',
-    listingID: '1',
     userID: '20',
     ISBN: '978-0-520-28773-0',
     condition: 'Like New',
@@ -21,9 +21,9 @@ const sampleListings = [
     comments: 'Some highlighting'
   },
   {
+    id: '2',
     title: 'Winesburg, Ohio',
     courseID: 'AMST/ENAM 0282A',
-    listingID: '2',
     userID: '30',
     ISBN: '978-0-486-28269-5',
     condition: 'Good',
@@ -32,9 +32,9 @@ const sampleListings = [
     comments: 'Missing cover'
   },
   {
+    id: '3',
     title: 'Object of Memory: Arab and Jew Narrate the Palestinian Village',
     courseID: 'ANTH 0355',
-    listingID: '3',
     userID: '40',
     ISBN: '978-0-8122-1525-0',
     condition: 'Acceptable',
@@ -43,9 +43,9 @@ const sampleListings = [
     comments: 'this book is so good!'
   },
   {
+    id: '4',
     title: 'Stuffed and Starved, Revised and Expanded',
     courseID: 'FYSE 1431',
-    listingID: '4',
     userID: '50',
     ISBN: '978-1-61219-127-0',
     condition: 'Very Good',
@@ -102,7 +102,7 @@ describe('SearchBar', () => {
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
     //samplelistings[0] is american studies: a user's guide
-    expect(listingsList[0].key).toEqual(sampleListings[0].ISBN);
+    expect(listingsList[0].key).toEqual(sampleListings[0].id);
   });
   test('title search', async () => {
     expect(app).toContainMatchingElement(SearchBar);
@@ -120,7 +120,7 @@ describe('SearchBar', () => {
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
     //samplelistings[1] is Winesburg
-    expect(listingsList[0].key).toEqual(sampleListings[1].ISBN);
+    expect(listingsList[0].key).toEqual(sampleListings[1].id);
   });
   test('courseID search', async () => {
     expect(app).toContainMatchingElement(SearchBar);
@@ -138,7 +138,7 @@ describe('SearchBar', () => {
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
     //samplelistings[3] is FYSE 1431
-    expect(listingsList[0].key).toEqual(sampleListings[3].ISBN);
+    expect(listingsList[0].key).toEqual(sampleListings[3].id);
   });
   test('ISBN search', async () => {
     expect(app).toContainMatchingElement(SearchBar);
@@ -156,7 +156,7 @@ describe('SearchBar', () => {
     const listingsList = Array.from(app.find(ListElementContainer));
     expect(listingsList.length).toEqual(1);
     //samplelistings[3] is 978-1-61219-127-0
-    expect(listingsList[0].key).toEqual(sampleListings[3].ISBN);
+    expect(listingsList[0].key).toEqual(sampleListings[3].id);
   });
 });
 
@@ -187,11 +187,12 @@ describe('SortBar actions', () => {
     app.update();
   });
 
-  test('SortBar is Default on startup', async () => {
+  test('SortBar is Alphabetical on startup', async () => {
     expect(app).toContainMatchingElement(SortBar);
     const sortBar = app.find(SortBar);
-    const result = sortBar.find('select');
-    expect(result.prop('value')).toEqual('Default'); // Unnecessary test, just to check whether find('select') works
+    const result = sortBar.find('select').at(0);
+
+    expect(result.prop('value')).toEqual('Alphabetical'); // Unnecessary test, just to check whether find('select') works
   });
 
   describe('Sorts by Price', () => {
@@ -208,7 +209,7 @@ describe('SortBar actions', () => {
       const listingsList = Array.from(app.find(ListElementContainer));
       expect(listingsList.length).toEqual(4);
       expect(listingsList[0].key).toEqual(
-        sampleListings.sort((a, b) => a.price - b.price)[0].ISBN
+        sampleListings.sort((a, b) => a.price - b.price)[0].id
       );
     });
 
@@ -222,7 +223,7 @@ describe('SortBar actions', () => {
       const listingsList = Array.from(app.find(ListElementContainer));
       expect(listingsList.length).toEqual(4);
       expect(listingsList[0].key).toEqual(
-        sampleListings.sort((a, b) => b.price - a.price)[0].ISBN
+        sampleListings.sort((a, b) => b.price - a.price)[0].id
       );
     });
   });
@@ -234,17 +235,17 @@ describe('SortBar actions', () => {
       await act(async () => await flushPromises());
       app.update();
     });
-    test('Sorts by price ascending order', async () => {
+    test('Sorts by condition ascending order', async () => {
       expect(app).toContainMatchingElement(SortBar);
       expect(app.find(ListElementContainer)).toBeDefined();
       const listingsList = Array.from(app.find(ListElementContainer));
       expect(listingsList.length).toEqual(4);
       expect(listingsList[0].key).toEqual(
-        sampleListings.sort((a, b) => a.condition - b.condition)[0].ISBN
+        sampleListings.sort((a, b) => a.condition - b.condition)[0].id
       );
     });
 
-    test('Sorts by price in descending order', async () => {
+    test('Sorts by condition in descending order', async () => {
       const sortBar = app.find(SortBar);
       const type = sortBar.find('select').at(1);
       type.simulate('change', { target: { value: 'False' } });
@@ -254,26 +255,51 @@ describe('SortBar actions', () => {
       const listingsList = Array.from(app.find(ListElementContainer));
       expect(listingsList.length).toEqual(4);
       expect(listingsList[0].key).toEqual(
-        sampleListings.sort((a, b) => b.condition - a.condition)[0].ISBN
+        sampleListings.sort((a, b) => b.condition - a.condition)[0].id
       );
     });
-    describe('Sort by Default', () => {
+    describe('Sorts by Alphabetical Order', () => {
       beforeEach(async () => {
         const sortBar = app.find(SortBar);
         const type = sortBar.find('select').at(0);
-        type.simulate('change', { target: { value: 'Price' } });
-        await act(async () => await flushPromises());
-        app.update();
-        type.simulate('change', { target: { value: 'Default' } });
+        type.simulate('change', { target: { value: 'Alphabetical' } });
         await act(async () => await flushPromises());
         app.update();
       });
-      test('Resets order after sorting by price', async () => {
+      test('Sorts by condition ascending order', async () => {
         expect(app).toContainMatchingElement(SortBar);
         expect(app.find(ListElementContainer)).toBeDefined();
         const listingsList = Array.from(app.find(ListElementContainer));
         expect(listingsList.length).toEqual(4);
-        expect(listingsList[0].key).toEqual(sampleListings[0].ISBN);
+        expect(listingsList[0].key).toEqual(
+          sampleListings.sort((a, b) => {
+            if (a.title < b.title) {
+              return -1;
+            } else {
+              return 1;
+            }
+          })[0].id
+        );
+      });
+
+      test('Sorts by condition in descending order', async () => {
+        const sortBar = app.find(SortBar);
+        const type = sortBar.find('select').at(1);
+        type.simulate('change', { target: { value: 'False' } });
+        await act(async () => await flushPromises());
+        app.update();
+        expect(app.find(ListElementContainer)).toBeDefined();
+        const listingsList = Array.from(app.find(ListElementContainer));
+        expect(listingsList.length).toEqual(4);
+        expect(listingsList[0].key).toEqual(
+          sampleListings.sort((a, b) => {
+            if (a.title > b.title) {
+              return -1;
+            } else {
+              return 1;
+            }
+          })[0].id
+        );
       });
     });
   });
