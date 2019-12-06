@@ -244,6 +244,7 @@ export function ListingsCollection({
       const editedTitle = listing.title.toLowerCase();
       // const editedCourseTitle = listing.courseTitle.toLowerCase();
       const editedCourseID = listing.courseID.toLowerCase();
+      const editedISBN = listing.ISBN.replace(/-/g, '');
       // let editedAuthor=listing.Author.toUpperCase();
 
       for (let i = 0; i < searchTerms.length; i++) {
@@ -253,7 +254,8 @@ export function ListingsCollection({
             editedTitle.includes(term) ||
             // editedCourseTitle.includes(term) ||
             editedCourseID.includes(term) ||
-            listing.ISBN.includes(term)
+            listing.ISBN.includes(term) ||
+            editedISBN.includes(term)
           ) {
             return true;
           }
