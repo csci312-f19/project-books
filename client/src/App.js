@@ -42,20 +42,29 @@ const DropDownButton = styled.button`
   border-radius: 40px;
 `;
 
+const PostingButton = styled.button`
+  background-color: white;
+  color: #848484;
+  padding: 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0px 1px 1px #a9a9a9;
+`;
+
 const DropdownContent = styled.div`
-  display: block;
-  position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  margin: auto;
   z-index: 2;
-  right: 0;
+  text-decoration: none;
+  border-radius: 5px;
 `;
 
 const Item = styled.div`
-  color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  text-align: center;
 `;
 
 const CenteredImg = styled.div`
@@ -168,27 +177,27 @@ function App() {
     />
   );
   const viewButton = (
-    <button onClick={() => setButton(true)}>
-      <Link to={'myPostings'} id="myPostings">
+    <Link to={'myPostings'} id="myPostings">
+      <PostingButton onClick={() => setButton(true)}>
         View My Postings
-      </Link>
-    </button>
+      </PostingButton>
+    </Link>
   );
   const createButton = (
-    <button onClick={() => setButton(true)}>
-      <Link to={'newPosting'} id="newPosting">
+    <Link to={'newPosting'} id="newPosting">
+      <PostingButton onClick={() => setButton(true)}>
         Create New Posting
-      </Link>
-    </button>
+      </PostingButton>
+    </Link>
   );
   const DropDownContent = (
     <div>
-      <Item> {loggedIn && viewButton}</Item>
-      <Item>{loggedIn && createButton}</Item>
       <Item>
         {!loggedIn && loginButton}
         {loggedIn && logoutButton}
       </Item>
+      <Item> {loggedIn && viewButton}</Item>
+      <Item>{loggedIn && createButton}</Item>
     </div>
   );
 

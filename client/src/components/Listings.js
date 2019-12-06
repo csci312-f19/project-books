@@ -180,7 +180,7 @@ export const DetailedListing = () => {
           <Confirmation>
             Your request has successfully been sent to the seller of this book.
             Expect to hear back via email in 3 days or less. If you have not
-            heard back by then, feel free to submit a new request.{' '}
+            heard back by then, feel free to submit a new request.
           </Confirmation>
         )}
         <br />

@@ -242,7 +242,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
           {mode === 'edit' && currentListing.id === listing.id && (
             <Edit>
               <h4 align="center">
-                <span class="glyphicon glyphicon-pencil" />
+                <span className="glyphicon glyphicon-pencil" />
                 &emsp;Editing
               </h4>
               <EditDiv>
