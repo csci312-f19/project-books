@@ -8,10 +8,6 @@ const ListingsContainer = styled.div`
   text-align: center;
 `;
 
-const ColoredText = styled.div`
-  color: #374068;
-`;
-
 const List = styled.ul`
   list-style-type: none;
   height: 20px;
@@ -51,13 +47,10 @@ const ListElement = styled.p`
 `;
 
 const ListTitle = styled.h2`
-  font-size: 20px;
   color: #374068;
   text-align: center;
-  padding: 5px;
-  text-decoration: underline;
-  font-size: 1.4vw;
 `;
+
 const SortBarContainer = styled.div`
     text-align: center;
     padding: 20px;
@@ -131,33 +124,32 @@ export const DetailedListing = () => {
   }, []);
   return (
     <List>
-      <ListElementContainer>
+      <View>
         <ListTitle>{detailedListing.title}</ListTitle>
         <Detail>
           <strong>ISBN</strong>
           {` ${detailedListing.ISBN}`}
         </Detail>
-        <ColoredText>
-          <strong>{`${'\xa0'.repeat(5)}Comments${'\xa0'.repeat(3)}`}</strong>
-          {` ${detailedListing.comments}`}{' '}
-        </ColoredText>
-        <ColoredText>
-          <strong>{`Condition${'\xa0'.repeat(3)}`}</strong>
+        <Detail>
+          <strong>Comments</strong>
+          {` ${detailedListing.comments}`}
+        </Detail>
+
+        <Detail>
+          <strong>{`Condition`}</strong>
           {` ${detailedListing.condition}`}
-          {'\xa0'.repeat(6)}
-        </ColoredText>
-        <ColoredText>
-          <strong>{`Course ID${'\xa0'.repeat(3)}`}</strong>{' '}
+        </Detail>
+        <Detail>
+          <strong>{`Course ID`}</strong>
           {` ${detailedListing.courseID}`}
-        </ColoredText>
-        <ColoredText>
-          <strong>{`Edited Date${'\xa0'.repeat(3)}`}</strong>
-          {` ${detailedListing.edited}`} {'\xa0'.repeat(11)}
-        </ColoredText>
-        <ColoredText>
-          <strong>{`Price${'\xa0'.repeat(3)}`}</strong>{' '}
-          {` $${detailedListing.price}`} {'\xa0'.repeat(5)}
-        </ColoredText>
+        </Detail>
+        <Detail>
+          <strong>{`Edited Date`}</strong>
+          {` ${detailedListing.edited}`}
+        </Detail>
+        <Detail>
+          <strong>{`Price`}</strong> {` $${detailedListing.price}`}
+        </Detail>
         <br />
         {!purchased && (
           <Popup
@@ -187,7 +179,7 @@ export const DetailedListing = () => {
             </div>
           </Popup>
         )}
-      </ListElementContainer>
+      </View>
       <div>
         {purchased && (
           <Confirmation>
@@ -205,7 +197,7 @@ export const DetailedListing = () => {
 export function SortBar({ sortType, setSortType, ascending, setDirection }) {
   return (
     <SortBarContainer>
-      <ColoredText>
+      <Detail>
         Sort by: {'  '}
         <SelectBar
           value={sortType}
@@ -220,7 +212,7 @@ export function SortBar({ sortType, setSortType, ascending, setDirection }) {
           <option value="Price">Price</option>
           <option value="Condition">Condition</option>
         </SelectBar>
-      </ColoredText>
+      </Detail>
       {(sortType === 'Price' || sortType === 'Condition') && (
         <SelectBar
           value={ascending ? 'True' : 'False'}
@@ -291,7 +283,7 @@ export function ListingsCollection({
   const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
-    <ListElementContainer key={listing.id}>
+    <ListElementContainer key={listing.ISBN}>
       <ListTitle>
         <Link to={String(listing.id)}>{listing.title}</Link>
       </ListTitle>
