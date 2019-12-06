@@ -183,8 +183,8 @@ export const DetailedListing = () => {
             heard back by then, feel free to submit a new request.{' '}
           </Confirmation>
         )}
-        <br></br>
-        <br></br>
+        <br />
+        <br />
       </div>
     </List>
   );
