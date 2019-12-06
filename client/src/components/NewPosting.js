@@ -5,11 +5,14 @@ import Popup from 'reactjs-popup';
 
 const InputLine = styled.input`
   text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
   width: 30%;
-  height: 15px
+  height: 20px;
   border-radius: 25px;
-  border: 2px solid;
+  border: 2px solid #cccccc;
   margin: 8px 0;
+  font-size: 0.9vw;
 `;
 
 const InputSelect = styled.select`
@@ -24,19 +27,52 @@ const InputLineContainer = styled.div`
 `;
 
 const InputType = styled.span`
-  text-align: left;
+  color: #374068;
+  margin-left: 5vw;
+  font-size: 1.1vw;
+  text-decoration: bold;
 `;
 
 const WholeContainer = styled.div`
-  text-align: center;
+  style: block;
+  text-align: left;
+  border: 4px solid #a3bdd0;
+  padding: 2.5vw;
+  margin: 1.25vw;
+  width: 70%;
+  margin: auto;
+  display: block;
 `;
 
 const InputComments = styled.textarea`
   margin: 10px 0px;
   display: block;
+  margin-left: 8vw;
 `;
 
-const SubmitButton = styled.button``;
+const SectionTitle = styled.h2`
+  font-size: 20px;
+  color: #374068;
+  text-align: center;
+  padding: 5px;
+  text-decoration: underline;
+  font-size: 1.6vw;
+`;
+
+const SubmitButton = styled.button`
+  color: #374068;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.3vw;
+`;
+
+const Note = styled.div`
+  text-align: left;
+  padding: 5px;
+  font-size: 0.7vw;
+  font-style: italic;
+  margin-left: 5vw;
+`;
 
 const BackButton = styled.button``;
 
@@ -119,7 +155,7 @@ const newPosting = ({ ifPosting }) => {
 
     return (
       <WholeContainer>
-        <h2>Create a new posting</h2>
+        <SectionTitle>Create a new posting</SectionTitle>
         <BackButton>
           <Link to={''} id="">
             Back to Main Page
@@ -131,15 +167,12 @@ const newPosting = ({ ifPosting }) => {
           'The Guide to the Dr. and Everything React'
         )}
         {makeInput('author', 'Book Author', 'Christopher Andrews')}
-        {makeInput('courseTitle', 'Course title', 'Software Development')}
-        {makeInput('ISBN', 'ISBN number', '123-4-567-89012-3')}
-        <div>
-          {' '}
-          <i>
-            This can be found either on the back cover of the book or on the
-            inside information page along with the publisher info
-          </i>{' '}
-        </div>
+        {makeInput('courseTitle', 'Course Title', 'Software Development')}
+        {makeInput('ISBN', 'ISBN Number', '123-4-567-89012-3')}
+        <Note>
+          The ISBN can be found either on the back cover of the book or on the
+          inside information page along with the publisher information.
+        </Note>
         {makeInput('courseID', 'Course Code', 'CSCI 0312')}
         <InputLineContainer>
           <InputType> Condition: </InputType>
@@ -158,14 +191,25 @@ const newPosting = ({ ifPosting }) => {
           </InputSelect>
         </InputLineContainer>
 
-        {makeInput('price', 'Price', '5')}
+        <InputLineContainer>
+          <InputType> Price: $ </InputType>
+          <InputLine
+            type="text"
+            placeholder={'5.00'}
+            onChange={event => {
+              postingInfo.price = parseInt(event.target.value);
+              setAllInfo(postingInfo);
+            }}
+          />
+        </InputLineContainer>
+        {makeInput('price', 'Price', '5.00')}
 
         <InputLineContainer>
-          <InputType> Any Additional Comments: </InputType>
+          <InputType> Additional Comments: </InputType>
           <InputComments
             cols="50"
             rows="10"
-            placeholder="Any additional comments you have. Could include: highlighted, water-stained, never opened, missing pages..."
+            placeholder="Any additional comments you may have. Could include: highlighting, water-stains, never opened, missing pages..."
             onChange={event => {
               postingInfo.comments = event.target.value;
               setAllInfo(postingInfo);

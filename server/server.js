@@ -297,7 +297,6 @@ app.use((error, request, response, next) => {
 const nodemailer = require('nodemailer');
 
 app.post('/api/bookrequest', function Emailer(req) {
-  console.log(req.body);
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
