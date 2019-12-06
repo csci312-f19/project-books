@@ -115,6 +115,21 @@ const newPosting = ({ ifPosting }) => {
   };
 
   const submitFunction = () => {
+    alert(
+      `Successfully Submitted!\n
+       Your posting contains the following.
+       You can edit it in My Postings\n
+       Book Title: ${allInfo.title}
+       Book Author: ${allInfo.author}
+       Course Title: ${allInfo.courseTitle}
+       ISBN Number: ${allInfo.ISBN}
+       Course Code: ${allInfo.courseID}
+       Condition: ${allInfo.condition}
+       Price: ${allInfo.price}
+       Comments: ${allInfo.comments}\n`
+    );
+    ifPosting = 'general';
+
     fetch(`/api/newPosting/Listing`, {
       method: 'POST',
       body: JSON.stringify(allInfo),
@@ -146,12 +161,6 @@ const newPosting = ({ ifPosting }) => {
         setAllInfo(updatedPosting);
       })
       .catch(err => console.log(err)); // eslint-disable-line no-console
-
-    alert(
-      'Successfully Submitted!\n\nCheck out your postings under the View My Postings section of Account!'
-    );
-
-    ifPosting = 'general';
   };
 
   if (ifPosting === 'general') {
@@ -219,6 +228,7 @@ const newPosting = ({ ifPosting }) => {
               required
             />
           </InputLineContainer>
+          <Note>Price must be a number</Note>
 
           <InputLineContainer>
             <InputType> Additional Comments: </InputType>
