@@ -65,7 +65,7 @@ const EditButtonBar = styled.div`
   text-align: right;
 `;
 const BackButton = styled.button``;
-const MyPostings = ({ ifPosting, ifLoggedIn }) => {
+const MyPostings = ({ ifLoggedIn }) => {
   const [myListings, setMyListings] = useState(Immutable.List());
   const [mode, setMode] = useState('view');
   const [currentListing, setCurrentListing] = useState();
@@ -116,276 +116,275 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
       .catch(err => console.log(err)); // eslint-disable-line no-console
   }, []);
 
-  if (ifPosting === 'general') {
-    return <div />;
-  } else {
-    if (myListings.isEmpty()) {
-      return (
-        <div>
-          <Title>My Postings</Title>
-          <BackButton>
-            <Link to={''} id="">
-              Back to Main Page
-            </Link>
-          </BackButton>
-          <View>
-            <p align="center">You have not posted anything yet.</p>
-            {ifLoggedIn && (
-              <Route
-                render={() => (
-                  <div>
+  // if (ifPosting === 'general') {
+  //   return <div />;
+  // } else {
+  if (myListings.isEmpty()) {
+    return (
+      <div>
+        <Title>My Postings</Title>
+        <BackButton>
+          <Link to={''} id="">
+            Back to Main Page
+          </Link>
+        </BackButton>
+        <View>
+          <p align="center">You have not posted anything yet.</p>
+          {ifLoggedIn && (
+            <Route
+              render={() => (
+                <div>
+                  <ButtonBar>
                     <button display="block" text-align="center">
                       <Link to={'newPosting'} id="newPosting">
                         Create New Posting
                       </Link>
                     </button>
-                  </div>
-                )}
-              />
-            )}
+                  </ButtonBar>
+                </div>
+              )}
+            />
+          )}
+        </View>
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path="/newPosting"
+              component={() => <NewPosting ifPosting={'postingView'} />}
+            />
+          </Switch>
+        </Router>
+      </div>
+    );
+  } else {
+    let listingItems = null;
+    listingItems = myListings.map(listing => (
+      <div>
+        {mode === 'view' && (
+          <View>
+            <Detail>
+              <strong>&emsp;Book Title:</strong>&emsp;{` ${listing.title}`}
+            </Detail>
+            <Detail>
+              <strong>&emsp;ISBN:</strong>&emsp;{` ${listing.ISBN}`}
+            </Detail>
+            <Detail>
+              <strong>&emsp;Course ID:</strong>&emsp;
+              {` ${listing.courseID}`}
+            </Detail>
+            <Detail>
+              <strong>&emsp;Condition:</strong>&emsp;
+              {` ${listing.condition}`}{' '}
+            </Detail>
+            <Detail>
+              <strong>&emsp;Price:</strong>&emsp;{` $${listing.price}`}{' '}
+            </Detail>
+            <Detail>
+              <strong>&emsp;Comments:</strong>&emsp;{` ${listing.comments}`}{' '}
+            </Detail>
+            <Detail>
+              <strong>&emsp;Last Edited Time:</strong>&emsp;
+              {` ${listing.edited}`}{' '}
+            </Detail>
+            <br />
+            <link
+              rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            />
+            <ButtonBar>
+              <button
+                type="button"
+                className="btn btn-default btn-sm"
+                onClick={() => {
+                  if (
+                    window.confirm('Are you sure you want to delete this post?')
+                  ) {
+                    fetch(`/api/MyPostings/${listing.id}`, {
+                      method: 'DELETE'
+                    })
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error(response.statusText);
+                        }
+                        const newListings = myListings.filter(
+                          item => item !== listing
+                        );
+                        setMyListings(newListings);
+                        // window.location.reload(false);
+                      })
+                      .catch(err => console.log(err));
+                    setCurrentListing();
+                    setMode('view');
+                  }
+                }}
+              >
+                <span className="glyphicon glyphicon-trash" />
+                &emsp;Delete
+              </button>
+              &emsp;&emsp;
+              <button
+                type="button"
+                className="btn btn-default btn-sm"
+                onClick={() => {
+                  setMode('edit');
+                  setCurrentListing(listing);
+                  setISBN(listing.ISBN);
+                  setComments(listing.comments);
+                  setPrice(listing.price);
+                  setTitle(listing.title);
+                  setCourseID(listing.courseID);
+                }}
+              >
+                <span className="glyphicon glyphicon-edit" />
+                &emsp;Edit
+              </button>
+            </ButtonBar>
           </View>
-          <Router>
-            <Switch>
-              <Route
-                exact
-                path="/newPosting"
-                component={() => <NewPosting ifPosting={'postingView'} />}
+        )}
+
+        {mode === 'edit' && currentListing.id === listing.id && (
+          <Edit>
+            <h4 align="center">
+              <span class="glyphicon glyphicon-pencil" />
+              &emsp;Editing
+            </h4>
+            <EditDiv>
+              <strong>Book Title:</strong>
+              <NewInput
+                type="text"
+                id="title"
+                value={title}
+                placeholder={'Book title must be set'}
+                onChange={event => setTitle(event.target.value)}
               />
-            </Switch>
-          </Router>
-        </div>
-      );
-    } else {
-      let listingItems = null;
-      listingItems = myListings.map(listing => (
-        <div>
-          {mode === 'view' && (
-            <View>
-              <Detail>
-                <strong>&emsp;Book Title:</strong>&emsp;{` ${listing.title}`}
-              </Detail>
-              <Detail>
-                <strong>&emsp;ISBN:</strong>&emsp;{` ${listing.ISBN}`}
-              </Detail>
-              <Detail>
-                <strong>&emsp;Course ID:</strong>&emsp;
-                {` ${listing.courseID}`}
-              </Detail>
-              <Detail>
-                <strong>&emsp;Condition:</strong>&emsp;
-                {` ${listing.condition}`}{' '}
-              </Detail>
-              <Detail>
-                <strong>&emsp;Price:</strong>&emsp;{` $${listing.price}`}{' '}
-              </Detail>
-              <Detail>
-                <strong>&emsp;Comments:</strong>&emsp;{` ${listing.comments}`}{' '}
-              </Detail>
-              <Detail>
-                <strong>&emsp;Last Edited Time:</strong>&emsp;
-                {` ${listing.edited}`}{' '}
-              </Detail>
+
+              <strong>Course ID:</strong>
+              <NewInput
+                type="text"
+                id="courseID"
+                value={courseID}
+                placeholder={'Course ID must be set'}
+                onChange={event => setCourseID(event.target.value)}
+              />
+
+              <strong>Condition:</strong>
+              <NewSelect onChange={event => setCondition(event.target.value)}>
+                <option>Condition must be selected here</option>
+                <option value="New">New</option>
+                <option value="Very Good">Very Good</option>
+                <option value="Good">Good</option>
+                <option value="Acceptable">Acceptable</option>
+                <option value="Very Worn">Very Worn</option>
+                <option value="Bad">Bad</option>
+              </NewSelect>
+
+              <strong>Price:</strong>
+              <NewInput
+                type="text"
+                id="price"
+                value={price}
+                placeholder={'Price must be set'}
+                onChange={event => setPrice(event.target.value)}
+              />
+
+              <strong>Comments:</strong>
+              <NewInput
+                type="text"
+                id="comments"
+                value={comments}
+                placeholder={'Additional comments...'}
+                onChange={event => setComments(event.target.value)}
+              />
+
+              <br />
               <br />
               <link
                 rel="stylesheet"
                 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
               />
-              <ButtonBar>
+              <EditButtonBar>
                 <button
                   type="button"
                   className="btn btn-default btn-sm"
                   onClick={() => {
-                    if (
-                      window.confirm(
-                        'Are you sure you want to delete this post?'
-                      )
-                    ) {
-                      fetch(`/api/MyPostings/${listing.id}`, {
-                        method: 'DELETE'
-                      })
-                        .then(response => {
-                          if (!response.ok) {
-                            throw new Error(response.statusText);
-                          }
-                          const newListings = myListings.filter(
-                            item => item !== currentListing
-                          );
-                          setMyListings(newListings);
-                          window.location.reload(false);
-                        })
-                        .catch(err => console.log(err));
-                      setCurrentListing();
-                      setMode('view');
-                    }
+                    setMode('view');
+                    setCurrentListing();
                   }}
                 >
-                  <span className="glyphicon glyphicon-trash" />
-                  &emsp;Delete
+                  Cancel
                 </button>
                 &emsp;&emsp;
                 <button
                   type="button"
                   className="btn btn-default btn-sm"
+                  disabled={
+                    title === '' ||
+                    courseID === '' ||
+                    price === '' ||
+                    condition === ''
+                  }
                   onClick={() => {
-                    setMode('edit');
-                    setCurrentListing(listing);
-                    setISBN(listing.ISBN);
-                    setComments(listing.comments);
-                    setPrice(listing.price);
-                    setTitle(listing.title);
-                    setCourseID(listing.courseID);
+                    fetch(`/api/MyPostings/Listing/${listing.id}`, {
+                      method: 'PUT',
+                      body: JSON.stringify(constructListing()),
+                      headers: new Headers({
+                        'Content-type': 'application/json'
+                      })
+                    })
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error(response.statusText);
+                        }
+                        return response.json();
+                      })
+                      .then(() => {
+                        window.location.reload(false);
+                      })
+                      .catch(err => console.log(err));
+
+                    fetch(`/api/MyPostings/Book/${isbn}`, {
+                      method: 'PUT',
+                      body: JSON.stringify(constructBook()),
+                      headers: new Headers({
+                        'Content-type': 'application/json'
+                      })
+                    })
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error(response.statusText);
+                        }
+                        return response.json();
+                      })
+                      .then(() => {
+                        window.location.reload(false);
+                      })
+                      .catch(err => console.log(err));
+
+                    setCurrentListing();
+                    setMode('view');
                   }}
                 >
-                  <span className="glyphicon glyphicon-edit" />
-                  &emsp;Edit
+                  Save
                 </button>
-              </ButtonBar>
-            </View>
-          )}
+              </EditButtonBar>
+            </EditDiv>
+          </Edit>
+        )}
+      </div>
+    ));
 
-          {mode === 'edit' && currentListing.id === listing.id && (
-            <Edit>
-              <h4 align="center">
-                <span class="glyphicon glyphicon-pencil" />
-                &emsp;Editing
-              </h4>
-              <EditDiv>
-                <strong>Book Title:</strong>
-                <NewInput
-                  type="text"
-                  id="title"
-                  value={title}
-                  placeholder={'Book title must be set'}
-                  onChange={event => setTitle(event.target.value)}
-                />
-
-                <strong>Course ID:</strong>
-                <NewInput
-                  type="text"
-                  id="courseID"
-                  value={courseID}
-                  placeholder={'Course ID must be set'}
-                  onChange={event => setCourseID(event.target.value)}
-                />
-
-                <strong>Condition:</strong>
-                <NewSelect onChange={event => setCondition(event.target.value)}>
-                  <option>Condition must be selected here</option>
-                  <option value="New">New</option>
-                  <option value="Very Good">Very Good</option>
-                  <option value="Good">Good</option>
-                  <option value="Acceptable">Acceptable</option>
-                  <option value="Very Worn">Very Worn</option>
-                  <option value="Bad">Bad</option>
-                </NewSelect>
-
-                <strong>Price:</strong>
-                <NewInput
-                  type="text"
-                  id="price"
-                  value={price}
-                  placeholder={'Price must be set'}
-                  onChange={event => setPrice(event.target.value)}
-                />
-
-                <strong>Comments:</strong>
-                <NewInput
-                  type="text"
-                  id="comments"
-                  value={comments}
-                  placeholder={'Additional comments...'}
-                  onChange={event => setComments(event.target.value)}
-                />
-
-                <br />
-                <br />
-                <link
-                  rel="stylesheet"
-                  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-                />
-                <EditButtonBar>
-                  <button
-                    type="button"
-                    className="btn btn-default btn-sm"
-                    onClick={() => {
-                      setMode('view');
-                      setCurrentListing();
-                    }}
-                  >
-                    Cancel
-                  </button>
-                  &emsp;&emsp;
-                  <button
-                    type="button"
-                    className="btn btn-default btn-sm"
-                    disabled={
-                      title === '' ||
-                      courseID === '' ||
-                      price === '' ||
-                      condition === ''
-                    }
-                    onClick={() => {
-                      fetch(`/api/MyPostings/Listing/${listing.id}`, {
-                        method: 'PUT',
-                        body: JSON.stringify(constructListing()),
-                        headers: new Headers({
-                          'Content-type': 'application/json'
-                        })
-                      })
-                        .then(response => {
-                          if (!response.ok) {
-                            throw new Error(response.statusText);
-                          }
-                          return response.json();
-                        })
-                        .then(() => {
-                          window.location.reload(false);
-                        })
-                        .catch(err => console.log(err));
-
-                      fetch(`/api/MyPostings/Book/${isbn}`, {
-                        method: 'PUT',
-                        body: JSON.stringify(constructBook()),
-                        headers: new Headers({
-                          'Content-type': 'application/json'
-                        })
-                      })
-                        .then(response => {
-                          if (!response.ok) {
-                            throw new Error(response.statusText);
-                          }
-                          return response.json();
-                        })
-                        .then(() => {
-                          window.location.reload(false);
-                        })
-                        .catch(err => console.log(err));
-
-                      setCurrentListing();
-                      setMode('view');
-                    }}
-                  >
-                    Save
-                  </button>
-                </EditButtonBar>
-              </EditDiv>
-            </Edit>
-          )}
-        </div>
-      ));
-
-      return (
-        <div>
-          <BackButton>
-            <Link to={''} id="">
-              Back to Main Page
-            </Link>
-          </BackButton>
-          <Title>My Postings</Title>
-          {listingItems}
-        </div>
-      );
-    }
+    return (
+      <div>
+        <BackButton>
+          <Link to={''} id="">
+            Back to Main Page
+          </Link>
+        </BackButton>
+        <Title>My Postings</Title>
+        {listingItems}
+      </div>
+    );
   }
 };
 
