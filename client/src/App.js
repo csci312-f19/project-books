@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import Logo from './middbooks.png';
+import HomePic from './home.png';
 import { Link } from 'react-router-dom';
 
 let GOOGLE_CLIENT_ID;
@@ -33,9 +34,9 @@ const DropDownDiv = styled.div`
   z-index: 1;
 `;
 const DropDownButton = styled.button`
-  background-color: #4caf50;
-  color: white;
-  padding: 16px;
+  background-color: #a3bdd0;
+  color: #fafafa;
+  padding: 20px;
   font-size: 16px;
   border: none;
 `;
@@ -62,11 +63,35 @@ const CenteredImg = styled.div`
   z-index: 1;
 `;
 
-const Image = styled.img`
+const MiddBooks = styled.img`
   width: 30%;
   margin-left: auto;
   margin-right: auto;
   display: inline;
+`;
+
+const HomeDiv = styled.div`
+  float: left;
+  position: absolute;
+  left: 4.5vw;
+  top: 1.75vw;
+  text-align: center;
+  max-width: 3vw;
+`;
+
+const HomeButton = styled.button`
+  background-color: #a3bdd0;
+  border: none;
+`;
+
+const Home = styled.img`
+    padding: 16px;
+    border: auto;
+    flex: 1;
+    width: 3vw;
+    height: 3vw
+    resizeMode: 'contain';
+
 `;
 
 function App() {
@@ -167,13 +192,19 @@ function App() {
   return (
     <Router>
       {buttonDisplay && (
-        <button onClick={() => setButton(false)}>
+        <HomeDiv>
           <Link to={''} id="">
-            Back to Main Page
+            <HomeButton>
+              <Home
+                src={HomePic}
+                alt="Back to homepage"
+                onClick={() => setButton(false)}
+              />
+            </HomeButton>
           </Link>
-        </button>
+        </HomeDiv>
       )}
-             
+            
       <DropDownDiv onClick={() => setMenu(!menuState)}>
                   <DropDownButton>My Account</DropDownButton>           
         <DropdownContent>{menuState && DropDownContent}</DropdownContent>
@@ -182,7 +213,7 @@ function App() {
       <br />         
       <br />
       <CenteredImg>
-        <Image src={Logo} alt="website logo" />
+        <MiddBooks src={Logo} alt="website logo" />
       </CenteredImg>
               
       <Switch>
