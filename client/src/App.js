@@ -49,10 +49,6 @@ const DropdownContent = styled.div`
   right: 0;
 `;
 
-const ContainerDiv = styled.div`
-  postion: relative;
-  z-inline: 0;
-`;
 const Item = styled.div`
   color: black;
   padding: 12px 16px;
@@ -78,6 +74,7 @@ function App() {
   const [currentBook, setBook] = useState(null);
   const [loggedIn, setLogin] = useState(false);
   const [menuState, setMenu] = useState(false);
+  const [buttonDisplay, setButton] = useState(false);
 
   useEffect(() => {
     fetch('/api/bookListings/') //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
@@ -143,14 +140,14 @@ function App() {
     />
   );
   const viewbutton = (
-    <button>
+    <button onClick={() => setButton(true)}>
       <Link to={'myPostings'} id="myPostings">
         View My Postings
       </Link>
     </button>
   );
   const createbutton = (
-    <button>
+    <button onClick={() => setButton(true)}>
       <Link to={'newPosting'} id="newPosting">
         Create New Posting
       </Link>
@@ -169,82 +166,81 @@ function App() {
 
   return (
     <Router>
-      {' '}
-            
-      <div>
-             
-        <ContainerDiv>
-             
-          <DropDownDiv onClick={() => setMenu(!menuState)}>
-                      <DropDownButton>My Account</DropDownButton>           
-            <DropdownContent>
-              {menuState && DropDownContent}
-            </DropdownContent>{' '}
-                    
-          </DropDownDiv>{' '}
-                  
-          <br />         
-          <br />
-          <CenteredImg>
-            <Image src={Logo} alt="website logo" />
-          </CenteredImg>
-        </ContainerDiv>{' '}
+      {buttonDisplay && (
+        <button onClick={() => setButton(false)}>
+          <Link to={''} id="">
+            Back to Main Page
+          </Link>
+        </button>
+      )}
+             
+      <DropDownDiv onClick={() => setMenu(!menuState)}>
+                  <DropDownButton>My Account</DropDownButton>           
+        <DropdownContent>{menuState && DropDownContent}</DropdownContent>
+      </DropDownDiv>
+              
+      <br />         
+      <br />
+      <CenteredImg>
+        <Image src={Logo} alt="website logo" />
+      </CenteredImg>
+              
+      <Switch>
                 
-        <Switch>
-                  
-          <Route
-            exact
-            path="/newPosting"
-            component={() => <NewPosting ifPosting={'postingView'} />}
-          />
-                    
-          <Route
-            exact
-            path="/myPostings"
-            component={() => (
-              <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
-            )}
-          />
-                    
-          <Route
-            path="/:id"
-            component={() => (
+        <Route
+          exact
+          path="/newPosting"
+          component={() => <NewPosting ifPosting={'postingView'} />}
+        />
+                  
+        <Route
+          exact
+          path="/myPostings"
+          component={() => (
+            <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
+          )}
+        />
+                  
+        <Route
+          path="/:id"
+          render={() => {
+            setButton(true);
+            return (
               <Listings
                 currentListings={listings}
                 searchTerm={currentBook}
                 mode={'detailed'}
               />
-            )}
-          />
-                    
-          <Route
-            render={() => (
-              <div>
-                                
-                {loggedIn && <NewPosting ifPosting={'general'} />}
-                                
-                {loggedIn && (
-                  <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
-                )}
-                                
-                <SearchBar
-                  setBook={book => setBook(book)}
-                  currentBook={currentBook}
-                />
-                                
-                <Listings
-                  currentListings={listings}
-                  searchTerm={currentBook}
-                  mode={'general'}
-                />
-                              
-              </div>
-            )}
-          />
-                  
-        </Switch>
-              
-      </div>
+            );
+          }}
+        />
+                  
+        <Route
+          render={() => (
+            <div>
+                              
+              {loggedIn && <NewPosting ifPosting={'general'} />}
+                              
+              {loggedIn && (
+                <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
+              )}
+                              
+              <SearchBar
+                setBook={book => setBook(book)}
+                currentBook={currentBook}
+              />
+                              
+              <Listings
+                currentListings={listings}
+                searchTerm={currentBook}
+                mode={'general'}
+              />
+                            
+            </div>
+          )}
+        />
+                
+      </Switch>
           
     </Router>
   );

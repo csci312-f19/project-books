@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Immutable from 'immutable';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -13,8 +12,6 @@ const View = styled.div`
   margin: 30px 120px;
   border-radius: 50px;
   background-color: #f2f2f2;
-  // background-color: #d8e7f0;
-  // background-color: #ebebeb;
   padding: 30px 30px;
 `;
 const Edit = styled.div`
@@ -66,7 +63,7 @@ const ButtonBar = styled.div`
 const EditButtonBar = styled.div`
   text-align: right;
 `;
-const BackButton = styled.button``;
+
 const MyPostings = ({ ifPosting, ifLoggedIn }) => {
   const [myListings, setMyListings] = useState(Immutable.List());
   const [mode, setMode] = useState('view');
@@ -125,11 +122,6 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
       return (
         <div>
           <Title>My Postings</Title>
-          <BackButton>
-            <Link to={''} id="">
-              Back to Main Page
-            </Link>
-          </BackButton>
           <View>
             <p align="center">You have not posted anything yet.</p>
             {ifLoggedIn && (
@@ -374,11 +366,6 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
 
       return (
         <div>
-          <BackButton>
-            <Link to={''} id="">
-              Back to Main Page
-            </Link>
-          </BackButton>
           <Title>My Postings</Title>
           {listingItems}
         </div>

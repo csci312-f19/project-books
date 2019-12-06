@@ -9,6 +9,7 @@ export const SearchBar = styled.input`
   height: 25px;
   border-radius: 25px;
   border: 2px solid #cccccc;
+  z-index: 1;
 `;
 const SubmitButton = styled.input`
   margin-left: 10px;
@@ -18,9 +19,13 @@ const SubmitButton = styled.input`
   color: white;
   border: 0;
   -webkit-appearance: none;
+  position: absolute;
+
+  z-index: 2;
 `;
 const SearchBarContainer = styled.div`
   text-align: center;
+  position: relative;
 `;
 
 function Search({ setBook }) {

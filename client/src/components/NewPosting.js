@@ -74,8 +74,6 @@ const Note = styled.div`
   margin-left: 5vw;
 `;
 
-const BackButton = styled.button``;
-
 const newPosting = ({ ifPosting }) => {
   const postingInfo = {
     author: '',
@@ -156,11 +154,6 @@ const newPosting = ({ ifPosting }) => {
     return (
       <WholeContainer>
         <SectionTitle>Create a new posting</SectionTitle>
-        <BackButton>
-          <Link to={''} id="">
-            Back to Main Page
-          </Link>
-        </BackButton>
         {makeInput(
           'title',
           'Book Title',
