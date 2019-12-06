@@ -13,13 +13,13 @@ const List = styled.ul`
   height: 20px;
 `;
 export const ListElementContainer = styled.li`
-  border: 3px solid #a3bdd0;
-  padding: 4px;
-  margin: 5px auto 5px auto;
-  width: 55%;
-  text-align: center;
-  border-radius: 25px;
+  margin: 30px 120px;
+  border-radius: 50px;
   background-color: #f2f2f2;
+  color: #374068;
+  padding: 20px 20px;
+  border: 3px solid #a3bdd0;
+  text-align: left;
 `;
 
 const View = styled.div`
@@ -40,13 +40,7 @@ const Detail = styled.div`
   margin-right: 10px;
 `;
 
-const ListElement = styled.p`
-  color: #374068;
-  margin-left: 5vw;
-  font-size: 1.1vw;
-`;
-
-const ListTitle = styled.h2`
+const ListTitle = styled.h3`
   color: #374068;
   text-align: center;
 `;
@@ -214,20 +208,20 @@ export function SortBar({ sortType, setSortType, ascending, setDirection }) {
           <option value="Price">Price</option>
           <option value="Condition">Condition</option>
         </SelectBar>
+        {(sortType === 'Price' ||
+          sortType === 'Condition' ||
+          sortType === 'Alphabetical') && (
+          <SelectBar
+            value={ascending ? 'True' : 'False'}
+            onChange={event => {
+              setDirection(event.target.value === 'True');
+            }}
+          >
+            <option value="True">Ascending</option>
+            <option value="False">Descending</option>
+          </SelectBar>
+        )}
       </Detail>
-      {(sortType === 'Price' ||
-        sortType === 'Condition' ||
-        sortType === 'Alphabetical') && (
-        <SelectBar
-          value={ascending ? 'True' : 'False'}
-          onChange={event => {
-            setDirection(event.target.value === 'True');
-          }}
-        >
-          <option value="True">Ascending</option>
-          <option value="False">Descending</option>
-        </SelectBar>
-      )}
     </SortBarContainer>
   );
 }
@@ -310,23 +304,22 @@ export function ListingsCollection({
         <Link to={String(listing.id)}>{listing.title}</Link>
       </ListTitle>
 
-      <ListElement>
+      <Detail>
         <strong>Course: </strong>
         {listing.courseID}
-      </ListElement>
-      <ListElement>{listing.courseTitle}</ListElement>
-      <ListElement>
+      </Detail>
+      <Detail>
         <strong>ISBN: </strong>
         {listing.ISBN}
-      </ListElement>
-      <ListElement>
+      </Detail>
+      <Detail>
         <strong>Price: $</strong>
         {listing.price}
-      </ListElement>
-      <ListElement>
+      </Detail>
+      <Detail>
         <strong>Condition: </strong>
         {listing.condition}
-      </ListElement>
+      </Detail>
     </ListElementContainer>
   ));
 
