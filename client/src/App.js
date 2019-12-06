@@ -80,7 +80,7 @@ const HomeDiv = styled.div`
 `;
 
 const HomeButton = styled.button`
-  background-color: #a3bdd0;
+  background-color: #a2dadb;
   border: none;
 `;
 
@@ -99,7 +99,7 @@ function App() {
   const [currentBook, setBook] = useState(null);
   const [loggedIn, setLogin] = useState(false);
   const [menuState, setMenu] = useState(false);
-  const [buttonDisplay, setButton] = useState(false);
+  const [buttonDisplay, setButton] = useState(true);
 
   useEffect(() => {
     fetch('/api/bookListings/') //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
@@ -221,15 +221,21 @@ function App() {
         <Route
           exact
           path="/newPosting"
-          component={() => <NewPosting ifPosting={'postingView'} />}
+          render={() => {
+            setButton(true);
+            return <NewPosting ifPosting={'postingView'} />;
+          }}
         />
                   
         <Route
           exact
           path="/myPostings"
-          component={() => (
-            <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
-          )}
+          render={() => {
+            setButton(true);
+            return (
+              <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
+            );
+          }}
         />
                   
         <Route
@@ -247,28 +253,31 @@ function App() {
         />
                   
         <Route
-          render={() => (
-            <div>
-                              
-              {loggedIn && <NewPosting ifPosting={'general'} />}
-                              
-              {loggedIn && (
-                <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
-              )}
-                              
-              <SearchBar
-                setBook={book => setBook(book)}
-                currentBook={currentBook}
-              />
-                              
-              <Listings
-                currentListings={listings}
-                searchTerm={currentBook}
-                mode={'general'}
-              />
-                            
-            </div>
-          )}
+          render={() => {
+            setButton(false);
+            return (
+              <div>
+                                
+                {loggedIn && <NewPosting ifPosting={'general'} />}
+                                
+                {loggedIn && (
+                  <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
+                )}
+                                
+                <SearchBar
+                  setBook={book => setBook(book)}
+                  currentBook={currentBook}
+                />
+                                
+                <Listings
+                  currentListings={listings}
+                  searchTerm={currentBook}
+                  mode={'general'}
+                />
+                              
+              </div>
+            );
+          }}
         />
                 
       </Switch>
