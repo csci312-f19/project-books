@@ -92,6 +92,7 @@ const HomeDiv = styled.div`
   position: absolute;
   text-align: center;
   max-width: 2.5vw;
+  max-height: 2.5vw;
   z-index: 1;
   margin-left: 3%
   margin-top: 3%
@@ -104,13 +105,12 @@ const HomeButton = styled.button`
 `;
 
 const Home = styled.img`
-    padding: 16px;
-    border: auto;
-    flex: 1;
-    width: 3vw;
-    height: 3vw
-    resizeMode: 'contain';
-
+  padding: 16px;
+  border: auto;
+  flex: 1;
+  width: 2.5vw;
+  height: 2.5vw;
+  resizemode: 'center';
 `;
 
 function App() {

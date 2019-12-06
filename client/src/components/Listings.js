@@ -23,7 +23,7 @@ export const ListElementContainer = styled.li`
 `;
 
 const View = styled.div`
-  margin: 30px 120px 200px;
+  margin: 30px 120px 100px;
   border-radius: 50px;
   background-color: #f2f2f2;
   color: #374068;
@@ -60,6 +60,7 @@ const Confirmation = styled.div`
   text-align: center;
   background-color: lightgreen;
   border-radius: 4px;
+  margin-top: 5px;
 `;
 
 const BuyButton = styled.button`
@@ -174,16 +175,17 @@ export const DetailedListing = () => {
             </div>
           </Popup>
         )}
+
+        <div>
+          {purchased && (
+            <Confirmation>
+              Your request has successfully been sent to the seller of this
+              book. Expect to hear back via email in 3 days or less. If you have
+              not heard back by then, feel free to submit a new request.
+            </Confirmation>
+          )}
+        </div>
       </View>
-      <div>
-        {purchased && (
-          <Confirmation>
-            Your request has successfully been sent to the seller of this book.
-            Expect to hear back via email in 3 days or less. If you have not
-            heard back by then, feel free to submit a new request.
-          </Confirmation>
-        )}
-      </div>
     </List>
   );
 };
