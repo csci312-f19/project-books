@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import Logo from './middbooks.png';
+import HomePic from './home.png';
 import { Link } from 'react-router-dom';
 
 let GOOGLE_CLIENT_ID;
@@ -31,33 +32,45 @@ const DropDownDiv = styled.div`
   position: absolute;
   right: 0vw;
   z-index: 1;
+  margin-right: 3%;
+  margin-top: 3%;
+  text-align: right;
 `;
+
 const DropDownButton = styled.button`
-  background-color: #4caf50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
+  background-color: #a3bdd0;
+  color: #fafafa;
+  padding: 24px;
+  font-size: 17px;
   border: none;
+  border-radius: 40px;
+  max-height: 6vw;
+`;
+
+const PostingButton = styled.button`
+  background-color: white;
+  color: #848484;
+  padding: 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px #a9a9a9;
 `;
 
 const DropdownContent = styled.div`
-  display: block;
-  position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  margin-right: 3%;
   z-index: 2;
-  right: 0;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: right;
 `;
 
-const ContainerDiv = styled.div`
-  postion: relative;
-  z-inline: 0;
-`;
 const Item = styled.div`
-  color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  text-align: center;
 `;
 
 const CenteredImg = styled.div`
@@ -66,11 +79,38 @@ const CenteredImg = styled.div`
   z-index: 1;
 `;
 
-const Image = styled.img`
-  width: 30%;
+const MiddBooks = styled.img`
+  width: 25%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 8%;
   display: inline;
+`;
+
+const HomeDiv = styled.div`
+  float: left;
+  position: absolute;
+  text-align: center;
+  max-width: 2.5vw;
+  max-height: 2.5vw;
+  z-index: 1;
+  margin-left: 3%
+  margin-top: 3%
+`;
+
+const HomeButton = styled.button`
+  background-color: #a2dadb;
+  border: none;
+  border-radius: 40px;
+`;
+
+const Home = styled.img`
+  padding: 16px;
+  border: auto;
+  flex: 1;
+  width: 2.5vw;
+  height: 2.5vw;
+  resizemode: 'center';
 `;
 
 function App() {
@@ -78,6 +118,7 @@ function App() {
   const [currentBook, setBook] = useState(null);
   const [loggedIn, setLogin] = useState(false);
   const [menuState, setMenu] = useState(false);
+  const [buttonDisplay, setButton] = useState(true);
 
   useEffect(() => {
     fetch('/api/bookListings/') //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
@@ -128,7 +169,7 @@ function App() {
   const loginButton = (
     <GoogleLogin
       clientId={GOOGLE_CLIENT_ID}
-      buttonText="Login with Google"
+      buttonText="Login"
       isSignedIn
       onSuccess={handleGoogleLogin}
       onFailure={handleGoogleFailure}
@@ -142,110 +183,112 @@ function App() {
       onLogoutSuccess={handleGoogleLogout}
     />
   );
-  const viewbutton = (
-    <button>
+  const viewButton = (
+    <Item>
       <Link to={'myPostings'} id="myPostings">
-        View My Postings
+        <PostingButton onClick={() => setButton(true)}>
+          My Postings
+        </PostingButton>
       </Link>
-    </button>
+    </Item>
   );
-  const createbutton = (
-    <button>
+  const createButton = (
+    <Item>
       <Link to={'newPosting'} id="newPosting">
-        Create New Posting
+        <PostingButton onClick={() => setButton(true)}>
+          New Posting
+        </PostingButton>
       </Link>
-    </button>
+    </Item>
   );
   const DropDownContent = (
     <div>
-      <Item> {loggedIn && viewbutton}</Item>
-      <Item>{loggedIn && createbutton}</Item>
       <Item>
         {!loggedIn && loginButton}
         {loggedIn && logoutButton}
       </Item>
+      {loggedIn && viewButton}
+      {loggedIn && createButton}
     </div>
   );
 
   return (
     <Router>
-      {' '}
-            
-      <div>
-             
-        <ContainerDiv>
-             
-          <DropDownDiv onClick={() => setMenu(!menuState)}>
-                      <DropDownButton>My Account</DropDownButton>           
-            <DropdownContent>
-              {menuState && DropDownContent}
-            </DropdownContent>{' '}
-                    
-          </DropDownDiv>{' '}
-                  
-          <br />         
-          <br />
-          <CenteredImg>
-            <Image src={Logo} alt="website logo" />
-          </CenteredImg>
-        </ContainerDiv>{' '}
-                
-        <Switch>
-                  
-          <Route
-            exact
-            path="/newPosting"
-            component={() => <NewPosting ifPosting={'postingView'} />}
-          />
-                    
-          <Route
-            exact
-            path="/myPostings"
-            component={() => (
+      {buttonDisplay && (
+        <HomeDiv>
+          <Link to={''} id="">
+            <HomeButton type="button">
+              <Home
+                src={HomePic}
+                alt="Back to homepage"
+                onClick={() => setButton(false)}
+              />
+            </HomeButton>
+          </Link>
+        </HomeDiv>
+      )}
+      <DropDownDiv onClick={() => setMenu(!menuState)}>
+        <DropDownButton>My Account</DropDownButton>
+        <DropdownContent>{menuState && DropDownContent}</DropdownContent>
+      </DropDownDiv>
+      <CenteredImg>
+        <MiddBooks src={Logo} alt="website logo" />
+      </CenteredImg>
+      <Switch>
+        <Route
+          exact
+          path="/newPosting"
+          render={() => {
+            setButton(true);
+            return <NewPosting ifPosting={'postingView'} />;
+          }}
+        />
+        <Route
+          exact
+          path="/myPostings"
+          render={() => {
+            setButton(true);
+            return (
               <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
-            )}
-          />
-                    
-          <Route
-            path="/:id"
-            component={() => (
+            );
+          }}
+        />
+        <Route
+          path="/:id"
+          render={() => {
+            setButton(true);
+            return (
               <Listings
                 currentListings={listings}
                 searchTerm={currentBook}
                 mode={'detailed'}
               />
-            )}
-          />
-                    
-          <Route
-            render={() => (
+            );
+          }}
+        />
+        <Route
+          render={() => {
+            setButton(false);
+            return (
               <div>
-                                
                 {loggedIn && <NewPosting ifPosting={'general'} />}
-                                
                 {loggedIn && (
                   <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
                 )}
-                                
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}
                 />
-                                
                 <Listings
                   currentListings={listings}
                   searchTerm={currentBook}
                   mode={'general'}
                 />
-                              
               </div>
-            )}
-          />
-                  
-        </Switch>
-              
-      </div>
-          
+            );
+          }}
+        />
+      </Switch>
     </Router>
   );
 }

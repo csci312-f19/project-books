@@ -4,23 +4,28 @@ import styled from 'styled-components';
 export const SearchBar = styled.input`
   text-align: left;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 60px;
   width: 50%;
   height: 25px;
   border-radius: 25px;
   border: 2px solid #cccccc;
+  z-index: 1;
 `;
 const SubmitButton = styled.input`
   margin-left: 10px;
   height: 25px;
   width: 50px;
-  background: blue;
-  color: white;
+  background: #67a5d2;
+  color: #fafafa;
   border: 0;
   -webkit-appearance: none;
+  position: absolute;
+  border-radius: 40px;
+  z-index: 2;
 `;
 const SearchBarContainer = styled.div`
   text-align: center;
+  position: relative;
 `;
 
 function Search({ setBook }) {
