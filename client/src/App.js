@@ -41,6 +41,7 @@ const DropDownButton = styled.button`
   font-size: 17px;
   border: none;
   border-radius: 40px;
+  max-height: 6vw;
 `;
 
 const PostingButton = styled.button`
@@ -84,10 +85,10 @@ const MiddBooks = styled.img`
 const HomeDiv = styled.div`
   float: left;
   position: absolute;
-  left: 4.5vw;
-  top: 1.25vw;
+  left: 5%;
+  top: 2%;
   text-align: center;
-  max-width: 3vw;
+  max-width: 2.5vw;
   z-index: 1;
 `;
 
