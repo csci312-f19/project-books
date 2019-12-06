@@ -22,6 +22,26 @@ export const ListElementContainer = styled.li`
   margin: 5px auto 5px auto;
   width: 55%;
   text-align: center;
+  border-radius: 25px;
+  background-color: #f2f2f2;
+`;
+
+const View = styled.div`
+  margin: 30px 120px;
+  border-radius: 50px;
+  background-color: #f2f2f2;
+  color: #374068;
+  padding: 30px 30px;
+  border: 3px solid #a3bdd0;
+`;
+
+const Detail = styled.div`
+  padding: 10px 10px;
+  border-radius: 4px;
+  background-color: #fafafa;
+  margin-top: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 const ListElement = styled.p`
@@ -59,6 +79,7 @@ const BuyButton = styled.button`
   text-align: center;
   padding: 5px;
   font-size: 1.3vw;
+  border-radius: 40px;
 `;
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -112,10 +133,10 @@ export const DetailedListing = () => {
     <List>
       <ListElementContainer>
         <ListTitle>{detailedListing.title}</ListTitle>
-        <ColoredText>
-          <strong>{`${'\xa0'.repeat(18)}ISBN${'\xa0'.repeat(3)}`}</strong>{' '}
+        <Detail>
+          <strong>ISBN</strong>
           {` ${detailedListing.ISBN}`}
-        </ColoredText>
+        </Detail>
         <ColoredText>
           <strong>{`${'\xa0'.repeat(5)}Comments${'\xa0'.repeat(3)}`}</strong>
           {` ${detailedListing.comments}`}{' '}

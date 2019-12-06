@@ -36,9 +36,10 @@ const DropDownDiv = styled.div`
 const DropDownButton = styled.button`
   background-color: #a3bdd0;
   color: #fafafa;
-  padding: 20px;
-  font-size: 16px;
+  padding: 24px;
+  font-size: 17px;
   border: none;
+  border-radius: 40px;
 `;
 
 const DropdownContent = styled.div`
@@ -64,7 +65,7 @@ const CenteredImg = styled.div`
 `;
 
 const MiddBooks = styled.img`
-  width: 30%;
+  width: 25%;
   margin-left: auto;
   margin-right: auto;
   display: inline;
@@ -74,14 +75,16 @@ const HomeDiv = styled.div`
   float: left;
   position: absolute;
   left: 4.5vw;
-  top: 1.75vw;
+  top: 1.25vw;
   text-align: center;
   max-width: 3vw;
+  z-index: 1;
 `;
 
 const HomeButton = styled.button`
   background-color: #a2dadb;
   border: none;
+  border-radius: 40px;
 `;
 
 const Home = styled.img`
@@ -164,14 +167,14 @@ function App() {
       onLogoutSuccess={handleGoogleLogout}
     />
   );
-  const viewbutton = (
+  const viewButton = (
     <button onClick={() => setButton(true)}>
       <Link to={'myPostings'} id="myPostings">
         View My Postings
       </Link>
     </button>
   );
-  const createbutton = (
+  const createButton = (
     <button onClick={() => setButton(true)}>
       <Link to={'newPosting'} id="newPosting">
         Create New Posting
@@ -180,8 +183,8 @@ function App() {
   );
   const DropDownContent = (
     <div>
-      <Item> {loggedIn && viewbutton}</Item>
-      <Item>{loggedIn && createbutton}</Item>
+      <Item> {loggedIn && viewButton}</Item>
+      <Item>{loggedIn && createButton}</Item>
       <Item>
         {!loggedIn && loginButton}
         {loggedIn && logoutButton}
@@ -217,7 +220,7 @@ function App() {
       </CenteredImg>
               
       <Switch>
-                
+              
         <Route
           exact
           path="/newPosting"

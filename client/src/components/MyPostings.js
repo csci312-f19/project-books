@@ -6,14 +6,18 @@ import NewPosting from '../components/NewPosting';
 
 const Title = styled.h2`
   text-align: center;
+  color: #374068;
 `;
 
 const View = styled.div`
   margin: 30px 120px;
   border-radius: 50px;
   background-color: #f2f2f2;
+  color: #374068;
   padding: 30px 30px;
+  border: 3px solid #a3bdd0;
 `;
+
 const Edit = styled.div`
   margin: 30px 120px;
   border: 1px solid #ccc;
@@ -27,9 +31,9 @@ const EditDiv = styled.div`
 `;
 
 const Detail = styled.div`
-  padding: 7px 7px;
-  border-radius: 4px;
-  background-color: #ffffff;
+  padding: 10px 10px;
+  border-radius: 8px;
+  background-color: #fafafa;
   margin-top: 8px;
   margin-left: 10px;
   margin-right: 10px;
