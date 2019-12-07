@@ -99,8 +99,8 @@ describe('App rendering tests', () => {
       expect(app).toContainExactlyOneMatchingElement(ListingsCollection);
     });
 
-    test('Contains the sortBar component', () => {
-      expect(app).toContainExactlyOneMatchingElement(SortBar);
+    test('Doest not contain the sortBar component at startup', () => {
+      expect(app).not.toContainExactlyOneMatchingElement(SortBar);
     });
     test('Does not display detailed Listings at startup', () => {
       expect(app).not.toContainMatchingElement(DetailedListing);
