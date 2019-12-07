@@ -234,7 +234,7 @@ function App() {
 
   return (
     <Router>
-      <div class="header" onClick={() => setMenu(!menuState)}>
+      <div className="header" onClick={() => setMenu(!menuState)}>
         {buttonDisplay && (
           <Link to={''} id="">
             <HomeButton>

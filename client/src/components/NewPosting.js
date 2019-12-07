@@ -270,7 +270,7 @@ const newPosting = ({ ifPosting }) => {
                   ifPosting = 'general';
                 }}
               >
-                <Link to={''} id="">
+                <Link to={'MyPostings'} id="">
                   Confirm!
                 </Link>
               </button>

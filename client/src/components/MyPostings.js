@@ -27,7 +27,7 @@ const Edit = styled.div`
   border: 3px solid #a2dadb;
 `;
 
-const EditDiv = styled.div`
+export const EditDiv = styled.div`
   margin-left: 30px;
   margin-right: 30px;
 `;
@@ -42,7 +42,7 @@ export const Detail = styled.div`
   margin-right: 30px;
 `;
 
-const NewInput = styled.input`
+export const NewInput = styled.input`
   background-color: #ebebeb;
   width: 100%;
   padding: 7px 7px;
@@ -51,7 +51,7 @@ const NewInput = styled.input`
   cursor: pointers;
 `;
 
-const NewSelect = styled.select`
+export const NewSelect = styled.select`
   background-color: #ebebeb;
   color: #737373;
   width: 100%;
@@ -63,7 +63,7 @@ const NewSelect = styled.select`
   box-sizing: border-box;
 `;
 
-const ButtonBar = styled.div`
+export const ButtonBar = styled.div`
   text-align: center;
 `;
 
@@ -295,7 +295,7 @@ const MyPostings = ({ ifLoggedIn }) => {
         {mode === 'edit' && currentListing.id === listing.id && (
           <Edit>
             <h4 align="center">
-              <span class="glyphicon glyphicon-pencil" />
+              <span className="glyphicon glyphicon-pencil" />
               &emsp;Editing
             </h4>
             <EditDiv>
