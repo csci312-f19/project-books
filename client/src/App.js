@@ -25,95 +25,133 @@ if (String(window.location.href).includes('localhost')) {
 //import Immutable from 'immutable';   // need to do "npm install immutable
 
 /* eslint-disable react/prefer-stateless-function */
-const Title = styled.h1`
-  text-align: center;
-`;
 
 const DropDownDiv = styled.div`
+  display: block;
   float: right;
-
   position: absolute;
   right: 0vw;
-  z-index: 1;
-  margin-right: 3%;
-  margin-top: 3%;
-  text-align: right;
+  margin-right: 1%;
+  margin-top: 2%;
 `;
 
 const DropDownButton = styled.button`
+  float: right;
+  position: absolute;
+  margin-left: 90%;
+  margin-top: 2%;
   background-color: #a3bdd0;
   color: #fafafa;
-  padding: 24px;
+  padding: 15px;
+  text-align: center;
   font-size: 17px;
   border: none;
   border-radius: 40px;
-  max-height: 6vw;
+  max-height: 3.7vw;
+`;
+
+const GoogleButton = styled.button`
+  // background-color: #a3bdd0;
+  // color: #fafafa;
+  // // padding: 24px;
+  // font-size: 13px;
+  // height: 20px;
+  // // border: none;
+  // // border-radius: 40px;
+  // // max-height: 6vw;
 `;
 
 const PostingButton = styled.button`
   background-color: white;
   color: #848484;
-  padding: 14px;
-  font-size: 14px;
+  padding: 10px;
+  font-size: 11px;
   border: none;
   border-radius: 2px;
   box-shadow: 0px 2px 2px #a9a9a9;
 `;
 
-const DropdownContent = styled.div`
-  background-color: #f1f1f1;
-  margin-right: 3%;
-  z-index: 2;
-  text-decoration: none;
-  border-radius: 5px;
-  text-align: right;
+const DropdownContent = styled.p`
+  // display: block;
+  // float: right;
+  // position: absolute;
+  // text-align: center;
+  // max-width: 2.5vw;
+  // max-height: 2.5vw;
+  // margin-right: 13%;
+  // margin-top: 2%;
+  // width: 100%;
+  float: right;
+  position: absolute;
+  margin-left: 90%;
+  margin-top: 6%;
+  background-color: #fffff;
 `;
 
 const Item = styled.div`
-  padding: 12px 16px;
-  text-decoration: none;
   display: block;
   text-align: center;
 `;
 
 const CenteredImg = styled.div`
-  position: block;
+  // display: flex;
   text-align: center;
-  z-index: 1;
+  width: 100%;
+  // justify-content: center;
 `;
 
 const MiddBooks = styled.img`
-  width: 25%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 20%;
+  // margin-right: -15%;
   margin-top: 8%;
-  display: inline;
+  margin-bottom: 2%;
+  align-self: center;
 `;
 
-const HomeDiv = styled.div`
-  float: left;
-  position: absolute;
-  text-align: center;
-  max-width: 2.5vw;
-  max-height: 2.5vw;
-  z-index: 1;
-  margin-left: 3%
-  margin-top: 3%
-`;
+// const HomeDiv = styled.div`
+// display: block;
+//   float: right;
+//   // position: absolute;
+//   text-align: center;
+//   max-width: 2.5vw;
+//   max-height: 2.5vw;
+//   margin-right: 13%;
+//   margin-top: 2%;
+//   width: 100%;
+// `;
 
 const HomeButton = styled.button`
+  // float: right;
+  // position: absolute;
+  // margin-left: 90%;
+  // margin-top: 2%;
+  // background-color: #a3bdd0;
+  // color: #fafafa;
+  // padding: 15px;
+  // text-align: center;
+  // font-size: 17px;
+  // border: none;
+  // border-radius: 40px;
+  // max-height: 3.7vw;
+
+  // display: block;
+  float: right;
+  position: absolute;
+  text-align: center;
+  max-width: 7vw;
+  max-height: 7vw;
+  margin-left: 85%;
+  margin-top: 2%;
   background-color: #a2dadb;
   border: none;
-  border-radius: 40px;
+  border-radius: 30px;
 `;
 
 const Home = styled.img`
-  padding: 16px;
+  padding: 7px;
   border: auto;
-  flex: 1;
-  width: 2.5vw;
-  height: 2.5vw;
-  resizemode: 'center';
+  width: 2.3vw;
+  height: 2.3vw;
 `;
 
 function App() {
@@ -172,7 +210,12 @@ function App() {
   const loginButton = (
     <GoogleLogin
       clientId={GOOGLE_CLIENT_ID}
-      buttonText="Login"
+      render={renderProps => (
+        <button class="btn btn-default btn-sm" onClick={renderProps.onClick}>
+          Login
+        </button>
+      )}
+      // buttonText="Login"
       isSignedIn
       onSuccess={handleGoogleLogin}
       onFailure={handleGoogleFailure}
@@ -182,25 +225,48 @@ function App() {
   const logoutButton = (
     <GoogleLogout
       clientId={GOOGLE_CLIENT_ID}
-      buttonText="Logout"
+      render={renderProps => (
+        <button class="btn btn-default btn-sm" onClick={renderProps.onClick}>
+          Logout
+        </button>
+      )}
+      // buttonText="Logout"
       onLogoutSuccess={handleGoogleLogout}
     />
   );
   const viewButton = (
     <Item>
       <Link to={'myPostings'} id="myPostings">
-        <PostingButton onClick={() => setButton(true)}>
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        />
+        {/* <PostingButton onClick={() => setButton(true)}>
           My Postings
-        </PostingButton>
+        </PostingButton> */}
+        <button
+          type="button"
+          class="btn btn-outline-light"
+          onClick={() => setButton(true)}
+        >
+          <span class="glyphicon glyphicon-user"></span> My Postings
+        </button>
       </Link>
     </Item>
   );
   const createButton = (
     <Item>
       <Link to={'newPosting'} id="newPosting">
-        <PostingButton onClick={() => setButton(true)}>
+        {/* <PostingButton onClick={() => setButton(true)}>
           New Posting
-        </PostingButton>
+        </PostingButton> */}
+        <button
+          type="button"
+          class="btn btn-outline-light"
+          onClick={() => setButton(true)}
+        >
+          <span class="glyphicon glyphicon-user"></span> New Posting
+        </button>
       </Link>
     </Item>
   );
@@ -218,9 +284,9 @@ function App() {
   return (
     <Router>
       {buttonDisplay && (
-        <HomeDiv>
+        <div>
           <Link to={''} id="">
-            <HomeButton type="button">
+            <HomeButton>
               <Home
                 src={HomePic}
                 alt="Back to homepage"
@@ -228,12 +294,12 @@ function App() {
               />
             </HomeButton>
           </Link>
-        </HomeDiv>
+        </div>
       )}
-      <DropDownDiv onClick={() => setMenu(!menuState)}>
+      <div class="header" onClick={() => setMenu(!menuState)}>
         <DropDownButton>My Account</DropDownButton>
         <DropdownContent>{menuState && DropDownContent}</DropdownContent>
-      </DropDownDiv>
+      </div>
       <CenteredImg>
         <MiddBooks src={Logo} alt="website logo" />
       </CenteredImg>

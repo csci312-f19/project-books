@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Immutable from 'immutable';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NewPosting from '../components/NewPosting';
+import { Link } from 'react-router-dom';
 
 const Title = styled.h2`
   text-align: center;
@@ -128,11 +129,11 @@ const MyPostings = ({ ifLoggedIn }) => {
     return (
       <div>
         <Title>My Postings</Title>
-        <BackButton>
+        {/* <BackButton>
           <Link to={''} id="">
             Back to Main Page
           </Link>
-        </BackButton>
+        </BackButton> */}
         <View>
           <p align="center">You have not posted anything yet.</p>
           {ifLoggedIn && (
