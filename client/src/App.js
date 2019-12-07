@@ -221,7 +221,10 @@ function App() {
               <Home
                 src={HomePic}
                 alt="Back to homepage"
-                onClick={() => setButton(false)}
+                onClick={() => {
+                  setButton(false);
+                  setMenu(true);
+                }}
               />
             </HomeButton>
           </Link>
