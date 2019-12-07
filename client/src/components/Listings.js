@@ -269,7 +269,7 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
     sortedList = updatedList.sort((a, b) => b.price - a.price);
   } else if (sortType === 'Old to New' && searchTerm != null) {
     sortedList = updatedList.sort((a, b) => a.condition - b.condition);
-  } else if (sortType === 'Old to New' && searchTerm != null) {
+  } else if (sortType === 'New to Old' && searchTerm != null) {
     sortedList = updatedList.sort((a, b) => b.condition - a.condition);
   } else if (sortType === 'A to Z' && searchTerm != null) {
     sortedList = updatedList.sort((a, b) => {
