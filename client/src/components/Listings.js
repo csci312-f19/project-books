@@ -152,7 +152,7 @@ export const DetailedListing = ({ loggedIn }) => {
           <Popup
             trigger={
               <ListingsContainer>
-                <BuyButton> Buy Now </BuyButton>
+                {loggedIn && <BuyButton> Buy Now </BuyButton>}
               </ListingsContainer>
             }
             position="bottom center"
@@ -337,14 +337,8 @@ function Listings({ currentListings, searchTerm, mode, loggedIn }) {
   const [sortType, setSortType] = useState('Alphabetical');
   const [ascending, setDirection] = useState(true);
   if (mode === 'detailed') {
-    console.log(loggedIn);
     return (
       <div>
-        <BackButton>
-          <Link to={''} id="">
-            Back to Main Page
-          </Link>
-        </BackButton>
         <DetailedListing loggedIn={loggedIn} />
       </div>
     );

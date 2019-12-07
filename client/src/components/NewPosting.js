@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const InputLine = styled.input`
   text-align: left;
@@ -170,11 +169,6 @@ const newPosting = ({ ifPosting }) => {
           }}
         >
           <SectionTitle>Create a new posting</SectionTitle>
-          <BackButton>
-            <Link to={''} id="">
-              Back to Main Page
-            </Link>
-          </BackButton>
           <br />
           <Required text-align="left">*</Required>
           <span text-align="left">Required Field</span>
