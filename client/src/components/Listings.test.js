@@ -187,19 +187,19 @@ describe('SortBar actions', () => {
     app.update();
   });
 
-  test('SortBar is Alphabetical on startup', async () => {
+  test('SortBar is Most Recent on startup', async () => {
     expect(app).toContainMatchingElement(SortBar);
     const sortBar = app.find(SortBar);
     const result = sortBar.find('select').at(0);
 
-    expect(result.prop('value')).toEqual('Alphabetical'); // Unnecessary test, just to check whether find('select') works
+    expect(result.prop('value')).toEqual('Most Recent'); // Unnecessary test, just to check whether find('select') works
   });
 
   describe('Sorts by Price', () => {
     beforeEach(async () => {
       const sortBar = app.find(SortBar);
       const type = sortBar.find('select').at(0);
-      type.simulate('change', { target: { value: 'Price' } });
+      type.simulate('change', { target: { value: '$ to $$$' } });
       await act(async () => await flushPromises());
       app.update();
     });
@@ -215,8 +215,8 @@ describe('SortBar actions', () => {
 
     test('Sorts by price in descending order', async () => {
       const sortBar = app.find(SortBar);
-      const type = sortBar.find('select').at(1);
-      type.simulate('change', { target: { value: 'False' } });
+      const type = sortBar.find('select').at(0);
+      type.simulate('change', { target: { value: '$$$ to $' } });
       await act(async () => await flushPromises());
       app.update();
       expect(app.find(ListElementContainer)).toBeDefined();
@@ -231,7 +231,7 @@ describe('SortBar actions', () => {
     beforeEach(async () => {
       const sortBar = app.find(SortBar);
       const type = sortBar.find('select').at(0);
-      type.simulate('change', { target: { value: 'Condition' } });
+      type.simulate('change', { target: { value: 'Old to New' } });
       await act(async () => await flushPromises());
       app.update();
     });
@@ -247,8 +247,8 @@ describe('SortBar actions', () => {
 
     test('Sorts by condition in descending order', async () => {
       const sortBar = app.find(SortBar);
-      const type = sortBar.find('select').at(1);
-      type.simulate('change', { target: { value: 'False' } });
+      const type = sortBar.find('select').at(0);
+      type.simulate('change', { target: { value: 'New to Old' } });
       await act(async () => await flushPromises());
       app.update();
       expect(app.find(ListElementContainer)).toBeDefined();
@@ -262,7 +262,7 @@ describe('SortBar actions', () => {
       beforeEach(async () => {
         const sortBar = app.find(SortBar);
         const type = sortBar.find('select').at(0);
-        type.simulate('change', { target: { value: 'Alphabetical' } });
+        type.simulate('change', { target: { value: 'A to Z' } });
         await act(async () => await flushPromises());
         app.update();
       });
@@ -284,8 +284,8 @@ describe('SortBar actions', () => {
 
       test('Sorts by condition in descending order', async () => {
         const sortBar = app.find(SortBar);
-        const type = sortBar.find('select').at(1);
-        type.simulate('change', { target: { value: 'False' } });
+        const type = sortBar.find('select').at(0);
+        type.simulate('change', { target: { value: 'Z to A' } });
         await act(async () => await flushPromises());
         app.update();
         expect(app.find(ListElementContainer)).toBeDefined();
