@@ -222,7 +222,7 @@ const MyPostings = ({ ifLoggedIn }) => {
                 <div>
                   <ButtonBar>
                     <ItemButton>
-                      <Link to={'newPosting'} id="newPosting"></Link>
+                      <Link to={'newPosting'} id="newPosting" />
                       Create New Posting
                     </ItemButton>
                   </ButtonBar>
