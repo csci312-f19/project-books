@@ -14,7 +14,7 @@ class Listing extends Model {
         id: { type: 'increments' },
         userID: { type: 'integer' },
         ISBN: { type: 'string' },
-        condition: { type: 'string' },
+        condition: { type: 'integer' },
         price: { type: 'decimal' },
         edited: { type: 'string' },
         comments: { type: 'text' }

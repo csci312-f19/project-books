@@ -173,7 +173,7 @@ const newPosting = ({ ifPosting }) => {
               setAllInfo(postingInfo);
             }}
           >
-            <option value="New">New</option>
+            <option value="Like New">New</option>
             <option value="Very Good">Very Good</option>
             <option value="Good">Good</option>
             <option value="Acceptable">Acceptable</option>

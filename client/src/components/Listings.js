@@ -294,7 +294,6 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
   } else if (searchTerm != null) {
     sortedList = updatedList;
   }
-
   const conditions = [
     'Bad',
     'Very Worn',
