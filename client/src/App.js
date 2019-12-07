@@ -11,6 +11,7 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
 import Logo from './middbooks.png';
 import HomePic from './home.png';
+import UserPic from './user.png';
 import { Link } from 'react-router-dom';
 
 let GOOGLE_CLIENT_ID;
@@ -26,132 +27,70 @@ if (String(window.location.href).includes('localhost')) {
 
 /* eslint-disable react/prefer-stateless-function */
 
-const DropDownDiv = styled.div`
-  display: block;
-  float: right;
-  position: absolute;
-  right: 0vw;
-  margin-right: 1%;
-  margin-top: 2%;
-`;
-
 const DropDownButton = styled.button`
   float: right;
   position: absolute;
-  margin-left: 90%;
+  margin-left: 92%;
   margin-top: 2%;
-  background-color: #a3bdd0;
+  background-color: #d1e1ed;
   color: #fafafa;
-  padding: 15px;
+  height: 53px;
+  width: 62px;
   text-align: center;
   font-size: 17px;
   border: none;
   border-radius: 40px;
-  max-height: 3.7vw;
 `;
 
-const GoogleButton = styled.button`
-  // background-color: #a3bdd0;
-  // color: #fafafa;
-  // // padding: 24px;
-  // font-size: 13px;
-  // height: 20px;
-  // // border: none;
-  // // border-radius: 40px;
-  // // max-height: 6vw;
-`;
-
-const PostingButton = styled.button`
-  background-color: white;
-  color: #848484;
-  padding: 10px;
-  font-size: 11px;
-  border: none;
-  border-radius: 2px;
-  box-shadow: 0px 2px 2px #a9a9a9;
-`;
-
-const DropdownContent = styled.p`
-  // display: block;
-  // float: right;
-  // position: absolute;
-  // text-align: center;
-  // max-width: 2.5vw;
-  // max-height: 2.5vw;
-  // margin-right: 13%;
-  // margin-top: 2%;
-  // width: 100%;
+const DropdownContent = styled.div`
   float: right;
   position: absolute;
   margin-left: 90%;
   margin-top: 6%;
-  background-color: #fffff;
+  border: 3px solid #d1e1ed;
+  border-radius: 30px;
 `;
 
 const Item = styled.div`
-  display: block;
+  margin: 7px;
   text-align: center;
 `;
 
 const CenteredImg = styled.div`
-  // display: flex;
   text-align: center;
   width: 100%;
-  // justify-content: center;
 `;
 
 const MiddBooks = styled.img`
   width: 20%;
-  // margin-right: -15%;
   margin-top: 8%;
   margin-bottom: 2%;
   align-self: center;
 `;
 
-// const HomeDiv = styled.div`
-// display: block;
-//   float: right;
-//   // position: absolute;
-//   text-align: center;
-//   max-width: 2.5vw;
-//   max-height: 2.5vw;
-//   margin-right: 13%;
-//   margin-top: 2%;
-//   width: 100%;
-// `;
-
 const HomeButton = styled.button`
-  // float: right;
-  // position: absolute;
-  // margin-left: 90%;
-  // margin-top: 2%;
-  // background-color: #a3bdd0;
-  // color: #fafafa;
-  // padding: 15px;
-  // text-align: center;
-  // font-size: 17px;
-  // border: none;
-  // border-radius: 40px;
-  // max-height: 3.7vw;
-
-  // display: block;
   float: right;
   position: absolute;
   text-align: center;
-  max-width: 7vw;
-  max-height: 7vw;
-  margin-left: 85%;
+  width: 62px;
+  height: 53px;
+  margin-left: 86%;
   margin-top: 2%;
-  background-color: #a2dadb;
+  background-color: #a6e1e3;
   border: none;
-  border-radius: 30px;
+  border-radius: 40px;
 `;
 
 const Home = styled.img`
-  padding: 7px;
   border: auto;
-  width: 2.3vw;
-  height: 2.3vw;
+  width: 30px;
+  height: 30px;
+`;
+
+const User = styled.img`
+  border: auto;
+  width: 30px;
+  height: 30px;
 `;
 
 function App() {
@@ -208,39 +147,53 @@ function App() {
   };
 
   const loginButton = (
-    <GoogleLogin
-      clientId={GOOGLE_CLIENT_ID}
-      render={renderProps => (
-        <button class="btn btn-default btn-sm" onClick={renderProps.onClick}>
-          Login
-        </button>
-      )}
-      // buttonText="Login"
-      isSignedIn
-      onSuccess={handleGoogleLogin}
-      onFailure={handleGoogleFailure}
-    />
+    <Item>
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      />
+      <GoogleLogin
+        clientId={GOOGLE_CLIENT_ID}
+        render={renderProps => (
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            onClick={renderProps.onClick}
+          >
+            &emsp;&ensp;&ensp;&ensp;Login&ensp;&ensp;&ensp;&emsp;
+          </button>
+        )}
+        isSignedIn
+        onSuccess={handleGoogleLogin}
+        onFailure={handleGoogleFailure}
+      />
+    </Item>
   );
 
   const logoutButton = (
-    <GoogleLogout
-      clientId={GOOGLE_CLIENT_ID}
-      render={renderProps => (
-        <button class="btn btn-default btn-sm" onClick={renderProps.onClick}>
-          Logout
-        </button>
-      )}
-      // buttonText="Logout"
-      onLogoutSuccess={handleGoogleLogout}
-    />
+    <Item>
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      />
+      <GoogleLogout
+        clientId={GOOGLE_CLIENT_ID}
+        render={renderProps => (
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            onClick={renderProps.onClick}
+          >
+            Logout
+          </button>
+        )}
+        onLogoutSuccess={handleGoogleLogout}
+      />
+    </Item>
   );
   const viewButton = (
     <Item>
       <Link to={'myPostings'} id="myPostings">
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        />
         {/* <PostingButton onClick={() => setButton(true)}>
           My Postings
         </PostingButton> */}
@@ -249,7 +202,7 @@ function App() {
           class="btn btn-outline-light"
           onClick={() => setButton(true)}
         >
-          <span class="glyphicon glyphicon-user"></span> My Postings
+          My Postings
         </button>
       </Link>
     </Item>
@@ -265,26 +218,24 @@ function App() {
           class="btn btn-outline-light"
           onClick={() => setButton(true)}
         >
-          <span class="glyphicon glyphicon-user"></span> New Posting
+          New Posting
         </button>
       </Link>
     </Item>
   );
   const DropDownContent = (
-    <div>
-      <Item>
-        {!loggedIn && loginButton}
-        {loggedIn && logoutButton}
-      </Item>
+    <DropdownContent>
       {loggedIn && viewButton}
       {loggedIn && createButton}
-    </div>
+      {!loggedIn && loginButton}
+      {loggedIn && logoutButton}
+    </DropdownContent>
   );
 
   return (
     <Router>
-      {buttonDisplay && (
-        <div>
+      <div class="header" onClick={() => setMenu(!menuState)}>
+        {buttonDisplay && (
           <Link to={''} id="">
             <HomeButton>
               <Home
@@ -294,12 +245,13 @@ function App() {
               />
             </HomeButton>
           </Link>
-        </div>
-      )}
-      <div class="header" onClick={() => setMenu(!menuState)}>
-        <DropDownButton>My Account</DropDownButton>
-        <DropdownContent>{menuState && DropDownContent}</DropdownContent>
+        )}
+        {/* <DropDownButton>My Account</DropDownButton> */}
+        <DropDownButton>
+          <User src={UserPic} alt="User Account" />
+        </DropDownButton>
       </div>
+      {menuState && DropDownContent}
       <CenteredImg>
         <MiddBooks src={Logo} alt="website logo" />
       </CenteredImg>

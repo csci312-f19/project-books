@@ -53,15 +53,11 @@ const SectionTitle = styled.h2`
   color: #374068;
   text-align: center;
   padding: 5px;
-  text-decoration: underline;
   font-size: 1.6vw;
 `;
 
-const SubmitButton = styled.button`
-  color: #374068;
+const ButtonBar = styled.div`
   text-align: center;
-  padding: 5px;
-  font-size: 1.3vw;
 `;
 
 const Note = styled.div`
@@ -151,7 +147,7 @@ const newPosting = ({ ifPosting }) => {
 
     return (
       <WholeContainer>
-        <SectionTitle>Create a new posting</SectionTitle>
+        <SectionTitle>Create A New Posting</SectionTitle>
         {makeInput(
           'title',
           'Book Title',
@@ -209,19 +205,33 @@ const newPosting = ({ ifPosting }) => {
         </InputLineContainer>
 
         <InputLineContainer>
+          <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          />
           <Popup
             trigger={
-              <div>
-                <SubmitButton>Submit</SubmitButton>
-              </div>
+              // <div>
+              //   <SubmitButton>Submit</SubmitButton>
+              // </div>
+              <ButtonBar>
+                <button type="button" className="btn btn-default btn-sm">
+                  <span className="glyphicon glyphicon-send" />
+                  &emsp;Submit
+                </button>
+              </ButtonBar>
             }
             position="top left"
           >
-            <div>
+            <ButtonBar>
               <DisplayPopup />
-              <SubmitButton
+              <link
+                rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              />
+              <button
                 type="button"
-                value="submit"
+                className="btn btn-default btn-sm"
                 onClick={() => {
                   //this is where put will happen
                   // Also an alert with all of the Info, if they accept, then it will post
@@ -263,8 +273,8 @@ const newPosting = ({ ifPosting }) => {
                 <Link to={''} id="">
                   Confirm!
                 </Link>
-              </SubmitButton>
-            </div>
+              </button>
+            </ButtonBar>
           </Popup>
         </InputLineContainer>
       </WholeContainer>

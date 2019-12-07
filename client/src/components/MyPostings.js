@@ -11,35 +11,35 @@ const Title = styled.h2`
 `;
 
 const View = styled.div`
-  margin: 30px 120px;
+  margin: 30px 160px;
   border-radius: 50px;
-  background-color: #f2f2f2;
-  color: #374068;
+  // background-color: #d1e1ed;
+  background-color: #edf2f2;
   padding: 30px 30px;
-  border: 3px solid #67a5d2;
+  border: 3px solid #a6e1e3;
 `;
 
 const Edit = styled.div`
-  margin: 30px 120px;
+  margin: 30px 160px;
   border-radius: 50px;
-  background-color: #f2f2f2;
   color: #374068;
   padding: 30px 30px;
   border: 3px solid #a2dadb;
 `;
 
 const EditDiv = styled.div`
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
 `;
 
 const Detail = styled.div`
   padding: 10px 10px;
   border-radius: 8px;
-  background-color: #fafafa;
+  // background-color: #fafafa;
+  background-color: #ffffff;
   margin-top: 8px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
 `;
 
 const NewInput = styled.input`
@@ -79,6 +79,7 @@ const MyPostings = ({ ifLoggedIn }) => {
     currentListing ? currentListing.title : ''
   );
   const [isbn, setISBN] = useState(currentListing ? currentListing.ISBN : '');
+  const [id, setID] = useState(currentListing ? currentListing.id : '');
   const [courseID, setCourseID] = useState(
     currentListing ? currentListing.courseID : ''
   );
@@ -93,7 +94,7 @@ const MyPostings = ({ ifLoggedIn }) => {
   );
 
   const constructListing = () => ({
-    id: currentListing.id,
+    id: id,
     userID: currentListing.userID,
     ISBN: isbn,
     condition: condition,
@@ -107,6 +108,56 @@ const MyPostings = ({ ifLoggedIn }) => {
     courseID: courseID,
     title: title
   });
+
+  const updateEditedListng = () =>
+    fetch(`/api/MyPostings/Listing/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(constructListing()),
+      headers: new Headers({
+        'Content-type': 'application/json'
+      })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        const updatedListings = myListings.map(item => {
+          if (item.ISBN === data.ISBN) {
+            return data;
+          }
+          return item;
+        });
+        setMyListings(updatedListings);
+      })
+      .catch(err => console.log(err));
+
+  const updateEditedBook = () =>
+    fetch(`/api/MyPostings/Book/${isbn}`, {
+      method: 'PUT',
+      body: JSON.stringify(constructBook()),
+      headers: new Headers({
+        'Content-type': 'application/json'
+      })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        const updatedBooks = myListings.map(item => {
+          if (item.ISBN === data.ISBN) {
+            return data;
+          }
+          return item;
+        });
+        setMyListings(updatedBooks);
+      })
+      .catch(err => console.log(err));
 
   useEffect(() => {
     fetch('/api/MyPostings/')
@@ -122,18 +173,10 @@ const MyPostings = ({ ifLoggedIn }) => {
       .catch(err => console.log(err)); // eslint-disable-line no-console
   }, []);
 
-  // if (ifPosting === 'general') {
-  //   return <div />;
-  // } else {
   if (myListings.isEmpty()) {
     return (
       <div>
         <Title>My Postings</Title>
-        {/* <BackButton>
-          <Link to={''} id="">
-            Back to Main Page
-          </Link>
-        </BackButton> */}
         <View>
           <p align="center">You have not posted anything yet.</p>
           {ifLoggedIn && (
@@ -217,7 +260,6 @@ const MyPostings = ({ ifLoggedIn }) => {
                           item => item !== listing
                         );
                         setMyListings(newListings);
-                        // window.location.reload(false);
                       })
                       .catch(err => console.log(err));
                     setCurrentListing();
@@ -235,6 +277,7 @@ const MyPostings = ({ ifLoggedIn }) => {
                 onClick={() => {
                   setMode('edit');
                   setCurrentListing(listing);
+                  setID(listing.id);
                   setISBN(listing.ISBN);
                   setComments(listing.comments);
                   setPrice(listing.price);
@@ -331,42 +374,9 @@ const MyPostings = ({ ifLoggedIn }) => {
                     condition === ''
                   }
                   onClick={() => {
-                    fetch(`/api/MyPostings/Listing/${listing.id}`, {
-                      method: 'PUT',
-                      body: JSON.stringify(constructListing()),
-                      headers: new Headers({
-                        'Content-type': 'application/json'
-                      })
-                    })
-                      .then(response => {
-                        if (!response.ok) {
-                          throw new Error(response.statusText);
-                        }
-                        return response.json();
-                      })
-                      .then(() => {
-                        window.location.reload(false);
-                      })
-                      .catch(err => console.log(err));
-
-                    fetch(`/api/MyPostings/Book/${isbn}`, {
-                      method: 'PUT',
-                      body: JSON.stringify(constructBook()),
-                      headers: new Headers({
-                        'Content-type': 'application/json'
-                      })
-                    })
-                      .then(response => {
-                        if (!response.ok) {
-                          throw new Error(response.statusText);
-                        }
-                        return response.json();
-                      })
-                      .then(() => {
-                        window.location.reload(false);
-                      })
-                      .catch(err => console.log(err));
-
+                    updateEditedListng();
+                    updateEditedBook();
+                    window.location.reload(false);
                     setCurrentListing();
                     setMode('view');
                   }}
