@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import SubmitPic from '../submit.png';
 
 const InputLine = styled.input`
   text-align: left;
@@ -34,14 +35,12 @@ const InputType = styled.span`
 `;
 
 const WholeContainer = styled.div`
-  style: block;
-  text-align: left;
-  border: 4px solid #a3bdd0;
-  padding: 2.5vw;
-  margin: 1.25vw;
-  width: 70%;
-  margin: auto;
-  display: block;
+  margin: 30px 120px;
+  border-radius: 50px;
+  background-color: #f2f2f2;
+  color: #374068;
+  padding: 30px 30px;
+  border: 3px solid #7f92ca;
 `;
 
 const InputComments = styled.textarea`
@@ -55,15 +54,11 @@ const SectionTitle = styled.h2`
   color: #374068;
   text-align: center;
   padding: 5px;
-  text-decoration: underline;
   font-size: 1.6vw;
 `;
 
-const SubmitButton = styled.button`
-  color: #374068;
+const ButtonBar = styled.div`
   text-align: center;
-  padding: 5px;
-  font-size: 1.3vw;
 `;
 
 const Note = styled.div`
@@ -74,7 +69,30 @@ const Note = styled.div`
   margin-left: 5vw;
 `;
 
-const BackButton = styled.button``;
+const SubmitButton = styled.button`
+  width: 50px;
+  height: 40px;
+  background-color: #8499cf;
+  border: none;
+  border-radius: 30px;
+`;
+
+const ConfirmButton = styled.button`
+  width: 80px;
+  font-size: 16px;
+  height: 40px;
+  border: none;
+  border-radius: 30px;
+  background: #b6c2e3;
+  margin-left: 60px;
+  float: center;
+`;
+
+const Submit = styled.img`
+  border: auto;
+  width: 20px;
+  height: 20px;
+`;
 
 const newPosting = ({ ifPosting }) => {
   const postingInfo = {
@@ -155,12 +173,7 @@ const newPosting = ({ ifPosting }) => {
 
     return (
       <WholeContainer>
-        <SectionTitle>Create a new posting</SectionTitle>
-        <BackButton>
-          <Link to={''} id="">
-            Back to Main Page
-          </Link>
-        </BackButton>
+        <SectionTitle>Create A New Posting</SectionTitle>
         {makeInput(
           'title',
           'Book Title',
@@ -220,60 +233,58 @@ const newPosting = ({ ifPosting }) => {
         <InputLineContainer>
           <Popup
             trigger={
-              <div>
-                <SubmitButton>Submit</SubmitButton>
-              </div>
+              <ButtonBar>
+                <SubmitButton>
+                  <Submit src={SubmitPic} alt="Submit Posting" />
+                </SubmitButton>
+              </ButtonBar>
             }
             position="top left"
           >
-            <div>
-              <DisplayPopup />
-              <SubmitButton
-                type="button"
-                value="submit"
-                onClick={() => {
-                  //this is where put will happen
-                  // Also an alert with all of the Info, if they accept, then it will post
-                  fetch(`/api/newPosting/Listing`, {
-                    method: 'POST',
-                    body: JSON.stringify(postingInfo),
-                    headers: new Headers({ 'Content-type': 'application/json' })
+            <DisplayPopup />
+            <ConfirmButton
+              onClick={() => {
+                //this is where put will happen
+                // Also an alert with all of the Info, if they accept, then it will post
+                fetch(`/api/newPosting/Listing`, {
+                  method: 'POST',
+                  body: JSON.stringify(postingInfo),
+                  headers: new Headers({ 'Content-type': 'application/json' })
+                })
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error(response.status_text);
+                    }
+                    return response.json();
                   })
-                    .then(response => {
-                      if (!response.ok) {
-                        throw new Error(response.status_text);
-                      }
-                      return response.json();
-                    })
-                    .then(updatedPosting => {
-                      setAllInfo(updatedPosting);
-                    })
-                    .catch(err => console.log(err)); // eslint-disable-line no-console
-
-                  fetch(`/api/newPosting/Book`, {
-                    method: 'POST',
-                    body: JSON.stringify(postingInfo),
-                    headers: new Headers({ 'Content-type': 'application/json' })
+                  .then(updatedPosting => {
+                    setAllInfo(updatedPosting);
                   })
-                    .then(response => {
-                      if (!response.ok) {
-                        throw new Error(response.status_text);
-                      }
-                      return response.json();
-                    })
-                    .then(updatedPosting => {
-                      setAllInfo(updatedPosting);
-                    })
-                    .catch(err => console.log(err)); // eslint-disable-line no-console
+                  .catch(err => console.log(err)); // eslint-disable-line no-console
 
-                  ifPosting = 'general';
-                }}
-              >
-                <Link to={''} id="">
-                  Confirm!
-                </Link>
-              </SubmitButton>
-            </div>
+                fetch(`/api/newPosting/Book`, {
+                  method: 'POST',
+                  body: JSON.stringify(postingInfo),
+                  headers: new Headers({ 'Content-type': 'application/json' })
+                })
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error(response.status_text);
+                    }
+                    return response.json();
+                  })
+                  .then(updatedPosting => {
+                    setAllInfo(updatedPosting);
+                  })
+                  .catch(err => console.log(err)); // eslint-disable-line no-console
+
+                ifPosting = 'general';
+              }}
+            >
+              <Link to={''} id="">
+                Confirm!
+              </Link>
+            </ConfirmButton>
           </Popup>
         </InputLineContainer>
       </WholeContainer>

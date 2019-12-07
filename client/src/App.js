@@ -8,7 +8,10 @@ import Listings from './components/Listings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+
 import Logo from './middbooks.png';
+import HomePic from './home.png';
+import UserPic from './user.png';
 import { Link } from 'react-router-dom';
 
 let GOOGLE_CLIENT_ID;
@@ -24,53 +27,86 @@ if (String(window.location.href).includes('localhost')) {
 
 /* eslint-disable react/prefer-stateless-function */
 
-document.body.style.background = '#fafafa';
-
-const DropDownDiv = styled.div`
+const DropDownButton = styled.button`
   float: right;
   position: absolute;
-  right: 0vw;
-  z-index: 1;
-`;
-const DropDownButton = styled.button`
-  background-color: #4caf50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
+  margin-left: 92%;
+  margin-top: 2%;
+  background-color: #d1e1ed;
+  color: #fafafa;
+  height: 53px;
+  width: 62px;
+  text-align: center;
+  font-size: 17px;
   border: none;
+  border-radius: 40px;
 `;
 
 const DropdownContent = styled.div`
-  display: block;
+  float: right;
   position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  z-index: 2;
-  right: 0;
+  margin-left: 89.8%;
+  margin-top: 6%;
+  border: 3px solid #d1e1ed;
+  border-radius: 30px;
 `;
 
-const ContainerDiv = styled.div`
-  postion: relative;
-  z-inline: 0;
-`;
 const Item = styled.div`
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+  margin: 7px;
+  text-align: center;
 `;
 
 const CenteredImg = styled.div`
-  position: block;
   text-align: center;
-  z-index: 1;
+  width: 100%;
 `;
 
-const Image = styled.img`
-  width: 30%;
-  margin-left: auto;
-  margin-right: auto;
-  display: inline;
+const MiddBooks = styled.img`
+  width: 20%;
+  margin-top: 8%;
+  margin-bottom: 2%;
+  align-self: center;
+`;
+
+const HomeButton = styled.button`
+  float: right;
+  position: absolute;
+  text-align: center;
+  width: 62px;
+  height: 53px;
+  margin-left: 86%;
+  margin-top: 2%;
+  background-color: #a6e1e3;
+  border: none;
+  border-radius: 40px;
+`;
+
+const Home = styled.img`
+  border: auto;
+  width: 30px;
+  height: 30px;
+`;
+
+const User = styled.img`
+  border: auto;
+  width: 30px;
+  height: 30px;
+`;
+
+const ItemButton = styled.button`
+  border: none;
+  font-size: 13px;
+  color: #787878;
+  font-weight: bold;
+`;
+
+const SpecialItemButton = styled.button`
+  color: #787878;
+  font-weight: bold;
+  padding-left: 35px;
+  padding-right: 35px;
+  border: none;
+  font-size: 13px;
 `;
 
 function App() {
@@ -78,6 +114,7 @@ function App() {
   const [currentBook, setBook] = useState(null);
   const [loggedIn, setLogin] = useState(false);
   const [menuState, setMenu] = useState(false);
+  const [buttonDisplay, setButton] = useState(true);
 
   useEffect(() => {
     fetch('/api/bookListings/') //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
@@ -126,126 +163,127 @@ function App() {
   };
 
   const loginButton = (
-    <GoogleLogin
-      clientId={GOOGLE_CLIENT_ID}
-      buttonText="Login with Google"
-      isSignedIn
-      onSuccess={handleGoogleLogin}
-      onFailure={handleGoogleFailure}
-    />
+    <Item>
+      <GoogleLogin
+        clientId={GOOGLE_CLIENT_ID}
+        render={renderProps => (
+          <SpecialItemButton onClick={renderProps.onClick}>
+            Login
+          </SpecialItemButton>
+        )}
+        isSignedIn
+        onSuccess={handleGoogleLogin}
+        onFailure={handleGoogleFailure}
+      />
+    </Item>
   );
 
   const logoutButton = (
-    <GoogleLogout
-      clientId={GOOGLE_CLIENT_ID}
-      buttonText="Logout"
-      onLogoutSuccess={handleGoogleLogout}
-    />
+    <Item>
+      <GoogleLogout
+        clientId={GOOGLE_CLIENT_ID}
+        render={renderProps => (
+          <ItemButton onClick={renderProps.onClick}>Logout</ItemButton>
+        )}
+        onLogoutSuccess={handleGoogleLogout}
+      />
+    </Item>
   );
-  const viewbutton = (
-    <button>
+  const viewButton = (
+    <Item>
       <Link to={'myPostings'} id="myPostings">
-        View My Postings
+        <ItemButton onClick={() => setButton(true)}>My Postings</ItemButton>
       </Link>
-    </button>
+    </Item>
   );
-  const createbutton = (
-    <button>
+  const createButton = (
+    <Item>
       <Link to={'newPosting'} id="newPosting">
-        Create New Posting
+        <ItemButton onClick={() => setButton(true)}>Create Posting</ItemButton>
       </Link>
-    </button>
+    </Item>
   );
   const DropDownContent = (
-    <div>
-      <Item> {loggedIn && viewbutton}</Item>
-      <Item>{loggedIn && createbutton}</Item>
-      <Item>
-        {!loggedIn && loginButton}
-        {loggedIn && logoutButton}
-      </Item>
-    </div>
+    <DropdownContent>
+      {loggedIn && viewButton}
+      {loggedIn && createButton}
+      {!loggedIn && loginButton}
+      {loggedIn && logoutButton}
+    </DropdownContent>
   );
 
   return (
     <Router>
-      {' '}
-            
-      <div>
-             
-        <ContainerDiv>
-             
-          <DropDownDiv onClick={() => setMenu(!menuState)}>
-                      <DropDownButton>My Account</DropDownButton>           
-            <DropdownContent>
-              {menuState && DropDownContent}
-            </DropdownContent>{' '}
-                    
-          </DropDownDiv>{' '}
-                  
-          <br />         
-          <br />
-          <CenteredImg>
-            <Image src={Logo} alt="website logo" />
-          </CenteredImg>
-        </ContainerDiv>{' '}
-                
-        <Switch>
-                  
-          <Route
-            exact
-            path="/newPosting"
-            component={() => <NewPosting ifPosting={'postingView'} />}
-          />
-                    
-          <Route
-            exact
-            path="/myPostings"
-            component={() => (
-              <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
-            )}
-          />
-                    
-          <Route
-            path="/:id"
-            component={() => (
+      <div className="header" onClick={() => setMenu(!menuState)}>
+        {buttonDisplay && (
+          <Link to={''} id="">
+            <HomeButton>
+              <Home
+                src={HomePic}
+                alt="Back to homepage"
+                onClick={() => setButton(false)}
+              />
+            </HomeButton>
+          </Link>
+        )}
+        <DropDownButton>
+          <User src={UserPic} alt="User Account" />
+        </DropDownButton>
+      </div>
+      {menuState && DropDownContent}
+      <CenteredImg>
+        <MiddBooks src={Logo} alt="website logo" />
+      </CenteredImg>
+      <Switch>
+        <Route
+          exact
+          path="/newPosting"
+          render={() => {
+            setButton(true);
+            return <NewPosting ifPosting={'postingView'} />;
+          }}
+        />
+        <Route
+          exact
+          path="/myPostings"
+          render={() => {
+            setButton(true);
+            return <MyPostings ifLoggedIn={loggedIn} />;
+          }}
+        />
+        <Route
+          path="/:id"
+          render={() => {
+            setButton(true);
+            return (
               <Listings
                 currentListings={listings}
                 searchTerm={currentBook}
                 mode={'detailed'}
               />
-            )}
-          />
-                    
-          <Route
-            render={() => (
+            );
+          }}
+        />
+        <Route
+          render={() => {
+            setButton(false);
+            return (
               <div>
-                                
                 {loggedIn && <NewPosting ifPosting={'general'} />}
-                                
-                {loggedIn && (
-                  <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
-                )}
-                                
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}
                 />
-                                
                 <Listings
                   currentListings={listings}
                   searchTerm={currentBook}
                   mode={'general'}
                 />
-                              
               </div>
-            )}
-          />
-                  
-        </Switch>
-              
-      </div>
-          
+            );
+          }}
+        />
+      </Switch>
     </Router>
   );
 }
