@@ -222,8 +222,9 @@ const MyPostings = ({ ifLoggedIn }) => {
                 <div>
                   <ButtonBar>
                     <ItemButton>
-                      <Link to={'newPosting'} id="newPosting" />
-                      Create New Posting
+                      <Link to={'newPosting'} id="newPosting">
+                        Create New Posting
+                      </Link>
                     </ItemButton>
                   </ButtonBar>
                 </div>
@@ -276,8 +277,6 @@ const MyPostings = ({ ifLoggedIn }) => {
 
             <ButtonBar>
               <DeleteButton
-                type="button"
-                className="btn btn-default btn-sm"
                 onClick={() => {
                   if (
                     window.confirm('Are you sure you want to delete this post?')
@@ -304,8 +303,6 @@ const MyPostings = ({ ifLoggedIn }) => {
               </DeleteButton>
               &emsp;&emsp;&emsp;&emsp;
               <EditButton
-                type="button"
-                className="btn btn-default btn-sm"
                 onClick={() => {
                   setMode('edit');
                   setCurrentListing(listing);
@@ -378,8 +375,6 @@ const MyPostings = ({ ifLoggedIn }) => {
               <br />
               <EditButtonBar>
                 <button
-                  type="button"
-                  className="btn btn-default btn-sm"
                   onClick={() => {
                     setMode('view');
                     setCurrentListing();
@@ -389,8 +384,6 @@ const MyPostings = ({ ifLoggedIn }) => {
                 </button>
                 &emsp;&emsp;
                 <button
-                  type="button"
-                  className="btn btn-default btn-sm"
                   disabled={
                     title === '' ||
                     courseID === '' ||
