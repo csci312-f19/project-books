@@ -192,14 +192,28 @@ function App() {
   const viewButton = (
     <Item>
       <Link to={'myPostings'} id="myPostings">
-        <ItemButton onClick={() => setButton(true)}>My Postings</ItemButton>
+        <ItemButton
+          onClick={() => {
+            setButton(true);
+            setMenu(false);
+          }}
+        >
+          My Postings
+        </ItemButton>
       </Link>
     </Item>
   );
   const createButton = (
     <Item>
       <Link to={'newPosting'} id="newPosting">
-        <ItemButton onClick={() => setButton(true)}>Create Posting</ItemButton>
+        <ItemButton
+          onClick={() => {
+            setButton(true);
+            setMenu(false);
+          }}
+        >
+          Create Posting
+        </ItemButton>
       </Link>
     </Item>
   );
@@ -214,22 +228,20 @@ function App() {
 
   return (
     <Router>
-      <div class="header" onClick={() => setMenu(!menuState)}>
+      <div class="header">
         {buttonDisplay && (
           <Link to={''} id="">
-            <HomeButton>
-              <Home
-                src={HomePic}
-                alt="Back to homepage"
-                onClick={() => {
-                  setButton(false);
-                  setMenu(true);
-                }}
-              />
+            <HomeButton
+              onClick={() => {
+                setButton(false);
+                setMenu(false);
+              }}
+            >
+              <Home src={HomePic} alt="Back to homepage" />
             </HomeButton>
           </Link>
         )}
-        <DropDownButton>
+        <DropDownButton onClick={() => setMenu(!menuState)}>
           <User src={UserPic} alt="User Account" />
         </DropDownButton>
       </div>

@@ -343,7 +343,10 @@ const MyPostings = ({ ifLoggedIn }) => {
               />
 
               <strong>Condition:</strong>
-              <NewSelect onChange={event => setCondition(event.target.value)}>
+              <NewSelect
+                defaultValue={condition}
+                onChange={event => setCondition(event.target.value)}
+              >
                 <option>Condition must be selected here</option>
                 <option value="New">New</option>
                 <option value="Very Good">Very Good</option>
