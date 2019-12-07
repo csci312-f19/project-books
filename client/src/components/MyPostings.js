@@ -100,6 +100,14 @@ const EditButtonBar = styled.div`
   text-align: right;
 `;
 
+const ItemButton = styled.button`
+  border: none;
+  font-size: 13px;
+  height: 30px;
+  border: 1px solid #cacecf;
+  border-radius: 30px;
+`;
+
 const MyPostings = ({ ifLoggedIn }) => {
   const [myListings, setMyListings] = useState(Immutable.List());
   const [mode, setMode] = useState('view');
@@ -213,11 +221,10 @@ const MyPostings = ({ ifLoggedIn }) => {
               render={() => (
                 <div>
                   <ButtonBar>
-                    <button type="button" class="btn btn-outline-light">
-                      <Link to={'newPosting'} id="newPosting">
-                        Create New Posting
-                      </Link>
-                    </button>
+                    <ItemButton>
+                      <Link to={'newPosting'} id="newPosting"></Link>
+                      Create New Posting
+                    </ItemButton>
                   </ButtonBar>
                 </div>
               )}
