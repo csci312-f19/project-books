@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Immutable from 'immutable';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -7,21 +6,25 @@ import NewPosting from '../components/NewPosting';
 
 const Title = styled.h2`
   text-align: center;
+  color: #374068;
 `;
 
 const View = styled.div`
   margin: 30px 120px;
   border-radius: 50px;
   background-color: #f2f2f2;
-  // background-color: #d8e7f0;
-  // background-color: #ebebeb;
+  color: #374068;
   padding: 30px 30px;
+  border: 3px solid #67a5d2;
 `;
+
 const Edit = styled.div`
   margin: 30px 120px;
-  border: 1px solid #ccc;
   border-radius: 50px;
+  background-color: #f2f2f2;
+  color: #374068;
   padding: 30px 30px;
+  border: 3px solid #a2dadb;
 `;
 
 const EditDiv = styled.div`
@@ -30,9 +33,9 @@ const EditDiv = styled.div`
 `;
 
 const Detail = styled.div`
-  padding: 7px 7px;
-  border-radius: 4px;
-  background-color: #ffffff;
+  padding: 10px 10px;
+  border-radius: 8px;
+  background-color: #fafafa;
   margin-top: 8px;
   margin-left: 10px;
   margin-right: 10px;
@@ -66,7 +69,7 @@ const ButtonBar = styled.div`
 const EditButtonBar = styled.div`
   text-align: right;
 `;
-const BackButton = styled.button``;
+
 const MyPostings = ({ ifPosting, ifLoggedIn }) => {
   const [myListings, setMyListings] = useState(Immutable.List());
   const [mode, setMode] = useState('view');
@@ -125,11 +128,6 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
       return (
         <div>
           <Title>My Postings</Title>
-          <BackButton>
-            <Link to={''} id="">
-              Back to Main Page
-            </Link>
-          </BackButton>
           <View>
             <p align="center">You have not posted anything yet.</p>
             {ifLoggedIn && (
@@ -244,7 +242,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
           {mode === 'edit' && currentListing.id === listing.id && (
             <Edit>
               <h4 align="center">
-                <span class="glyphicon glyphicon-pencil" />
+                <span className="glyphicon glyphicon-pencil" />
                 &emsp;Editing
               </h4>
               <EditDiv>
@@ -297,6 +295,7 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
 
                 <br />
                 <br />
+
                 <link
                   rel="stylesheet"
                   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -374,11 +373,6 @@ const MyPostings = ({ ifPosting, ifLoggedIn }) => {
 
       return (
         <div>
-          <BackButton>
-            <Link to={''} id="">
-              Back to Main Page
-            </Link>
-          </BackButton>
           <Title>My Postings</Title>
           {listingItems}
         </div>
