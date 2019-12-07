@@ -8,8 +8,10 @@ import Listings from './components/Listings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+
 import Logo from './middbooks.png';
 import HomePic from './home.png';
+import UserPic from './user.png';
 import { Link } from 'react-router-dom';
 
 let GOOGLE_CLIENT_ID;
@@ -25,92 +27,86 @@ if (String(window.location.href).includes('localhost')) {
 
 /* eslint-disable react/prefer-stateless-function */
 
-document.body.style.background = '#fafafa';
-
-const DropDownDiv = styled.div`
+const DropDownButton = styled.button`
   float: right;
   position: absolute;
-  right: 0vw;
-  z-index: 1;
-  margin-right: 3%;
-  margin-top: 3%;
-  text-align: right;
-`;
-
-const DropDownButton = styled.button`
-  background-color: #a3bdd0;
+  margin-left: 92%;
+  margin-top: 2%;
+  background-color: #d1e1ed;
   color: #fafafa;
-  padding: 24px;
+  height: 53px;
+  width: 62px;
+  text-align: center;
   font-size: 17px;
   border: none;
   border-radius: 40px;
-  max-height: 6vw;
-`;
-
-const PostingButton = styled.button`
-  background-color: white;
-  color: #848484;
-  padding: 14px;
-  font-size: 14px;
-  border: none;
-  border-radius: 2px;
-  box-shadow: 0px 2px 2px #a9a9a9;
 `;
 
 const DropdownContent = styled.div`
-  background-color: #f1f1f1;
-  margin-right: 3%;
-  z-index: 2;
-  text-decoration: none;
-  border-radius: 5px;
-  text-align: right;
+  float: right;
+  position: absolute;
+  margin-left: 89.8%;
+  margin-top: 6%;
+  border: 3px solid #d1e1ed;
+  border-radius: 30px;
 `;
 
 const Item = styled.div`
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+  margin: 7px;
   text-align: center;
 `;
 
 const CenteredImg = styled.div`
-  position: block;
   text-align: center;
-  z-index: 1;
+  width: 100%;
 `;
 
 const MiddBooks = styled.img`
-  width: 25%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 20%;
   margin-top: 8%;
-  display: inline;
-`;
-
-const HomeDiv = styled.div`
-  float: left;
-  position: absolute;
-  text-align: center;
-  max-width: 2.5vw;
-  max-height: 2.5vw;
-  z-index: 1;
-  margin-left: 3%
-  margin-top: 3%
+  margin-bottom: 2%;
+  align-self: center;
 `;
 
 const HomeButton = styled.button`
-  background-color: #a2dadb;
+  float: right;
+  position: absolute;
+  text-align: center;
+  width: 62px;
+  height: 53px;
+  margin-left: 86%;
+  margin-top: 2%;
+  background-color: #a6e1e3;
   border: none;
   border-radius: 40px;
 `;
 
 const Home = styled.img`
-  padding: 16px;
   border: auto;
-  flex: 1;
-  width: 2.5vw;
-  height: 2.5vw;
-  resizemode: 'center';
+  width: 30px;
+  height: 30px;
+`;
+
+const User = styled.img`
+  border: auto;
+  width: 30px;
+  height: 30px;
+`;
+
+const ItemButton = styled.button`
+  border: none;
+  font-size: 13px;
+  color: #787878;
+  font-weight: bold;
+`;
+
+const SpecialItemButton = styled.button`
+  color: #787878;
+  font-weight: bold;
+  padding-left: 35px;
+  padding-right: 35px;
+  border: none;
+  font-size: 13px;
 `;
 
 function App() {
@@ -167,57 +163,61 @@ function App() {
   };
 
   const loginButton = (
-    <GoogleLogin
-      clientId={GOOGLE_CLIENT_ID}
-      buttonText="Login"
-      isSignedIn
-      onSuccess={handleGoogleLogin}
-      onFailure={handleGoogleFailure}
-    />
+    <Item>
+      <GoogleLogin
+        clientId={GOOGLE_CLIENT_ID}
+        render={renderProps => (
+          <SpecialItemButton onClick={renderProps.onClick}>
+            Login
+          </SpecialItemButton>
+        )}
+        isSignedIn
+        onSuccess={handleGoogleLogin}
+        onFailure={handleGoogleFailure}
+      />
+    </Item>
   );
 
   const logoutButton = (
-    <GoogleLogout
-      clientId={GOOGLE_CLIENT_ID}
-      buttonText="Logout"
-      onLogoutSuccess={handleGoogleLogout}
-    />
+    <Item>
+      <GoogleLogout
+        clientId={GOOGLE_CLIENT_ID}
+        render={renderProps => (
+          <ItemButton onClick={renderProps.onClick}>Logout</ItemButton>
+        )}
+        onLogoutSuccess={handleGoogleLogout}
+      />
+    </Item>
   );
   const viewButton = (
     <Item>
       <Link to={'myPostings'} id="myPostings">
-        <PostingButton onClick={() => setButton(true)}>
-          My Postings
-        </PostingButton>
+        <ItemButton onClick={() => setButton(true)}>My Postings</ItemButton>
       </Link>
     </Item>
   );
   const createButton = (
     <Item>
       <Link to={'newPosting'} id="newPosting">
-        <PostingButton onClick={() => setButton(true)}>
-          New Posting
-        </PostingButton>
+        <ItemButton onClick={() => setButton(true)}>Create Posting</ItemButton>
       </Link>
     </Item>
   );
   const DropDownContent = (
-    <div>
-      <Item>
-        {!loggedIn && loginButton}
-        {loggedIn && logoutButton}
-      </Item>
+    <DropdownContent>
       {loggedIn && viewButton}
       {loggedIn && createButton}
-    </div>
+      {!loggedIn && loginButton}
+      {loggedIn && logoutButton}
+    </DropdownContent>
   );
 
   return (
     <Router>
-      {buttonDisplay && (
-        <HomeDiv>
+      <div class="header" onClick={() => setMenu(!menuState)}>
+        {buttonDisplay && (
           <Link to={''} id="">
-            <HomeButton type="button">
+            <HomeButton>
               <Home
                 src={HomePic}
                 alt="Back to homepage"
@@ -225,12 +225,12 @@ function App() {
               />
             </HomeButton>
           </Link>
-        </HomeDiv>
-      )}
-      <DropDownDiv onClick={() => setMenu(!menuState)}>
-        <DropDownButton>My Account</DropDownButton>
-        <DropdownContent>{menuState && DropDownContent}</DropdownContent>
-      </DropDownDiv>
+        )}
+        <DropDownButton>
+          <User src={UserPic} alt="User Account" />
+        </DropDownButton>
+      </div>
+      {menuState && DropDownContent}
       <CenteredImg>
         <MiddBooks src={Logo} alt="website logo" />
       </CenteredImg>
@@ -248,9 +248,7 @@ function App() {
           path="/myPostings"
           render={() => {
             setButton(true);
-            return (
-              <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
-            );
+            return <MyPostings ifLoggedIn={loggedIn} />;
           }}
         />
         <Route
@@ -272,9 +270,6 @@ function App() {
             return (
               <div>
                 {loggedIn && <NewPosting ifPosting={'general'} />}
-                {loggedIn && (
-                  <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
-                )}
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}
