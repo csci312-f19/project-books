@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import SubmitPic from '../submit.png';
 
 const InputLine = styled.input`
   text-align: left;
@@ -66,6 +67,31 @@ const Note = styled.div`
   font-size: 0.7vw;
   font-style: italic;
   margin-left: 5vw;
+`;
+
+const SubmitButton = styled.button`
+  width: 50px;
+  height: 40px;
+  background-color: #8499cf;
+  border: none;
+  border-radius: 30px;
+`;
+
+const ConfirmButton = styled.button`
+  width: 80px;
+  font-size: 16px;
+  height: 40px;
+  border: none;
+  border-radius: 30px;
+  background: #b6c2e3;
+  margin-left: 60px;
+  float: center;
+`;
+
+const Submit = styled.img`
+  border: auto;
+  width: 20px;
+  height: 20px;
 `;
 
 const newPosting = ({ ifPosting }) => {
@@ -205,76 +231,60 @@ const newPosting = ({ ifPosting }) => {
         </InputLineContainer>
 
         <InputLineContainer>
-          <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          />
           <Popup
             trigger={
-              // <div>
-              //   <SubmitButton>Submit</SubmitButton>
-              // </div>
               <ButtonBar>
-                <button type="button" className="btn btn-default btn-sm">
-                  <span className="glyphicon glyphicon-send" />
-                  &emsp;Submit
-                </button>
+                <SubmitButton>
+                  <Submit src={SubmitPic} alt="Submit Posting" />
+                </SubmitButton>
               </ButtonBar>
             }
             position="top left"
           >
-            <ButtonBar>
-              <DisplayPopup />
-              <link
-                rel="stylesheet"
-                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              />
-              <button
-                type="button"
-                className="btn btn-default btn-sm"
-                onClick={() => {
-                  //this is where put will happen
-                  // Also an alert with all of the Info, if they accept, then it will post
-                  fetch(`/api/newPosting/Listing`, {
-                    method: 'POST',
-                    body: JSON.stringify(postingInfo),
-                    headers: new Headers({ 'Content-type': 'application/json' })
+            <DisplayPopup />
+            <ConfirmButton
+              onClick={() => {
+                //this is where put will happen
+                // Also an alert with all of the Info, if they accept, then it will post
+                fetch(`/api/newPosting/Listing`, {
+                  method: 'POST',
+                  body: JSON.stringify(postingInfo),
+                  headers: new Headers({ 'Content-type': 'application/json' })
+                })
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error(response.status_text);
+                    }
+                    return response.json();
                   })
-                    .then(response => {
-                      if (!response.ok) {
-                        throw new Error(response.status_text);
-                      }
-                      return response.json();
-                    })
-                    .then(updatedPosting => {
-                      setAllInfo(updatedPosting);
-                    })
-                    .catch(err => console.log(err)); // eslint-disable-line no-console
-
-                  fetch(`/api/newPosting/Book`, {
-                    method: 'POST',
-                    body: JSON.stringify(postingInfo),
-                    headers: new Headers({ 'Content-type': 'application/json' })
+                  .then(updatedPosting => {
+                    setAllInfo(updatedPosting);
                   })
-                    .then(response => {
-                      if (!response.ok) {
-                        throw new Error(response.status_text);
-                      }
-                      return response.json();
-                    })
-                    .then(updatedPosting => {
-                      setAllInfo(updatedPosting);
-                    })
-                    .catch(err => console.log(err)); // eslint-disable-line no-console
+                  .catch(err => console.log(err)); // eslint-disable-line no-console
 
-                  ifPosting = 'general';
-                }}
-              >
-                <Link to={''} id="">
-                  Confirm!
-                </Link>
-              </button>
-            </ButtonBar>
+                fetch(`/api/newPosting/Book`, {
+                  method: 'POST',
+                  body: JSON.stringify(postingInfo),
+                  headers: new Headers({ 'Content-type': 'application/json' })
+                })
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error(response.status_text);
+                    }
+                    return response.json();
+                  })
+                  .then(updatedPosting => {
+                    setAllInfo(updatedPosting);
+                  })
+                  .catch(err => console.log(err)); // eslint-disable-line no-console
+
+                ifPosting = 'general';
+              }}
+            >
+              <Link to={''} id="">
+                Confirm!
+              </Link>
+            </ConfirmButton>
           </Popup>
         </InputLineContainer>
       </WholeContainer>

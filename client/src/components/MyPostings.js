@@ -4,6 +4,8 @@ import Immutable from 'immutable';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NewPosting from '../components/NewPosting';
 import { Link } from 'react-router-dom';
+import DeletePic from '../delete.png';
+import EditPic from '../edit.png';
 
 const Title = styled.h2`
   text-align: center;
@@ -20,7 +22,7 @@ const View = styled.div`
 `;
 
 const Edit = styled.div`
-  margin: 30px 160px;
+  margin: 10px 160px;
   border-radius: 50px;
   color: #374068;
   padding: 30px 30px;
@@ -35,7 +37,6 @@ const EditDiv = styled.div`
 const Detail = styled.div`
   padding: 10px 10px;
   border-radius: 8px;
-  // background-color: #fafafa;
   background-color: #ffffff;
   margin-top: 8px;
   margin-left: 30px;
@@ -61,6 +62,34 @@ const NewSelect = styled.select`
   display: inline-block;
   border-radius: 4px;
   box-sizing: border-box;
+`;
+
+const DeleteButton = styled.button`
+  width: 50px;
+  height: 40px;
+  background-color: #9dc9c9;
+  border: none;
+  border-radius: 30px;
+`;
+
+const Delete = styled.img`
+  border: auto;
+  width: 20px;
+  height: 20px;
+`;
+
+const EditButton = styled.button`
+  width: 50px;
+  height: 40px;
+  background-color: #9dc9c9;
+  border: none;
+  border-radius: 30px;
+`;
+
+const Editor = styled.img`
+  border: auto;
+  width: 20px;
+  height: 20px;
 `;
 
 const ButtonBar = styled.div`
@@ -173,7 +202,7 @@ const MyPostings = ({ ifLoggedIn }) => {
       .catch(err => console.log(err)); // eslint-disable-line no-console
   }, []);
 
-  if (myListings.isEmpty()) {
+  if (myListings.isEmpty() || ifLoggedIn === false) {
     return (
       <div>
         <Title>My Postings</Title>
@@ -184,7 +213,7 @@ const MyPostings = ({ ifLoggedIn }) => {
               render={() => (
                 <div>
                   <ButtonBar>
-                    <button display="block" text-align="center">
+                    <button type="button" class="btn btn-outline-light">
                       <Link to={'newPosting'} id="newPosting">
                         Create New Posting
                       </Link>
@@ -237,12 +266,9 @@ const MyPostings = ({ ifLoggedIn }) => {
               {` ${listing.edited}`}{' '}
             </Detail>
             <br />
-            <link
-              rel="stylesheet"
-              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            />
+
             <ButtonBar>
-              <button
+              <DeleteButton
                 type="button"
                 className="btn btn-default btn-sm"
                 onClick={() => {
@@ -267,11 +293,10 @@ const MyPostings = ({ ifLoggedIn }) => {
                   }
                 }}
               >
-                <span className="glyphicon glyphicon-trash" />
-                &emsp;Delete
-              </button>
-              &emsp;&emsp;
-              <button
+                <Delete src={DeletePic} alt="Delete Posting" />
+              </DeleteButton>
+              &emsp;&emsp;&emsp;&emsp;
+              <EditButton
                 type="button"
                 className="btn btn-default btn-sm"
                 onClick={() => {
@@ -285,19 +310,15 @@ const MyPostings = ({ ifLoggedIn }) => {
                   setCourseID(listing.courseID);
                 }}
               >
-                <span className="glyphicon glyphicon-edit" />
-                &emsp;Edit
-              </button>
+                <Editor src={EditPic} alt="Edit Posting" />
+              </EditButton>
             </ButtonBar>
           </View>
         )}
 
         {mode === 'edit' && currentListing.id === listing.id && (
           <Edit>
-            <h4 align="center">
-              <span class="glyphicon glyphicon-pencil" />
-              &emsp;Editing
-            </h4>
+            <h4 align="center">Editing</h4>
             <EditDiv>
               <strong>Book Title:</strong>
               <NewInput
@@ -348,10 +369,6 @@ const MyPostings = ({ ifLoggedIn }) => {
 
               <br />
               <br />
-              <link
-                rel="stylesheet"
-                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              />
               <EditButtonBar>
                 <button
                   type="button"
