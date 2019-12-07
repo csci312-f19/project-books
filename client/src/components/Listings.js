@@ -36,8 +36,9 @@ const Detail = styled.div`
   border-radius: 4px;
   background-color: #fafafa;
   margin-top: 8px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 10px;
 `;
 
 const ListTitle = styled.h3`
