@@ -13,11 +13,11 @@ const Title = styled.h2`
 `;
 
 const View = styled.div`
-  margin: 30px 160px;
+  margin: 30px 120px 100px;
   border-radius: 50px;
-  // background-color: #d1e1ed;
   background-color: #edf2f2;
-  padding: 30px 30px;
+  color: #374068;
+  padding: 20px 20px;
   border: 3px solid #a6e1e3;
 `;
 
@@ -36,11 +36,13 @@ const EditDiv = styled.div`
 
 const Detail = styled.div`
   padding: 10px 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: #ffffff;
   margin-top: 8px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-bottom: 10px;
+  font-size: 90%;
 `;
 
 const NewInput = styled.input`
@@ -54,7 +56,7 @@ const NewInput = styled.input`
 
 const NewSelect = styled.select`
   background-color: #ebebeb;
-  color: #737373;
+  color: black;
   width: 100%;
   height: 35px;
   border: none;
@@ -344,10 +346,9 @@ const MyPostings = ({ ifLoggedIn }) => {
 
               <strong>Condition:</strong>
               <NewSelect
-                defaultValue={condition}
+                defaultValue={listing.condition}
                 onChange={event => setCondition(event.target.value)}
               >
-                <option>Condition must be selected here</option>
                 <option value="New">New</option>
                 <option value="Very Good">Very Good</option>
                 <option value="Good">Good</option>
@@ -387,12 +388,7 @@ const MyPostings = ({ ifLoggedIn }) => {
                 </button>
                 &emsp;&emsp;
                 <button
-                  disabled={
-                    title === '' ||
-                    courseID === '' ||
-                    price === '' ||
-                    condition === ''
-                  }
+                  disabled={title === '' || courseID === '' || price === ''}
                   onClick={() => {
                     updateEditedListng();
                     updateEditedBook();
