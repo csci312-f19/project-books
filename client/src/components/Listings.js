@@ -31,7 +31,7 @@ const View = styled.div`
 `;
 
 const Detail = styled.div`
-  padding: 10px 10px;
+  padding: 0.65vw 0.65vw;
   border-radius: 4px;
   background-color: #fafafa;
   margin-top: 8px;
@@ -350,12 +350,16 @@ function Listings({ currentListings, searchTerm, mode }) {
           ascending={ascending}
           setDirection={setDirection}
         />
-        <ListingsCollection
-          currentListings={currentListings}
-          searchTerm={searchTerm}
-          sortType={sortType}
-          ascending={ascending}
-        />
+        {console.log(currentListings)}
+        {currentListings && (
+          <ListingsCollection
+            currentListings={currentListings}
+            searchTerm={searchTerm}
+            sortType={sortType}
+            ascending={ascending}
+          />
+        )}
+        {!currentListings && <div>Hi</div>}
       </div>
     );
   } else {

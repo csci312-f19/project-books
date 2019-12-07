@@ -14,6 +14,8 @@ import HomePic from './home.png';
 import UserPic from './user.png';
 import { Link } from 'react-router-dom';
 
+document.body.style.background = '#fafafa';
+
 let GOOGLE_CLIENT_ID;
 if (String(window.location.href).includes('localhost')) {
   GOOGLE_CLIENT_ID =
@@ -98,6 +100,7 @@ const ItemButton = styled.button`
   font-size: 13px;
   color: #787878;
   font-weight: bold;
+  background-color: #fafafa;
 `;
 
 const SpecialItemButton = styled.button`
@@ -228,7 +231,7 @@ function App() {
 
   return (
     <Router>
-      <div class="header">
+      <div className="header">
         {buttonDisplay && (
           <Link to={''} id="">
             <HomeButton
