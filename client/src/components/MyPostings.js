@@ -10,7 +10,7 @@ const Title = styled.h2`
   color: #374068;
 `;
 
-const View = styled.div`
+export const View = styled.div`
   margin: 30px 160px;
   border-radius: 50px;
   // background-color: #d1e1ed;
@@ -32,7 +32,7 @@ const EditDiv = styled.div`
   margin-right: 30px;
 `;
 
-const Detail = styled.div`
+export const Detail = styled.div`
   padding: 10px 10px;
   border-radius: 8px;
   // background-color: #fafafa;
@@ -67,7 +67,7 @@ const ButtonBar = styled.div`
   text-align: center;
 `;
 
-const EditButtonBar = styled.div`
+export const EditButtonBar = styled.div`
   text-align: right;
 `;
 

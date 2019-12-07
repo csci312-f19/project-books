@@ -1,12 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import App from './App';
-import { flushPromises } from './setupTests';
+import App from '.././App';
+import { flushPromises } from '.././setupTests';
 
 import { act } from 'react-dom/test-utils';
-import SearchBar from './components/SearchBar';
+import SearchBar from './SearchBar';
 
-import { ListElementContainer, SortBar } from './components/Listings';
+import { ListElementContainer, SortBar } from './Listings';
 
 const sampleListings = [
   {
@@ -192,7 +192,7 @@ describe('SortBar actions', () => {
     const sortBar = app.find(SortBar);
     const result = sortBar.find('select').at(0);
 
-    expect(result.prop('value')).toEqual('Alphabetical'); // Unnecessary test, just to check whether find('select') works
+    expect(result.prop('value')).toEqual('Alphabetical');
   });
 
   describe('Sorts by Price', () => {
