@@ -58,8 +58,12 @@ const Confirmation = styled.div`
   margin-top: 2vw;
 `;
 
+const LoginMsg = styled.div`
+    color: red;
+  font-size: 60%;
+`;
+
 const BuyButton = styled.button`
-  color: #374068;
   text-align: center;
   padding: 0.65vw;
   font-size: 80%;
@@ -161,32 +165,34 @@ export const DetailedListing = ({ loggedIn }) => {
           <strong>{`Price`}</strong> {` $${detailedListing.price}`}
         </Detail>
         {!purchased && (
-          <Popup
-            trigger={
-              <ListingsContainer>
-                {loggedIn && <BuyButton> Buy Now </BuyButton>}
-              </ListingsContainer>
-            }
-            position="bottom center"
-          >
-            <div>
-              {`Are you sure you would like to buy this book? Finalizing your purchase
+          <ListingsContainer>
+            <Popup
+              trigger={<BuyButton disabled={!loggedIn}> Buy Now </BuyButton>}
+              position="bottom center"
+            >
+              <div>
+                {`Are you sure you would like to buy this book? Finalizing your purchase
           will confirm your order and send an alert to the seller.`}
-              <BuyButton
-                onClick={() => {
-                  sendEmail(
-                    'Hannah',
-                    'hdonovan@middlebury.edu',
-                    detailedListing.title,
-                    detailedListing.price
-                  );
-                  setPurchase(true);
-                }}
-              >
-                Place my Order
-              </BuyButton>
-            </div>
-          </Popup>
+                <BuyButton
+                  onClick={() => {
+                    sendEmail(
+                      'Hannah',
+                      'hdonovan@middlebury.edu',
+                      detailedListing.title,
+                      detailedListing.price
+                    );
+                    setPurchase(true);
+                  }}
+                  disabled={!loggedIn}
+                >
+                  Place my Order
+                </BuyButton>
+              </div>
+            </Popup>
+            {!loggedIn && (
+              <LoginMsg>You must be logged in to purchase a book.</LoginMsg>
+            )}
+          </ListingsContainer>
         )}
 
         <div>
