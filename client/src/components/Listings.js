@@ -97,7 +97,7 @@ const SortSelect = styled.select`
 //  box-sizing: border-box;
 
 // triggered on button click to post information that the server then uses to send an email to the seller
-function sendEmail(sellerInfo, bookTitle, bookPrice) {
+function sendEmail(sellerInfo, buyerInfo, bookTitle, bookPrice) {
   fetch('/api/bookrequest', {
     method: 'POST',
     headers: {
@@ -105,8 +105,10 @@ function sendEmail(sellerInfo, bookTitle, bookPrice) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: sellerInfo.name,
-      email: sellerInfo.email,
+      sellerName: sellerInfo.name,
+      sellerEmail: sellerInfo.email,
+      buyerName: buyerInfo.name,
+      buyerEmail: buyerInfo.googleId,
       bookTitle: bookTitle,
       bookPrice: bookPrice
     })
@@ -150,9 +152,10 @@ export const DetailedListingsContainer = ({ loggedIn }) => {
 };
 export function EmailButtonContainer({ detailedListing, setPurchase }) {
   const [sellerInfo, setSellerInfo] = useState('');
+  const [buyerInfo, setBuyerInfo] = useState('');
 
   useEffect(() => {
-    fetch(`/api/googleID/${detailedListing.userID}`)
+    fetch(`/api/sellerInfo/${detailedListing.userID}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -163,6 +166,18 @@ export function EmailButtonContainer({ detailedListing, setPurchase }) {
         setSellerInfo(Immutable.List(data).get(0));
       })
       .catch(err => console.log(err));
+
+    fetch(`/api/buyerInfo/`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setBuyerInfo(Immutable.List(data).get(0));
+      })
+      .catch(err => console.log(err));
   }, []);
 
   return (
@@ -170,15 +185,27 @@ export function EmailButtonContainer({ detailedListing, setPurchase }) {
       detailedListing={detailedListing}
       setPurchase={setPurchase}
       sellerInfo={sellerInfo}
+      buyerInfo={buyerInfo}
     />
   );
 }
 
-export const EmailButton = ({ detailedListing, setPurchase, sellerInfo }) => {
+export const EmailButton = ({
+  detailedListing,
+  setPurchase,
+  sellerInfo,
+  buyerInfo
+}) => {
   return (
     <EmailButtonStyling
       onClick={() => {
-        sendEmail(sellerInfo, detailedListing.title, detailedListing.price);
+        console.log(sellerInfo);
+        sendEmail(
+          sellerInfo,
+          buyerInfo,
+          detailedListing.title,
+          detailedListing.price
+        );
         setPurchase(true);
       }}
     >
