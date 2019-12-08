@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import SubmitPic from '../submit.png';
 
 const InputLine = styled.input`
   text-align: left;
@@ -55,18 +56,14 @@ const SectionTitle = styled.h2`
   color: #374068;
   text-align: center;
   padding: 5px;
-  text-decoration: underline;
   font-size: 1.6vw;
 `;
 const Required = styled.span`
   color: red;
 `;
 
-const SubmitButton = styled.button`
-  color: #374068;
+const ButtonBar = styled.div`
   text-align: center;
-  padding: 5px;
-  font-size: 1.3vw;
 `;
 
 const Note = styled.div`
@@ -75,6 +72,31 @@ const Note = styled.div`
   font-size: 0.7vw;
   font-style: italic;
   margin-left: 5vw;
+`;
+
+const SubmitButton = styled.button`
+  width: 50px;
+  height: 40px;
+  background-color: #8499cf;
+  border: none;
+  border-radius: 30px;
+`;
+
+const ConfirmButton = styled.button`
+  width: 80px;
+  font-size: 16px;
+  height: 40px;
+  border: none;
+  border-radius: 30px;
+  background: #b6c2e3;
+  margin-left: 60px;
+  float: center;
+`;
+
+const Submit = styled.img`
+  border: auto;
+  width: 20px;
+  height: 20px;
 `;
 
 const newPosting = ({ ifPosting }) => {
@@ -240,10 +262,11 @@ const newPosting = ({ ifPosting }) => {
 
           <InputLineContainer>
             <SubmitButton value="Submit" type="submit">
-              Submit
+              <Submit src={SubmitPic} alt="Submit Posting" />
             </SubmitButton>
           </InputLineContainer>
         </Form>
+        <Submit src={SubmitPic} alt="Submit Posting" />
       </WholeContainer>
     );
   }
