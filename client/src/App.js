@@ -182,17 +182,27 @@ function App() {
     </Item>
   );
 
+  const helperLogoutButton = (
+    <GoogleLogout
+      clientId={GOOGLE_CLIENT_ID}
+      render={renderProps => (
+        <ItemButton onClick={renderProps.onClick}>Logout</ItemButton>
+      )}
+      onLogoutSuccess={handleGoogleLogout}
+    />
+  );
+
   const logoutButton = (
     <Item>
-      <Link to={''} id="">
-        <GoogleLogout
-          clientId={GOOGLE_CLIENT_ID}
-          render={renderProps => (
-            <ItemButton onClick={renderProps.onClick}>Logout</ItemButton>
-          )}
-          onLogoutSuccess={handleGoogleLogout}
-        />
-      </Link>
+      {(window.location.pathname === '/newPosting' ||
+        window.location.pathname === '/myPostings') && (
+        <Link to={''} id="">
+          {helperLogoutButton}
+        </Link>
+      )}
+      {window.location.pathname !== '/newPosting' &&
+        window.location.pathname !== '/myPostings' &&
+        helperLogoutButton}
     </Item>
   );
   const viewButton = (
@@ -234,11 +244,12 @@ function App() {
   return (
     <Router>
       <div className="header" onClick={() => setMenu(!menuState)}>
-
         {buttonDisplay && (
           <Link to={''} id="">
             <HomeButton
               onClick={() => {
+                console.log(typeof window.location.pathname);
+                console.log(window.location.pathname);
                 setButton(false);
                 setMenu(false);
               }}
