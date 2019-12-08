@@ -36,8 +36,8 @@ const DropDownButton = styled.button`
   margin-top: 2%;
   background-color: #d1e1ed;
   color: #fafafa;
-  height: 53px;
-  width: 62px;
+  height: 4vw;
+  width: 4.5vw;
   text-align: center;
   font-size: 17px;
   border: none;
@@ -48,7 +48,7 @@ const DropdownContent = styled.div`
   float: right;
   position: absolute;
   margin-left: 89.8%;
-  margin-top: 6%;
+  margin-top: 6.2vw;
   border: 3px solid #d1e1ed;
   border-radius: 30px;
 `;
@@ -74,8 +74,8 @@ const HomeButton = styled.button`
   float: right;
   position: absolute;
   text-align: center;
-  width: 62px;
-  height: 53px;
+  width: 4.5vw;
+  height: 4vw;
   margin-left: 86%;
   margin-top: 2%;
   background-color: #a6e1e3;
