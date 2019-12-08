@@ -401,7 +401,6 @@ function Listings({ currentListings, searchTerm, mode }) {
             currentListings={currentListings}
             searchTerm={searchTerm}
             sortType={sortType}
-            ascending={ascending}
           />
         )}
         {!currentListings && <div>Hi</div>}
