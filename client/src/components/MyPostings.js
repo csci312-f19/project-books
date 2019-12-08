@@ -249,7 +249,7 @@ const MyPostings = ({ ifLoggedIn }) => {
   } else {
     let listingItems = null;
     listingItems = myListings.map(listing => (
-      <div>
+      <div key={listing.id}>
         {mode === 'view' && (
           <View>
             <Detail>
