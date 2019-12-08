@@ -15,7 +15,6 @@ const Title = styled.h2`
 const View = styled.div`
   margin: 30px 160px;
   border-radius: 50px;
-  // background-color: #d1e1ed;
   background-color: #edf2f2;
   padding: 30px 30px;
   border: 3px solid #a6e1e3;
@@ -210,7 +209,7 @@ const MyPostings = ({ ifLoggedIn }) => {
       .catch(err => console.log(err)); // eslint-disable-line no-console
   }, []);
 
-  if (myListings.isEmpty() || ifLoggedIn === false) {
+  if (myListings.isEmpty()) {
     return (
       <div>
         <Title>My Postings</Title>
@@ -391,11 +390,17 @@ const MyPostings = ({ ifLoggedIn }) => {
                     condition === ''
                   }
                   onClick={() => {
-                    updateEditedListng();
-                    updateEditedBook();
-                    window.location.reload(false);
-                    setCurrentListing();
-                    setMode('view');
+                    if (
+                      window.confirm(
+                        'Are you sure you want to save these changes?'
+                      )
+                    ) {
+                      updateEditedListng();
+                      window.location.reload(false);
+                      setCurrentListing();
+                      updateEditedBook();
+                      setMode('view');
+                    }
                   }}
                 >
                   Save
