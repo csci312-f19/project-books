@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SubmitPic from '../submit.png';
+import { Redirect } from 'react-router';
 
 const InputLine = styled.input`
   text-align: left;
@@ -97,6 +98,7 @@ const newPosting = ({ ifPosting }) => {
     comments: 'None'
   };
   const [allInfo, setAllInfo] = useState(postingInfo);
+  const [redirect, setRedirect] = useState(false);
 
   const makeInput = (inputType, clientQuery, placeholder) => {
     return (
@@ -170,6 +172,10 @@ const newPosting = ({ ifPosting }) => {
     //window.location.assign('');
   };
 
+  if (redirect) {
+    return <Redirect to="/myPostings" />;
+  }
+
   if (ifPosting === 'general') {
     return <div />;
   } else if (ifPosting === 'postingView') {
@@ -178,6 +184,7 @@ const newPosting = ({ ifPosting }) => {
         <Form
           onSubmit={() => {
             submitFunction();
+            setRedirect(true);
           }}
         >
           <SectionTitle>Create a new posting</SectionTitle>
