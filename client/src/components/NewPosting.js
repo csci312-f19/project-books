@@ -162,6 +162,7 @@ const newPosting = ({ ifPosting }) => {
   const submitFunction = () => {
     postListing();
     postBook();
+    window.location.reload(false);
 
     ifPosting = 'general';
 
