@@ -110,6 +110,7 @@ const SpecialItemButton = styled.button`
   padding-right: 35px;
   border: none;
   font-size: 13px;
+  background-color: #fafafa;
 `;
 
 function App() {

@@ -52,12 +52,6 @@ const SortBarContainer = styled.div`
     padding: 20px;
 `;
 
-const SelectBar = styled.select`
-    text-align: center;
-    position: relative;
-    display: inline;
-`;
-
 const Confirmation = styled.div`
   text-align: center;
   background-color: lightgreen;
@@ -71,6 +65,29 @@ const BuyButton = styled.button`
   padding: 0.75vw;
   font-size: 100%;
   border-radius: 10vw;
+`;
+
+const SortSelect = styled.select`
+  color: white;
+  height: 35px;
+  background: #374068;
+  padding-left: 5px;
+  font-size: 14px;
+  border: none;
+  border-radius: 15px;
+  margin-left: 10px;
+  overflow-y: scroll;
+
+  option {
+    color: white;
+    background: #7f92ca;
+    display: flex;
+    white-space: pre;
+    min-height: 20px;
+    max-height: 20px;
+    padding: 0px 2px 1px;
+    outline: none;
+  }
 `;
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -190,48 +207,31 @@ export const DetailedListing = () => {
   );
 };
 
-export function SortBar({ sortType, setSortType, ascending, setDirection }) {
+export function SortBar({ sortType, setSortType }) {
   return (
     <SortBarContainer>
       <div>
         Sort by: {'  '}
-        <SelectBar
+        <SortSelect
           value={sortType}
           onChange={event => {
             setSortType(event.target.value);
-            if (sortType === 'Alphabetical') {
-              setDirection(true);
-            }
           }}
         >
-          <option value="Alphabetical">Alphabetical</option>
-          <option value="Price">Price</option>
-          <option value="Condition">Condition</option>
-        </SelectBar>
-        {(sortType === 'Price' ||
-          sortType === 'Condition' ||
-          sortType === 'Alphabetical') && (
-          <SelectBar
-            value={ascending ? 'True' : 'False'}
-            onChange={event => {
-              setDirection(event.target.value === 'True');
-            }}
-          >
-            <option value="True">Ascending</option>
-            <option value="False">Descending</option>
-          </SelectBar>
-        )}
+          <option value="Most Recent">Most Recent</option>
+          <option value="A to Z">A - Z</option>
+          <option value="Z to A">Z - A</option>
+          <option value="$ to $$$">$ - $$$</option>
+          <option value="$$$ to $">$$$ - $</option>
+          <option value="Old to New">Old - New</option>
+          <option value="New to Old">New - Old</option>
+        </SortSelect>
       </div>
     </SortBarContainer>
   );
 }
 
-export function ListingsCollection({
-  currentListings,
-  searchTerm,
-  sortType,
-  ascending
-}) {
+export function ListingsCollection({ currentListings, searchTerm, sortType }) {
   let updatedList = currentListings;
   if (searchTerm != null) {
     const searchTerms = searchTerm.split(' ');
@@ -260,44 +260,48 @@ export function ListingsCollection({
       return false;
     });
   }
-
   let sortedList = [];
 
-  if (sortType === 'Price' && searchTerm != null) {
-    if (ascending) {
-      //ascending is true;
-      sortedList = updatedList.sort((a, b) => a.price - b.price); //increasing order / asending is true / ↑
-    } else {
-      sortedList = updatedList.sort((a, b) => b.price - a.price);
-    }
-  } else if (sortType === 'Condition' && searchTerm != null) {
-    if (ascending) {
-      sortedList = updatedList.sort((a, b) => a.condition - b.condition);
-    } else {
-      sortedList = updatedList.sort((a, b) => b.condition - a.condition);
-    }
-  } else if (sortType === 'Alphabetical' && searchTerm != null) {
-    if (ascending) {
-      sortedList = updatedList.sort((a, b) => {
-        if (a.title < b.title) {
-          return -1;
-        } else {
-          return 1;
-        }
-      });
-    } else {
-      sortedList = updatedList.sort((a, b) => {
-        if (a.title > b.title) {
-          return -1;
-        } else {
-          return 1;
-        }
-      });
-    }
+  if (sortType === '$ to $$$' && searchTerm != null) {
+    //ascending is true;
+    sortedList = updatedList.sort((a, b) => a.price - b.price); //increasing order / asending is true / ↑
+  } else if (sortType === '$$$ to $' && searchTerm != null) {
+    sortedList = updatedList.sort((a, b) => b.price - a.price);
+  } else if (sortType === 'Old to New' && searchTerm != null) {
+    sortedList = updatedList.sort((a, b) => a.condition - b.condition);
+  } else if (sortType === 'New to Old' && searchTerm != null) {
+    sortedList = updatedList.sort((a, b) => b.condition - a.condition);
+  } else if (sortType === 'A to Z' && searchTerm != null) {
+    sortedList = updatedList.sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  } else if (sortType === 'Z to A' && searchTerm != null) {
+    sortedList = updatedList.sort((a, b) => {
+      if (a.title > b.title) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  } else if (sortType === 'Most Recent' && searchTerm != null) {
+    sortedList = updatedList.sort((a, b) => {
+      return a.edited > b.edited ? -1 : 1;
+    });
   } else if (searchTerm != null) {
     sortedList = updatedList;
   }
-
+  const conditions = [
+    'Bad',
+    'Very Worn',
+    'Acceptable',
+    'Good',
+    'Very Good',
+    'Like New'
+  ];
   const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
@@ -320,7 +324,7 @@ export function ListingsCollection({
       </Detail>
       <Detail>
         <strong>Condition: </strong>
-        {listing.condition}
+        {conditions[listing.condition]}
       </Detail>
     </ListElementContainer>
   ));
@@ -333,8 +337,7 @@ export function ListingsCollection({
 }
 
 function Listings({ currentListings, searchTerm, mode }) {
-  const [sortType, setSortType] = useState('Alphabetical');
-  const [ascending, setDirection] = useState(true);
+  const [sortType, setSortType] = useState('Most Recent');
   if (mode === 'detailed') {
     return (
       <div>
@@ -344,11 +347,13 @@ function Listings({ currentListings, searchTerm, mode }) {
   } else if (mode === 'general') {
     return (
       <div>
-        <SortBar
+        {searchTerm != null && (
+          <SortBar sortType={sortType} setSortType={setSortType} />
+        )}
+        <ListingsCollection
+          currentListings={currentListings}
+          searchTerm={searchTerm}
           sortType={sortType}
-          setSortType={setSortType}
-          ascending={ascending}
-          setDirection={setDirection}
         />
 
         {currentListings && (

@@ -17,8 +17,19 @@ export const View = styled.div`
   border-radius: 50px;
   background-color: #edf2f2;
   color: #374068;
-  padding: 20px 20px;
+  padding: 50px 20px;
   border: 3px solid #a6e1e3;
+`;
+
+const Detail = styled.div`
+  padding: 0.65vw 0.65vw;
+  border-radius: 4px;
+  background-color: #fafafa;
+  margin-top: 8px;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-bottom: 10px;
+  font-size: 90%;
 `;
 
 const Edit = styled.div`
@@ -96,6 +107,7 @@ const Editor = styled.img`
 
 export const ButtonBar = styled.div`
   text-align: center;
+  margin: 30px 20px 20px 20px;
 `;
 
 export const EditButtonBar = styled.div`
@@ -248,35 +260,37 @@ const MyPostings = ({ ifLoggedIn }) => {
   } else {
     let listingItems = null;
     listingItems = myListings.map(listing => (
-      <div>
+      <div key={listing.id}>
         {mode === 'view' && (
           <View>
             <Detail>
-              <strong>&emsp;Book Title:</strong>&emsp;{` ${listing.title}`}
+              <strong>Book Title:</strong>
+              {` ${listing.title}`}
             </Detail>
             <Detail>
-              <strong>&emsp;ISBN:</strong>&emsp;{` ${listing.ISBN}`}
+              <strong>ISBN:</strong>
+              {` ${listing.ISBN}`}
             </Detail>
             <Detail>
-              <strong>&emsp;Course ID:</strong>&emsp;
+              <strong>Course ID:</strong>
               {` ${listing.courseID}`}
             </Detail>
             <Detail>
-              <strong>&emsp;Condition:</strong>&emsp;
+              <strong>Condition:</strong>
               {` ${listing.condition}`}{' '}
             </Detail>
             <Detail>
-              <strong>&emsp;Price:</strong>&emsp;{` $${listing.price}`}{' '}
+              <strong>Price:</strong>
+              {` $${listing.price}`}{' '}
             </Detail>
             <Detail>
-              <strong>&emsp;Comments:</strong>&emsp;{` ${listing.comments}`}{' '}
+              <strong>Comments:</strong>
+              {` ${listing.comments}`}{' '}
             </Detail>
             <Detail>
-              <strong>&emsp;Last Edited Time:</strong>&emsp;
+              <strong>Last Edited Time:</strong>
               {` ${listing.edited}`}{' '}
             </Detail>
-            <br />
-
             <ButtonBar>
               <DeleteButton
                 onClick={() => {
@@ -303,7 +317,6 @@ const MyPostings = ({ ifLoggedIn }) => {
               >
                 <Delete src={DeletePic} alt="Delete Posting" />
               </DeleteButton>
-              &emsp;&emsp;&emsp;&emsp;
               <EditButton
                 onClick={() => {
                   setMode('edit');
@@ -374,9 +387,6 @@ const MyPostings = ({ ifLoggedIn }) => {
                 placeholder={'Additional comments...'}
                 onChange={event => setComments(event.target.value)}
               />
-
-              <br />
-              <br />
               <EditButtonBar>
                 <button
                   onClick={() => {
@@ -386,7 +396,7 @@ const MyPostings = ({ ifLoggedIn }) => {
                 >
                   Cancel
                 </button>
-                &emsp;&emsp;
+
                 <button
                   disabled={title === '' || courseID === '' || price === ''}
                   onClick={() => {
