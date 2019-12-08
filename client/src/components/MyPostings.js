@@ -21,7 +21,7 @@ export const View = styled.div`
   border: 3px solid #a6e1e3;
 `;
 
-const Detail = styled.div`
+export const Detail = styled.div`
   padding: 0.65vw 0.65vw;
   border-radius: 4px;
   background-color: #fafafa;
@@ -43,17 +43,6 @@ const Edit = styled.div`
 export const EditDiv = styled.div`
   margin-left: 30px;
   margin-right: 30px;
-`;
-
-export const Detail = styled.div`
-  padding: 10px 10px;
-  border-radius: 4px;
-  background-color: #ffffff;
-  margin-top: 8px;
-  margin-left: 7%;
-  margin-right: 7%;
-  margin-bottom: 10px;
-  font-size: 90%;
 `;
 
 export const NewInput = styled.input`

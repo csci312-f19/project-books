@@ -136,7 +136,9 @@ describe('Edit posting tests', () => {
     expect(app.find(EditDiv)).toBeDefined();
     const changeField = app.find(NewInput).at(0);
     changeField.simulate('change', { target: { value: 'We changed you!' } });
-
+    const changeCondition = app.find(NewSelect).at(0);
+    expect(changeCondition).toBeDefined();
+    changeCondition.simulate('change', { target: { value: 'New' } });
     const saveButton = app.find('button').at(1);
     saveButton.simulate('click');
     //update app
@@ -146,6 +148,7 @@ describe('Edit posting tests', () => {
     expect(app.find(View)).toBeDefined();
     //the third field is condition
     const newField = app.find(Detail).at(0);
+    expect(newField.length).toEqual(0);
     expect(newField.props(0)['children'][2]).toEqual(' We changed you!');
   });
 });
