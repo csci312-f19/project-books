@@ -213,7 +213,7 @@ const MyPostings = ({ ifLoggedIn }) => {
       .catch(err => console.log(err)); // eslint-disable-line no-console
   }, []);
 
-  if (myListings.isEmpty() || ifLoggedIn === false) {
+  if (myListings.isEmpty()) {
     return (
       <div>
         <Title>My Postings</Title>
@@ -389,11 +389,17 @@ const MyPostings = ({ ifLoggedIn }) => {
                 <button
                   disabled={title === '' || courseID === '' || price === ''}
                   onClick={() => {
-                    updateEditedListng();
-                    updateEditedBook();
-                    window.location.reload(false);
-                    setCurrentListing();
-                    setMode('view');
+                    if (
+                      window.confirm(
+                        'Are you sure you want to save these changes?'
+                      )
+                    ) {
+                      updateEditedListng();
+                      window.location.reload(false);
+                      setCurrentListing();
+                      updateEditedBook();
+                      setMode('view');
+                    }
                   }}
                 >
                   Save

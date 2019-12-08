@@ -184,13 +184,15 @@ function App() {
 
   const logoutButton = (
     <Item>
-      <GoogleLogout
-        clientId={GOOGLE_CLIENT_ID}
-        render={renderProps => (
-          <ItemButton onClick={renderProps.onClick}>Logout</ItemButton>
-        )}
-        onLogoutSuccess={handleGoogleLogout}
-      />
+      <Link to={''} id="">
+        <GoogleLogout
+          clientId={GOOGLE_CLIENT_ID}
+          render={renderProps => (
+            <ItemButton onClick={renderProps.onClick}>Logout</ItemButton>
+          )}
+          onLogoutSuccess={handleGoogleLogout}
+        />
+      </Link>
     </Item>
   );
   const viewButton = (
