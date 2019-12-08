@@ -126,7 +126,7 @@ const MyPostings = ({ ifLoggedIn }) => {
     currentListing ? currentListing.courseID : ''
   );
   const [condition, setCondition] = useState(
-    currentListing ? currentListing.condition : ''
+    currentListing ? currentListing.condition : 1
   );
   const [price, setPrice] = useState(
     currentListing ? currentListing.price : ''
@@ -353,12 +353,12 @@ const MyPostings = ({ ifLoggedIn }) => {
                 defaultValue={listing.condition}
                 onChange={event => setCondition(event.target.value)}
               >
-                <option value="New">New</option>
-                <option value="Very Good">Very Good</option>
-                <option value="Good">Good</option>
-                <option value="Acceptable">Acceptable</option>
-                <option value="Very Worn">Very Worn</option>
-                <option value="Bad">Bad</option>
+                <option value={1}>Like New</option>
+                <option value={2}>Very Good</option>
+                <option value={3}>Good</option>
+                <option value={4}>Acceptable</option>
+                <option value={5}>Very Worn</option>
+                <option value={6}>Bad</option>
               </NewSelect>
 
               <strong>Price:</strong>
