@@ -12,7 +12,6 @@ const ListingsContainer = styled.div`
 
 const List = styled.ul`
   list-style-type: none;
-  height: 20px;
 `;
 export const ListElementContainer = styled.li`
   margin: 30px 120px;
@@ -34,18 +33,20 @@ const View = styled.div`
 `;
 
 const Detail = styled.div`
-  padding: 10px 10px;
+  padding: 0.65vw 0.65vw;
   border-radius: 4px;
   background-color: #fafafa;
   margin-top: 8px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 7%;
+  margin-right: 7%;
   margin-bottom: 10px;
+  font-size: 90%;
 `;
 
 const ListTitle = styled.h3`
   color: #374068;
   text-align: center;
+  font-size: 110%;
 `;
 
 const SortBarContainer = styled.div`
@@ -62,17 +63,16 @@ const SelectBar = styled.select`
 const Confirmation = styled.div`
   text-align: center;
   background-color: lightgreen;
-  border-radius: 4px;
-  margin-top: 5px;
+  border-radius: 1vw;
+  margin-top: 2vw;
 `;
 
 const EmailButtonStyling = styled.button`
   color: #374068;
   text-align: center;
-  padding: 8px;
-  margin: 20px 10px 10px 10px;
-  font-size: 1.3vw;
-  border-radius: 40px;
+  padding: 0.75vw;
+  font-size: 100%;
+  border-radius: 10vw;
 `;
 
 //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -181,7 +181,6 @@ export function DetailedListing({ detailedListing, purchased, setPurchase }) {
           <strong>Comments</strong>
           {` ${detailedListing.comments}`}
         </Detail>
-
         <Detail>
           <strong>{`Condition`}</strong>
           {` ${detailedListing.condition}`}
@@ -390,12 +389,16 @@ function Listings({ currentListings, searchTerm, mode }) {
           ascending={ascending}
           setDirection={setDirection}
         />
-        <ListingsCollection
-          currentListings={currentListings}
-          searchTerm={searchTerm}
-          sortType={sortType}
-          ascending={ascending}
-        />
+        {console.log(currentListings)}
+        {currentListings && (
+          <ListingsCollection
+            currentListings={currentListings}
+            searchTerm={searchTerm}
+            sortType={sortType}
+            ascending={ascending}
+          />
+        )}
+        {!currentListings && <div>Hi</div>}
       </div>
     );
   } else {

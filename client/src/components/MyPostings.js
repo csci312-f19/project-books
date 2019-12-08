@@ -13,12 +13,23 @@ const Title = styled.h2`
 `;
 
 const View = styled.div`
-  margin: 30px 160px;
+  margin: 30px 120px 100px;
   border-radius: 50px;
-  // background-color: #d1e1ed;
   background-color: #edf2f2;
-  padding: 30px 30px;
+  color: #374068;
+  padding: 50px 20px;
   border: 3px solid #a6e1e3;
+`;
+
+const Detail = styled.div`
+  padding: 0.65vw 0.65vw;
+  border-radius: 4px;
+  background-color: #fafafa;
+  margin-top: 8px;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-bottom: 10px;
+  font-size: 90%;
 `;
 
 const Edit = styled.div`
@@ -34,15 +45,6 @@ const EditDiv = styled.div`
   margin-right: 30px;
 `;
 
-const Detail = styled.div`
-  padding: 10px 10px;
-  border-radius: 8px;
-  background-color: #ffffff;
-  margin-top: 8px;
-  margin-left: 30px;
-  margin-right: 30px;
-`;
-
 const NewInput = styled.input`
   background-color: #ebebeb;
   width: 100%;
@@ -54,7 +56,7 @@ const NewInput = styled.input`
 
 const NewSelect = styled.select`
   background-color: #ebebeb;
-  color: #737373;
+  color: black;
   width: 100%;
   height: 35px;
   border: none;
@@ -94,6 +96,7 @@ const Editor = styled.img`
 
 const ButtonBar = styled.div`
   text-align: center;
+  margin: 30px 20px 20px 20px;
 `;
 
 const EditButtonBar = styled.div`
@@ -210,7 +213,7 @@ const MyPostings = ({ ifLoggedIn }) => {
       .catch(err => console.log(err)); // eslint-disable-line no-console
   }, []);
 
-  if (myListings.isEmpty() || ifLoggedIn === false) {
+  if (myListings.isEmpty()) {
     return (
       <div>
         <Title>My Postings</Title>
@@ -250,31 +253,33 @@ const MyPostings = ({ ifLoggedIn }) => {
         {mode === 'view' && (
           <View>
             <Detail>
-              <strong>&emsp;Book Title:</strong>&emsp;{` ${listing.title}`}
+              <strong>Book Title:</strong>
+              {` ${listing.title}`}
             </Detail>
             <Detail>
-              <strong>&emsp;ISBN:</strong>&emsp;{` ${listing.ISBN}`}
+              <strong>ISBN:</strong>
+              {` ${listing.ISBN}`}
             </Detail>
             <Detail>
-              <strong>&emsp;Course ID:</strong>&emsp;
+              <strong>Course ID:</strong>
               {` ${listing.courseID}`}
             </Detail>
             <Detail>
-              <strong>&emsp;Condition:</strong>&emsp;
+              <strong>Condition:</strong>
               {` ${listing.condition}`}{' '}
             </Detail>
             <Detail>
-              <strong>&emsp;Price:</strong>&emsp;{` $${listing.price}`}{' '}
+              <strong>Price:</strong>
+              {` $${listing.price}`}{' '}
             </Detail>
             <Detail>
-              <strong>&emsp;Comments:</strong>&emsp;{` ${listing.comments}`}{' '}
+              <strong>Comments:</strong>
+              {` ${listing.comments}`}{' '}
             </Detail>
             <Detail>
-              <strong>&emsp;Last Edited Time:</strong>&emsp;
+              <strong>Last Edited Time:</strong>
               {` ${listing.edited}`}{' '}
             </Detail>
-            <br />
-
             <ButtonBar>
               <DeleteButton
                 onClick={() => {
@@ -301,7 +306,6 @@ const MyPostings = ({ ifLoggedIn }) => {
               >
                 <Delete src={DeletePic} alt="Delete Posting" />
               </DeleteButton>
-              &emsp;&emsp;&emsp;&emsp;
               <EditButton
                 onClick={() => {
                   setMode('edit');
@@ -343,8 +347,10 @@ const MyPostings = ({ ifLoggedIn }) => {
               />
 
               <strong>Condition:</strong>
-              <NewSelect onChange={event => setCondition(event.target.value)}>
-                <option>Condition must be selected here</option>
+              <NewSelect
+                defaultValue={listing.condition}
+                onChange={event => setCondition(event.target.value)}
+              >
                 <option value="New">New</option>
                 <option value="Very Good">Very Good</option>
                 <option value="Good">Good</option>
@@ -370,9 +376,6 @@ const MyPostings = ({ ifLoggedIn }) => {
                 placeholder={'Additional comments...'}
                 onChange={event => setComments(event.target.value)}
               />
-
-              <br />
-              <br />
               <EditButtonBar>
                 <button
                   onClick={() => {
@@ -382,20 +385,21 @@ const MyPostings = ({ ifLoggedIn }) => {
                 >
                   Cancel
                 </button>
-                &emsp;&emsp;
+
                 <button
-                  disabled={
-                    title === '' ||
-                    courseID === '' ||
-                    price === '' ||
-                    condition === ''
-                  }
+                  disabled={title === '' || courseID === '' || price === ''}
                   onClick={() => {
-                    updateEditedListng();
-                    updateEditedBook();
-                    window.location.reload(false);
-                    setCurrentListing();
-                    setMode('view');
+                    if (
+                      window.confirm(
+                        'Are you sure you want to save these changes?'
+                      )
+                    ) {
+                      updateEditedListng();
+                      window.location.reload(false);
+                      setCurrentListing();
+                      updateEditedBook();
+                      setMode('view');
+                    }
                   }}
                 >
                   Save
