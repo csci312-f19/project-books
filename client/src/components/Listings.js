@@ -119,7 +119,7 @@ function sendEmail(sellerInfo, bookTitle, bookPrice) {
       console.error('Error: ', err);
     });
 }
-export const DetailedListingsContainer = () => {
+export const DetailedListingsContainer = ({ loggedIn }) => {
   const [detailedListing, setDetailedListing] = useState('');
   const [purchased, setPurchase] = useState(false);
 
@@ -138,11 +138,13 @@ export const DetailedListingsContainer = () => {
       })
       .catch(err => console.log(err));
   }, []);
+
   return (
     <DetailedListing
       detailedListing={detailedListing}
       purchased={purchased}
       setPurchase={setPurchase}
+      loggedIn={loggedIn}
     />
   );
 };
@@ -185,7 +187,12 @@ export const EmailButton = ({ detailedListing, setPurchase, sellerInfo }) => {
   );
 };
 
-export function DetailedListing({ detailedListing, purchased, setPurchase }) {
+export function DetailedListing({
+  detailedListing,
+  purchased,
+  setPurchase,
+  loggedIn
+}) {
   return (
     <List>
       <View>
@@ -217,7 +224,7 @@ export function DetailedListing({ detailedListing, purchased, setPurchase }) {
           <Popup
             trigger={
               <ListingsContainer>
-                <EmailButtonStyling> Buy Now </EmailButtonStyling>
+                {loggedIn && <EmailButtonStyling> Buy Now </EmailButtonStyling>}
               </ListingsContainer>
             }
             position="bottom center"
@@ -376,12 +383,12 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
   );
 }
 
-function Listings({ currentListings, searchTerm, mode }) {
+function Listings({ currentListings, searchTerm, mode, loggedIn }) {
   const [sortType, setSortType] = useState('Most Recent');
   if (mode === 'detailed') {
     return (
       <div>
-        <DetailedListingsContainer />
+        <DetailedListingsContainer loggedIn={loggedIn} />
       </div>
     );
   } else if (mode === 'general') {

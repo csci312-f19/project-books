@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import Popup from 'reactjs-popup';
 import SubmitPic from '../submit.png';
+import { Redirect } from 'react-router';
 
 const InputLine = styled.input`
   text-align: left;
@@ -43,6 +42,10 @@ const WholeContainer = styled.div`
   border: 3px solid #7f92ca;
 `;
 
+const Form = styled.form`
+  text-align: center;
+`;
+
 const InputComments = styled.textarea`
   margin: 10px 0px;
   display: block;
@@ -56,9 +59,8 @@ const SectionTitle = styled.h2`
   padding: 5px;
   font-size: 1.6vw;
 `;
-
-const ButtonBar = styled.div`
-  text-align: center;
+const Required = styled.span`
+  color: red;
 `;
 
 const Note = styled.div`
@@ -77,17 +79,6 @@ const SubmitButton = styled.button`
   border-radius: 30px;
 `;
 
-const ConfirmButton = styled.button`
-  width: 80px;
-  font-size: 16px;
-  height: 40px;
-  border: none;
-  border-radius: 30px;
-  background: #b6c2e3;
-  margin-left: 60px;
-  float: center;
-`;
-
 const Submit = styled.img`
   border: auto;
   width: 20px;
@@ -103,18 +94,17 @@ const newPosting = ({ ifPosting }) => {
     ISBN: '',
     title: '',
     price: '',
-    condition: 'New',
+    condition: 1,
     comments: 'None'
   };
   const [allInfo, setAllInfo] = useState(postingInfo);
-
-  // Should require price, ISBN, something else? to be a number
-  // Dont need name if have accounts?
+  const [redirect, setRedirect] = useState(false);
 
   const makeInput = (inputType, clientQuery, placeholder) => {
     return (
       <InputLineContainer>
-        <InputType> {`${clientQuery}`}: </InputType>
+        <InputType> {`${clientQuery}`}:</InputType>
+        <Required>* </Required>
         <InputLine
           type="text"
           placeholder={`${placeholder}`}
@@ -122,171 +112,152 @@ const newPosting = ({ ifPosting }) => {
             postingInfo[inputType] = event.target.value;
             setAllInfo(postingInfo);
           }}
+          required
         />
       </InputLineContainer>
     );
   };
 
-  const DisplayPopup = () => {
-    return (
-      <div>
-        {'Please confirm that this information is correct \n'}
+  const submitFunction = () => {
+    fetch(`/api/newPosting/Listing`, {
+      method: 'POST',
+      body: JSON.stringify(postingInfo),
+      headers: new Headers({ 'Content-type': 'application/json' })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status_text);
+        }
+        return response.json();
+      })
+      .then(updatedPosting => {
+        setAllInfo(updatedPosting);
+      })
+      .catch(err => console.log(err)); // eslint-disable-line no-console
 
-        <p>
-          <b>{'Book Title: '}</b> {`${allInfo.title}`}
-          <br />
-          <b>{'Book Author: '}</b> {`${allInfo.author}`}
-          <br />
-          <b>{'Course Title: '}</b> {`${allInfo.courseTitle}`}
-          <br />
-          <b>{'ISBN Number: '}</b> {`${allInfo.ISBN}`}
-          <br />
-          <b>{'Course Code: '}</b> {`${allInfo.courseID}`}
-          <br />
-          <b>{'Condition: '}</b> {`${allInfo.condition}`}
-          <br />
-          <b>{'Price: '}</b> {`${allInfo.price}`}
-          <br />
-          <b>{'Comments: '}</b> {`${allInfo.comments}`}
-          <br />
-        </p>
+    fetch(`/api/newPosting/Book`, {
+      method: 'POST',
+      body: JSON.stringify(postingInfo),
+      headers: new Headers({ 'Content-type': 'application/json' })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status_text);
+        }
+        return response.json();
+      })
+      .then(updatedPosting => {
+        setAllInfo(updatedPosting);
+      })
+      .catch(err => console.log(err)); // eslint-disable-line no-console
 
-        {'Click out of the box to cancel'}
-      </div>
+    ifPosting = 'general';
+
+    alert(
+      `Successfully Submitted!\n
+         Your posting contains the following.
+         You can edit it in My Postings\n
+         Book Title: ${allInfo.title}
+         Book Author: ${allInfo.author}
+         Course Title: ${allInfo.courseTitle}
+         ISBN Number: ${allInfo.ISBN}
+         Course Code: ${allInfo.courseID}
+         Condition: ${allInfo.condition}
+         Price: ${allInfo.price}
+         Comments: ${allInfo.comments}\n`
     );
+    //this.props.history.push('');
+    //window.location.reload(true);
+    //window.location.href = 'google.com';
+    //window.location.assign('');
   };
+
+  if (redirect) {
+    return <Redirect to="/myPostings" />;
+  }
 
   if (ifPosting === 'general') {
     return <div />;
   } else if (ifPosting === 'postingView') {
-    //<InputLineContainer>
-    // <InputType> Price: </InputType>
-    // <InputLine
-    //   type="text"
-    //   placeholder={'5'}
-    //   onChange={event => {
-    //     postingInfo.price = parseInt(event.target.value);
-    //     setAllInfo(postingInfo);
-    //   }}
-    // />
-    //</InputLineContainer>
-
     return (
       <WholeContainer>
-        <SectionTitle>Create A New Posting</SectionTitle>
-        {makeInput(
-          'title',
-          'Book Title',
-          'The Guide to the Dr. and Everything React'
-        )}
-        {makeInput('author', 'Book Author', 'Christopher Andrews')}
-        {makeInput('courseTitle', 'Course Title', 'Software Development')}
-        {makeInput('ISBN', 'ISBN Number', '123-4-567-89012-3')}
-        <Note>
-          The ISBN can be found either on the back cover of the book or on the
-          inside information page along with the publisher information.
-        </Note>
-        {makeInput('courseID', 'Course Code', 'CSCI 0312')}
-        <InputLineContainer>
-          <InputType> Condition: </InputType>
-          <InputSelect
-            onChange={event => {
-              postingInfo.condition = parseInt(event.target.value);
-              setAllInfo(postingInfo);
-            }}
-          >
-            <option value="1">Like New</option>
-            <option value="2">Very Good</option>
-            <option value="3">Good</option>
-            <option value="4">Acceptable</option>
-            <option value="5">Very Worn</option>
-            <option value="6">Bad</option>
-          </InputSelect>
-        </InputLineContainer>
-
-        <InputLineContainer>
-          <InputType> Price: $ </InputType>
-          <InputLine
-            type="text"
-            placeholder={'5.00'}
-            onChange={event => {
-              postingInfo.price = parseInt(event.target.value);
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
-        {makeInput('price', 'Price', '5.00')}
-
-        <InputLineContainer>
-          <InputType> Additional Comments: </InputType>
-          <InputComments
-            cols="50"
-            rows="10"
-            placeholder="Any additional comments you may have. Could include: highlighting, water-stains, never opened, missing pages..."
-            onChange={event => {
-              postingInfo.comments = event.target.value;
-              setAllInfo(postingInfo);
-            }}
-          />
-        </InputLineContainer>
-
-        <InputLineContainer>
-          <Popup
-            trigger={
-              <ButtonBar>
-                <SubmitButton>
-                  <Submit src={SubmitPic} alt="Submit Posting" />
-                </SubmitButton>
-              </ButtonBar>
-            }
-            position="top left"
-          >
-            <DisplayPopup />
-            <ConfirmButton
-              onClick={() => {
-                //this is where put will happen
-                // Also an alert with all of the Info, if they accept, then it will post
-                fetch(`/api/newPosting/Listing`, {
-                  method: 'POST',
-                  body: JSON.stringify(postingInfo),
-                  headers: new Headers({ 'Content-type': 'application/json' })
-                })
-                  .then(response => {
-                    if (!response.ok) {
-                      throw new Error(response.status_text);
-                    }
-                    return response.json();
-                  })
-                  .then(updatedPosting => {
-                    setAllInfo(updatedPosting);
-                  })
-                  .catch(err => console.log(err)); // eslint-disable-line no-console
-
-                fetch(`/api/newPosting/Book`, {
-                  method: 'POST',
-                  body: JSON.stringify(postingInfo),
-                  headers: new Headers({ 'Content-type': 'application/json' })
-                })
-                  .then(response => {
-                    if (!response.ok) {
-                      throw new Error(response.status_text);
-                    }
-                    return response.json();
-                  })
-                  .then(updatedPosting => {
-                    setAllInfo(updatedPosting);
-                  })
-                  .catch(err => console.log(err)); // eslint-disable-line no-console
-
-                ifPosting = 'general';
+        <Form
+          onSubmit={() => {
+            submitFunction();
+            setRedirect(true);
+          }}
+        >
+          <SectionTitle>Create a new posting</SectionTitle>
+          <br />
+          <Required text-align="left">*</Required>
+          <span text-align="left">Required Field</span>
+          <br />
+          {makeInput(
+            'title',
+            'Book Title',
+            'The Guide to the Dr. and Everything React'
+          )}
+          {makeInput('author', 'Book Author', 'Christopher Andrews')}
+          {makeInput('courseTitle', 'Course Title', 'Software Development')}
+          {makeInput('ISBN', 'ISBN Number', '123-4-567-89012-3')}
+          <Note>
+            The ISBN can be found either on the back cover of the book or on the
+            inside information page along with the publisher information.
+          </Note>
+          {makeInput('courseID', 'Course Code', 'CSCI 0312')}
+          <InputLineContainer>
+            <InputType> Condition:</InputType>
+            <Required text-align="left">* </Required>
+            <InputSelect
+              onChange={event => {
+                postingInfo.condition = event.target.value;
+                setAllInfo(postingInfo);
               }}
+              required
             >
-              <Link to={''} id="">
-                Confirm!
-              </Link>
-            </ConfirmButton>
-          </Popup>
-        </InputLineContainer>
+              <option value={1}>Like New</option>
+              <option value={2}>Very Good</option>
+              <option value={3}>Good</option>
+              <option value={4}>Acceptable</option>
+              <option value={5}>Very Worn</option>
+              <option value={6}>Bad</option>
+            </InputSelect>
+          </InputLineContainer>
+
+          <InputLineContainer>
+            <InputType> Price: $ </InputType>
+            <Required text-align="left">* </Required>
+            <InputLine
+              type="text"
+              placeholder={'5.00'}
+              onChange={event => {
+                postingInfo.price = parseInt(event.target.value);
+                setAllInfo(postingInfo);
+              }}
+              required
+            />
+          </InputLineContainer>
+          <Note>Price must be a number</Note>
+
+          <InputLineContainer>
+            <InputType> Additional Comments: </InputType>
+            <InputComments
+              cols="50"
+              rows="10"
+              placeholder="Any additional comments you may have. Could include: highlighting, water-stains, never opened, missing pages..."
+              onChange={event => {
+                postingInfo.comments = event.target.value;
+                setAllInfo(postingInfo);
+              }}
+            />
+          </InputLineContainer>
+
+          <InputLineContainer>
+            <SubmitButton value="Submit" type="submit">
+              <Submit src={SubmitPic} alt="Submit Posting" />
+            </SubmitButton>
+          </InputLineContainer>
+        </Form>
       </WholeContainer>
     );
   }
