@@ -62,10 +62,6 @@ const Required = styled.span`
   color: red;
 `;
 
-const ButtonBar = styled.div`
-  text-align: center;
-`;
-
 const Note = styled.div`
   text-align: left;
   padding: 5px;
@@ -80,17 +76,6 @@ const SubmitButton = styled.button`
   background-color: #8499cf;
   border: none;
   border-radius: 30px;
-`;
-
-const ConfirmButton = styled.button`
-  width: 80px;
-  font-size: 16px;
-  height: 40px;
-  border: none;
-  border-radius: 30px;
-  background: #b6c2e3;
-  margin-left: 60px;
-  float: center;
 `;
 
 const Submit = styled.img`
@@ -266,7 +251,6 @@ const newPosting = ({ ifPosting }) => {
             </SubmitButton>
           </InputLineContainer>
         </Form>
-        <Submit src={SubmitPic} alt="Submit Posting" />
       </WholeContainer>
     );
   }
