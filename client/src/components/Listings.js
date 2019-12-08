@@ -32,7 +32,7 @@ const View = styled.div`
   border: 3px solid #6e6db2;
 `;
 
-const Detail = styled.div`
+export const Detail = styled.div`
   padding: 0.65vw 0.65vw;
   border-radius: 4px;
   background-color: #fafafa;
@@ -424,12 +424,6 @@ function Listings({ currentListings, searchTerm, mode, loggedIn }) {
         {searchTerm != null && (
           <SortBar sortType={sortType} setSortType={setSortType} />
         )}
-        <ListingsCollection
-          currentListings={currentListings}
-          searchTerm={searchTerm}
-          sortType={sortType}
-        />
-        {/* {console.log(currentListings)} */}
         {currentListings && (
           <ListingsCollection
             currentListings={currentListings}

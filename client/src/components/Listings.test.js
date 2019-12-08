@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import App from '../App';
-import { flushPromises } from '../setupTests';
+import App from '.././App';
+import { flushPromises } from '.././setupTests';
 
 import { act } from 'react-dom/test-utils';
 import SearchBar from './SearchBar';
@@ -69,7 +69,7 @@ const mockFetch = (url, options) => {
   }
 };
 
-describe('SearchBar', () => {
+describe('Tests for listings appearances', () => {
   let app;
 
   beforeAll(() => {
@@ -159,6 +159,3 @@ describe('SearchBar', () => {
     expect(listingsList[0].key).toEqual(sampleListings[3].id);
   });
 });
-
-//*******************  NOTE!!!!  ********************/
-// Listings.js is changed: change "const SortBar ..." to "export function SortBar ..."
