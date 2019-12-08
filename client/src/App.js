@@ -14,6 +14,8 @@ import HomePic from './home.png';
 import UserPic from './user.png';
 import { Link } from 'react-router-dom';
 
+document.body.style.background = '#fafafa';
+
 let GOOGLE_CLIENT_ID;
 if (String(window.location.href).includes('localhost')) {
   GOOGLE_CLIENT_ID =
@@ -98,6 +100,7 @@ const ItemButton = styled.button`
   font-size: 13px;
   color: #787878;
   font-weight: bold;
+  background-color: #fafafa;
 `;
 
 const SpecialItemButton = styled.button`
@@ -107,6 +110,7 @@ const SpecialItemButton = styled.button`
   padding-right: 35px;
   border: none;
   font-size: 13px;
+  background-color: #fafafa;
 `;
 
 function App() {
@@ -180,26 +184,42 @@ function App() {
 
   const logoutButton = (
     <Item>
-      <GoogleLogout
-        clientId={GOOGLE_CLIENT_ID}
-        render={renderProps => (
-          <ItemButton onClick={renderProps.onClick}>Logout</ItemButton>
-        )}
-        onLogoutSuccess={handleGoogleLogout}
-      />
+      <Link to={''} id="">
+        <GoogleLogout
+          clientId={GOOGLE_CLIENT_ID}
+          render={renderProps => (
+            <ItemButton onClick={renderProps.onClick}>Logout</ItemButton>
+          )}
+          onLogoutSuccess={handleGoogleLogout}
+        />
+      </Link>
     </Item>
   );
   const viewButton = (
     <Item>
       <Link to={'myPostings'} id="myPostings">
-        <ItemButton onClick={() => setButton(true)}>My Postings</ItemButton>
+        <ItemButton
+          onClick={() => {
+            setButton(true);
+            setMenu(false);
+          }}
+        >
+          My Postings
+        </ItemButton>
       </Link>
     </Item>
   );
   const createButton = (
     <Item>
       <Link to={'newPosting'} id="newPosting">
-        <ItemButton onClick={() => setButton(true)}>Create Posting</ItemButton>
+        <ItemButton
+          onClick={() => {
+            setButton(true);
+            setMenu(false);
+          }}
+        >
+          Create Posting
+        </ItemButton>
       </Link>
     </Item>
   );
@@ -214,18 +234,20 @@ function App() {
   return (
     <Router>
       <div className="header" onClick={() => setMenu(!menuState)}>
+
         {buttonDisplay && (
           <Link to={''} id="">
-            <HomeButton>
-              <Home
-                src={HomePic}
-                alt="Back to homepage"
-                onClick={() => setButton(false)}
-              />
+            <HomeButton
+              onClick={() => {
+                setButton(false);
+                setMenu(false);
+              }}
+            >
+              <Home src={HomePic} alt="Back to homepage" />
             </HomeButton>
           </Link>
         )}
-        <DropDownButton>
+        <DropDownButton onClick={() => setMenu(!menuState)}>
           <User src={UserPic} alt="User Account" />
         </DropDownButton>
       </div>

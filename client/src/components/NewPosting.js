@@ -224,6 +224,7 @@ const newPosting = ({ ifPosting }) => {
             </InputSelect>
           </InputLineContainer>
 
+
           <InputLineContainer>
             <InputType> Price: $ </InputType>
             <Required text-align="left">* </Required>
