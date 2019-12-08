@@ -29,6 +29,10 @@ const View = styled.div`
   border: 3px solid #6e6db2;
 `;
 
+const SortDiv = styled.div`
+  font-size: 75%;
+`;
+
 export const Detail = styled.div`
   padding: 0.65vw 0.65vw;
   border-radius: 4px;
@@ -72,12 +76,12 @@ const BuyButton = styled.button`
 
 const SortSelect = styled.select`
   color: white;
-  height: 35px;
+  height: 2vw;
   background: #374068;
   padding-left: 5px;
-  font-size: 14px;
+  font-size: 70%;
   border: none;
-  border-radius: 15px;
+  border-radius: 1vw;
   margin-left: 10px;
   overflow-y: scroll;
 
@@ -212,7 +216,7 @@ export const DetailedListing = ({ loggedIn }) => {
 export function SortBar({ sortType, setSortType }) {
   return (
     <SortBarContainer>
-      <div>
+      <SortDiv>
         Sort by: {'  '}
         <SortSelect
           value={sortType}
@@ -228,7 +232,7 @@ export function SortBar({ sortType, setSortType }) {
           <option value="Old to New">Old - New</option>
           <option value="New to Old">New - Old</option>
         </SortSelect>
-      </div>
+      </SortDiv>
     </SortBarContainer>
   );
 }
