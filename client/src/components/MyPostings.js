@@ -423,9 +423,9 @@ const MyPostings = ({ ifLoggedIn }) => {
                       )
                     ) {
                       updateEditedListng();
+                      updateEditedBook();
                       window.location.reload(false);
                       setCurrentListing();
-                      updateEditedBook();
                       setMode('view');
                     }
                   }}

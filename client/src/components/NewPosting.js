@@ -160,38 +160,6 @@ const newPosting = ({ ifPosting }) => {
   };
 
   const submitFunction = () => {
-    // fetch(`/api/newPosting/Listing`, {
-    //   method: 'POST',
-    //   body: JSON.stringify(postingInfo),
-    //   headers: new Headers({ 'Content-type': 'application/json' })
-    // })
-    //   .then(response => {
-    //     if (!response.ok) {
-    //       throw new Error(response.status_text);
-    //     }
-    //     return response.json();
-    //   })
-    //   .then(updatedPosting => {
-    //     setAllInfo(updatedPosting);
-    //   })
-    //   .catch(err => console.log(err)); // eslint-disable-line no-console
-
-    // fetch(`/api/newPosting/Book`, {
-    //   method: 'POST',
-    //   body: JSON.stringify(postingInfo),
-    //   headers: new Headers({ 'Content-type': 'application/json' })
-    // })
-    //   .then(response => {
-    //     if (!response.ok) {
-    //       throw new Error(response.status_text);
-    //     }
-    //     return response.json();
-    //   })
-    //   .then(updatedPosting => {
-    //     setAllInfo(updatedPosting);
-    //   })
-    //   .catch(err => console.log(err)); // eslint-disable-line no-console
-
     postListing();
     postBook();
 
@@ -210,10 +178,6 @@ const newPosting = ({ ifPosting }) => {
          Price: ${allInfo.price}
          Comments: ${allInfo.comments}\n`
     );
-    //this.props.history.push('');
-    //window.location.reload(true);
-    //window.location.href = 'google.com';
-    //window.location.assign('');
   };
 
   if (redirect) {
