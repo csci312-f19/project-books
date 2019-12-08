@@ -1,14 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import App from '.././App';
+
 import { flushPromises } from '.././setupTests';
-import { Link } from 'react-router-dom';
+
 import { act } from 'react-dom/test-utils';
 import MyPostings from './MyPostings.js';
 import {
   View,
   Detail,
-  EditButtonBar,
   NewInput,
   NewSelect,
   EditDiv,
@@ -63,7 +62,7 @@ describe('MyListings main page tests', () => {
   });
 
   test('MyPostings list exists upon page load', async () => {
-    const mypostings = app.find(MyPostings);
+    expect(app.find(MyPostings)).toBeDefined();
     //there is one view for each listing, so expect it to find 1
     const myViews = app.find(View).at(0);
 
