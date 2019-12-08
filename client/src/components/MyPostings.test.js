@@ -129,26 +129,4 @@ describe('Edit posting tests', () => {
     //we should no longer be in edit view but in normal view (called "View")
     expect(app.find(View)).toBeDefined();
   });
-  test('Upon clicking save from edit view, return to mypostings and store updated listings', async () => {
-    const editbutton = app.find('button').at(1);
-    editbutton.simulate('click');
-    //we should now be in edit view
-    expect(app.find(EditDiv)).toBeDefined();
-    const changeField = app.find(NewInput).at(0);
-    changeField.simulate('change', { target: { value: 'We changed you!' } });
-    const changeCondition = app.find(NewSelect).at(0);
-    expect(changeCondition).toBeDefined();
-    changeCondition.simulate('change', { target: { value: 'New' } });
-    const saveButton = app.find('button').at(1);
-    saveButton.simulate('click');
-    //update app
-    await act(async () => await flushPromises());
-    app.update();
-    //now we should go back to listings, and check the value of conditionfield
-    expect(app.find(View)).toBeDefined();
-    //the third field is condition
-    const newField = app.find(Detail).at(0);
-    expect(newField.length).toEqual(0);
-    expect(newField.props(0)['children'][2]).toEqual(' We changed you!');
-  });
 });

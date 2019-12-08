@@ -6,7 +6,7 @@ import { flushPromises } from '.././setupTests';
 import { act } from 'react-dom/test-utils';
 import SearchBar from './SearchBar';
 
-import { ListElementContainer, SortBar } from './Listings';
+import { ListElementContainer } from './Listings';
 
 const sampleListings = [
   {
@@ -69,7 +69,7 @@ const mockFetch = (url, options) => {
   }
 };
 
-describe('SearchBar', () => {
+describe('Tests for listings appearances', () => {
   let app;
 
   beforeAll(() => {
@@ -157,150 +157,5 @@ describe('SearchBar', () => {
     expect(listingsList.length).toEqual(1);
     //samplelistings[3] is 978-1-61219-127-0
     expect(listingsList[0].key).toEqual(sampleListings[3].id);
-  });
-});
-
-//*******************  NOTE!!!!  ********************/
-// Listings.js is changed: change "const SortBar ..." to "export function SortBar ..."
-
-describe('SortBar actions', () => {
-  beforeAll(() => {
-    jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
-  });
-
-  afterAll(() => {
-    global.fetch.mockClear();
-  });
-  let app;
-
-  beforeEach(async () => {
-    app = mount(<App />);
-    expect(app).toContainMatchingElement(SearchBar);
-    const searchbar = app.find(SearchBar);
-    //populate the listings so we can sort
-    searchbar
-      .find('input[type="text"]')
-      .simulate('change', { target: { value: 'st' } });
-    const button = app.find('input[type="submit"]');
-    button.simulate('click');
-    await act(async () => await flushPromises());
-    app.update();
-  });
-
-  test('SortBar is Most Recent on startup', async () => {
-    expect(app).toContainMatchingElement(SortBar);
-    const sortBar = app.find(SortBar);
-    const result = sortBar.find('select').at(0);
-
-    expect(result.prop('value')).toEqual('Most Recent');
-  });
-
-  describe('Sorts by Price', () => {
-    beforeEach(async () => {
-      const sortBar = app.find(SortBar);
-      const type = sortBar.find('select').at(0);
-      type.simulate('change', { target: { value: '$ to $$$' } });
-      await act(async () => await flushPromises());
-      app.update();
-    });
-    test('Sorts by price in ascending order', async () => {
-      expect(app).toContainMatchingElement(SortBar);
-      expect(app.find(ListElementContainer)).toBeDefined();
-      const listingsList = Array.from(app.find(ListElementContainer));
-      expect(listingsList.length).toEqual(4);
-      expect(listingsList[0].key).toEqual(
-        sampleListings.sort((a, b) => a.price - b.price)[0].id
-      );
-    });
-
-    test('Sorts by price in descending order', async () => {
-      const sortBar = app.find(SortBar);
-      const type = sortBar.find('select').at(0);
-      type.simulate('change', { target: { value: '$$$ to $' } });
-      await act(async () => await flushPromises());
-      app.update();
-      expect(app.find(ListElementContainer)).toBeDefined();
-      const listingsList = Array.from(app.find(ListElementContainer));
-      expect(listingsList.length).toEqual(4);
-      expect(listingsList[0].key).toEqual(
-        sampleListings.sort((a, b) => b.price - a.price)[0].id
-      );
-    });
-  });
-  describe('Sorts by Condition', () => {
-    beforeEach(async () => {
-      const sortBar = app.find(SortBar);
-      const type = sortBar.find('select').at(0);
-      type.simulate('change', { target: { value: 'Old to New' } });
-      await act(async () => await flushPromises());
-      app.update();
-    });
-    test('Sorts by condition ascending order', async () => {
-      expect(app).toContainMatchingElement(SortBar);
-      expect(app.find(ListElementContainer)).toBeDefined();
-      const listingsList = Array.from(app.find(ListElementContainer));
-      expect(listingsList.length).toEqual(4);
-      expect(listingsList[0].key).toEqual(
-        sampleListings.sort((a, b) => a.condition - b.condition)[0].id
-      );
-    });
-
-    test('Sorts by condition in descending order', async () => {
-      const sortBar = app.find(SortBar);
-      const type = sortBar.find('select').at(0);
-      type.simulate('change', { target: { value: 'New to Old' } });
-      await act(async () => await flushPromises());
-      app.update();
-      expect(app.find(ListElementContainer)).toBeDefined();
-      const listingsList = Array.from(app.find(ListElementContainer));
-      expect(listingsList.length).toEqual(4);
-      expect(listingsList[0].key).toEqual(
-        sampleListings.sort((a, b) => b.condition - a.condition)[0].id
-      );
-    });
-    describe('Sorts by Alphabetical Order', () => {
-      beforeEach(async () => {
-        const sortBar = app.find(SortBar);
-        const type = sortBar.find('select').at(0);
-        type.simulate('change', { target: { value: 'A to Z' } });
-        await act(async () => await flushPromises());
-        app.update();
-      });
-      test('Sorts by alphabetically ascending order', async () => {
-        expect(app).toContainMatchingElement(SortBar);
-        expect(app.find(ListElementContainer)).toBeDefined();
-        const listingsList = Array.from(app.find(ListElementContainer));
-        expect(listingsList.length).toEqual(4);
-        expect(listingsList[0].key).toEqual(
-          sampleListings.sort((a, b) => {
-            if (a.title < b.title) {
-              return -1;
-            } else {
-              return 1;
-            }
-          })[0].id
-        );
-      });
-
-      test('Sorts alphabetically in descending order', async () => {
-        const sortBar = app.find(SortBar);
-        const type = sortBar.find('select').at(0);
-        type.simulate('change', { target: { value: 'Z to A' } });
-        await act(async () => await flushPromises());
-        app.update();
-        expect(app.find(ListElementContainer)).toBeDefined();
-        const listingsList = Array.from(app.find(ListElementContainer));
-        expect(listingsList.length).toEqual(4);
-        expect(listingsList[0].key).toEqual(
-          sampleListings.sort((a, b) => {
-            if (a.title > b.title) {
-              return -1;
-            } else {
-              return 1;
-            }
-          })[0].id
-        );
-      });
-    });
   });
 });

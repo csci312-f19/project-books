@@ -118,7 +118,7 @@ function sendEmail(name, email, bookTitle, bookPrice) {
     });
 }
 
-export const DetailedListing = () => {
+export const DetailedListing = ({ loggedIn }) => {
   const [detailedListing, setDetailedListing] = useState('');
   const [purchased, setPurchase] = useState(false);
 
@@ -137,6 +137,7 @@ export const DetailedListing = () => {
       })
       .catch(err => console.log(err));
   }, []);
+
   return (
     <List>
       <View>
@@ -168,7 +169,7 @@ export const DetailedListing = () => {
           <Popup
             trigger={
               <ListingsContainer>
-                <BuyButton> Buy Now </BuyButton>
+                {loggedIn && <BuyButton> Buy Now </BuyButton>}
               </ListingsContainer>
             }
             position="bottom center"
@@ -336,12 +337,12 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
   );
 }
 
-function Listings({ currentListings, searchTerm, mode }) {
+function Listings({ currentListings, searchTerm, mode, loggedIn }) {
   const [sortType, setSortType] = useState('Most Recent');
   if (mode === 'detailed') {
     return (
       <div>
-        <DetailedListing />
+        <DetailedListing loggedIn={loggedIn} />
       </div>
     );
   } else if (mode === 'general') {
