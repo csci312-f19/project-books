@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import App from '../App';
-import { flushPromises } from '../setupTests';
+import App from '.././App';
+import { flushPromises } from '.././setupTests';
 
 import { act } from 'react-dom/test-utils';
 import SearchBar from './SearchBar';
@@ -69,7 +69,7 @@ const mockFetch = (url, options) => {
   }
 };
 
-describe('SearchBar', () => {
+describe('Tests for listings appearances', () => {
   let app;
 
   beforeAll(() => {

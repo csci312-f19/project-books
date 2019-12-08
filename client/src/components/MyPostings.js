@@ -12,7 +12,7 @@ const Title = styled.h2`
   color: #374068;
 `;
 
-const View = styled.div`
+export const View = styled.div`
   margin: 30px 120px 100px;
   border-radius: 50px;
   background-color: #edf2f2;
@@ -21,7 +21,7 @@ const View = styled.div`
   border: 3px solid #a6e1e3;
 `;
 
-const Detail = styled.div`
+export const Detail = styled.div`
   padding: 0.65vw 0.65vw;
   border-radius: 4px;
   background-color: #fafafa;
@@ -40,12 +40,12 @@ const Edit = styled.div`
   border: 3px solid #a2dadb;
 `;
 
-const EditDiv = styled.div`
+export const EditDiv = styled.div`
   margin-left: 30px;
   margin-right: 30px;
 `;
 
-const NewInput = styled.input`
+export const NewInput = styled.input`
   background-color: #ebebeb;
   width: 100%;
   padding: 7px 7px;
@@ -54,7 +54,7 @@ const NewInput = styled.input`
   cursor: pointers;
 `;
 
-const NewSelect = styled.select`
+export const NewSelect = styled.select`
   background-color: #ebebeb;
   color: black;
   width: 100%;
@@ -96,12 +96,12 @@ const Editor = styled.img`
   height: 20px;
 `;
 
-const ButtonBar = styled.div`
+export const ButtonBar = styled.div`
   text-align: center;
   margin: 30px 20px 20px 20px;
 `;
 
-const EditButtonBar = styled.div`
+export const EditButtonBar = styled.div`
   text-align: right;
 `;
 
