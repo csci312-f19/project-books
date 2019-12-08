@@ -39,9 +39,8 @@ const DropDownButton = styled.button`
   height: 4vw;
   width: 4.5vw;
   text-align: center;
-  font-size: 17px;
   border: none;
-  border-radius: 40px;
+  border-radius: 2vw;
 `;
 
 const DropdownContent = styled.div`
@@ -49,12 +48,12 @@ const DropdownContent = styled.div`
   position: absolute;
   margin-left: 89.8%;
   margin-top: 6.2vw;
-  border: 3px solid #d1e1ed;
-  border-radius: 30px;
+  border: 0.2vw solid #d1e1ed;
+  border-radius: 2vw;
 `;
 
 const Item = styled.div`
-  margin: 7px;
+  margin: 0.5vw;
   text-align: center;
 `;
 
@@ -80,24 +79,18 @@ const HomeButton = styled.button`
   margin-top: 2%;
   background-color: #a6e1e3;
   border: none;
-  border-radius: 40px;
+  border-radius: 2vw;
 `;
 
-const Home = styled.img`
+const StyledImg = styled.img`
   border: auto;
-  width: 30px;
-  height: 30px;
-`;
-
-const User = styled.img`
-  border: auto;
-  width: 30px;
-  height: 30px;
+  width: 2.5vw;
+  height: 2.5vw;
 `;
 
 const ItemButton = styled.button`
   border: none;
-  font-size: 13px;
+  font-size: 75%;
   color: #787878;
   font-weight: bold;
   background-color: #fafafa;
@@ -106,10 +99,10 @@ const ItemButton = styled.button`
 const SpecialItemButton = styled.button`
   color: #787878;
   font-weight: bold;
-  padding-left: 35px;
-  padding-right: 35px;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
   border: none;
-  font-size: 13px;
+  font-size: 75%;
   background-color: #fafafa;
 `;
 
@@ -242,12 +235,12 @@ function App() {
                 setMenu(false);
               }}
             >
-              <Home src={HomePic} alt="Back to homepage" />
+              <StyledImg src={HomePic} alt="Back to homepage" />
             </HomeButton>
           </Link>
         )}
         <DropDownButton onClick={() => setMenu(!menuState)}>
-          <User src={UserPic} alt="User Account" />
+          <StyledImg src={UserPic} alt="User Account" />
         </DropDownButton>
       </div>
       {menuState && DropDownContent}
