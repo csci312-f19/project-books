@@ -94,7 +94,7 @@ const newPosting = ({ ifPosting }) => {
     ISBN: '',
     title: '',
     price: '',
-    condition: 'New',
+    condition: 1,
     comments: 'None'
   };
   const [allInfo, setAllInfo] = useState(postingInfo);
@@ -215,15 +215,14 @@ const newPosting = ({ ifPosting }) => {
               }}
               required
             >
-              <option value="New">New</option>
-              <option value="Very Good">Very Good</option>
-              <option value="Good">Good</option>
-              <option value="Acceptable">Acceptable</option>
-              <option value="Very Worn">Very Worn</option>
-              <option value="Bad">Bad</option>
+              <option value={1}>Like New</option>
+              <option value={2}>Very Good</option>
+              <option value={3}>Good</option>
+              <option value={4}>Acceptable</option>
+              <option value={5}>Very Worn</option>
+              <option value={6}>Bad</option>
             </InputSelect>
           </InputLineContainer>
-
 
           <InputLineContainer>
             <InputType> Price: $ </InputType>
