@@ -389,7 +389,7 @@ function Listings({ currentListings, searchTerm, mode }) {
           ascending={ascending}
           setDirection={setDirection}
         />
-        {console.log(currentListings)}
+        {/* {console.log(currentListings)} */}
         {currentListings && (
           <ListingsCollection
             currentListings={currentListings}
