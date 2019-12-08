@@ -14,6 +14,8 @@ import HomePic from './home.png';
 import UserPic from './user.png';
 import { Link } from 'react-router-dom';
 
+document.body.style.background = '#fafafa';
+
 let GOOGLE_CLIENT_ID;
 if (String(window.location.href).includes('localhost')) {
   GOOGLE_CLIENT_ID =
@@ -45,7 +47,7 @@ const DropDownButton = styled.button`
 const DropdownContent = styled.div`
   float: right;
   position: absolute;
-  margin-left: 90%;
+  margin-left: 89.8%;
   margin-top: 6%;
   border: 3px solid #d1e1ed;
   border-radius: 30px;
@@ -91,6 +93,23 @@ const User = styled.img`
   border: auto;
   width: 30px;
   height: 30px;
+`;
+
+const ItemButton = styled.button`
+  border: none;
+  font-size: 13px;
+  color: #787878;
+  font-weight: bold;
+  background-color: #fafafa;
+`;
+
+const SpecialItemButton = styled.button`
+  color: #787878;
+  font-weight: bold;
+  padding-left: 35px;
+  padding-right: 35px;
+  border: none;
+  font-size: 13px;
 `;
 
 function App() {
@@ -148,20 +167,12 @@ function App() {
 
   const loginButton = (
     <Item>
-      <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      />
       <GoogleLogin
         clientId={GOOGLE_CLIENT_ID}
         render={renderProps => (
-          <button
-            type="button"
-            class="btn btn-outline-light"
-            onClick={renderProps.onClick}
-          >
-            &emsp;&ensp;&ensp;&ensp;Login&ensp;&ensp;&ensp;&emsp;
-          </button>
+          <SpecialItemButton onClick={renderProps.onClick}>
+            Login
+          </SpecialItemButton>
         )}
         isSignedIn
         onSuccess={handleGoogleLogin}
@@ -172,20 +183,10 @@ function App() {
 
   const logoutButton = (
     <Item>
-      <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      />
       <GoogleLogout
         clientId={GOOGLE_CLIENT_ID}
         render={renderProps => (
-          <button
-            type="button"
-            class="btn btn-outline-light"
-            onClick={renderProps.onClick}
-          >
-            Logout
-          </button>
+          <ItemButton onClick={renderProps.onClick}>Logout</ItemButton>
         )}
         onLogoutSuccess={handleGoogleLogout}
       />
@@ -194,32 +195,28 @@ function App() {
   const viewButton = (
     <Item>
       <Link to={'myPostings'} id="myPostings">
-        {/* <PostingButton onClick={() => setButton(true)}>
-          My Postings
-        </PostingButton> */}
-        <button
-          type="button"
-          class="btn btn-outline-light"
-          onClick={() => setButton(true)}
+        <ItemButton
+          onClick={() => {
+            setButton(true);
+            setMenu(false);
+          }}
         >
           My Postings
-        </button>
+        </ItemButton>
       </Link>
     </Item>
   );
   const createButton = (
     <Item>
       <Link to={'newPosting'} id="newPosting">
-        {/* <PostingButton onClick={() => setButton(true)}>
-          New Posting
-        </PostingButton> */}
-        <button
-          type="button"
-          class="btn btn-outline-light"
-          onClick={() => setButton(true)}
+        <ItemButton
+          onClick={() => {
+            setButton(true);
+            setMenu(false);
+          }}
         >
-          New Posting
-        </button>
+          Create Posting
+        </ItemButton>
       </Link>
     </Item>
   );
@@ -234,20 +231,20 @@ function App() {
 
   return (
     <Router>
-      <div className="header" onClick={() => setMenu(!menuState)}>
+      <div className="header">
         {buttonDisplay && (
           <Link to={''} id="">
-            <HomeButton>
-              <Home
-                src={HomePic}
-                alt="Back to homepage"
-                onClick={() => setButton(false)}
-              />
+            <HomeButton
+              onClick={() => {
+                setButton(false);
+                setMenu(false);
+              }}
+            >
+              <Home src={HomePic} alt="Back to homepage" />
             </HomeButton>
           </Link>
         )}
-        {/* <DropDownButton>My Account</DropDownButton> */}
-        <DropDownButton>
+        <DropDownButton onClick={() => setMenu(!menuState)}>
           <User src={UserPic} alt="User Account" />
         </DropDownButton>
       </div>
@@ -269,10 +266,7 @@ function App() {
           path="/myPostings"
           render={() => {
             setButton(true);
-            return (
-              // <MyPostings ifPosting={'postingView'} ifLoggedIn={loggedIn} />
-              <MyPostings ifLoggedIn={loggedIn} />
-            );
+            return <MyPostings ifLoggedIn={loggedIn} />;
           }}
         />
         <Route
@@ -294,9 +288,6 @@ function App() {
             return (
               <div>
                 {loggedIn && <NewPosting ifPosting={'general'} />}
-                {/* {loggedIn && (
-                  <MyPostings ifPosting={'general'} ifLoggedIn={loggedIn} />
-                )} */}
                 <SearchBar
                   setBook={book => setBook(book)}
                   currentBook={currentBook}

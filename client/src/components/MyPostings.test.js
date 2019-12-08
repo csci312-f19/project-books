@@ -74,7 +74,7 @@ describe('MyListings main page tests', () => {
   });
 
   test('Upon clicking delete on a posting, return to MyPostings', async () => {
-    const deletebutton = app.find('button[type="button"]').at(0);
+    const deletebutton = app.find('button').at(0);
     deletebutton.simulate('click');
 
     //update app
@@ -106,7 +106,7 @@ describe('Edit posting tests', () => {
   });
 
   test('View change occurs upon clicking edit', async () => {
-    const editbutton = app.find('button[type="button"]').at(1);
+    const editbutton = app.find('button').at(1);
     editbutton.simulate('click');
     //check if new component appears
     expect(app.find(EditDiv)).toBeDefined();
@@ -120,27 +120,25 @@ describe('Edit posting tests', () => {
   });
 
   test('Upon clicking cancel from edit view, return to mypostings', async () => {
-    const editbutton = app.find('button[type="button"]').at(1);
+    const editbutton = app.find('button').at(1);
     editbutton.simulate('click');
     //we should now be in edit view
     expect(app.find(EditDiv)).toBeDefined();
 
-    const cancelButton = app.find('button[type="button"]').at(0);
+    const cancelButton = app.find('button').at(0);
     cancelButton.simulate('click');
     //we should no longer be in edit view but in normal view (called "View")
     expect(app.find(View)).toBeDefined();
   });
   test('Upon clicking save from edit view, return to mypostings and store updated listings', async () => {
-    const editbutton = app.find('button[type="button"]').at(1);
+    const editbutton = app.find('button').at(1);
     editbutton.simulate('click');
     //we should now be in edit view
     expect(app.find(EditDiv)).toBeDefined();
     const changeField = app.find(NewInput).at(0);
     changeField.simulate('change', { target: { value: 'We changed you!' } });
-    const changeField2 = app.find(NewSelect).at(0);
-    changeField2.simulate('change', { target: { value: 'New' } });
 
-    const saveButton = app.find('button[type="button"]').at(1);
+    const saveButton = app.find('button').at(1);
     saveButton.simulate('click');
     //update app
     await act(async () => await flushPromises());

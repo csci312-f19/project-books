@@ -4,6 +4,8 @@ import Immutable from 'immutable';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NewPosting from '../components/NewPosting';
 import { Link } from 'react-router-dom';
+import DeletePic from '../delete.png';
+import EditPic from '../edit.png';
 
 const Title = styled.h2`
   text-align: center;
@@ -11,16 +13,16 @@ const Title = styled.h2`
 `;
 
 export const View = styled.div`
-  margin: 30px 160px;
+  margin: 30px 120px 100px;
   border-radius: 50px;
-  // background-color: #d1e1ed;
   background-color: #edf2f2;
-  padding: 30px 30px;
+  color: #374068;
+  padding: 20px 20px;
   border: 3px solid #a6e1e3;
 `;
 
 const Edit = styled.div`
-  margin: 30px 160px;
+  margin: 10px 160px;
   border-radius: 50px;
   color: #374068;
   padding: 30px 30px;
@@ -34,12 +36,13 @@ export const EditDiv = styled.div`
 
 export const Detail = styled.div`
   padding: 10px 10px;
-  border-radius: 8px;
-  // background-color: #fafafa;
+  border-radius: 4px;
   background-color: #ffffff;
   margin-top: 8px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-bottom: 10px;
+  font-size: 90%;
 `;
 
 export const NewInput = styled.input`
@@ -53,7 +56,7 @@ export const NewInput = styled.input`
 
 export const NewSelect = styled.select`
   background-color: #ebebeb;
-  color: #737373;
+  color: black;
   width: 100%;
   height: 35px;
   border: none;
@@ -63,12 +66,48 @@ export const NewSelect = styled.select`
   box-sizing: border-box;
 `;
 
+const DeleteButton = styled.button`
+  width: 50px;
+  height: 40px;
+  background-color: #9dc9c9;
+  border: none;
+  border-radius: 30px;
+`;
+
+const Delete = styled.img`
+  border: auto;
+  width: 20px;
+  height: 20px;
+`;
+
+const EditButton = styled.button`
+  width: 50px;
+  height: 40px;
+  background-color: #9dc9c9;
+  border: none;
+  border-radius: 30px;
+`;
+
+const Editor = styled.img`
+  border: auto;
+  width: 20px;
+  height: 20px;
+`;
+
 export const ButtonBar = styled.div`
   text-align: center;
 `;
 
 export const EditButtonBar = styled.div`
   text-align: right;
+`;
+
+const ItemButton = styled.button`
+  border: none;
+  font-size: 13px;
+  height: 30px;
+  border: 1px solid #cacecf;
+  border-radius: 30px;
 `;
 
 const MyPostings = ({ ifLoggedIn }) => {
@@ -173,7 +212,7 @@ const MyPostings = ({ ifLoggedIn }) => {
       .catch(err => console.log(err)); // eslint-disable-line no-console
   }, []);
 
-  if (myListings.isEmpty()) {
+  if (myListings.isEmpty() || ifLoggedIn === false) {
     return (
       <div>
         <Title>My Postings</Title>
@@ -184,11 +223,11 @@ const MyPostings = ({ ifLoggedIn }) => {
               render={() => (
                 <div>
                   <ButtonBar>
-                    <button display="block" text-align="center">
+                    <ItemButton>
                       <Link to={'newPosting'} id="newPosting">
                         Create New Posting
                       </Link>
-                    </button>
+                    </ItemButton>
                   </ButtonBar>
                 </div>
               )}
@@ -237,14 +276,9 @@ const MyPostings = ({ ifLoggedIn }) => {
               {` ${listing.edited}`}{' '}
             </Detail>
             <br />
-            <link
-              rel="stylesheet"
-              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            />
+
             <ButtonBar>
-              <button
-                type="button"
-                className="btn btn-default btn-sm"
+              <DeleteButton
                 onClick={() => {
                   if (
                     window.confirm('Are you sure you want to delete this post?')
@@ -267,13 +301,10 @@ const MyPostings = ({ ifLoggedIn }) => {
                   }
                 }}
               >
-                <span className="glyphicon glyphicon-trash" />
-                &emsp;Delete
-              </button>
-              &emsp;&emsp;
-              <button
-                type="button"
-                className="btn btn-default btn-sm"
+                <Delete src={DeletePic} alt="Delete Posting" />
+              </DeleteButton>
+              &emsp;&emsp;&emsp;&emsp;
+              <EditButton
                 onClick={() => {
                   setMode('edit');
                   setCurrentListing(listing);
@@ -285,19 +316,15 @@ const MyPostings = ({ ifLoggedIn }) => {
                   setCourseID(listing.courseID);
                 }}
               >
-                <span className="glyphicon glyphicon-edit" />
-                &emsp;Edit
-              </button>
+                <Editor src={EditPic} alt="Edit Posting" />
+              </EditButton>
             </ButtonBar>
           </View>
         )}
 
         {mode === 'edit' && currentListing.id === listing.id && (
           <Edit>
-            <h4 align="center">
-              <span className="glyphicon glyphicon-pencil" />
-              &emsp;Editing
-            </h4>
+            <h4 align="center">Editing</h4>
             <EditDiv>
               <strong>Book Title:</strong>
               <NewInput
@@ -318,8 +345,10 @@ const MyPostings = ({ ifLoggedIn }) => {
               />
 
               <strong>Condition:</strong>
-              <NewSelect onChange={event => setCondition(event.target.value)}>
-                <option>Condition must be selected here</option>
+              <NewSelect
+                defaultValue={listing.condition}
+                onChange={event => setCondition(event.target.value)}
+              >
                 <option value="New">New</option>
                 <option value="Very Good">Very Good</option>
                 <option value="Good">Good</option>
@@ -348,14 +377,8 @@ const MyPostings = ({ ifLoggedIn }) => {
 
               <br />
               <br />
-              <link
-                rel="stylesheet"
-                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              />
               <EditButtonBar>
                 <button
-                  type="button"
-                  className="btn btn-default btn-sm"
                   onClick={() => {
                     setMode('view');
                     setCurrentListing();
@@ -365,14 +388,7 @@ const MyPostings = ({ ifLoggedIn }) => {
                 </button>
                 &emsp;&emsp;
                 <button
-                  type="button"
-                  className="btn btn-default btn-sm"
-                  disabled={
-                    title === '' ||
-                    courseID === '' ||
-                    price === '' ||
-                    condition === ''
-                  }
+                  disabled={title === '' || courseID === '' || price === ''}
                   onClick={() => {
                     updateEditedListng();
                     updateEditedBook();
