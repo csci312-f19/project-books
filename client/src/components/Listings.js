@@ -295,6 +295,7 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
     'Very Good',
     'Like New'
   ];
+
   const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
@@ -322,11 +323,15 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
     </ListElementContainer>
   ));
 
-  return (
-    <ListingsContainer>
-      <List>{ListingsDisplay}</List>
-    </ListingsContainer>
-  );
+  if (sortedList.size > 0 || searchTerm === null) {
+    return (
+      <ListingsContainer>
+        <List>{ListingsDisplay}</List>
+      </ListingsContainer>
+    );
+  } else {
+    return <ListTitle>{'Your search did not return any results.'}</ListTitle>;
+  }
 }
 
 function Listings({ currentListings, searchTerm, mode, loggedIn }) {
