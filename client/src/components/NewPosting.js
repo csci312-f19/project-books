@@ -191,16 +191,16 @@ const newPosting = ({ ifPosting }) => {
           <InputType> Condition: </InputType>
           <InputSelect
             onChange={event => {
-              postingInfo.condition = event.target.value;
+              postingInfo.condition = parseInt(event.target.value);
               setAllInfo(postingInfo);
             }}
           >
-            <option value="Like New">New</option>
-            <option value="Very Good">Very Good</option>
-            <option value="Good">Good</option>
-            <option value="Acceptable">Acceptable</option>
-            <option value="Very Worn">Very Worn</option>
-            <option value="Bad">Bad</option>
+            <option value="1">Like New</option>
+            <option value="2">Very Good</option>
+            <option value="3">Good</option>
+            <option value="4">Acceptable</option>
+            <option value="5">Very Worn</option>
+            <option value="6">Bad</option>
           </InputSelect>
         </InputLineContainer>
 
