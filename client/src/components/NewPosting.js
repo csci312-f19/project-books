@@ -85,6 +85,11 @@ const Submit = styled.img`
   height: 20px;
 `;
 
+const ButtonBar = styled.div`
+  text-align: center;
+  margin: 30px 20px 0px 20px;
+`;
+
 const newPosting = ({ ifPosting }) => {
   const postingInfo = {
     author: '',
@@ -118,7 +123,7 @@ const newPosting = ({ ifPosting }) => {
     );
   };
 
-  const submitFunction = () => {
+  const postListing = () => {
     fetch(`/api/newPosting/Listing`, {
       method: 'POST',
       body: JSON.stringify(postingInfo),
@@ -134,7 +139,9 @@ const newPosting = ({ ifPosting }) => {
         setAllInfo(updatedPosting);
       })
       .catch(err => console.log(err)); // eslint-disable-line no-console
+  };
 
+  const postBook = () => {
     fetch(`/api/newPosting/Book`, {
       method: 'POST',
       body: JSON.stringify(postingInfo),
@@ -150,6 +157,43 @@ const newPosting = ({ ifPosting }) => {
         setAllInfo(updatedPosting);
       })
       .catch(err => console.log(err)); // eslint-disable-line no-console
+  };
+
+  const submitFunction = () => {
+    // fetch(`/api/newPosting/Listing`, {
+    //   method: 'POST',
+    //   body: JSON.stringify(postingInfo),
+    //   headers: new Headers({ 'Content-type': 'application/json' })
+    // })
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       throw new Error(response.status_text);
+    //     }
+    //     return response.json();
+    //   })
+    //   .then(updatedPosting => {
+    //     setAllInfo(updatedPosting);
+    //   })
+    //   .catch(err => console.log(err)); // eslint-disable-line no-console
+
+    // fetch(`/api/newPosting/Book`, {
+    //   method: 'POST',
+    //   body: JSON.stringify(postingInfo),
+    //   headers: new Headers({ 'Content-type': 'application/json' })
+    // })
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       throw new Error(response.status_text);
+    //     }
+    //     return response.json();
+    //   })
+    //   .then(updatedPosting => {
+    //     setAllInfo(updatedPosting);
+    //   })
+    //   .catch(err => console.log(err)); // eslint-disable-line no-console
+
+    postListing();
+    postBook();
 
     ifPosting = 'general';
 
@@ -253,9 +297,11 @@ const newPosting = ({ ifPosting }) => {
           </InputLineContainer>
 
           <InputLineContainer>
-            <SubmitButton value="Submit" type="submit">
-              <Submit src={SubmitPic} alt="Submit Posting" />
-            </SubmitButton>
+            <ButtonBar>
+              <SubmitButton value="Submit" type="submit">
+                <Submit src={SubmitPic} alt="Submit Posting" />
+              </SubmitButton>
+            </ButtonBar>
           </InputLineContainer>
         </Form>
       </WholeContainer>
