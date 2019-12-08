@@ -61,8 +61,8 @@ const Confirmation = styled.div`
 const BuyButton = styled.button`
   color: #374068;
   text-align: center;
-  padding: 0.75vw;
-  font-size: 100%;
+  padding: 0.65vw;
+  font-size: 80%;
   border-radius: 10vw;
 `;
 
