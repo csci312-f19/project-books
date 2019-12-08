@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
-// import Immutable from 'immutable';
 
 const ListingsContainer = styled.div`
   text-align: center;
@@ -90,10 +89,6 @@ const SortSelect = styled.select`
   }
 `;
 
-//background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-
-//  box-sizing: border-box;
-
 // triggered on button click to post information that the server then uses to send an email to the seller
 function sendEmail(name, email, bookTitle, bookPrice) {
   fetch('/api/bookrequest', {
@@ -125,7 +120,7 @@ export const DetailedListing = ({ loggedIn }) => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`/api/bookListings/${id}`) //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
+    fetch(`/api/bookListings/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -239,17 +234,14 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
 
     updatedList = currentListings.filter(listing => {
       const editedTitle = listing.title.toLowerCase();
-      // const editedCourseTitle = listing.courseTitle.toLowerCase();
       const editedCourseID = listing.courseID.toLowerCase();
       const editedISBN = listing.ISBN.replace(/-/g, '');
-      // let editedAuthor=listing.Author.toUpperCase();
 
       for (let i = 0; i < searchTerms.length; i++) {
         const term = searchTerms[i].toLowerCase();
         if (term !== '') {
           if (
             editedTitle.includes(term) ||
-            // editedCourseTitle.includes(term) ||
             editedCourseID.includes(term) ||
             listing.ISBN.includes(term) ||
             editedISBN.includes(term)

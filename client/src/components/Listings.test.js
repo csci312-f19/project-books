@@ -159,6 +159,3 @@ describe('SearchBar', () => {
     expect(listingsList[0].key).toEqual(sampleListings[3].id);
   });
 });
-
-//*******************  NOTE!!!!  ********************/
-// Listings.js is changed: change "const SortBar ..." to "export function SortBar ..."
