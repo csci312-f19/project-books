@@ -121,7 +121,7 @@ function App() {
   const [buttonDisplay, setButton] = useState(true);
 
   useEffect(() => {
-    fetch('/api/bookListings/') //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
+    fetch('/api/bookListings/')
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);

@@ -110,24 +110,9 @@ const newPosting = ({ ifPosting }) => {
   };
 
   const submitFunction = () => {
-    alert(
-      `Successfully Submitted!\n
-       Your posting contains the following.
-       You can edit it in My Postings\n
-       Book Title: ${allInfo.title}
-       Book Author: ${allInfo.author}
-       Course Title: ${allInfo.courseTitle}
-       ISBN Number: ${allInfo.ISBN}
-       Course Code: ${allInfo.courseID}
-       Condition: ${allInfo.condition}
-       Price: ${allInfo.price}
-       Comments: ${allInfo.comments}\n`
-    );
-    ifPosting = 'general';
-
     fetch(`/api/newPosting/Listing`, {
       method: 'POST',
-      body: JSON.stringify(allInfo),
+      body: JSON.stringify(postingInfo),
       headers: new Headers({ 'Content-type': 'application/json' })
     })
       .then(response => {
@@ -143,7 +128,7 @@ const newPosting = ({ ifPosting }) => {
 
     fetch(`/api/newPosting/Book`, {
       method: 'POST',
-      body: JSON.stringify(allInfo),
+      body: JSON.stringify(postingInfo),
       headers: new Headers({ 'Content-type': 'application/json' })
     })
       .then(response => {
@@ -156,6 +141,26 @@ const newPosting = ({ ifPosting }) => {
         setAllInfo(updatedPosting);
       })
       .catch(err => console.log(err)); // eslint-disable-line no-console
+
+    ifPosting = 'general';
+
+    alert(
+      `Successfully Submitted!\n
+         Your posting contains the following.
+         You can edit it in My Postings\n
+         Book Title: ${allInfo.title}
+         Book Author: ${allInfo.author}
+         Course Title: ${allInfo.courseTitle}
+         ISBN Number: ${allInfo.ISBN}
+         Course Code: ${allInfo.courseID}
+         Condition: ${allInfo.condition}
+         Price: ${allInfo.price}
+         Comments: ${allInfo.comments}\n`
+    );
+    //this.props.history.push('');
+    //window.location.reload(true);
+    //window.location.href = 'google.com';
+    //window.location.assign('');
   };
 
   if (ifPosting === 'general') {
