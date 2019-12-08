@@ -266,7 +266,7 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
     sortedList = updatedList.sort((a, b) => b.condition - a.condition);
   } else if (sortType === 'A to Z' && searchTerm != null) {
     sortedList = updatedList.sort((a, b) => {
-      if (a.title < b.title) {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
         return -1;
       } else {
         return 1;
@@ -274,7 +274,7 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
     });
   } else if (sortType === 'Z to A' && searchTerm != null) {
     sortedList = updatedList.sort((a, b) => {
-      if (a.title > b.title) {
+      if (a.title.toLowerCase() > b.title.toLowerCase()) {
         return -1;
       } else {
         return 1;
