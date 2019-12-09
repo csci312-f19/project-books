@@ -174,7 +174,7 @@ describe('SortBar actions', () => {
       );
     });
   });
-  describe('Sorts by Alphabetical Order', () => {
+  describe('Sorts by condition', () => {
     beforeEach(async () => {
       const sortBar = app.find(SortBar);
       const type = sortBar.find('select').at(0);
@@ -182,17 +182,17 @@ describe('SortBar actions', () => {
       await act(async () => await flushPromises());
       app.update();
     });
-    test('Sorts by alphabetically ascending order', async () => {
+    test('Sorts by condition in ascending order', async () => {
       expect(app).toContainMatchingElement(SortBar);
       expect(app.find(ListElementContainer)).toBeDefined();
       const listingsList = Array.from(app.find(ListElementContainer));
       expect(listingsList.length).toEqual(4);
       expect(listingsList[0].key).toEqual(
-        sampleData.sort((a, b) => b.condition - a.condition)[0].id
+        sampleData.sort((a, b) => a.condition - b.condition)[0].id
       );
     });
 
-    test('Sorts alphabetically in descending order', async () => {
+    test('Sorts condition in descending order', async () => {
       const sortBar = app.find(SortBar);
       const type = sortBar.find('select').at(0);
       type.simulate('change', { target: { value: 'Z to A' } });
@@ -202,7 +202,7 @@ describe('SortBar actions', () => {
       const listingsList = Array.from(app.find(ListElementContainer));
       expect(listingsList.length).toEqual(4);
       expect(listingsList[0].key).toEqual(
-        sampleData.sort((a, b) => a.condition - b.condition)[0].id
+        sampleData.sort((a, b) => b.condition - a.condition)[1].id
       );
     });
   });
