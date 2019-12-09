@@ -15,7 +15,7 @@ const SubmitButton = styled.input`
   margin-left: 10px;
   font-size: 75%;
   height: 1.5vw;
-  width: 4vw;
+  width: 60px;
   background: #67a5d2;
   color: #fafafa;
   border: 0;
