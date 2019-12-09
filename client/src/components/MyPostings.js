@@ -145,6 +145,15 @@ const ItemButton = styled.button`
   border-radius: 30px;
 `;
 
+const conditions = [
+  'Like New',
+  'Very Good',
+  'Good',
+  'Acceptable',
+  'Very Worn',
+  'Bad'
+];
+
 const MyPostings = ({ ifLoggedIn }) => {
   const [myListings, setMyListings] = useState(Immutable.List());
   const [mode, setMode] = useState('view');
@@ -300,7 +309,7 @@ const MyPostings = ({ ifLoggedIn }) => {
             </Detail>
             <Detail>
               <strong>Condition:</strong>
-              {` ${listing.condition}`}{' '}
+              {` ${conditions[listing.condition]}`}{' '}
             </Detail>
             <Detail>
               <strong>Price:</strong>
