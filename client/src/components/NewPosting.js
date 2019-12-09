@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import SubmitPic from '../submit.png';
 import { Redirect } from 'react-router';
 
-const InputLine = styled.input`
+export const InputLine = styled.input`
   text-align: left;
   padding-left: 10px;
   padding-right: 10px;
@@ -15,7 +15,7 @@ const InputLine = styled.input`
   font-size: 0.9vw;
 `;
 
-const InputSelect = styled.select`
+export const InputSelect = styled.select`
   text-align: center;
   position: relative;
   display: inline;
@@ -46,7 +46,7 @@ const Form = styled.form`
   text-align: center;
 `;
 
-const InputComments = styled.textarea`
+export const InputComments = styled.textarea`
   margin: 10px 0px;
   display: block;
   margin-left: 8vw;
@@ -63,7 +63,7 @@ const Required = styled.span`
   color: red;
 `;
 
-const Note = styled.div`
+export const Note = styled.div`
   text-align: left;
   padding: 5px;
   font-size: 0.7vw;
@@ -71,7 +71,7 @@ const Note = styled.div`
   margin-left: 5vw;
 `;
 
-const SubmitButton = styled.button`
+export const SubmitButton = styled.button`
   width: 50px;
   height: 40px;
   background-color: #8499cf;
@@ -79,7 +79,7 @@ const SubmitButton = styled.button`
   border-radius: 30px;
 `;
 
-const Submit = styled.img`
+export const Submit = styled.img`
   border: auto;
   width: 20px;
   height: 20px;
@@ -99,7 +99,7 @@ const newPosting = ({ ifPosting }) => {
     ISBN: '',
     title: '',
     price: '',
-    condition: 1,
+    condition: 0,
     comments: 'None'
   };
   const [allInfo, setAllInfo] = useState(postingInfo);
@@ -190,7 +190,7 @@ const newPosting = ({ ifPosting }) => {
       <WholeContainer>
         <Form
           onSubmit={() => {
-            submitFunction();
+            submitFunction(postingInfo);
             setRedirect(true);
           }}
         >

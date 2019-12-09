@@ -1,9 +1,15 @@
-// import React from 'react';
-//
-// import newPosting from './NewPosting';
-//
-// import { act } from 'react-dom/test-utils';
-// import { mount } from 'enzyme';
+import React from 'react';
+
+import NewPosting, {
+  InputLine,
+  SubmitButton,
+  InputComments,
+  InputSelect
+} from './NewPosting';
+
+import { act } from 'react-dom/test-utils';
+import { flushPromises } from '../setupTests';
+import { shallow } from 'enzyme';
 
 const sampleListings = [
   {
@@ -68,7 +74,8 @@ const mockFetch = (url, options) => {
 };
 
 describe('New Posting tests', () => {
-  //let comp;
+  let comp;
+  let inputs;
 
   beforeAll(() => {
     jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
@@ -78,14 +85,78 @@ describe('New Posting tests', () => {
     global.fetch.mockClear();
   });
 
-  beforeEach(() => {
-    //comp = shallow(<NewPosting/>)
+  beforeEach(async () => {
+    comp = shallow(<NewPosting ifPosting={'postingView'} />);
+    await act(async () => await flushPromises());
+    comp.update();
+    inputs = comp.find(InputLine);
   });
-  // test('Has title', () => {
-  //   expect(
-  //     comp.findWhere(n => n.type() && n.text() === newPosting.courseTitle)
-  //     ).toHaveLength(1);
-  // });
-  test('blank test to satisfy jest', () => {});
+
+  test('New Postings has input line with placeholder for title', () => {
+    expect(comp.find(InputLine)).toBeDefined();
+    const input = inputs.at(0);
+    expect(input).toHaveProp('placeholder');
+
+    expect(input.prop('value')).toBeFalsy();
+  });
+
+  test('New Postings has input line with placeholder for author', () => {
+    expect(comp.find(InputLine)).toBeDefined();
+    const input = inputs.at(1);
+    expect(input).toHaveProp('placeholder');
+
+    expect(input.prop('value')).toBeFalsy();
+  });
+
+  test('New Postings has input line with placeholder for course title', () => {
+    expect(comp.find(InputLine)).toBeDefined();
+    const input = inputs.at(2);
+    expect(input).toHaveProp('placeholder');
+
+    expect(input.prop('value')).toBeFalsy();
+  });
+
+  test('New Postings has input line with placeholder for ISBN', () => {
+    expect(comp.find(InputLine)).toBeDefined();
+    const input = inputs.at(3);
+    expect(input).toHaveProp('placeholder');
+
+    expect(input.prop('value')).toBeFalsy();
+  });
+
+  test('New Postings has input line with placeholder for course code', () => {
+    expect(comp.find(InputLine)).toBeDefined();
+    const input = inputs.at(4);
+    expect(input).toHaveProp('placeholder');
+
+    expect(input.prop('value')).toBeFalsy();
+  });
+
+  test('New Postings has select bar for conditions', () => {
+    expect(comp.find(InputSelect)).toBeDefined();
+    const input = comp.find(InputSelect);
+
+    expect(input.prop('value')).toBeFalsy();
+  });
+
+  test('New Postings has input line with placeholder for price', () => {
+    expect(comp.find(InputLine)).toBeDefined();
+    const input = inputs.at(5);
+    expect(input).toHaveProp('placeholder');
+
+    expect(input.prop('value')).toBeFalsy();
+  });
+
+  test('New Postings has input box with placeholder for comments', () => {
+    expect(comp.find(InputComments)).toBeDefined();
+    const input = comp.find(InputComments);
+    expect(input).toHaveProp('placeholder');
+
+    expect(input.prop('value')).toBeFalsy();
+  });
+
+  test('New Postings has save/submit button', () => {
+    expect(comp.find(SubmitButton)).toBeDefined();
+  });
 });
 //todo: routing tests
