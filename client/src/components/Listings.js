@@ -4,8 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import Immutable from 'immutable';
 
-// import Immutable from 'immutable';
-
 const ListingsContainer = styled.div`
   text-align: center;
 `;
@@ -257,8 +255,7 @@ export function DetailedListing({
             <Popup
               trigger={
                 <EmailButtonStyling disabled={!loggedIn}>
-                  {' '}
-                  Buy Now{' '}
+                  Buy Now
                 </EmailButtonStyling>
               }
               position="bottom center"

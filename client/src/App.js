@@ -14,7 +14,7 @@ import HomePic from './home.png';
 import UserPic from './user.png';
 import { Link } from 'react-router-dom';
 
-document.body.style.background = '#fafafa';
+// document.body.style.background = '#fafafa';
 
 let GOOGLE_CLIENT_ID;
 if (String(window.location.href).includes('localhost')) {
