@@ -4,18 +4,19 @@ import { useState } from 'react';
 
 export const SearchBar = styled.input`
   text-align: left;
-  padding-left: 10px;
-  padding-right: 60px;
+  padding-left: 1vw;
+  padding-right: 5vw;
   width: 50%;
-  height: 25px;
-  border-radius: 25px;
+  height: 1.5vw;
+  border-radius: 1vw;
   border: 2px solid #cccccc;
   z-index: 1;
 `;
 const SubmitButton = styled.input`
   margin-left: 10px;
-  height: 25px;
-  width: 50px;
+  font-size: 75%;
+  height: 1.5vw;
+  width: 60px;
   background: #67a5d2;
   color: #fafafa;
   border: 0;

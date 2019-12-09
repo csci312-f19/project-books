@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import SubmitPic from '../submit.png';
 import { Redirect } from 'react-router';
 
-const InputLine = styled.input`
+export const InputLine = styled.input`
   text-align: left;
   padding-left: 10px;
   padding-right: 10px;
@@ -15,7 +15,7 @@ const InputLine = styled.input`
   font-size: 0.9vw;
 `;
 
-const InputSelect = styled.select`
+export const InputSelect = styled.select`
   text-align: center;
   position: relative;
   display: inline;
@@ -46,7 +46,7 @@ const Form = styled.form`
   text-align: center;
 `;
 
-const InputComments = styled.textarea`
+export const InputComments = styled.textarea`
   margin: 10px 0px;
   display: block;
   margin-left: 8vw;
@@ -63,7 +63,7 @@ const Required = styled.span`
   color: red;
 `;
 
-const Note = styled.div`
+export const Note = styled.div`
   text-align: left;
   padding: 5px;
   font-size: 0.7vw;
@@ -71,7 +71,7 @@ const Note = styled.div`
   margin-left: 5vw;
 `;
 
-const SubmitButton = styled.button`
+export const SubmitButton = styled.button`
   width: 50px;
   height: 40px;
   background-color: #8499cf;
@@ -79,10 +79,15 @@ const SubmitButton = styled.button`
   border-radius: 30px;
 `;
 
-const Submit = styled.img`
+export const Submit = styled.img`
   border: auto;
   width: 20px;
   height: 20px;
+`;
+
+const ButtonBar = styled.div`
+  text-align: center;
+  margin: 30px 20px 0px 20px;
 `;
 
 const newPosting = ({ ifPosting }) => {
@@ -94,7 +99,7 @@ const newPosting = ({ ifPosting }) => {
     ISBN: '',
     title: '',
     price: '',
-    condition: 1,
+    condition: 0,
     comments: 'None'
   };
   const [allInfo, setAllInfo] = useState(postingInfo);
@@ -118,7 +123,7 @@ const newPosting = ({ ifPosting }) => {
     );
   };
 
-  const submitFunction = () => {
+  const postListing = () => {
     fetch(`/api/newPosting/Listing`, {
       method: 'POST',
       body: JSON.stringify(postingInfo),
@@ -134,7 +139,9 @@ const newPosting = ({ ifPosting }) => {
         setAllInfo(updatedPosting);
       })
       .catch(err => console.log(err)); // eslint-disable-line no-console
+  };
 
+  const postBook = () => {
     fetch(`/api/newPosting/Book`, {
       method: 'POST',
       body: JSON.stringify(postingInfo),
@@ -150,6 +157,11 @@ const newPosting = ({ ifPosting }) => {
         setAllInfo(updatedPosting);
       })
       .catch(err => console.log(err)); // eslint-disable-line no-console
+  };
+
+  const submitFunction = () => {
+    postListing();
+    postBook();
 
     ifPosting = 'general';
 
@@ -158,7 +170,6 @@ const newPosting = ({ ifPosting }) => {
          Your posting contains the following.
          You can edit it in My Postings\n
          Book Title: ${allInfo.title}
-         Book Author: ${allInfo.author}
          Course Title: ${allInfo.courseTitle}
          ISBN Number: ${allInfo.ISBN}
          Course Code: ${allInfo.courseID}
@@ -166,10 +177,6 @@ const newPosting = ({ ifPosting }) => {
          Price: ${allInfo.price}
          Comments: ${allInfo.comments}\n`
     );
-    //this.props.history.push('');
-    //window.location.reload(true);
-    //window.location.href = 'google.com';
-    //window.location.assign('');
   };
 
   if (redirect) {
@@ -183,7 +190,7 @@ const newPosting = ({ ifPosting }) => {
       <WholeContainer>
         <Form
           onSubmit={() => {
-            submitFunction();
+            submitFunction(postingInfo);
             setRedirect(true);
           }}
         >
@@ -197,7 +204,6 @@ const newPosting = ({ ifPosting }) => {
             'Book Title',
             'The Guide to the Dr. and Everything React'
           )}
-          {makeInput('author', 'Book Author', 'Christopher Andrews')}
           {makeInput('courseTitle', 'Course Title', 'Software Development')}
           {makeInput('ISBN', 'ISBN Number', '123-4-567-89012-3')}
           <Note>
@@ -215,12 +221,12 @@ const newPosting = ({ ifPosting }) => {
               }}
               required
             >
-              <option value={1}>Like New</option>
-              <option value={2}>Very Good</option>
-              <option value={3}>Good</option>
-              <option value={4}>Acceptable</option>
-              <option value={5}>Very Worn</option>
-              <option value={6}>Bad</option>
+              <option value={0}>Like New</option>
+              <option value={1}>Very Good</option>
+              <option value={2}>Good</option>
+              <option value={3}>Acceptable</option>
+              <option value={4}>Very Worn</option>
+              <option value={5}>Bad</option>
             </InputSelect>
           </InputLineContainer>
 
@@ -251,11 +257,12 @@ const newPosting = ({ ifPosting }) => {
               }}
             />
           </InputLineContainer>
-
           <InputLineContainer>
-            <SubmitButton value="Submit" type="submit">
-              <Submit src={SubmitPic} alt="Submit Posting" />
-            </SubmitButton>
+            <ButtonBar>
+              <SubmitButton value="Submit" type="submit">
+                <Submit src={SubmitPic} alt="Submit Posting" />
+              </SubmitButton>
+            </ButtonBar>
           </InputLineContainer>
         </Form>
       </WholeContainer>

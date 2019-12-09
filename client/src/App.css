@@ -37,3 +37,7 @@ a {
 a:hover {
   color: blue;
 }
+
+.btn.btn-primary[disabled] {
+  background-color: #00ff00;
+}

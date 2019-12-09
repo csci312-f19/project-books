@@ -131,6 +131,26 @@ app.get('/api/MyPostings/', (request, response, next) => {
     }, next); // <- Notice the "next" function as the rejection handler
 });
 
+app.get('/api/buyerInfo/', (request, response, next) => {
+  User.query()
+    .select('*')
+    .from('Users')
+    .where('id', request.user.id)
+    .then(rows => {
+      response.send(rows);
+    }, next); // <- Notice the "next" function as the rejection handler
+});
+
+app.get('/api/sellerInfo/:id', (request, response, next) => {
+  User.query()
+    .select('*')
+    .from('Users')
+    .where('id', request.params.id)
+    .then(rows => {
+      response.send(rows);
+    }, next); // <- Notice the "next" function as the rejection handler
+});
+
 app.delete(`/api/MyPostings/:id`, (request, response, next) => {
   Listing.query()
     .deleteById(request.params.id)
@@ -276,6 +296,7 @@ app.use((error, request, response, next) => {
   }
   const wrappedError = wrapError(error);
   if (wrappedError instanceof DBError) {
+    // console.log(`400 error is: ${error}`);
     response.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
     // console.log(`500 error is: ${error}`);
@@ -288,7 +309,7 @@ app.use((error, request, response, next) => {
 // Nodemailer and the following associated code is used to send the email to the 1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw
 const nodemailer = require('nodemailer');
 
-app.post('/api/bookrequest', function Emailer(req) {
+app.post('/api/bookrequest', (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -298,23 +319,22 @@ app.post('/api/bookrequest', function Emailer(req) {
   });
   const mailOptions = {
     from: 'noReply.MiddBookMarket@gmail.com',
-    to: `${req.body.email}`,
+    to: `${req.body.sellerEmail}`,
     subject: `Somebody wants to buy your book on Midd Book Market!`,
     html: `<p><strong><span style="font-size: 24px; color: rgb(41, 105, 176);">We have some good news for you!</span></strong></p>
-<p>Hi there! Somebody is interested in buying your book, ${req.body.bookTitle}, listed at $${req.body.bookPrice} on Midd Book Market. Please contact the buyer at your earliest convenience, and make sure to arrange a time and place to meet to exchange the book for the agreed price.</p>
-<p><u>Buyer contact information:</u> Jane Doe,
-  <a href="mailto:email@middlebury.edu">email@middlebury.edu</a>
-</p>
-<p>Please contact the buyer within the next 3 days to set up a time to meet. Once your exchange is confirmed, make sure to log back on to your account and delete your book listing from the marketplace.</p>
-<p>Thank you for using Midd Book Market!</p>`
+  <p>Hi there! Somebody is interested in buying your book, ${req.body.bookTitle}, listed at $${req.body.bookPrice} on Midd Book Market. Please contact the buyer at your earliest convenience, and make sure to arrange a time and place to meet to exchange the book for the agreed price.</p>
+  <p><u>Buyer contact information:</u> ${req.body.buyerName},
+    <a href="mailto:${req.body.buyerEmail}">${req.body.buyerEmail}</a>
+  </p>
+  <p>Please contact the buyer within the next 3 days to set up a time to meet. Once your exchange is confirmed, make sure to log back on to your account and delete your book listing from the marketplace.</p>
+  <p>Thank you for using Midd Book Market!</p>`
   };
-  transporter.sendMail(mailOptions, function errorResp() {
-    // if (err) {
-    //   console.error('there was an error: ', err); // replace with error handling
-    // } else {
-    //   console.log('here is the response: ', resp); // replace
-    // }
-    // console.log('something happened');
+  transporter.sendMail(mailOptions, error => {
+    if (error) {
+      res.sendStatus(500);
+    } else {
+      res.sendStatus(200);
+    }
   });
 });
 
