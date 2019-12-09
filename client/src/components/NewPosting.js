@@ -162,7 +162,6 @@ const newPosting = ({ ifPosting }) => {
   const submitFunction = () => {
     postListing();
     postBook();
-    window.location.reload(false);
 
     ifPosting = 'general';
 
@@ -260,7 +259,6 @@ const newPosting = ({ ifPosting }) => {
               }}
             />
           </InputLineContainer>
-
           <InputLineContainer>
             <ButtonBar>
               <SubmitButton value="Submit" type="submit">

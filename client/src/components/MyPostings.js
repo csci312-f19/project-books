@@ -74,6 +74,7 @@ const DeleteButton = styled.button`
   background-color: #9dc9c9;
   border: none;
   border-radius: 30px;
+  margin-right: 10px;
 `;
 
 const Delete = styled.img`
@@ -89,6 +90,7 @@ const EditButton = styled.button`
   background-color: #9dc9c9;
   border: none;
   border-radius: 30px;
+  margin-left: 10px;
 `;
 
 const Editor = styled.img`
