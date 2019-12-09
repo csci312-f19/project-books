@@ -6,22 +6,24 @@ import NewPosting from '../components/NewPosting';
 import { Link } from 'react-router-dom';
 import DeletePic from '../delete.png';
 import EditPic from '../edit.png';
+import SavePic from '../save.png';
+import CancelPic from '../cancel.png';
 
 const Title = styled.h2`
   text-align: center;
   color: #374068;
 `;
 
-const View = styled.div`
+export const View = styled.div`
   margin: 30px 120px 100px;
   border-radius: 50px;
   background-color: #edf2f2;
   color: #374068;
-  padding: 50px 20px;
+  padding: 30px 10px;
   border: 3px solid #a6e1e3;
 `;
 
-const Detail = styled.div`
+export const Detail = styled.div`
   padding: 0.65vw 0.65vw;
   border-radius: 4px;
   background-color: #fafafa;
@@ -40,12 +42,12 @@ const Edit = styled.div`
   border: 3px solid #a2dadb;
 `;
 
-const EditDiv = styled.div`
+export const EditDiv = styled.div`
   margin-left: 30px;
   margin-right: 30px;
 `;
 
-const NewInput = styled.input`
+export const NewInput = styled.input`
   background-color: #ebebeb;
   width: 100%;
   padding: 7px 7px;
@@ -54,7 +56,7 @@ const NewInput = styled.input`
   cursor: pointers;
 `;
 
-const NewSelect = styled.select`
+export const NewSelect = styled.select`
   background-color: #ebebeb;
   color: black;
   width: 100%;
@@ -72,6 +74,7 @@ const DeleteButton = styled.button`
   background-color: #9dc9c9;
   border: none;
   border-radius: 30px;
+  margin-right: 10px;
 `;
 
 const Delete = styled.img`
@@ -81,11 +84,13 @@ const Delete = styled.img`
 `;
 
 const EditButton = styled.button`
+  margin-left: 30px;
   width: 50px;
   height: 40px;
   background-color: #9dc9c9;
   border: none;
   border-radius: 30px;
+  margin-left: 10px;
 `;
 
 const Editor = styled.img`
@@ -94,12 +99,41 @@ const Editor = styled.img`
   height: 20px;
 `;
 
-const ButtonBar = styled.div`
+const CancelButton = styled.button`
+  width: 40px;
+  height: 30px;
+  background-color: #9dc9c9;
+  border: none;
+  border-radius: 30px;
+`;
+
+const Cancel = styled.img`
+  border: auto;
+  width: 10px;
+  height: 10px;
+`;
+
+const SaveButton = styled.button`
+  margin-left: 30px;
+  width: 40px;
+  height: 30px;
+  background-color: #9dc9c9;
+  border: none;
+  border-radius: 30px;
+`;
+
+const Save = styled.img`
+  border: auto;
+  width: 10px;
+  height: 10px;
+`;
+
+export const ButtonBar = styled.div`
   text-align: center;
   margin: 30px 20px 20px 20px;
 `;
 
-const EditButtonBar = styled.div`
+export const EditButtonBar = styled.div`
   text-align: right;
 `;
 
@@ -385,17 +419,17 @@ const MyPostings = ({ ifLoggedIn }) => {
                 placeholder={'Additional comments...'}
                 onChange={event => setComments(event.target.value)}
               />
-              <EditButtonBar>
-                <button
+              <ButtonBar>
+                <CancelButton
                   onClick={() => {
                     setMode('view');
                     setCurrentListing();
                   }}
                 >
-                  Cancel
-                </button>
+                  <Cancel src={CancelPic} alt="Cancel Editing" />
+                </CancelButton>
 
-                <button
+                <SaveButton
                   disabled={title === '' || courseID === '' || price === ''}
                   onClick={() => {
                     if (
@@ -404,16 +438,16 @@ const MyPostings = ({ ifLoggedIn }) => {
                       )
                     ) {
                       updateEditedListng();
+                      updateEditedBook();
                       window.location.reload(false);
                       setCurrentListing();
-                      updateEditedBook();
                       setMode('view');
                     }
                   }}
                 >
-                  Save
-                </button>
-              </EditButtonBar>
+                  <Save src={SavePic} alt="Save Changes" />
+                </SaveButton>
+              </ButtonBar>
             </EditDiv>
           </Edit>
         )}

@@ -85,7 +85,12 @@ export const Submit = styled.img`
   height: 20px;
 `;
 
-const NewPosting = ({ ifPosting }) => {
+const ButtonBar = styled.div`
+  text-align: center;
+  margin: 30px 20px 0px 20px;
+`;
+
+const newPosting = ({ ifPosting }) => {
   const postingInfo = {
     author: '',
     userID: 0,
@@ -118,10 +123,10 @@ const NewPosting = ({ ifPosting }) => {
     );
   };
 
-  const submitFunction = newPost => {
+  const postListing = () => {
     fetch(`/api/newPosting/Listing`, {
       method: 'POST',
-      body: JSON.stringify(newPost),
+      body: JSON.stringify(postingInfo),
       headers: new Headers({ 'Content-type': 'application/json' })
     })
       .then(response => {
@@ -134,7 +139,9 @@ const NewPosting = ({ ifPosting }) => {
         setAllInfo(updatedPosting);
       })
       .catch(err => console.log(err)); // eslint-disable-line no-console
+  };
 
+  const postBook = () => {
     fetch(`/api/newPosting/Book`, {
       method: 'POST',
       body: JSON.stringify(postingInfo),
@@ -150,6 +157,11 @@ const NewPosting = ({ ifPosting }) => {
         setAllInfo(updatedPosting);
       })
       .catch(err => console.log(err)); // eslint-disable-line no-console
+  };
+
+  const submitFunction = () => {
+    postListing();
+    postBook();
 
     ifPosting = 'general';
 
@@ -166,10 +178,6 @@ const NewPosting = ({ ifPosting }) => {
          Price: ${allInfo.price}
          Comments: ${allInfo.comments}\n`
     );
-    //this.props.history.push('');
-    //window.location.reload(true);
-    //window.location.href = 'google.com';
-    //window.location.assign('');
   };
 
   if (redirect) {
@@ -251,11 +259,12 @@ const NewPosting = ({ ifPosting }) => {
               }}
             />
           </InputLineContainer>
-
           <InputLineContainer>
-            <SubmitButton value="Submit" type="submit">
-              <Submit src={SubmitPic} alt="Submit Posting" />
-            </SubmitButton>
+            <ButtonBar>
+              <SubmitButton value="Submit" type="submit">
+                <Submit src={SubmitPic} alt="Submit Posting" />
+              </SubmitButton>
+            </ButtonBar>
           </InputLineContainer>
         </Form>
       </WholeContainer>
@@ -263,4 +272,4 @@ const NewPosting = ({ ifPosting }) => {
   }
 };
 
-export default NewPosting;
+export default newPosting;
