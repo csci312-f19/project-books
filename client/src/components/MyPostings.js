@@ -258,11 +258,9 @@ const MyPostings = ({ ifLoggedIn }) => {
               render={() => (
                 <div>
                   <ButtonBar>
-                    <ItemButton>
-                      <Link to={'newPosting'} id="newPosting">
-                        Create New Posting
-                      </Link>
-                    </ItemButton>
+                    <Link to={'newPosting'} id="newPosting">
+                      <ItemButton>Create New Posting</ItemButton>
+                    </Link>
                   </ButtonBar>
                 </div>
               )}
