@@ -30,7 +30,8 @@ const View = styled.div`
 `;
 
 const SortDiv = styled.div`
-  font-size: 75%;
+  font-size: 85%;
+  color: #374068;
 `;
 
 export const Detail = styled.div`
@@ -41,13 +42,13 @@ export const Detail = styled.div`
   margin-left: 7%;
   margin-right: 7%;
   margin-bottom: 10px;
-  font-size: 90%;
+  font-size: 80%;
 `;
 
 const ListTitle = styled.h3`
   color: #374068;
   text-align: center;
-  font-size: 110%;
+  font-size: 100%;
 `;
 
 const SortBarContainer = styled.div`
@@ -217,7 +218,7 @@ export function SortBar({ sortType, setSortType }) {
   return (
     <SortBarContainer>
       <SortDiv>
-        Sort by: {'  '}
+        <strong>Sort by:</strong>
         <SortSelect
           value={sortType}
           onChange={event => {
