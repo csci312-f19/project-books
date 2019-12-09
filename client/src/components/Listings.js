@@ -124,6 +124,16 @@ function sendEmail(sellerInfo, buyerInfo, bookTitle, bookPrice) {
       console.error('Error: ', err);
     });
 }
+
+const conditions = [
+  'Like New',
+  'Very Good',
+  'Good',
+  'Acceptable',
+  'Very Worn',
+  'Bad'
+];
+
 export const DetailedListingsContainer = ({ loggedIn }) => {
   const [detailedListing, setDetailedListing] = useState('');
   const [purchased, setPurchase] = useState(false);
@@ -237,7 +247,7 @@ export function DetailedListing({
         </Detail>
         <Detail>
           <strong>{`Condition`}</strong>
-          {` ${detailedListing.condition}`}
+          {` ${conditions[detailedListing.condition]}`}
         </Detail>
         <Detail>
           <strong>{`Course ID`}</strong>
@@ -347,9 +357,9 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
   } else if (sortType === '$$$ to $' && searchTerm != null) {
     sortedList = updatedList.sort((a, b) => b.price - a.price);
   } else if (sortType === 'Old to New' && searchTerm != null) {
-    sortedList = updatedList.sort((a, b) => a.condition - b.condition);
-  } else if (sortType === 'New to Old' && searchTerm != null) {
     sortedList = updatedList.sort((a, b) => b.condition - a.condition);
+  } else if (sortType === 'New to Old' && searchTerm != null) {
+    sortedList = updatedList.sort((a, b) => a.condition - b.condition);
   } else if (sortType === 'A to Z' && searchTerm != null) {
     sortedList = updatedList.sort((a, b) => {
       if (a.title.toLowerCase() < b.title.toLowerCase()) {
@@ -373,14 +383,6 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
   } else if (searchTerm != null) {
     sortedList = updatedList;
   }
-  const conditions = [
-    'Bad',
-    'Very Worn',
-    'Acceptable',
-    'Good',
-    'Very Good',
-    'Like New'
-  ];
 
   const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
