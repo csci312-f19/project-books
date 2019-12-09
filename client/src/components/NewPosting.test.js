@@ -92,7 +92,7 @@ describe('New Posting tests', () => {
     inputs = comp.find(InputLine);
   });
 
-  test('Editor has input line with placeholder for title', () => {
+  test('New Postings has input line with placeholder for title', () => {
     expect(comp.find(InputLine)).toBeDefined();
     const input = inputs.at(0);
     expect(input).toHaveProp('placeholder');
@@ -100,7 +100,7 @@ describe('New Posting tests', () => {
     expect(input.prop('value')).toBeFalsy();
   });
 
-  test('Editor has input line with placeholder for author', () => {
+  test('New Postings has input line with placeholder for author', () => {
     expect(comp.find(InputLine)).toBeDefined();
     const input = inputs.at(1);
     expect(input).toHaveProp('placeholder');
@@ -108,7 +108,7 @@ describe('New Posting tests', () => {
     expect(input.prop('value')).toBeFalsy();
   });
 
-  test('Editor has input line with placeholder for course title', () => {
+  test('New Postings has input line with placeholder for course title', () => {
     expect(comp.find(InputLine)).toBeDefined();
     const input = inputs.at(2);
     expect(input).toHaveProp('placeholder');
@@ -116,7 +116,7 @@ describe('New Posting tests', () => {
     expect(input.prop('value')).toBeFalsy();
   });
 
-  test('Editor has input line with placeholder for ISBN', () => {
+  test('New Postings has input line with placeholder for ISBN', () => {
     expect(comp.find(InputLine)).toBeDefined();
     const input = inputs.at(3);
     expect(input).toHaveProp('placeholder');
@@ -124,7 +124,7 @@ describe('New Posting tests', () => {
     expect(input.prop('value')).toBeFalsy();
   });
 
-  test('Editor has input line with placeholder for course code', () => {
+  test('New Postings has input line with placeholder for course code', () => {
     expect(comp.find(InputLine)).toBeDefined();
     const input = inputs.at(4);
     expect(input).toHaveProp('placeholder');
@@ -132,14 +132,14 @@ describe('New Posting tests', () => {
     expect(input.prop('value')).toBeFalsy();
   });
 
-  test('Editor has select bar for conditions', () => {
+  test('New Postings has select bar for conditions', () => {
     expect(comp.find(InputSelect)).toBeDefined();
     const input = comp.find(InputSelect);
 
     expect(input.prop('value')).toBeFalsy();
   });
 
-  test('Editor has input line with placeholder for price', () => {
+  test('New Postings has input line with placeholder for price', () => {
     expect(comp.find(InputLine)).toBeDefined();
     const input = inputs.at(5);
     expect(input).toHaveProp('placeholder');
@@ -147,7 +147,7 @@ describe('New Posting tests', () => {
     expect(input.prop('value')).toBeFalsy();
   });
 
-  test('Editor has input box with placeholder for comments', () => {
+  test('New Postings has input box with placeholder for comments', () => {
     expect(comp.find(InputComments)).toBeDefined();
     const input = comp.find(InputComments);
     expect(input).toHaveProp('placeholder');
