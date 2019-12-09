@@ -5,14 +5,7 @@ import { flushPromises } from '.././setupTests';
 
 import { act } from 'react-dom/test-utils';
 import MyPostings from './MyPostings.js';
-import {
-  View,
-  Detail,
-  NewInput,
-  NewSelect,
-  EditDiv,
-  ButtonBar
-} from './MyPostings.js';
+import { View, Detail } from './MyPostings.js';
 
 const sampleListings = [
   {
