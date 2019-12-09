@@ -1,12 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import App from '../App';
+import { shallow } from 'enzyme';
 import { flushPromises } from '../setupTests';
 
 import { act } from 'react-dom/test-utils';
-import SearchBar from './SearchBar';
 
-import { ListElementContainer } from './Listings';
+import Listings, { ListingsCollection, SortBar } from './Listings';
 
 const sampleListings = [
   {
@@ -69,8 +67,8 @@ const mockFetch = (url, options) => {
   }
 };
 
-describe('SearchBar', () => {
-  let app;
+describe('SearchBar unit tests', () => {
+  let comp;
 
   beforeAll(() => {
     jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
@@ -81,84 +79,22 @@ describe('SearchBar', () => {
   });
 
   beforeEach(async () => {
-    app = mount(<App />);
+    comp = shallow(
+      <Listings
+        currentListings={sampleListings}
+        searchTerm={'st'}
+        mode={'general'}
+      />
+    );
     await act(async () => await flushPromises());
-    app.update();
+    comp.update();
   });
 
-  test('keyword search', async () => {
-    const searchbar = app.find(SearchBar);
-
-    searchbar
-      .find('input[type="text"]')
-      .simulate('change', { target: { value: 'user' } });
-    const button = app.find('input[type="submit"]');
-    button.simulate('click');
-
-    await act(async () => await flushPromises());
-    app.update();
-
-    expect(app.find(ListElementContainer)).toBeDefined();
-    const listingsList = Array.from(app.find(ListElementContainer));
-    expect(listingsList.length).toEqual(1);
-    //samplelistings[0] is american studies: a user's guide
-    expect(listingsList[0].key).toEqual(sampleListings[0].id);
+  test('Listings contains listing containers', () => {
+    expect(comp.find(ListingsCollection)).toBeDefined();
   });
-  test('title search', async () => {
-    expect(app).toContainMatchingElement(SearchBar);
-    const searchbar = app.find(SearchBar);
 
-    searchbar
-      .find('input[type="text"]')
-      .simulate('change', { target: { value: 'Winesburg, Ohio' } });
-    const button = app.find('input[type="submit"]');
-    button.simulate('click');
-    await act(async () => await flushPromises());
-    app.update();
-
-    expect(app.find(ListElementContainer)).toBeDefined();
-    const listingsList = Array.from(app.find(ListElementContainer));
-    expect(listingsList.length).toEqual(1);
-    //samplelistings[1] is Winesburg
-    expect(listingsList[0].key).toEqual(sampleListings[1].id);
-  });
-  test('courseID search', async () => {
-    expect(app).toContainMatchingElement(SearchBar);
-    const searchbar = app.find(SearchBar);
-
-    searchbar
-      .find('input[type="text"]')
-      .simulate('change', { target: { value: 'FYSE 1431' } });
-    const button = app.find('input[type="submit"]');
-    button.simulate('click');
-    await act(async () => await flushPromises());
-    app.update();
-
-    expect(app.find(ListElementContainer)).toBeDefined();
-    const listingsList = Array.from(app.find(ListElementContainer));
-    expect(listingsList.length).toEqual(1);
-    //samplelistings[3] is FYSE 1431
-    expect(listingsList[0].key).toEqual(sampleListings[3].id);
-  });
-  test('ISBN search', async () => {
-    expect(app).toContainMatchingElement(SearchBar);
-    const searchbar = app.find(SearchBar);
-
-    searchbar
-      .find('input[type="text"]')
-      .simulate('change', { target: { value: '978-1-61219-127-0' } });
-    const button = app.find('input[type="submit"]');
-    button.simulate('click');
-    await act(async () => await flushPromises());
-    app.update();
-
-    expect(app.find(ListElementContainer)).toBeDefined();
-    const listingsList = Array.from(app.find(ListElementContainer));
-    expect(listingsList.length).toEqual(1);
-    //samplelistings[3] is 978-1-61219-127-0
-    expect(listingsList[0].key).toEqual(sampleListings[3].id);
+  test('SortBar should be displayed', () => {
+    expect(comp.find(SortBar)).toBeDefined();
   });
 });
-
-//*******************  NOTE!!!!  ********************/
-// Listings.js is changed: change "const SortBar ..." to "export function SortBar ..."

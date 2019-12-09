@@ -120,7 +120,7 @@ describe('App functionality tests', () => {
       global.fetch.mockClear();
     });
     let app;
-
+    const sampleData = sampleListings.concat();
     beforeEach(async () => {
       app = mount(<App />);
       expect(app).toContainMatchingElement(SearchBar);
@@ -157,7 +157,7 @@ describe('App functionality tests', () => {
         const listingsList = Array.from(app.find(ListElementContainer));
         expect(listingsList.length).toEqual(4);
         expect(listingsList[0].key).toEqual(
-          sampleListings.sort((a, b) => a.price - b.price)[0].id
+          sampleData.sort((a, b) => a.price - b.price)[0].id
         );
       });
 
@@ -171,7 +171,7 @@ describe('App functionality tests', () => {
         const listingsList = Array.from(app.find(ListElementContainer));
         expect(listingsList.length).toEqual(4);
         expect(listingsList[0].key).toEqual(
-          sampleListings.sort((a, b) => b.price - a.price)[0].id
+          sampleData.sort((a, b) => b.price - a.price)[0].id
         );
       });
     });
@@ -189,7 +189,7 @@ describe('App functionality tests', () => {
         const listingsList = Array.from(app.find(ListElementContainer));
         expect(listingsList.length).toEqual(4);
         expect(listingsList[0].key).toEqual(
-          sampleListings.sort((a, b) => a.condition - b.condition)[0].id
+          sampleData.sort((a, b) => b.condition - a.condition)[0].id
         );
       });
 
@@ -203,53 +203,143 @@ describe('App functionality tests', () => {
         const listingsList = Array.from(app.find(ListElementContainer));
         expect(listingsList.length).toEqual(4);
         expect(listingsList[0].key).toEqual(
-          sampleListings.sort((a, b) => b.condition - a.condition)[0].id
+          sampleData.sort((a, b) => a.condition - b.condition)[0].id
         );
       });
-      describe('Sorts by Alphabetical Order', () => {
-        beforeEach(async () => {
-          const sortBar = app.find(SortBar);
-          const type = sortBar.find('select').at(0);
-          type.simulate('change', { target: { value: 'A to Z' } });
-          await act(async () => await flushPromises());
-          app.update();
-        });
-        test('Sorts by alphabetically ascending order', async () => {
-          expect(app).toContainMatchingElement(SortBar);
-          expect(app.find(ListElementContainer)).toBeDefined();
-          const listingsList = Array.from(app.find(ListElementContainer));
-          expect(listingsList.length).toEqual(4);
-          expect(listingsList[0].key).toEqual(
-            sampleListings.sort((a, b) => {
-              if (a.title < b.title) {
-                return -1;
-              } else {
-                return 1;
-              }
-            })[0].id
-          );
-        });
-
-        test('Sorts alphabetically in descending order', async () => {
-          const sortBar = app.find(SortBar);
-          const type = sortBar.find('select').at(0);
-          type.simulate('change', { target: { value: 'Z to A' } });
-          await act(async () => await flushPromises());
-          app.update();
-          expect(app.find(ListElementContainer)).toBeDefined();
-          const listingsList = Array.from(app.find(ListElementContainer));
-          expect(listingsList.length).toEqual(4);
-          expect(listingsList[0].key).toEqual(
-            sampleListings.sort((a, b) => {
-              if (a.title > b.title) {
-                return -1;
-              } else {
-                return 1;
-              }
-            })[0].id
-          );
-        });
+    });
+    describe('Sorts by Alphabetical Order', () => {
+      beforeEach(async () => {
+        const sortBar = app.find(SortBar);
+        const type = sortBar.find('select').at(0);
+        type.simulate('change', { target: { value: 'A to Z' } });
+        await act(async () => await flushPromises());
+        app.update();
       });
+      test('Sorts by alphabetically ascending order', async () => {
+        expect(app).toContainMatchingElement(SortBar);
+        expect(app.find(ListElementContainer)).toBeDefined();
+        const listingsList = Array.from(app.find(ListElementContainer));
+        expect(listingsList.length).toEqual(4);
+        expect(listingsList[0].key).toEqual(
+          sampleData.sort((a, b) => {
+            if (a.title < b.title) {
+              return -1;
+            } else {
+              return 1;
+            }
+          })[0].id
+        );
+      });
+
+      test('Sorts alphabetically in descending order', async () => {
+        const sortBar = app.find(SortBar);
+        const type = sortBar.find('select').at(0);
+        type.simulate('change', { target: { value: 'Z to A' } });
+        await act(async () => await flushPromises());
+        app.update();
+        expect(app.find(ListElementContainer)).toBeDefined();
+        const listingsList = Array.from(app.find(ListElementContainer));
+        expect(listingsList.length).toEqual(4);
+        expect(listingsList[0].key).toEqual(
+          sampleData.sort((a, b) => {
+            if (a.title > b.title) {
+              return -1;
+            } else {
+              return 1;
+            }
+          })[0].id
+        );
+      });
+    });
+  });
+  describe('SearchBar actions', () => {
+    let app;
+
+    beforeAll(() => {
+      jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
+    });
+
+    afterAll(() => {
+      global.fetch.mockClear();
+    });
+
+    beforeEach(async () => {
+      app = mount(<App />);
+      await act(async () => await flushPromises());
+      app.update();
+    });
+
+    test('keyword search', async () => {
+      const searchbar = app.find(SearchBar);
+
+      searchbar
+        .find('input[type="text"]')
+        .simulate('change', { target: { value: 'user' } });
+      const button = app.find('input[type="submit"]');
+      button.simulate('click');
+
+      await act(async () => await flushPromises());
+      app.update();
+
+      expect(app.find(ListElementContainer)).toBeDefined();
+      const listingsList = Array.from(app.find(ListElementContainer));
+      expect(listingsList.length).toEqual(1);
+      //samplelistings[0] is american studies: a user's guide
+      expect(listingsList[0].key).toEqual(sampleListings[0].id);
+    });
+    test('title search', async () => {
+      expect(app).toContainMatchingElement(SearchBar);
+      const searchbar = app.find(SearchBar);
+
+      searchbar
+        .find('input[type="text"]')
+        .simulate('change', { target: { value: 'Winesburg, Ohio' } });
+      const button = app.find('input[type="submit"]');
+      button.simulate('click');
+      await act(async () => await flushPromises());
+      app.update();
+
+      expect(app.find(ListElementContainer)).toBeDefined();
+      const listingsList = Array.from(app.find(ListElementContainer));
+      expect(listingsList.length).toEqual(1);
+      //samplelistings[1] is Winesburg
+      expect(listingsList[0].key).toEqual(sampleListings[1].id);
+    });
+    test('courseID search', async () => {
+      expect(app).toContainMatchingElement(SearchBar);
+      const searchbar = app.find(SearchBar);
+
+      searchbar
+        .find('input[type="text"]')
+        .simulate('change', { target: { value: 'FYSE 1431' } });
+      const button = app.find('input[type="submit"]');
+      button.simulate('click');
+      await act(async () => await flushPromises());
+      app.update();
+
+      expect(app.find(ListElementContainer)).toBeDefined();
+      const listingsList = Array.from(app.find(ListElementContainer));
+      expect(listingsList.length).toEqual(1);
+      //samplelistings[3] is FYSE 1431
+      expect(listingsList[0].key).toEqual(sampleListings[3].id);
+    });
+    test('ISBN search', async () => {
+      expect(app).toContainMatchingElement(SearchBar);
+      const searchbar = app.find(SearchBar);
+
+      searchbar
+        .find('input[type="text"]')
+        .simulate('change', { target: { value: '978-1-61219-127-0' } });
+      const button = app.find('input[type="submit"]');
+      button.simulate('click');
+      await act(async () => await flushPromises());
+      app.update();
+
+      expect(app.find(ListElementContainer)).toBeDefined();
+      const listingsList = Array.from(app.find(ListElementContainer));
+      expect(listingsList.length).toEqual(1);
+      //samplelistings[3] is 978-1-61219-127-0
+      expect(listingsList[0].key).toEqual(sampleListings[3].id);
     });
   });
 });
