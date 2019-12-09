@@ -6,6 +6,8 @@ import NewPosting from '../components/NewPosting';
 import { Link } from 'react-router-dom';
 import DeletePic from '../delete.png';
 import EditPic from '../edit.png';
+import SavePic from '../save.png';
+import CancelPic from '../cancel.png';
 
 const Title = styled.h2`
   text-align: center;
@@ -17,7 +19,7 @@ export const View = styled.div`
   border-radius: 50px;
   background-color: #edf2f2;
   color: #374068;
-  padding: 50px 20px;
+  padding: 30px 10px;
   border: 3px solid #a6e1e3;
 `;
 
@@ -82,6 +84,7 @@ const Delete = styled.img`
 `;
 
 const EditButton = styled.button`
+  margin-left: 30px;
   width: 50px;
   height: 40px;
   background-color: #9dc9c9;
@@ -94,6 +97,35 @@ const Editor = styled.img`
   border: auto;
   width: 20px;
   height: 20px;
+`;
+
+const CancelButton = styled.button`
+  width: 40px;
+  height: 30px;
+  background-color: #9dc9c9;
+  border: none;
+  border-radius: 30px;
+`;
+
+const Cancel = styled.img`
+  border: auto;
+  width: 10px;
+  height: 10px;
+`;
+
+const SaveButton = styled.button`
+  margin-left: 30px;
+  width: 40px;
+  height: 30px;
+  background-color: #9dc9c9;
+  border: none;
+  border-radius: 30px;
+`;
+
+const Save = styled.img`
+  border: auto;
+  width: 10px;
+  height: 10px;
 `;
 
 export const ButtonBar = styled.div`
@@ -378,17 +410,17 @@ const MyPostings = ({ ifLoggedIn }) => {
                 placeholder={'Additional comments...'}
                 onChange={event => setComments(event.target.value)}
               />
-              <EditButtonBar>
-                <button
+              <ButtonBar>
+                <CancelButton
                   onClick={() => {
                     setMode('view');
                     setCurrentListing();
                   }}
                 >
-                  Cancel
-                </button>
+                  <Cancel src={CancelPic} alt="Cancel Editing" />
+                </CancelButton>
 
-                <button
+                <SaveButton
                   disabled={title === '' || courseID === '' || price === ''}
                   onClick={() => {
                     if (
@@ -397,16 +429,16 @@ const MyPostings = ({ ifLoggedIn }) => {
                       )
                     ) {
                       updateEditedListng();
+                      updateEditedBook();
                       window.location.reload(false);
                       setCurrentListing();
-                      updateEditedBook();
                       setMode('view');
                     }
                   }}
                 >
-                  Save
-                </button>
-              </EditButtonBar>
+                  <Save src={SavePic} alt="Save Changes" />
+                </SaveButton>
+              </ButtonBar>
             </EditDiv>
           </Edit>
         )}
