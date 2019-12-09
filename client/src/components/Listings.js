@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import Immutable from 'immutable';
 
 const ListingsContainer = styled.div`
   text-align: center;
@@ -68,7 +69,7 @@ const LoginMsg = styled.div`
   font-size: 60%;
 `;
 
-const BuyButton = styled.button`
+const EmailButtonStyling = styled.button`
   text-align: center;
   padding: 0.65vw;
   font-size: 80%;
@@ -99,7 +100,7 @@ const SortSelect = styled.select`
 `;
 
 // triggered on button click to post information that the server then uses to send an email to the seller
-function sendEmail(name, email, bookTitle, bookPrice) {
+function sendEmail(sellerInfo, buyerInfo, bookTitle, bookPrice) {
   fetch('/api/bookrequest', {
     method: 'POST',
     headers: {
@@ -107,22 +108,23 @@ function sendEmail(name, email, bookTitle, bookPrice) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: name,
-      email: email,
+      sellerName: sellerInfo.name,
+      sellerEmail: sellerInfo.email,
+      buyerName: buyerInfo.name,
+      buyerEmail: buyerInfo.googleId,
       bookTitle: bookTitle,
       bookPrice: bookPrice
     })
   })
     .then(res => res.json())
     .then(res => {
-      console.log('here is the response: ', res);
+      console.log('Response:', res);
     })
     .catch(err => {
-      console.error('here is the error: ', err);
+      console.error('Error: ', err);
     });
 }
-
-export const DetailedListing = ({ loggedIn }) => {
+export const DetailedListingsContainer = ({ loggedIn }) => {
   const [detailedListing, setDetailedListing] = useState('');
   const [purchased, setPurchase] = useState(false);
 
@@ -142,6 +144,85 @@ export const DetailedListing = ({ loggedIn }) => {
       .catch(err => console.log(err));
   }, []);
 
+  return (
+    <DetailedListing
+      detailedListing={detailedListing}
+      purchased={purchased}
+      setPurchase={setPurchase}
+      loggedIn={loggedIn}
+    />
+  );
+};
+export function EmailButtonContainer({ detailedListing, setPurchase }) {
+  const [sellerInfo, setSellerInfo] = useState('');
+  const [buyerInfo, setBuyerInfo] = useState('');
+
+  useEffect(() => {
+    fetch(`/api/sellerInfo/${detailedListing.userID}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setSellerInfo(Immutable.List(data).get(0));
+      })
+      .catch(err => console.log(err));
+
+    fetch(`/api/buyerInfo/`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setBuyerInfo(Immutable.List(data).get(0));
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  return (
+    <EmailButton
+      detailedListing={detailedListing}
+      setPurchase={setPurchase}
+      sellerInfo={sellerInfo}
+      buyerInfo={buyerInfo}
+    />
+  );
+}
+
+export const EmailButton = ({
+  detailedListing,
+  setPurchase,
+  sellerInfo,
+  buyerInfo
+}) => {
+  return (
+    <EmailButtonStyling
+      onClick={() => {
+        console.log(sellerInfo);
+        sendEmail(
+          sellerInfo,
+          buyerInfo,
+          detailedListing.title,
+          detailedListing.price
+        );
+        setPurchase(true);
+      }}
+    >
+      Place my Order
+    </EmailButtonStyling>
+  );
+};
+
+export function DetailedListing({
+  detailedListing,
+  purchased,
+  setPurchase,
+  loggedIn
+}) {
   return (
     <List>
       <View>
@@ -172,26 +253,20 @@ export const DetailedListing = ({ loggedIn }) => {
         {!purchased && (
           <ListingsContainer>
             <Popup
-              trigger={<BuyButton disabled={!loggedIn}> Buy Now </BuyButton>}
+              trigger={
+                <EmailButtonStyling disabled={!loggedIn}>
+                  Buy Now
+                </EmailButtonStyling>
+              }
               position="bottom center"
             >
               <div>
                 {`Are you sure you would like to buy this book? Finalizing your purchase
-          will confirm your order and send an alert to the seller.`}
-                <BuyButton
-                  onClick={() => {
-                    sendEmail(
-                      'Hannah',
-                      'hdonovan@middlebury.edu',
-                      detailedListing.title,
-                      detailedListing.price
-                    );
-                    setPurchase(true);
-                  }}
-                  disabled={!loggedIn}
-                >
-                  Place my Order
-                </BuyButton>
+          will confirm your order and send an alert to the seller.    `}
+                <EmailButtonContainer
+                  detailedListing={detailedListing}
+                  setPurchase={setPurchase}
+                />
               </div>
             </Popup>
             {!loggedIn && (
@@ -212,7 +287,7 @@ export const DetailedListing = ({ loggedIn }) => {
       </View>
     </List>
   );
-};
+}
 
 export function SortBar({ sortType, setSortType }) {
   return (
@@ -350,7 +425,7 @@ function Listings({ currentListings, searchTerm, mode, loggedIn }) {
   if (mode === 'detailed') {
     return (
       <div>
-        <DetailedListing loggedIn={loggedIn} />
+        <DetailedListingsContainer loggedIn={loggedIn} />
       </div>
     );
   } else if (mode === 'general') {
@@ -366,7 +441,6 @@ function Listings({ currentListings, searchTerm, mode, loggedIn }) {
             sortType={sortType}
           />
         )}
-
         {!currentListings && <div>Hi</div>}
       </div>
     );

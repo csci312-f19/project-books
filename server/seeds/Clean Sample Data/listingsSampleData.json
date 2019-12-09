@@ -9,31 +9,31 @@
   },
   {
     "ISBN": "978-4-7890-1462-5",
-    "userID": 2,
-    "condition": 2,
+    "userID": 1,
+    "condition": 3,
     "price": 52,
     "edited": "6/24/19",
     "comments": "nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros"
   },
   {
     "ISBN": "978-1-55861-598-4",
-    "userID": 3,
-    "condition": 2,
+    "userID": 1,
+    "condition": "Used",
     "price": 2,
     "edited": "2/20/19",
     "comments": "nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia"
   },
   {
     "ISBN": "978-1-927823-64-4",
-    "userID": 4,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 82,
     "edited": "1/14/19",
     "comments": "dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices"
   },
   {
     "ISBN": "978-2-7467-4653-4",
-    "userID": 5,
+    "userID": 1,
     "condition": 1,
     "price": 72,
     "edited": "6/16/19",
@@ -41,15 +41,15 @@
   },
   {
     "ISBN": "978-0-321-98238-4",
-    "userID": 6,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 44,
     "edited": "5/9/19",
     "comments": "vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque"
   },
   {
     "ISBN": "978-1-62892-537-1",
-    "userID": 7,
+    "userID": 1,
     "condition": 2,
     "price": 50,
     "edited": "5/11/19",
@@ -57,39 +57,39 @@
   },
   {
     "ISBN": "978-0-8129-6653-4",
-    "userID": 8,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 31,
     "edited": "6/3/19",
     "comments": "diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris"
   },
   {
     "ISBN": "978-1-319-06172-2",
-    "userID": 9,
-    "condition": 2,
+    "userID": 1,
+    "condition": 1,
     "price": 90,
     "edited": "3/17/19",
     "comments": "curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit"
   },
   {
     "ISBN": "978-1-888021-23-3",
-    "userID": 10,
-    "condition": 1,
+    "userID": 1,
+    "condition": "Used",
     "price": 57,
     "edited": "10/1/19",
     "comments": "id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras"
   },
   {
     "ISBN": "978-0-8047-9734-4",
-    "userID": 11,
-    "condition": 4,
+    "userID": 1,
+    "condition": 3,
     "price": 77,
     "edited": "11/9/19",
     "comments": "tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac"
   },
   {
     "ISBN": "978-0-375-70224-2",
-    "userID": 12,
+    "userID": 1,
     "condition": 1,
     "price": 86,
     "edited": "8/11/19",
@@ -97,7 +97,7 @@
   },
   {
     "ISBN": "978-0-19-021886-7",
-    "userID": 13,
+    "userID": 1,
     "condition": 4,
     "price": 68,
     "edited": "12/31/18",
@@ -105,7 +105,7 @@
   },
   {
     "ISBN": "978-0-07-351899-2",
-    "userID": 14,
+    "userID": 1,
     "condition": 2,
     "price": 40,
     "edited": "5/10/19",
@@ -113,15 +113,15 @@
   },
   {
     "ISBN": "978-1-62291-140-0",
-    "userID": 15,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 91,
     "edited": "10/24/19",
     "comments": "morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus"
   },
   {
     "ISBN": "978-1-60358-423-4",
-    "userID": 16,
+    "userID": 1,
     "condition": 2,
     "price": 8,
     "edited": "11/9/19",
@@ -129,7 +129,7 @@
   },
   {
     "ISBN": "978-4-87424-447-0",
-    "userID": 17,
+    "userID": 1,
     "condition": 2,
     "price": 58,
     "edited": "6/22/19",
@@ -137,15 +137,15 @@
   },
   {
     "ISBN": "978-1-891389-22-1",
-    "userID": 18,
-    "condition": 2,
+    "userID": 1,
+    "condition": 4,
     "price": 94,
     "edited": "4/10/19",
     "comments": "iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque"
   },
   {
     "ISBN": "978-0-520-28216-2",
-    "userID": 19,
+    "userID": 1,
     "condition": 2,
     "price": 90,
     "edited": "5/17/19",
@@ -153,39 +153,39 @@
   },
   {
     "ISBN": "978-0-544-95911-8",
-    "userID": 20,
-    "condition": 2,
+    "userID": 1,
+    "condition": 4,
     "price": 100,
     "edited": "12/17/18",
     "comments": "consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus"
   },
   {
     "ISBN": "978-1-323-53833-3",
-    "userID": 21,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 42,
     "edited": "7/8/19",
     "comments": "tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec"
   },
   {
     "ISBN": "978-1-888021-23-3",
-    "userID": 22,
-    "condition": 2,
+    "userID": 1,
+    "condition": 4,
     "price": 81,
     "edited": "11/19/19",
     "comments": "pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula"
   },
   {
     "ISBN": "978-90-272-3265-6",
-    "userID": 23,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 39,
     "edited": "6/10/19",
     "comments": "parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur"
   },
   {
     "ISBN": "978-1-4696-1448-9",
-    "userID": 24,
+    "userID": 1,
     "condition": 2,
     "price": 96,
     "edited": "8/16/19",
@@ -193,31 +193,31 @@
   },
   {
     "ISBN": "978-1-938168-15-4",
-    "userID": 25,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 59,
     "edited": "10/4/19",
     "comments": "suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae"
   },
   {
     "ISBN": "978-0-226-03528-4",
-    "userID": 26,
-    "condition": 2,
+    "userID": 1,
+    "condition": 3,
     "price": 38,
     "edited": "3/5/19",
     "comments": "nulla suspendisse potenti cras in purus eu magna vulputate luctus cum"
   },
   {
     "ISBN": "978-0-226-42285-5",
-    "userID": 27,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 30,
     "edited": "8/30/19",
     "comments": "nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend"
   },
   {
     "ISBN": "978-0-679-74565-5",
-    "userID": 28,
+    "userID": 1,
     "condition": 2,
     "price": 32,
     "edited": "9/15/19",
@@ -225,7 +225,7 @@
   },
   {
     "ISBN": "978-1-260-18521-8",
-    "userID": 29,
+    "userID": 1,
     "condition": 3,
     "price": 77,
     "edited": "12/15/18",
@@ -233,7 +233,7 @@
   },
   {
     "ISBN": "978-1-55861-598-4",
-    "userID": 30,
+    "userID": 1,
     "condition": 2,
     "price": 50,
     "edited": "6/17/19",
@@ -241,7 +241,7 @@
   },
   {
     "ISBN": "978-1-319-04016-1",
-    "userID": 31,
+    "userID": 1,
     "condition": 1,
     "price": 30,
     "edited": "11/12/19",
@@ -249,15 +249,15 @@
   },
   {
     "ISBN": "978-1-107-45117-9",
-    "userID": 32,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 97,
     "edited": "7/2/19",
     "comments": "scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed"
   },
   {
     "ISBN": "978-0-929524-17-7",
-    "userID": 33,
+    "userID": 1,
     "condition": 1,
     "price": 52,
     "edited": "8/17/19",
@@ -265,7 +265,7 @@
   },
   {
     "ISBN": "978-2-07-063189-6",
-    "userID": 34,
+    "userID": 1,
     "condition": 2,
     "price": 10,
     "edited": "1/14/19",
@@ -273,7 +273,7 @@
   },
   {
     "ISBN": "978-0-19-873985-2",
-    "userID": 35,
+    "userID": 1,
     "condition": 2,
     "price": 72,
     "edited": "3/3/19",
@@ -281,7 +281,7 @@
   },
   {
     "ISBN": "978-1-61091-607-3",
-    "userID": 36,
+    "userID": 1,
     "condition": 2,
     "price": 48,
     "edited": "4/20/19",
@@ -289,15 +289,15 @@
   },
   {
     "ISBN": "978-4-87424-127-1",
-    "userID": 37,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 2,
     "edited": "7/30/19",
     "comments": "in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis"
   },
   {
     "ISBN": "978-0-19-289223-2",
-    "userID": 38,
+    "userID": 1,
     "condition": 2,
     "price": 71,
     "edited": "2/9/19",
@@ -305,7 +305,7 @@
   },
   {
     "ISBN": "978-0-231-14293-9",
-    "userID": 39,
+    "userID": 1,
     "condition": 3,
     "price": 49,
     "edited": "5/10/19",
@@ -313,15 +313,15 @@
   },
   {
     "ISBN": "978-0-471-19826-0",
-    "userID": 40,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 53,
     "edited": "5/9/19",
     "comments": "id turpis integer aliquet massa id lobortis convallis tortor risus dapibus"
   },
   {
     "ISBN": "978-1-5063-8346-0",
-    "userID": 41,
+    "userID": 1,
     "condition": 2,
     "price": 81,
     "edited": "12/16/18",
@@ -329,7 +329,7 @@
   },
   {
     "ISBN": "978-0-520-27102-9",
-    "userID": 42,
+    "userID": 1,
     "condition": 1,
     "price": 45,
     "edited": "3/29/19",
@@ -337,7 +337,7 @@
   },
   {
     "ISBN": "978-1-119-11190-0",
-    "userID": 43,
+    "userID": 1,
     "condition": 2,
     "price": 20,
     "edited": "3/16/19",
@@ -345,55 +345,55 @@
   },
   {
     "ISBN": "978-1-119-49256-6",
-    "userID": 44,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 46,
     "edited": "5/15/19",
     "comments": "tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa"
   },
   {
     "ISBN": "978-1-260-21110-8",
-    "userID": 45,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 57,
     "edited": "5/24/19",
     "comments": "faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est"
   },
   {
     "ISBN": "978-1-260-50700-3",
-    "userID": 46,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 97,
     "edited": "2/16/19",
     "comments": "congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla"
   },
   {
     "ISBN": "978-0-321-78065-2",
-    "userID": 47,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 3,
     "edited": "10/18/19",
     "comments": "tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non"
   },
   {
     "ISBN": "978-1-63149-475-8",
-    "userID": 48,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 31,
     "edited": "4/27/19",
     "comments": "proin at turpis a pede posuere nonummy integer non velit donec diam neque vestibulum eget"
   },
   {
     "ISBN": "978-6-07-778161-5",
-    "userID": 49,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 34,
     "edited": "11/18/19",
     "comments": "eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor"
   },
   {
     "ISBN": "978-0-520-27102-9",
-    "userID": 50,
+    "userID": 1,
     "condition": 2,
     "price": 8,
     "edited": "4/11/19",
@@ -401,23 +401,23 @@
   },
   {
     "ISBN": "978-0-312-37771-7",
-    "userID": 51,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 14,
     "edited": "1/12/19",
     "comments": "quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum"
   },
   {
     "ISBN": "978-1-259-92230-5",
-    "userID": 52,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 24,
     "edited": "4/21/19",
     "comments": "ut at dolor quis odio consequat varius integer ac leo pellentesque"
   },
   {
     "ISBN": "978-0-226-57168-3",
-    "userID": 53,
+    "userID": 1,
     "condition": 2,
     "price": 57,
     "edited": "11/2/19",
@@ -425,23 +425,23 @@
   },
   {
     "ISBN": "978-1-260-50700-3",
-    "userID": 54,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 57,
     "edited": "1/31/19",
     "comments": "mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam"
   },
   {
     "ISBN": "978-0-520-28216-2",
-    "userID": 55,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 33,
     "edited": "7/4/19",
     "comments": "luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor"
   },
   {
     "ISBN": "978-0-544-95911-8",
-    "userID": 56,
+    "userID": 1,
     "condition": 1,
     "price": 29,
     "edited": "4/26/19",
@@ -449,39 +449,39 @@
   },
   {
     "ISBN": "978-0-520-28210-0",
-    "userID": 57,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 51,
     "edited": "7/10/19",
     "comments": "primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat"
   },
   {
     "ISBN": "978-1-319-06172-2",
-    "userID": 58,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 2,
     "edited": "11/20/19",
     "comments": "in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat"
   },
   {
     "ISBN": "978-84-376-0771-9",
-    "userID": 59,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 12,
     "edited": "8/11/19",
     "comments": "rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id"
   },
   {
     "ISBN": "978-4-87424-447-0",
-    "userID": 60,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 74,
     "edited": "4/5/19",
     "comments": "pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero"
   },
   {
     "ISBN": "978-1-4522-7579-6",
-    "userID": 61,
+    "userID": 1,
     "condition": 1,
     "price": 83,
     "edited": "5/11/19",
@@ -489,7 +489,7 @@
   },
   {
     "ISBN": "978-2-01-156053-7",
-    "userID": 62,
+    "userID": 1,
     "condition": 3,
     "price": 57,
     "edited": "4/8/19",
@@ -497,7 +497,7 @@
   },
   {
     "ISBN": "978-1-259-16298-5",
-    "userID": 63,
+    "userID": 1,
     "condition": 1,
     "price": 22,
     "edited": "12/26/18",
@@ -505,15 +505,15 @@
   },
   {
     "ISBN": "978-1-260-00874-6",
-    "userID": 64,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 74,
     "edited": "12/18/18",
     "comments": "duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce"
   },
   {
     "ISBN": "978-2-01-156053-7",
-    "userID": 65,
+    "userID": 1,
     "condition": 2,
     "price": 59,
     "edited": "2/22/19",
@@ -521,15 +521,15 @@
   },
   {
     "ISBN": "978-1-138-55903-5",
-    "userID": 66,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 59,
     "edited": "10/29/19",
     "comments": "tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim"
   },
   {
     "ISBN": "978-1-927823-64-4",
-    "userID": 67,
+    "userID": 1,
     "condition": 3,
     "price": 30,
     "edited": "5/28/19",
@@ -537,39 +537,39 @@
   },
   {
     "ISBN": "978-3-8365-7282-8",
-    "userID": 68,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 98,
     "edited": "6/6/19",
     "comments": "vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a"
   },
   {
     "ISBN": "978-1-323-53833-3",
-    "userID": 69,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 48,
     "edited": "5/27/19",
     "comments": "luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante"
   },
   {
     "ISBN": "978-0-19-953903-1",
-    "userID": 70,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 65,
     "edited": "3/25/19",
     "comments": "id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras"
   },
   {
     "ISBN": "978-0-19-953903-1",
-    "userID": 71,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 61,
     "edited": "5/15/19",
     "comments": "in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices"
   },
   {
     "ISBN": "978-0-393-93562-2",
-    "userID": 72,
+    "userID": 1,
     "condition": 3,
     "price": 97,
     "edited": "5/2/19",
@@ -577,7 +577,7 @@
   },
   {
     "ISBN": "978-1-323-53833-3",
-    "userID": 73,
+    "userID": 1,
     "condition": 1,
     "price": 28,
     "edited": "6/12/19",
@@ -585,15 +585,15 @@
   },
   {
     "ISBN": "978-0-8057-1676-4",
-    "userID": 74,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 20,
     "edited": "10/26/19",
     "comments": "cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor"
   },
   {
     "ISBN": "978-0-500-84138-9",
-    "userID": 75,
+    "userID": 1,
     "condition": 3,
     "price": 16,
     "edited": "6/9/19",
@@ -601,7 +601,7 @@
   },
   {
     "ISBN": "978-1-68050-268-8",
-    "userID": 76,
+    "userID": 1,
     "condition": 3,
     "price": 30,
     "edited": "3/4/19",
@@ -609,7 +609,7 @@
   },
   {
     "ISBN": "978-0-691-17559-1",
-    "userID": 77,
+    "userID": 1,
     "condition": 3,
     "price": 30,
     "edited": "10/8/19",
@@ -617,15 +617,15 @@
   },
   {
     "ISBN": "978-0-573-70203-7",
-    "userID": 78,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 97,
     "edited": "8/10/19",
     "comments": "aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede"
   },
   {
     "ISBN": "978-0-13-407354-5",
-    "userID": 79,
+    "userID": 1,
     "condition": 2,
     "price": 67,
     "edited": "8/5/19",
@@ -633,7 +633,7 @@
   },
   {
     "ISBN": "978-1-5063-8346-0",
-    "userID": 80,
+    "userID": 1,
     "condition": 2,
     "price": 73,
     "edited": "4/19/19",
@@ -641,7 +641,7 @@
   },
   {
     "ISBN": "978-0-19-953903-1",
-    "userID": 81,
+    "userID": 1,
     "condition": 1,
     "price": 41,
     "edited": "8/11/19",
@@ -649,7 +649,7 @@
   },
   {
     "ISBN": "978-1-61250-771-2",
-    "userID": 82,
+    "userID": 1,
     "condition": 3,
     "price": 36,
     "edited": "2/6/19",
@@ -657,31 +657,31 @@
   },
   {
     "ISBN": "978-1-133-62965-8",
-    "userID": 83,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 47,
     "edited": "2/16/19",
     "comments": "arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac"
   },
   {
     "ISBN": "978-84-376-0771-9",
-    "userID": 84,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 4,
     "edited": "12/16/18",
     "comments": "mi in porttitor pede justo eu massa donec dapibus duis at velit"
   },
   {
     "ISBN": "978-6-07-778161-5",
-    "userID": 85,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 42,
     "edited": "8/25/19",
     "comments": "iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae"
   },
   {
     "ISBN": "978-1-101-91176-1",
-    "userID": 86,
+    "userID": 1,
     "condition": 3,
     "price": 75,
     "edited": "9/11/19",
@@ -689,15 +689,15 @@
   },
   {
     "ISBN": "978-0-19-529000-4",
-    "userID": 87,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 30,
     "edited": "4/7/19",
     "comments": "aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas"
   },
   {
     "ISBN": "978-1-4641-7605-0",
-    "userID": 88,
+    "userID": 1,
     "condition": 1,
     "price": 57,
     "edited": "1/10/19",
@@ -705,7 +705,7 @@
   },
   {
     "ISBN": "978-0-226-02675-6",
-    "userID": 89,
+    "userID": 1,
     "condition": 1,
     "price": 89,
     "edited": "7/19/19",
@@ -713,7 +713,7 @@
   },
   {
     "ISBN": "978-0-915144-61-7",
-    "userID": 90,
+    "userID": 1,
     "condition": 3,
     "price": 22,
     "edited": "6/22/19",
@@ -721,7 +721,7 @@
   },
   {
     "ISBN": "978-1-888021-23-3",
-    "userID": 91,
+    "userID": 1,
     "condition": 3,
     "price": 94,
     "edited": "2/9/19",
@@ -729,31 +729,31 @@
   },
   {
     "ISBN": "978-0-393-69640-0",
-    "userID": 92,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 13,
     "edited": "6/7/19",
     "comments": "donec quis orci eget orci vehicula condimentum curabitur in libero ut"
   },
   {
     "ISBN": "978-1-260-00874-6",
-    "userID": 93,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 52,
     "edited": "8/26/19",
     "comments": "sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec"
   },
   {
     "ISBN": "978-1-4013-0953-4",
-    "userID": 94,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 4,
     "edited": "4/26/19",
     "comments": "tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc"
   },
   {
     "ISBN": "978-0-471-19826-0",
-    "userID": 95,
+    "userID": 1,
     "condition": 1,
     "price": 37,
     "edited": "12/3/18",
@@ -761,15 +761,15 @@
   },
   {
     "ISBN": "978-1-60535-579-5",
-    "userID": 96,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 36,
     "edited": "5/22/19",
     "comments": "pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti"
   },
   {
     "ISBN": "978-1-938168-15-4",
-    "userID": 97,
+    "userID": 1,
     "condition": 3,
     "price": 90,
     "edited": "3/13/19",
@@ -777,15 +777,15 @@
   },
   {
     "ISBN": "978-0-486-28269-5",
-    "userID": 98,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 83,
     "edited": "8/8/19",
     "comments": "sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at"
   },
   {
     "ISBN": "978-0-7190-7927-6",
-    "userID": 99,
+    "userID": 1,
     "condition": 3,
     "price": 15,
     "edited": "2/4/19",
@@ -793,15 +793,15 @@
   },
   {
     "ISBN": "978-0-8223-6319-4",
-    "userID": 100,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 70,
     "edited": "5/25/19",
     "comments": "vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat"
   },
   {
     "ISBN": "978-0-13-498856-6",
-    "userID": 101,
+    "userID": 1,
     "condition": 2,
     "price": 16,
     "edited": "8/20/19",
@@ -809,15 +809,15 @@
   },
   {
     "ISBN": "978-0-8222-3042-7",
-    "userID": 102,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 30,
     "edited": "6/29/19",
     "comments": "cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut"
   },
   {
     "ISBN": "978-1-260-11129-3",
-    "userID": 103,
+    "userID": 1,
     "condition": 1,
     "price": 100,
     "edited": "5/15/19",
@@ -825,7 +825,7 @@
   },
   {
     "ISBN": "978-0-8222-3042-7",
-    "userID": 104,
+    "userID": 1,
     "condition": 3,
     "price": 3,
     "edited": "4/27/19",
@@ -833,15 +833,15 @@
   },
   {
     "ISBN": "978-0-307-39080-6",
-    "userID": 105,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 66,
     "edited": "5/10/19",
     "comments": "dui vel sem sed sagittis nam congue risus semper porta"
   },
   {
     "ISBN": "978-6-07-778161-5",
-    "userID": 106,
+    "userID": 1,
     "condition": 2,
     "price": 14,
     "edited": "3/25/19",
@@ -849,7 +849,7 @@
   },
   {
     "ISBN": "978-0-19-873985-2",
-    "userID": 107,
+    "userID": 1,
     "condition": 2,
     "price": 12,
     "edited": "1/12/19",
@@ -857,23 +857,23 @@
   },
   {
     "ISBN": "978-0-375-70270-9",
-    "userID": 108,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 11,
     "edited": "8/30/19",
     "comments": "et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem"
   },
   {
     "ISBN": "978-94-00-77443-8",
-    "userID": 109,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 86,
     "edited": "5/22/19",
     "comments": "erat id mauris vulputate elementum nullam varius nulla facilisi cras non"
   },
   {
     "ISBN": "978-1-4614-1685-2",
-    "userID": 110,
+    "userID": 1,
     "condition": 3,
     "price": 80,
     "edited": "12/22/18",
@@ -881,23 +881,23 @@
   },
   {
     "ISBN": "978-0-307-39080-6",
-    "userID": 111,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 10,
     "edited": "12/16/18",
     "comments": "congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium"
   },
   {
     "ISBN": "978-0-393-93562-2",
-    "userID": 112,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 39,
     "edited": "7/1/19",
     "comments": "lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus"
   },
   {
     "ISBN": "978-1-879960-85-5",
-    "userID": 113,
+    "userID": 1,
     "condition": 1,
     "price": 71,
     "edited": "6/23/19",
@@ -905,15 +905,15 @@
   },
   {
     "ISBN": "978-1-4614-1685-2",
-    "userID": 114,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 9,
     "edited": "5/10/19",
     "comments": "semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac"
   },
   {
     "ISBN": "978-0-471-19826-0",
-    "userID": 115,
+    "userID": 1,
     "condition": 2,
     "price": 76,
     "edited": "6/22/19",
@@ -921,15 +921,15 @@
   },
   {
     "ISBN": "978-0-520-06525-3",
-    "userID": 116,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 55,
     "edited": "9/16/19",
     "comments": "sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor"
   },
   {
     "ISBN": "978-0-393-63074-9",
-    "userID": 117,
+    "userID": 1,
     "condition": 3,
     "price": 39,
     "edited": "9/27/19",
@@ -937,7 +937,7 @@
   },
   {
     "ISBN": "978-0-07-351424-6",
-    "userID": 118,
+    "userID": 1,
     "condition": 1,
     "price": 69,
     "edited": "10/17/19",
@@ -945,15 +945,15 @@
   },
   {
     "ISBN": "978-0-521-73298-7",
-    "userID": 119,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 23,
     "edited": "7/27/19",
     "comments": "cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus"
   },
   {
     "ISBN": "978-0-13-468946-3",
-    "userID": 120,
+    "userID": 1,
     "condition": 3,
     "price": 85,
     "edited": "11/20/19",
@@ -961,39 +961,39 @@
   },
   {
     "ISBN": "978-84-376-0771-9",
-    "userID": 121,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 14,
     "edited": "4/12/19",
     "comments": "tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam"
   },
   {
     "ISBN": "978-987-908533–2",
-    "userID": 122,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 1,
     "edited": "9/9/19",
     "comments": "orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi"
   },
   {
     "ISBN": "978-0-573-70203-7",
-    "userID": 123,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 93,
     "edited": "1/14/19",
     "comments": "ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices"
   },
   {
     "ISBN": "978-0-8166-9243-9",
-    "userID": 124,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 20,
     "edited": "1/30/19",
     "comments": "mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit"
   },
   {
     "ISBN": "978-0-226-43057-7",
-    "userID": 125,
+    "userID": 1,
     "condition": 2,
     "price": 50,
     "edited": "7/1/19",
@@ -1001,15 +1001,15 @@
   },
   {
     "ISBN": "978-6-07-778161-5",
-    "userID": 126,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 2,
     "edited": "7/16/19",
     "comments": "in libero ut massa volutpat convallis morbi odio odio elementum"
   },
   {
     "ISBN": "978-0-14-312448-1",
-    "userID": 127,
+    "userID": 1,
     "condition": 1,
     "price": 31,
     "edited": "10/7/19",
@@ -1017,7 +1017,7 @@
   },
   {
     "ISBN": "978-0-8129-6653-4",
-    "userID": 128,
+    "userID": 1,
     "condition": 2,
     "price": 20,
     "edited": "3/7/19",
@@ -1025,7 +1025,7 @@
   },
   {
     "ISBN": "978-1-4614-1685-2",
-    "userID": 129,
+    "userID": 1,
     "condition": 2,
     "price": 31,
     "edited": "8/27/19",
@@ -1033,7 +1033,7 @@
   },
   {
     "ISBN": "978-0-226-02974-0",
-    "userID": 130,
+    "userID": 1,
     "condition": 2,
     "price": 61,
     "edited": "12/2/18",
@@ -1041,7 +1041,7 @@
   },
   {
     "ISBN": "978-1-259-92230-5",
-    "userID": 131,
+    "userID": 1,
     "condition": 2,
     "price": 62,
     "edited": "8/17/19",
@@ -1049,7 +1049,7 @@
   },
   {
     "ISBN": "978-0-8133-3563-6",
-    "userID": 132,
+    "userID": 1,
     "condition": 1,
     "price": 19,
     "edited": "10/30/19",
@@ -1057,15 +1057,15 @@
   },
   {
     "ISBN": "978-1-260-50700-3",
-    "userID": 133,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 37,
     "edited": "10/9/19",
     "comments": "morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum"
   },
   {
     "ISBN": "978-1-260-13657-9",
-    "userID": 134,
+    "userID": 1,
     "condition": 1,
     "price": 37,
     "edited": "3/16/19",
@@ -1073,7 +1073,7 @@
   },
   {
     "ISBN": "978-1-60358-423-4",
-    "userID": 135,
+    "userID": 1,
     "condition": 3,
     "price": 69,
     "edited": "11/22/19",
@@ -1081,15 +1081,15 @@
   },
   {
     "ISBN": "978-3-8365-7282-8",
-    "userID": 136,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 41,
     "edited": "6/4/19",
     "comments": "tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat"
   },
   {
     "ISBN": "978-0-375-70509-0",
-    "userID": 137,
+    "userID": 1,
     "condition": 3,
     "price": 79,
     "edited": "10/20/19",
@@ -1097,7 +1097,7 @@
   },
   {
     "ISBN": "978-0-520-27102-9",
-    "userID": 138,
+    "userID": 1,
     "condition": 2,
     "price": 47,
     "edited": "1/15/19",
@@ -1105,15 +1105,15 @@
   },
   {
     "ISBN": "978-0-205-83763-2",
-    "userID": 139,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 95,
     "edited": "4/17/19",
     "comments": "eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare"
   },
   {
     "ISBN": "978-1-888021-23-3",
-    "userID": 140,
+    "userID": 1,
     "condition": 2,
     "price": 32,
     "edited": "4/25/19",
@@ -1121,15 +1121,15 @@
   },
   {
     "ISBN": "978-1-319-03977-6",
-    "userID": 141,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 68,
     "edited": "1/19/19",
     "comments": "vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam"
   },
   {
     "ISBN": "978-84-675-7784-6",
-    "userID": 142,
+    "userID": 1,
     "condition": 3,
     "price": 58,
     "edited": "2/11/19",
@@ -1137,15 +1137,15 @@
   },
   {
     "ISBN": "978-0-7432-9035-7",
-    "userID": 143,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 33,
     "edited": "8/4/19",
     "comments": "vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod"
   },
   {
     "ISBN": "978-0-8223-6319-4",
-    "userID": 144,
+    "userID": 1,
     "condition": 2,
     "price": 39,
     "edited": "8/26/19",
@@ -1153,7 +1153,7 @@
   },
   {
     "ISBN": "978-0-13-385205-9",
-    "userID": 145,
+    "userID": 1,
     "condition": 1,
     "price": 78,
     "edited": "7/14/19",
@@ -1161,7 +1161,7 @@
   },
   {
     "ISBN": "978-1-62291-125-7",
-    "userID": 146,
+    "userID": 1,
     "condition": 2,
     "price": 46,
     "edited": "2/20/19",
@@ -1169,7 +1169,7 @@
   },
   {
     "ISBN": "978-0-393-60388-0",
-    "userID": 147,
+    "userID": 1,
     "condition": 2,
     "price": 95,
     "edited": "12/21/18",
@@ -1177,7 +1177,7 @@
   },
   {
     "ISBN": "978-1-63149-475-8",
-    "userID": 148,
+    "userID": 1,
     "condition": 1,
     "price": 63,
     "edited": "12/2/18",
@@ -1185,7 +1185,7 @@
   },
   {
     "ISBN": "978-1-4696-2165-4",
-    "userID": 149,
+    "userID": 1,
     "condition": 1,
     "price": 78,
     "edited": "3/19/19",
@@ -1193,15 +1193,15 @@
   },
   {
     "ISBN": "978-0-915144-61-7",
-    "userID": 150,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 91,
     "edited": "11/6/19",
     "comments": "est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum"
   },
   {
     "ISBN": "978-0-8021-4440-9",
-    "userID": 151,
+    "userID": 1,
     "condition": 2,
     "price": 58,
     "edited": "1/5/19",
@@ -1209,23 +1209,23 @@
   },
   {
     "ISBN": "978-1-118-98068-2",
-    "userID": 152,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 100,
     "edited": "6/5/19",
     "comments": "sem sed sagittis nam congue risus semper porta volutpat quam pede"
   },
   {
     "ISBN": "978-0-306-81836-3",
-    "userID": 153,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 9,
     "edited": "8/4/19",
     "comments": "fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis"
   },
   {
     "ISBN": "978-0-19-049002-7",
-    "userID": 154,
+    "userID": 1,
     "condition": 3,
     "price": 8,
     "edited": "9/29/19",
@@ -1233,7 +1233,7 @@
   },
   {
     "ISBN": "978-1-260-11129-3",
-    "userID": 155,
+    "userID": 1,
     "condition": 1,
     "price": 97,
     "edited": "11/9/19",
@@ -1241,7 +1241,7 @@
   },
   {
     "ISBN": "978-0-07-351899-2",
-    "userID": 156,
+    "userID": 1,
     "condition": 2,
     "price": 54,
     "edited": "6/22/19",
@@ -1249,7 +1249,7 @@
   },
   {
     "ISBN": "978-0-87220-873-5",
-    "userID": 157,
+    "userID": 1,
     "condition": 1,
     "price": 11,
     "edited": "12/24/18",
@@ -1257,7 +1257,7 @@
   },
   {
     "ISBN": "978-1-72084-304-7",
-    "userID": 158,
+    "userID": 1,
     "condition": 1,
     "price": 24,
     "edited": "8/1/19",
@@ -1265,23 +1265,23 @@
   },
   {
     "ISBN": "978-0-13-468946-3",
-    "userID": 159,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 92,
     "edited": "5/22/19",
     "comments": "imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam"
   },
   {
     "ISBN": "978-0-8222-1782-4",
-    "userID": 160,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 18,
     "edited": "9/15/19",
     "comments": "nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet"
   },
   {
     "ISBN": "978-1-4939-5026-3",
-    "userID": 161,
+    "userID": 1,
     "condition": 2,
     "price": 65,
     "edited": "11/28/18",
@@ -1289,15 +1289,15 @@
   },
   {
     "ISBN": "978-1-903663-81-3",
-    "userID": 162,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 94,
     "edited": "3/9/19",
     "comments": "id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus"
   },
   {
     "ISBN": "978-0-393-69640-0",
-    "userID": 163,
+    "userID": 1,
     "condition": 1,
     "price": 25,
     "edited": "2/20/19",
@@ -1305,23 +1305,23 @@
   },
   {
     "ISBN": "978-1-4641-7605-0",
-    "userID": 164,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 62,
     "edited": "7/3/19",
     "comments": "habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum"
   },
   {
     "ISBN": "978-0-8070-2802-5",
-    "userID": 165,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 8,
     "edited": "4/7/19",
     "comments": "et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor"
   },
   {
     "ISBN": "978-1-259-65550-0",
-    "userID": 166,
+    "userID": 1,
     "condition": 3,
     "price": 38,
     "edited": "1/25/19",
@@ -1329,15 +1329,15 @@
   },
   {
     "ISBN": "978-0-02-902450-8",
-    "userID": 167,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 96,
     "edited": "9/26/19",
     "comments": "in est risus auctor sed tristique in tempus sit amet sem fusce consequat"
   },
   {
     "ISBN": "978-1-56584-580-0",
-    "userID": 168,
+    "userID": 1,
     "condition": 1,
     "price": 98,
     "edited": "8/13/19",
@@ -1345,7 +1345,7 @@
   },
   {
     "ISBN": "978-0-520-28216-2",
-    "userID": 169,
+    "userID": 1,
     "condition": 2,
     "price": 23,
     "edited": "6/19/19",
@@ -1353,23 +1353,23 @@
   },
   {
     "ISBN": "978-0-375-70509-0",
-    "userID": 170,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 15,
     "edited": "6/15/19",
     "comments": "duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus"
   },
   {
     "ISBN": "978-1-62291-125-7",
-    "userID": 171,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 1,
     "edited": "2/6/19",
     "comments": "vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac"
   },
   {
     "ISBN": "978-0-935702-75-0",
-    "userID": 172,
+    "userID": 1,
     "condition": 2,
     "price": 21,
     "edited": "2/13/19",
@@ -1377,7 +1377,7 @@
   },
   {
     "ISBN": "978-84-675-7784-6",
-    "userID": 173,
+    "userID": 1,
     "condition": 2,
     "price": 48,
     "edited": "5/6/19",
@@ -1385,7 +1385,7 @@
   },
   {
     "ISBN": "978-84-675-7784-6",
-    "userID": 174,
+    "userID": 1,
     "condition": 2,
     "price": 36,
     "edited": "8/7/19",
@@ -1393,15 +1393,15 @@
   },
   {
     "ISBN": "978-1-906387-53-2",
-    "userID": 175,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 91,
     "edited": "10/20/19",
     "comments": "sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus"
   },
   {
     "ISBN": "978-1-78067-851-1",
-    "userID": 176,
+    "userID": 1,
     "condition": 3,
     "price": 18,
     "edited": "6/1/19",
@@ -1409,15 +1409,15 @@
   },
   {
     "ISBN": "978-1-62291-140-0",
-    "userID": 177,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 91,
     "edited": "5/27/19",
     "comments": "odio cras mi pede malesuada in imperdiet et commodo vulputate justo in"
   },
   {
     "ISBN": "978-0-387-94907-9",
-    "userID": 178,
+    "userID": 1,
     "condition": 1,
     "price": 51,
     "edited": "5/17/19",
@@ -1425,7 +1425,7 @@
   },
   {
     "ISBN": "978-0-8222-3042-7",
-    "userID": 179,
+    "userID": 1,
     "condition": 3,
     "price": 54,
     "edited": "7/4/19",
@@ -1433,15 +1433,15 @@
   },
   {
     "ISBN": "978-1-60535-579-5",
-    "userID": 180,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 63,
     "edited": "6/27/19",
     "comments": "in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin"
   },
   {
     "ISBN": "978-0-8179-2115-6",
-    "userID": 181,
+    "userID": 1,
     "condition": 1,
     "price": 54,
     "edited": "9/29/19",
@@ -1449,7 +1449,7 @@
   },
   {
     "ISBN": "978-0-13-498856-6",
-    "userID": 182,
+    "userID": 1,
     "condition": 1,
     "price": 11,
     "edited": "5/15/19",
@@ -1457,7 +1457,7 @@
   },
   {
     "ISBN": "978-0-205-25815-4",
-    "userID": 183,
+    "userID": 1,
     "condition": 1,
     "price": 20,
     "edited": "2/17/19",
@@ -1465,7 +1465,7 @@
   },
   {
     "ISBN": "978-1-260-13657-9",
-    "userID": 184,
+    "userID": 1,
     "condition": 2,
     "price": 47,
     "edited": "2/25/19",
@@ -1473,7 +1473,7 @@
   },
   {
     "ISBN": "978-0-13-183312-8",
-    "userID": 185,
+    "userID": 1,
     "condition": 3,
     "price": 22,
     "edited": "9/1/19",
@@ -1481,39 +1481,39 @@
   },
   {
     "ISBN": "978-1-56584-580-0",
-    "userID": 186,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 63,
     "edited": "1/12/19",
     "comments": "erat quisque erat eros viverra eget congue eget semper rutrum nulla"
   },
   {
     "ISBN": "978-0-06-112792-2",
-    "userID": 187,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 60,
     "edited": "11/8/19",
     "comments": "convallis nunc proin at turpis a pede posuere nonummy integer non velit donec diam neque vestibulum eget vulputate ut"
   },
   {
     "ISBN": "978-0-85345-991-0",
-    "userID": 188,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 50,
     "edited": "10/18/19",
     "comments": "nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis"
   },
   {
     "ISBN": "978-0-393-12398-2",
-    "userID": 189,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 29,
     "edited": "6/7/19",
     "comments": "imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere"
   },
   {
     "ISBN": "978-1-260-18521-8",
-    "userID": 190,
+    "userID": 1,
     "condition": 1,
     "price": 94,
     "edited": "1/8/19",
@@ -1521,7 +1521,7 @@
   },
   {
     "ISBN": "978-0-07-351899-2",
-    "userID": 191,
+    "userID": 1,
     "condition": 2,
     "price": 65,
     "edited": "7/14/19",
@@ -1529,7 +1529,7 @@
   },
   {
     "ISBN": "978-1-107-61147-4",
-    "userID": 192,
+    "userID": 1,
     "condition": 1,
     "price": 72,
     "edited": "3/31/19",
@@ -1537,7 +1537,7 @@
   },
   {
     "ISBN": "978-1-938168-15-4",
-    "userID": 193,
+    "userID": 1,
     "condition": 3,
     "price": 3,
     "edited": "6/7/19",
@@ -1545,7 +1545,7 @@
   },
   {
     "ISBN": "978-0-8057-1676-4",
-    "userID": 194,
+    "userID": 1,
     "condition": 3,
     "price": 81,
     "edited": "1/22/19",
@@ -1553,15 +1553,15 @@
   },
   {
     "ISBN": "978-1-62291-140-0",
-    "userID": 195,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 58,
     "edited": "3/19/19",
     "comments": "in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac"
   },
   {
     "ISBN": "978-0-205-83763-2",
-    "userID": 196,
+    "userID": 1,
     "condition": 2,
     "price": 26,
     "edited": "1/20/19",
@@ -1569,7 +1569,7 @@
   },
   {
     "ISBN": "978-0-393-12398-2",
-    "userID": 197,
+    "userID": 1,
     "condition": 1,
     "price": 19,
     "edited": "5/27/19",
@@ -1577,7 +1577,7 @@
   },
   {
     "ISBN": "978-0-300-10723-4",
-    "userID": 198,
+    "userID": 1,
     "condition": 1,
     "price": 90,
     "edited": "12/13/18",
@@ -1585,7 +1585,7 @@
   },
   {
     "ISBN": "978-1-903663-81-3",
-    "userID": 199,
+    "userID": 1,
     "condition": 3,
     "price": 59,
     "edited": "12/28/18",
@@ -1593,23 +1593,23 @@
   },
   {
     "ISBN": "978-6-07-778161-5",
-    "userID": 200,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 64,
     "edited": "4/19/19",
     "comments": "sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam"
   },
   {
     "ISBN": "978-0-935702-75-0",
-    "userID": 201,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 94,
     "edited": "10/17/19",
     "comments": "eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus"
   },
   {
     "ISBN": "978-0-300-19446-3",
-    "userID": 202,
+    "userID": 1,
     "condition": 2,
     "price": 7,
     "edited": "4/9/19",
@@ -1617,7 +1617,7 @@
   },
   {
     "ISBN": "978-1-260-27676-3",
-    "userID": 203,
+    "userID": 1,
     "condition": 2,
     "price": 27,
     "edited": "9/14/19",
@@ -1625,15 +1625,15 @@
   },
   {
     "ISBN": "978-0-8129-8496-5",
-    "userID": 204,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 51,
     "edited": "4/2/19",
     "comments": "in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt"
   },
   {
     "ISBN": "978-0-13-490517-4",
-    "userID": 205,
+    "userID": 1,
     "condition": 2,
     "price": 48,
     "edited": "1/26/19",
@@ -1641,7 +1641,7 @@
   },
   {
     "ISBN": "978-0-226-43057-7",
-    "userID": 206,
+    "userID": 1,
     "condition": 3,
     "price": 5,
     "edited": "9/14/19",
@@ -1649,15 +1649,15 @@
   },
   {
     "ISBN": "978-0-300-19446-3",
-    "userID": 207,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 94,
     "edited": "10/13/19",
     "comments": "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec"
   },
   {
     "ISBN": "978-0-300-19446-3",
-    "userID": 208,
+    "userID": 1,
     "condition": 1,
     "price": 38,
     "edited": "9/3/19",
@@ -1665,15 +1665,15 @@
   },
   {
     "ISBN": "978-1-935408-03-1",
-    "userID": 209,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 99,
     "edited": "8/21/19",
     "comments": "viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec"
   },
   {
     "ISBN": "978-0-13-028280-4",
-    "userID": 210,
+    "userID": 1,
     "condition": 3,
     "price": 73,
     "edited": "4/4/19",
@@ -1681,15 +1681,15 @@
   },
   {
     "ISBN": "978-1-107-45117-9",
-    "userID": 211,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 82,
     "edited": "10/9/19",
     "comments": "metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia"
   },
   {
     "ISBN": "978-1-118-53177-8",
-    "userID": 212,
+    "userID": 1,
     "condition": 3,
     "price": 94,
     "edited": "4/6/19",
@@ -1697,15 +1697,15 @@
   },
   {
     "ISBN": "978-0-393-63074-9",
-    "userID": 213,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 50,
     "edited": "3/18/19",
     "comments": "consequat dui nec nisi volutpat eleifend donec ut dolor morbi"
   },
   {
     "ISBN": "978-1-61091-607-3",
-    "userID": 214,
+    "userID": 1,
     "condition": 1,
     "price": 53,
     "edited": "9/16/19",
@@ -1713,7 +1713,7 @@
   },
   {
     "ISBN": "978-4-87424-127-1",
-    "userID": 215,
+    "userID": 1,
     "condition": 3,
     "price": 86,
     "edited": "3/24/19",
@@ -1721,7 +1721,7 @@
   },
   {
     "ISBN": "978-0-307-38995-4",
-    "userID": 216,
+    "userID": 1,
     "condition": 3,
     "price": 10,
     "edited": "8/14/19",
@@ -1729,7 +1729,7 @@
   },
   {
     "ISBN": "978-1-305-58029-9",
-    "userID": 217,
+    "userID": 1,
     "condition": 1,
     "price": 20,
     "edited": "7/14/19",
@@ -1737,7 +1737,7 @@
   },
   {
     "ISBN": "978-1-118-98068-2",
-    "userID": 218,
+    "userID": 1,
     "condition": 2,
     "price": 31,
     "edited": "4/9/19",
@@ -1745,7 +1745,7 @@
   },
   {
     "ISBN": "978-0-07-351899-2",
-    "userID": 219,
+    "userID": 1,
     "condition": 1,
     "price": 26,
     "edited": "5/27/19",
@@ -1753,15 +1753,15 @@
   },
   {
     "ISBN": "978-0-8021-4440-9",
-    "userID": 220,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 2,
     "edited": "6/20/19",
     "comments": "neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris"
   },
   {
     "ISBN": "978-0-8165-2977-3",
-    "userID": 221,
+    "userID": 1,
     "condition": 1,
     "price": 53,
     "edited": "7/19/19",
@@ -1769,23 +1769,23 @@
   },
   {
     "ISBN": "978-0-8222-1782-4",
-    "userID": 222,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 4,
     "edited": "4/10/19",
     "comments": "vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut"
   },
   {
     "ISBN": "978-0-13-407354-5",
-    "userID": 223,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 89,
     "edited": "3/11/19",
     "comments": "pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac"
   },
   {
     "ISBN": "978-0-14-303707-1",
-    "userID": 224,
+    "userID": 1,
     "condition": 2,
     "price": 14,
     "edited": "12/4/18",
@@ -1793,15 +1793,15 @@
   },
   {
     "ISBN": "978-0-8021-3030-3",
-    "userID": 225,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 72,
     "edited": "4/1/19",
     "comments": "consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci"
   },
   {
     "ISBN": "978-0-205-24263-4",
-    "userID": 226,
+    "userID": 1,
     "condition": 3,
     "price": 33,
     "edited": "5/21/19",
@@ -1809,7 +1809,7 @@
   },
   {
     "ISBN": "978-1-4696-2165-4",
-    "userID": 227,
+    "userID": 1,
     "condition": 1,
     "price": 47,
     "edited": "9/6/19",
@@ -1817,7 +1817,7 @@
   },
   {
     "ISBN": "978-1-259-35266-9",
-    "userID": 228,
+    "userID": 1,
     "condition": 3,
     "price": 56,
     "edited": "1/10/19",
@@ -1825,15 +1825,15 @@
   },
   {
     "ISBN": "978-1-138-49074-1",
-    "userID": 229,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 56,
     "edited": "5/26/19",
     "comments": "nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra"
   },
   {
     "ISBN": "978-0-87220-873-5",
-    "userID": 230,
+    "userID": 1,
     "condition": 1,
     "price": 30,
     "edited": "4/24/19",
@@ -1841,7 +1841,7 @@
   },
   {
     "ISBN": "978-0-02-902450-8",
-    "userID": 231,
+    "userID": 1,
     "condition": 2,
     "price": 55,
     "edited": "12/20/18",
@@ -1849,7 +1849,7 @@
   },
   {
     "ISBN": "978-1-4641-7605-0",
-    "userID": 232,
+    "userID": 1,
     "condition": 1,
     "price": 35,
     "edited": "3/18/19",
@@ -1857,31 +1857,31 @@
   },
   {
     "ISBN": "978-0-14-043204-6",
-    "userID": 233,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 9,
     "edited": "8/10/19",
     "comments": "sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique"
   },
   {
     "ISBN": "978-0-19-529000-4",
-    "userID": 234,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 77,
     "edited": "9/4/19",
     "comments": "odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum"
   },
   {
     "ISBN": "978-0-307-35314-6",
-    "userID": 235,
-    "condition": 3,
+    "userID": 1,
+    "condition": 4,
     "price": 58,
     "edited": "3/15/19",
     "comments": "sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse"
   },
   {
     "ISBN": "978-2-01-156053-7",
-    "userID": 236,
+    "userID": 1,
     "condition": 3,
     "price": 85,
     "edited": "7/16/19",
@@ -1889,8 +1889,8 @@
   },
   {
     "ISBN": "978-6-07-778161-5",
-    "userID": 237,
-    "condition": 3,
+    "userID": 1,
+    "condition": "Used",
     "price": 36,
     "edited": "4/19/19",
     "comments": "adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget"
