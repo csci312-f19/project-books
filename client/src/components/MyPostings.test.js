@@ -70,11 +70,15 @@ describe('MyListings main page tests', () => {
     //check that it has all the fields
     const myFields = app.find(Detail);
     expect(myFields.length).toEqual(7);
+    window.confirm = jest.fn();
   });
 
   test('Upon clicking delete on a posting, return to MyPostings', async () => {
     const deletebutton = app.find('button').at(0);
     deletebutton.simulate('click');
+    await act(async () => await flushPromises());
+    app.update();
+    window.confirm.mockClear();
 
     //update app
     await act(async () => await flushPromises());
@@ -107,6 +111,10 @@ describe('Edit posting tests', () => {
   test('View change occurs upon clicking edit', async () => {
     const editbutton = app.find('button').at(1);
     editbutton.simulate('click');
+
+    await act(async () => await flushPromises());
+    app.update();
+
     //check if new component appears
     expect(app.find(EditDiv)).toBeDefined();
 
@@ -121,6 +129,10 @@ describe('Edit posting tests', () => {
   test('Upon clicking cancel from edit view, return to mypostings', async () => {
     const editbutton = app.find('button').at(1);
     editbutton.simulate('click');
+
+    await act(async () => await flushPromises());
+    app.update();
+
     //we should now be in edit view
     expect(app.find(EditDiv)).toBeDefined();
 
@@ -128,5 +140,33 @@ describe('Edit posting tests', () => {
     cancelButton.simulate('click');
     //we should no longer be in edit view but in normal view (called "View")
     expect(app.find(View)).toBeDefined();
+  });
+  test('Upon clicking save from edit view, return to mypostings and store updated listings', async () => {
+    const editbutton = app.find('button').at(1);
+    editbutton.simulate('click');
+    //we should now be in edit view
+    expect(app.find(EditDiv)).toBeDefined();
+    const changeField = app.find(NewInput).at(0);
+    changeField.simulate('change', { target: { value: 'We changed you!' } });
+
+    const saveButton = app.find('button').at(1);
+    saveButton.simulate('click');
+
+    //update app
+    await act(async () => await flushPromises());
+    app.update();
+
+    window.confirm.mockClear();
+
+    //update app
+    await act(async () => await flushPromises());
+    app.update();
+
+    //now we should go back to listings, and check the value of conditionfield
+    expect(app.find(View)).toBeDefined();
+    //the third field is condition
+    const newField = app.find(Detail).at(0);
+    expect(newField.length).toEqual(1);
+    expect(newField.props(0)['children'][2]).toEqual(' We changed you!');
   });
 });
