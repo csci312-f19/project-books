@@ -170,7 +170,6 @@ const newPosting = ({ ifPosting }) => {
          Your posting contains the following.
          You can edit it in My Postings\n
          Book Title: ${allInfo.title}
-         Book Author: ${allInfo.author}
          Course Title: ${allInfo.courseTitle}
          ISBN Number: ${allInfo.ISBN}
          Course Code: ${allInfo.courseID}
@@ -205,7 +204,6 @@ const newPosting = ({ ifPosting }) => {
             'Book Title',
             'The Guide to the Dr. and Everything React'
           )}
-          {makeInput('author', 'Book Author', 'Christopher Andrews')}
           {makeInput('courseTitle', 'Course Title', 'Software Development')}
           {makeInput('ISBN', 'ISBN Number', '123-4-567-89012-3')}
           <Note>
@@ -223,12 +221,12 @@ const newPosting = ({ ifPosting }) => {
               }}
               required
             >
-              <option value={1}>Like New</option>
-              <option value={2}>Very Good</option>
-              <option value={3}>Good</option>
-              <option value={4}>Acceptable</option>
-              <option value={5}>Very Worn</option>
-              <option value={6}>Bad</option>
+              <option value={0}>Like New</option>
+              <option value={1}>Very Good</option>
+              <option value={2}>Good</option>
+              <option value={3}>Acceptable</option>
+              <option value={4}>Very Worn</option>
+              <option value={5}>Bad</option>
             </InputSelect>
           </InputLineContainer>
 

@@ -141,7 +141,7 @@ describe('New Posting tests', () => {
 
   test('New Postings has input line with placeholder for price', () => {
     expect(comp.find(InputLine)).toBeDefined();
-    const input = inputs.at(5);
+    const input = inputs.at(4);
     expect(input).toHaveProp('placeholder');
 
     expect(input.prop('value')).toBeFalsy();

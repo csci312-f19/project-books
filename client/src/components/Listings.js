@@ -116,12 +116,11 @@ function sendEmail(sellerInfo, buyerInfo, bookTitle, bookPrice) {
       bookPrice: bookPrice
     })
   })
-    .then(res => res.json())
     .then(res => {
-      console.log('Response:', res);
+      return res;
     })
     .catch(err => {
-      console.error('Error: ', err);
+      return err;
     });
 }
 
