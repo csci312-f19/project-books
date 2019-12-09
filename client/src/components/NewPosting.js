@@ -221,12 +221,12 @@ const newPosting = ({ ifPosting }) => {
               }}
               required
             >
-              <option value={1}>Like New</option>
-              <option value={2}>Very Good</option>
-              <option value={3}>Good</option>
-              <option value={4}>Acceptable</option>
-              <option value={5}>Very Worn</option>
-              <option value={6}>Bad</option>
+              <option value={0}>Like New</option>
+              <option value={1}>Very Good</option>
+              <option value={2}>Good</option>
+              <option value={3}>Acceptable</option>
+              <option value={4}>Very Worn</option>
+              <option value={5}>Bad</option>
             </InputSelect>
           </InputLineContainer>
 

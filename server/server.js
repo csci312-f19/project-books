@@ -309,7 +309,7 @@ app.use((error, request, response, next) => {
 // Nodemailer and the following associated code is used to send the email to the 1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw
 const nodemailer = require('nodemailer');
 
-app.post('/api/bookrequest', function(req, res, next) {
+app.post('/api/bookrequest', (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -329,7 +329,7 @@ app.post('/api/bookrequest', function(req, res, next) {
   <p>Please contact the buyer within the next 3 days to set up a time to meet. Once your exchange is confirmed, make sure to log back on to your account and delete your book listing from the marketplace.</p>
   <p>Thank you for using Midd Book Market!</p>`
   };
-  transporter.sendMail(mailOptions, function(error, info) {
+  transporter.sendMail(mailOptions, error => {
     if (error) {
       res.sendStatus(500);
     } else {
