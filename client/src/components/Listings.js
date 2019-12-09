@@ -30,7 +30,7 @@ const View = styled.div`
   border: 3px solid #6e6db2;
 `;
 
-const Detail = styled.div`
+export const Detail = styled.div`
   padding: 0.65vw 0.65vw;
   border-radius: 4px;
   background-color: #fafafa;
@@ -125,7 +125,7 @@ export const DetailedListing = ({ loggedIn }) => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`/api/bookListings/${id}`) //is it bad to get all of the listings if the user doesnt necessarily need all of them ?
+    fetch(`/api/bookListings/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -351,11 +351,15 @@ function Listings({ currentListings, searchTerm, mode, loggedIn }) {
         {searchTerm != null && (
           <SortBar sortType={sortType} setSortType={setSortType} />
         )}
-        <ListingsCollection
-          currentListings={currentListings}
-          searchTerm={searchTerm}
-          sortType={sortType}
-        />
+        {currentListings && (
+          <ListingsCollection
+            currentListings={currentListings}
+            searchTerm={searchTerm}
+            sortType={sortType}
+          />
+        )}
+
+        {!currentListings && <div>Hi</div>}
       </div>
     );
   } else {
