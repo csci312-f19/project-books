@@ -221,7 +221,7 @@ describe('SortBar actions', () => {
       expect(listingsList.length).toEqual(4);
       expect(listingsList[0].key).toEqual(
         sampleData.sort((a, b) => {
-          if (a.title < b.title) {
+          if (a.title.toLowerCase() < b.title.toLowerCase()) {
             return -1;
           } else {
             return 1;
@@ -241,7 +241,7 @@ describe('SortBar actions', () => {
       expect(listingsList.length).toEqual(4);
       expect(listingsList[0].key).toEqual(
         sampleData.sort((a, b) => {
-          if (a.title > b.title) {
+          if (a.title.toLowerCase() > b.title.toLowerCase()) {
             return -1;
           } else {
             return 1;
