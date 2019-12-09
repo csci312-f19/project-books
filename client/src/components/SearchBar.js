@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 export const SearchBar = styled.input`
   text-align: left;
@@ -30,15 +31,14 @@ const SearchBarContainer = styled.div`
 `;
 
 function Search({ setBook }) {
-  let book = '';
+  const [book, setCurrBook] = useState('');
   return (
     <SearchBarContainer>
       <SearchBar
         type="text"
         placeholder="Search by Title, Course ID, ISBN, or Keyword"
         onChange={event => {
-          book = event.target.value;
-          // setBook(event.target.value);
+          setCurrBook(event.target.value);
         }}
         onKeyDown={event => {
           if (event.keyCode === 13) {
