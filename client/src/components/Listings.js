@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
-// import Immutable from 'immutable';
 
 const ListingsContainer = styled.div`
   text-align: center;
@@ -30,6 +29,11 @@ const View = styled.div`
   border: 3px solid #6e6db2;
 `;
 
+const SortDiv = styled.div`
+  font-size: 85%;
+  color: #374068;
+`;
+
 export const Detail = styled.div`
   padding: 0.65vw 0.65vw;
   border-radius: 4px;
@@ -38,13 +42,13 @@ export const Detail = styled.div`
   margin-left: 7%;
   margin-right: 7%;
   margin-bottom: 10px;
-  font-size: 90%;
+  font-size: 80%;
 `;
 
 const ListTitle = styled.h3`
   color: #374068;
   text-align: center;
-  font-size: 110%;
+  font-size: 100%;
 `;
 
 const SortBarContainer = styled.div`
@@ -59,22 +63,26 @@ const Confirmation = styled.div`
   margin-top: 2vw;
 `;
 
+const LoginMsg = styled.div`
+    color: red;
+  font-size: 60%;
+`;
+
 const BuyButton = styled.button`
-  color: #374068;
   text-align: center;
-  padding: 0.75vw;
-  font-size: 100%;
+  padding: 0.65vw;
+  font-size: 80%;
   border-radius: 10vw;
 `;
 
 const SortSelect = styled.select`
   color: white;
-  height: 35px;
+  height: 2vw;
   background: #374068;
   padding-left: 5px;
-  font-size: 14px;
+  font-size: 70%;
   border: none;
-  border-radius: 15px;
+  border-radius: 1vw;
   margin-left: 10px;
   overflow-y: scroll;
 
@@ -89,10 +97,6 @@ const SortSelect = styled.select`
     outline: none;
   }
 `;
-
-//background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-
-//  box-sizing: border-box;
 
 // triggered on button click to post information that the server then uses to send an email to the seller
 function sendEmail(name, email, bookTitle, bookPrice) {
@@ -166,32 +170,34 @@ export const DetailedListing = ({ loggedIn }) => {
           <strong>{`Price`}</strong> {` $${detailedListing.price}`}
         </Detail>
         {!purchased && (
-          <Popup
-            trigger={
-              <ListingsContainer>
-                {loggedIn && <BuyButton> Buy Now </BuyButton>}
-              </ListingsContainer>
-            }
-            position="bottom center"
-          >
-            <div>
-              {`Are you sure you would like to buy this book? Finalizing your purchase
+          <ListingsContainer>
+            <Popup
+              trigger={<BuyButton disabled={!loggedIn}> Buy Now </BuyButton>}
+              position="bottom center"
+            >
+              <div>
+                {`Are you sure you would like to buy this book? Finalizing your purchase
           will confirm your order and send an alert to the seller.`}
-              <BuyButton
-                onClick={() => {
-                  sendEmail(
-                    'Hannah',
-                    'hdonovan@middlebury.edu',
-                    detailedListing.title,
-                    detailedListing.price
-                  );
-                  setPurchase(true);
-                }}
-              >
-                Place my Order
-              </BuyButton>
-            </div>
-          </Popup>
+                <BuyButton
+                  onClick={() => {
+                    sendEmail(
+                      'Hannah',
+                      'hdonovan@middlebury.edu',
+                      detailedListing.title,
+                      detailedListing.price
+                    );
+                    setPurchase(true);
+                  }}
+                  disabled={!loggedIn}
+                >
+                  Place my Order
+                </BuyButton>
+              </div>
+            </Popup>
+            {!loggedIn && (
+              <LoginMsg>You must be logged in to purchase a book.</LoginMsg>
+            )}
+          </ListingsContainer>
         )}
 
         <div>
@@ -211,8 +217,8 @@ export const DetailedListing = ({ loggedIn }) => {
 export function SortBar({ sortType, setSortType }) {
   return (
     <SortBarContainer>
-      <div>
-        Sort by: {'  '}
+      <SortDiv>
+        <strong>Sort by:</strong>
         <SortSelect
           value={sortType}
           onChange={event => {
@@ -227,7 +233,7 @@ export function SortBar({ sortType, setSortType }) {
           <option value="Old to New">Old - New</option>
           <option value="New to Old">New - Old</option>
         </SortSelect>
-      </div>
+      </SortDiv>
     </SortBarContainer>
   );
 }
@@ -239,17 +245,14 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
 
     updatedList = currentListings.filter(listing => {
       const editedTitle = listing.title.toLowerCase();
-      // const editedCourseTitle = listing.courseTitle.toLowerCase();
       const editedCourseID = listing.courseID.toLowerCase();
       const editedISBN = listing.ISBN.replace(/-/g, '');
-      // let editedAuthor=listing.Author.toUpperCase();
 
       for (let i = 0; i < searchTerms.length; i++) {
         const term = searchTerms[i].toLowerCase();
         if (term !== '') {
           if (
             editedTitle.includes(term) ||
-            // editedCourseTitle.includes(term) ||
             editedCourseID.includes(term) ||
             listing.ISBN.includes(term) ||
             editedISBN.includes(term)
@@ -274,7 +277,7 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
     sortedList = updatedList.sort((a, b) => b.condition - a.condition);
   } else if (sortType === 'A to Z' && searchTerm != null) {
     sortedList = updatedList.sort((a, b) => {
-      if (a.title < b.title) {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
         return -1;
       } else {
         return 1;
@@ -282,7 +285,7 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
     });
   } else if (sortType === 'Z to A' && searchTerm != null) {
     sortedList = updatedList.sort((a, b) => {
-      if (a.title > b.title) {
+      if (a.title.toLowerCase() > b.title.toLowerCase()) {
         return -1;
       } else {
         return 1;
@@ -303,6 +306,7 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
     'Very Good',
     'Like New'
   ];
+
   const ListingsDisplay = sortedList.map(listing => (
     //Listtitle will be whatever it is that we search by
     // All the others will run though list of other properties to populate ListElement probably
@@ -330,11 +334,15 @@ export function ListingsCollection({ currentListings, searchTerm, sortType }) {
     </ListElementContainer>
   ));
 
-  return (
-    <ListingsContainer>
-      <List>{ListingsDisplay}</List>
-    </ListingsContainer>
-  );
+  if (sortedList.size > 0 || searchTerm === null) {
+    return (
+      <ListingsContainer>
+        <List>{ListingsDisplay}</List>
+      </ListingsContainer>
+    );
+  } else {
+    return <ListTitle>{'Your search did not return any results.'}</ListTitle>;
+  }
 }
 
 function Listings({ currentListings, searchTerm, mode, loggedIn }) {
