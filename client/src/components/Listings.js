@@ -211,7 +211,6 @@ export const EmailButton = ({
   return (
     <EmailButtonStyling
       onClick={() => {
-        console.log(sellerInfo);
         sendEmail(
           sellerInfo,
           buyerInfo,
