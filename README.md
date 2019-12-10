@@ -86,6 +86,15 @@ Assuming that you have a Heroku account, have installed the [Heroku command line
 
 Depending on how you implement your server, you will likely need create "add-ons" for your database, etc. and migrate then seed your database before you deploy.
 
+## Maintaining Heroku
+Whenever changes to the database tables are made, the Heroku database must be reset. We were doing this by going into our Heroku account, going to the resources for the application, and going to "HEROKU POSTGRES" that is labeled as a DATABASE. In this new link, go to "settings, and then reset the database. 
+
+After resetting the database, it must be remigrated and reseeded with: 
+```
+1.heroku run 'cd server && npx knex migrate:latest'
+2. heroku run 'cd server && npx knex seed:run'
+```
+
 ### Heroku with RDBMS
 
 Heroku provides a free add-on with the PostgreSQL database. Provision the add-on with the following command. The provisioning will define `process.env.DATABASE_URL` in the Heroku environment (which can be used by your database interface, e.g. by Knex in its configuration file).
